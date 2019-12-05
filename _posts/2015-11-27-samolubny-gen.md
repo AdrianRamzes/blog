@@ -25,13 +25,13 @@ Po złapaniu głównego przesłania tej książki, które moim zdaniem mogło by
 
 Książka wydana była po raz pierwszy  w roku 1976. Dlatego rozumiem, że autor musiał bardzo się rozpisać, aby wytłumaczyć swóje dość rewolucyjne poglądy.  
 Dziś znaczna większość społeczeństwa wie czym jest ewolucja. Z tego powodu teorie zawarte w tej książce nie brzmią już tak rewolucyjnie jak kiedyś. Podczas czytania, cały czas czuć silne starania autora do udowodnienia swoich racji. Zapewne Richard Dawkins wiedział, że książka będzie bardzo krytykowana (co do tego się nie pomylił) więc zapobiegawczo podawał wiele przykładów i rozpisywał się aby mieć pewność, że zostanie dobrze zrozumiany.  
-Przeczytaj poniższe punkty. (UWAGA SPOILER! &#8211; jeśli w ogóle książki popularnonaukowe mogą mieć spoilery 😉 )
+Przeczytaj poniższe punkty. (UWAGA SPOILER! - jeśli w ogóle książki popularnonaukowe mogą mieć spoilery 😉 )
 
   1. Z czegoś prostego, może powstać coś złożonego. Wystarczą odpowiednie warunki i duuużo czasu.
   2. Niektóre zachowania zwierząt można wytłumaczyć tylko dzięki wiedzy o genach i ewolucji.
   3. Altruizm, ani inne zachowania, które na pozór przeczą ewolucji wcale jej nie przeczą.
   4. Organizm to tylko duża zbroja mająca zapewnić genom podróż przez czas.
-  5. Geny dbają tylko o siebie, a to nie musi oznaczać, że dbają o Ciebie. &#8211; Tutaj tytuł książki okazuje się bardzo adekwatny do treści.
+  5. Geny dbają tylko o siebie, a to nie musi oznaczać, że dbają o Ciebie. - Tutaj tytuł książki okazuje się bardzo adekwatny do treści.
   6. Jeśli któryś z powyższych punktów Cię zaintrygował, przeczytaj 482. strony wywodów, w tym ponad 80 stron komentarzy i przypisów.
 
 Jeśli nie chce Ci się czytać, to po prostu zapamiętaj pierwsze 5 punktów. Uznaj je za fakt i możesz spokojnie mówić, że przeczytałeś/łaś całą książkę 😉 .

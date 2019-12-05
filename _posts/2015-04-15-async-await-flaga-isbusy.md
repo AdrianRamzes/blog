@@ -1,6 +1,6 @@
 ---
 id: 228
-title: 'Async Await &#8211; flaga isBusy'
+title: 'Async Await - flaga isBusy'
 date: 2015-04-15T12:34:53+00:00
 author: Adrian Karalus
 layout: post
@@ -20,10 +20,10 @@ Załóżmy, że nasze asynchroniczne zadanie odpalane jest na jakiś event, np. 
   
 Co jeśli zadanie jest dość wyczerpujące, a na dodatek nie powinno być wywoływane więcej niż raz w krótkim czasie? (przez zniecierpliwionego użytkownika, który klika po kilka razy w ten sam przycisk bo myśli, że to pomoże).
 
-W takim przypadku powinniśmy przede wszystkim, poinformować użytkownika, że trwają obliczenia (jakaś grafika &#8211; busy indicator) oraz zablokować przycisk, tak aby nie można było już w niego kliknąć.
+W takim przypadku powinniśmy przede wszystkim, poinformować użytkownika, że trwają obliczenia (jakaś grafika - busy indicator) oraz zablokować przycisk, tak aby nie można było już w niego kliknąć.
 
 Super. Pewnie to wystarczy. A co jeśli zdarzeniem nie jest kliknięcie przycisku tylko cokolwiek innego, być może nie związanego z interfejsem użytkownika.  
-Generalnie, przyda się flaga, która będzie stawiana gdy obliczenia się wykonują &#8211; odpowiednik IsBusy w klasie BackgroundWorker.
+Generalnie, przyda się flaga, która będzie stawiana gdy obliczenia się wykonują - odpowiednik IsBusy w klasie BackgroundWorker.
 
 Rozwiązanie jest banalne.
 

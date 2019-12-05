@@ -1,6 +1,6 @@
 ---
 id: 15
-title: 'C# WPF MVVM &#8211; nowy projekt (Project Template)'
+title: 'C# WPF MVVM - nowy projekt (Project Template)'
 date: 2014-08-23T19:33:40+00:00
 author: Adrian Karalus
 layout: post

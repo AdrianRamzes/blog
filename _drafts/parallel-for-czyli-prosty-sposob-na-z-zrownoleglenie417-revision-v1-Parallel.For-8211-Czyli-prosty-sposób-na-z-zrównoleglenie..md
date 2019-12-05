@@ -1,6 +1,6 @@
 ---
 id: 422
-title: 'Parallel.For &#8211; Czyli prosty sposób na z zrównoleglenie.'
+title: 'Parallel.For - Czyli prosty sposób na z zrównoleglenie.'
 date: 2016-01-08T18:59:15+00:00
 author: admin
 layout: revision
@@ -10,11 +10,11 @@ permalink: /2016/01/417-revision-v1/
 Ogromna większość dzisiejszych procesorów posiada wiele rdzeni, co umożliwia działanie programu na wielu wątkach oraz przyspieszenie obliczeń.  
 Pętle, które posiadają dużą ilość kroków czasami, aż proszą się o to by zastosować przetwarzanie równoległe.
 
-Oczywiście, zrównoleglenia można użyć tylko w przypadku gdy kolejne kroki pętli (oraz wyniki otrzymywane w pojedynczym kroku) są od siebie niezależne. W przeciwnym przypadku, równoległe obliczenia mogą okazać się niemożliwe do zrobienia, a ewentualny zysk &#8211; bardzo mały.
+Oczywiście, zrównoleglenia można użyć tylko w przypadku gdy kolejne kroki pętli (oraz wyniki otrzymywane w pojedynczym kroku) są od siebie niezależne. W przeciwnym przypadku, równoległe obliczenia mogą okazać się niemożliwe do zrobienia, a ewentualny zysk - bardzo mały.
 
 Te założenia w praktyce dość mocno ograniczają nam ilość przypadków, w których można zastosować zrónoleglenie. Jednak, są to problemy ogólnie z przetwarzaniem równoległym i nie będę się tutaj na ten temat rozpisywać.
 
-Jednym z najprostszych sposobów zrównoleglenia obliczeń wykonywanych w pętli &#8211; jest skorzystanie z dobrodziejstw klasy _Parallel_, a dokładniej metod _For_ i _ForEach_.
+Jednym z najprostszych sposobów zrównoleglenia obliczeń wykonywanych w pętli - jest skorzystanie z dobrodziejstw klasy _Parallel_, a dokładniej metod _For_ i _ForEach_.
 
 <pre class="brush: csharp; title: ; notranslate" title="">var start = 0;
             var stop = 100;
@@ -39,7 +39,7 @@ Drugim jest obiekty typy _ParallelLoopState_, który może posłużyć do komuni
             });
 </pre>
 
-Do przerwania obliczeń, mamy do wyboru, <a href="http://stackoverflow.com/questions/8818203/what-is-difference-between-loopstate-break-loopstate-stop-and-cancellationt" target="_blank">aż dwie metody &#8211; każda ma inne działanie</a>.
+Do przerwania obliczeń, mamy do wyboru, <a href="http://stackoverflow.com/questions/8818203/what-is-difference-between-loopstate-break-loopstate-stop-and-cancellationt" target="_blank">aż dwie metody - każda ma inne działanie</a>.
 
 Dzięki metodzie _Parallel.ForEach_ możliwe jest, zrównoleglenie działań na obiektach kolekcji.
 

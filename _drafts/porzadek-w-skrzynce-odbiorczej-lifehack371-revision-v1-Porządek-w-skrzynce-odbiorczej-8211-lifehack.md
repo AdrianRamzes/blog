@@ -1,6 +1,6 @@
 ---
 id: 575
-title: 'Porządek w skrzynce odbiorczej &#8211; lifehack'
+title: 'Porządek w skrzynce odbiorczej - lifehack'
 date: 2017-03-08T23:35:10+00:00
 author: admin
 layout: revision

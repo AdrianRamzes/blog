@@ -1,6 +1,6 @@
 ---
 id: 43
-title: 'C# WPF MVVM &#8211; NotificationObject i Services'
+title: 'C# WPF MVVM - NotificationObject i Services'
 date: 2014-09-17T23:01:53+00:00
 author: Adrian Karalus
 layout: post
@@ -243,7 +243,7 @@ Powinna teraz wyglądać tak:
 
 I to wszystko jeśli chodzi o część **ViewModel**. Choć przed nami jeszcze implementacja widoku, tutaj warto się zatrzymać.
 
-Cała idea wzorca MVVM polega właśnie na tym, że ViewModel, krzyczy: "Jeśli ktoś mnie słyszy[&#8230;]". Jeśli tak &#8211; to super, a jeśli nie &#8211; to trudno. Nie wpływa to zupełnie na pracę całej aplikacji. Dzięki temu całkowicie oddzielamy widok aplikacji od jej logiki. Jedynym pomostem są właściwości klas z ViewModelu, które informują (słuchacza/y), o zmianie ich wartości.
+Cała idea wzorca MVVM polega właśnie na tym, że ViewModel, krzyczy: "Jeśli ktoś mnie słyszy[&#8230;]". Jeśli tak - to super, a jeśli nie - to trudno. Nie wpływa to zupełnie na pracę całej aplikacji. Dzięki temu całkowicie oddzielamy widok aplikacji od jej logiki. Jedynym pomostem są właściwości klas z ViewModelu, które informują (słuchacza/y), o zmianie ich wartości.
 
 Teraz zajmiemy się wyświetlaniem. Musimy podpiąć widok, tak aby nasłuchiwał na naszej zmiennej Message. Nic prostszego:
 

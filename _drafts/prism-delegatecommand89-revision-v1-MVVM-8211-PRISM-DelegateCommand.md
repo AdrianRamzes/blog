@@ -1,6 +1,6 @@
 ---
 id: 197
-title: 'MVVM &#8211; PRISM DelegateCommand'
+title: 'MVVM - PRISM DelegateCommand'
 date: 2015-04-08T14:21:11+00:00
 author: admin
 layout: revision
@@ -43,7 +43,7 @@ Oraz jej inicjalizacja w konstruktorze:
         }
 </pre>
 
-Message &#8211; do wyświetlania komunikatów:
+Message - do wyświetlania komunikatów:
 
 <pre class="brush: csharp; title: ; notranslate" title="">private string _message;
         public string Message
@@ -63,7 +63,7 @@ Message &#8211; do wyświetlania komunikatów:
         }
 </pre>
 
-Input &#8211; wartość wprowadzana przez użytkownika:
+Input - wartość wprowadzana przez użytkownika:
 
 <pre class="brush: csharp; title: ; notranslate" title="">private string _input;
         public string Input

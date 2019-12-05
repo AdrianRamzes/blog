@@ -23,8 +23,8 @@ Czy zdarza się Tobie, że pracowałeś cały dzień, a na koniec i tak nie ma �
 -zbliża się już godzina wyjścia, a ty nie dokończyłeś żadnego zadania,
 
 Teraz są dwa wyjścia:  
-&#8211; Musisz już wyjść i jesteś na siebie zły, że nic tak naprawdę nie udało Ci się zakończyć.  
-&#8211; Zostajesz dłużej w pracy i zaniedbujesz rodzinę.
+- Musisz już wyjść i jesteś na siebie zły, że nic tak naprawdę nie udało Ci się zakończyć.  
+- Zostajesz dłużej w pracy i zaniedbujesz rodzinę.
 
 Jeśli to znasz, mam dla Ciebie dwie rady:
 

@@ -25,7 +25,7 @@ Mój pomysł polega na tym, aby rozszerzyć klasę WebCamService o dodatkowy ev
 </pre>
 
 który ma być "rozszerzeniem" na istniejący już istniejący "ImageChanged".  
-Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywane w parametrze jest dodatkowo obrabiane &#8211; rysowane są na nim prostokąty w miejscu wykrycia twarzy.
+Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywane w parametrze jest dodatkowo obrabiane - rysowane są na nim prostokąty w miejscu wykrycia twarzy.
 
 <pre class="brush: csharp; title: ; notranslate" title="">private void InitializeServices()
         {

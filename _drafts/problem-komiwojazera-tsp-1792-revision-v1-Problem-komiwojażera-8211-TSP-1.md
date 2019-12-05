@@ -1,6 +1,6 @@
 ---
 id: 825
-title: 'Problem komiwojażera &#8211; TSP #1'
+title: 'Problem komiwojażera - TSP #1'
 date: 2018-03-05T23:13:48+00:00
 author: admin
 layout: revision
@@ -14,12 +14,12 @@ GOOD-LUCK-WITH-THAT.
 
 ## NN
 
-W pierwszym wpisie z serii chciałbym omówić najprostsze podejście do problemu &#8211; NN (Nearest Neighbour).  
+W pierwszym wpisie z serii chciałbym omówić najprostsze podejście do problemu - NN (Nearest Neighbour).  
 NN jest algorytmem zachłannym i polega na wybraniu losowego wierzchołka i przechodzeniu do kolejnego, najbliższego jeszcze nieodwiedzonego.  
 Działanie:
 
   1. Ustaw dowolny wierzchołek jako aktualny
-  2. Znajdź najkrótszą drogę łączącą aktualny wierzchołek z jeszcze nieodwiedzonym wierzchołkiem V &#8211; tzw. najbliższy sąsiad
+  2. Znajdź najkrótszą drogę łączącą aktualny wierzchołek z jeszcze nieodwiedzonym wierzchołkiem V - tzw. najbliższy sąsiad
   3. Ustaw V jako aktualny wierzchołek
   4. Oznacz V jako odwiedzony
   5. Jeśli wszystkie wierzchołki zostały odwiedzone, przerwij program
@@ -35,8 +35,8 @@ Dane wejściowe programu znajdują się w pliku <a href="http://www.karalus.eu/w
 static Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt; distances;
 </pre>
 
-`vertices` &#8211; słownik zawierający wczytane punkty, kluczem jest id punktu.  
-`distances` &#8211; słowik zawierający informacje o odległości pomiędzy dowolną parą punktów. 
+`vertices` - słownik zawierający wczytane punkty, kluczem jest id punktu.  
+`distances` - słowik zawierający informacje o odległości pomiędzy dowolną parą punktów. 
 
 Poniżej znajduje się kod metody, która przyjmuje punkt startowy i zwraca pojedyncze rozwiązanie.
 

@@ -1,6 +1,6 @@
 ---
 id: 371
-title: 'Porządek w skrzynce odbiorczej &#8211; lifehack'
+title: 'Porządek w skrzynce odbiorczej - lifehack'
 date: 2015-09-22T12:54:52+00:00
 author: Adrian Karalus
 layout: post

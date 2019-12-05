@@ -11,7 +11,7 @@ W dzisiejszym wpisie przedstawię wam jak stworzyć prosty mechanizm wtyczek w j
 
 <!--more-->
 
-Stworzymy prostą aplikację do rysowania (coś jak mspaint), ale wszystkie narzędzia będą dokładane poprzez wtyczki &#8211; plugins.
+Stworzymy prostą aplikację do rysowania (coś jak mspaint), ale wszystkie narzędzia będą dokładane poprzez wtyczki - plugins.
 
 W tym celu stwórzmy bazę, czyli główną aplikację. W tym przypadku będzie to aplikacja WPF.
 
@@ -80,7 +80,7 @@ W tym projekcie będziemy trzymać tylko jeden plik z interfejsem **IPlugin**:
     }
 </pre>
 
-Pomysł jest prosty, każdy plugin musi podać swój **MenuItem** &#8211; tak abyśmy mogli dodać go do menu naszej aplikacji (integracja z istniejącym interfejsem).
+Pomysł jest prosty, każdy plugin musi podać swój **MenuItem** - tak abyśmy mogli dodać go do menu naszej aplikacji (integracja z istniejącym interfejsem).
 
 Metoda **Initialize** ma pozwolić przekazać do wtyczki kontrolkę "**Canvas**" oraz ustawić wartości początkowe takie jak kolor czy grubość (w końcu są to wtyczki z narzędziami do rysowania).
 

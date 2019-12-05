@@ -10,7 +10,7 @@ permalink: /2015/04/233-revision-v1/
 W tym wpisie zaprezentuję prosty przykład aplikacji używającej kamerki internetowej z użyciem biblioteki Emgu CV (wrapper Open CV).  
 <!--more-->Jednocześnie pokażę bardzo praktyczne zastosowanie "serwisów" we wzorcu MVVM.
 
-Aby w ogóle rozpocząć pracę z kamerką należy ściągnąć i zainstalować bibliotekę EmguCV&#8230; można to zrobić przy pomocy NuGet packages manager (co w moim przypadku nie zadziałało &#8211; wiesza się przy ściąganiu i za chiny nie chce iść dalej&#8230;)  lub ze strony <a href="http://www.emgu.com/wiki/index.php/Main_Page" target="_blank">emgu</a>.
+Aby w ogóle rozpocząć pracę z kamerką należy ściągnąć i zainstalować bibliotekę EmguCV&#8230; można to zrobić przy pomocy NuGet packages manager (co w moim przypadku nie zadziałało - wiesza się przy ściąganiu i za chiny nie chce iść dalej&#8230;)  lub ze strony <a href="http://www.emgu.com/wiki/index.php/Main_Page" target="_blank">emgu</a>.
 
 Jeśli skorzystałeś/łaś z NuGet&#8217;a to wszystkie pliki dll i odpowiednie referencje dodały się same. Natomiast w przypadku zwykłej instalacji, należy przejść do folderu zawierającegu (domyślnie C:\Emgu\), następnie do folderu bin. Skopiować wszystkie pliki *.dll dla odpowiedniej wersji (x86 lub x64) i przenieść do naszego projektu np. do folderu lib. Pamiętaj, żeby nadać im opcję "copy to output directory".
 

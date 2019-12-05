@@ -43,12 +43,12 @@ Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik
 }
 </pre>
 
-Najważniejsze jest pole _default_popup_, które mówi przeglądarce &#8211; jaki widok ma się wyświetlić po kliknięciu na ikonę rozszerzenia.  
-Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkowej strony &#8211; background, która będzie żyć tak długo jak długo działa przeglądarka, bez względu na to czy rozszerzenie jest widoczne. W tym celu należy podać wartość parametru _background.page_. W manifeście znajdują się również inne informacje o aplikacji takie jak: nazwa rozszerzenia, opis, ikona, wersja oraz wykorzystywane uprawnienia. W tym przypadku są to: 
+Najważniejsze jest pole _default_popup_, które mówi przeglądarce - jaki widok ma się wyświetlić po kliknięciu na ikonę rozszerzenia.  
+Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkowej strony - background, która będzie żyć tak długo jak długo działa przeglądarka, bez względu na to czy rozszerzenie jest widoczne. W tym celu należy podać wartość parametru _background.page_. W manifeście znajdują się również inne informacje o aplikacji takie jak: nazwa rozszerzenia, opis, ikona, wersja oraz wykorzystywane uprawnienia. W tym przypadku są to: 
 
-  * _backgroud_ &#8211; działanie w tle, 
-  * _storage_ &#8211; dostęp do zapisywania i odczytywania danych, 
-  * _notifications_ &#8211; wysyłanie powiadomień. </p> 
+  * _backgroud_ - działanie w tle, 
+  * _storage_ - dostęp do zapisywania i odczytywania danych, 
+  * _notifications_ - wysyłanie powiadomień. </p> 
 
 ## Popup
 
@@ -57,7 +57,7 @@ Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkow
 Popup czyli główne okienko rozszerzenia pokazujące się po kliknięciu ikony. <a target="_blank" href="https://github.com/RamzesBlog/pomodoro-timer/blob/master/pomodoro-timer.html">(pomodoro-timer.html)</a>  
 Tutaj dołączamy pliki javascript.`<script src="js/pomodoro-timer.js"></script>` 
 
-Skrypt okna `pomodoro-timer.js`, zawiera obsługę kliknięć &#8211; sterowanie timerem oraz wyświetla aktualną wartość zegara. 
+Skrypt okna `pomodoro-timer.js`, zawiera obsługę kliknięć - sterowanie timerem oraz wyświetla aktualną wartość zegara. 
 
 ## Background
 

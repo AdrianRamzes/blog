@@ -29,8 +29,8 @@ Czy zdarza się Tobie, że pracowałeś cały dzień, a na koniec i tak nie ma �
 -zbliża się już godzina wyjścia, a ty nie dokończyłeś żadnego zadania,
 
 Teraz są dwie możliwości:  
-&#8211; Musisz już wyjść i jesteś na siebie zły, że nic tak naprawdę nie udało Ci się zakończyć.  
-&#8211; Zostajesz dłużej w pracy i zaniedbujesz rodzinę.
+- Musisz już wyjść i jesteś na siebie zły, że nic tak naprawdę nie udało Ci się zakończyć.  
+- Zostajesz dłużej w pracy i zaniedbujesz rodzinę.
 
 Jeśli to znasz, mam dla Ciebie dwie rady:
 
@@ -54,7 +54,7 @@ Cały kod tego programu jest dostępny na <a href="https://github.com/RamzesBlog
 
 Program jest bardzo prosty ale mimo to powiem parę słów na temat jego obsługi.
 
-1) Za każdym kliknięciem przycisku "Log It!" (lub klawisza ENTER) &#8211; program chowa się do paska tray.  
+1) Za każdym kliknięciem przycisku "Log It!" (lub klawisza ENTER) - program chowa się do paska tray.  
 2) Po wywołaniu go z paska, kursor jest ustawiony w TextBox&#8217;ie. Dzięki temu po kliknąć w ikonkę można od razu wpisać tekst.  
 3) Do każdego wpisu można załączyć prefix np. "Zadanie #12" będzie on dopisywany przed każdym wpisem. Prefix definiujemy raz i dodaje się on do każdego wpisu, dopóki zaznaczony jest checkbox.  
 4) Logi można podejrzeć klikając przycisk: "Open log file"  

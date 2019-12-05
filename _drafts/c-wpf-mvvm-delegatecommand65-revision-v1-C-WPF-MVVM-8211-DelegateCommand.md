@@ -1,6 +1,6 @@
 ---
 id: 201
-title: 'C# WPF MVVM &#8211; DelegateCommand'
+title: 'C# WPF MVVM - DelegateCommand'
 date: 2015-04-08T14:22:07+00:00
 author: admin
 layout: revision
@@ -13,8 +13,8 @@ Commanding to po prostu mechanizm umożliwiający powiązanie akcji interfejsu z
 Na początek warto przyjrzeć się interfejsowi ICommand.<!--more-->
 
 Jest on bardzo prosty i składa się jedynie z trzech elementów:  
-<span style="line-height: 1.7em;">&#8211; Execute &#8211; metoda wykonywana podczas wywołania komendy,<br /> </span>&#8211; CanExecute &#8211; metoda sprawdzająca, czy można wykonać metodę Execute  
-&#8211; CanExecuteChange &#8211; event podnoszony, gdy zmienia się wartość zwracana przez CanExecute
+<span style="line-height: 1.7em;">- Execute - metoda wykonywana podczas wywołania komendy,<br /> </span>- CanExecute - metoda sprawdzająca, czy można wykonać metodę Execute  
+- CanExecuteChange - event podnoszony, gdy zmienia się wartość zwracana przez CanExecute
 
 DelegateCommand to klasa implementująca interfejs ICommand, która ułatwia nam pracę z komendami i poprawia wygląd kodu.
 

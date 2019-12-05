@@ -25,7 +25,7 @@ Po uruchomieniu, chowa się on w systemowym tray.
 
 Skompilowany jest pod wersję .NET framework 4.5, więc jeśli macie problem z uruchomieniem go na własnej maszynie to polecam instalację nowszej <a href="http://www.microsoft.com/pl-pl/download/details.aspx?id=30653" target="_blank">wersji</a>.
 
-Niektóre przeglądarki ostrzegają (i dobrze), że plik może być niebezpieczny. W tym przypadku nie należy się tym przejmować &#8211; jest to związane z małą ilością pobrań przez użytkowników 😉
+Niektóre przeglądarki ostrzegają (i dobrze), że plik może być niebezpieczny. W tym przypadku nie należy się tym przejmować - jest to związane z małą ilością pobrań przez użytkowników 😉
 
 Kod całego programu, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/FullBatteryAlarm" target="_blank">GitHub </a>;).
 

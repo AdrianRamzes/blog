@@ -10,7 +10,7 @@ permalink: /2015/09/357-revision-v1/
 Metodę, która zwraca obiekt (kolekcję) _IEnumerable<T>_ możemy napisać używając _yield return_.  
 <!--more-->Jeżeli w ciele metody znajduje się słowo kluczowe 
 
-_yield_ to jej wywołanie nie powoduje od razu wykonania kodu &#8211; odwrotnie niż to ma miejsce w zwykłych metodach.
+_yield_ to jej wywołanie nie powoduje od razu wykonania kodu - odwrotnie niż to ma miejsce w zwykłych metodach.
 
 Załóżmy, że mamy funkcję, która wraca nam _IEnumerable<int>_ kolejnych liczb naturalnych:
 

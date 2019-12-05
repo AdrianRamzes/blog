@@ -54,8 +54,8 @@ Przydałby się jeszcze jakiś mechanizm dokonywania zmian w kolekcji, a w szcze
 
 &nbsp;
 
-Zaostał nam już tylko widok &#8211; View:  
-ListBox &#8211; do wyświetlania kolekcji "List":
+Zaostał nam już tylko widok - View:  
+ListBox - do wyświetlania kolekcji "List":
 
 <pre class="brush: xml; title: ; notranslate" title="">&lt;ListBox ItemsSource="{Binding List}" &gt;
             &lt;ListBox.ItemTemplate&gt;

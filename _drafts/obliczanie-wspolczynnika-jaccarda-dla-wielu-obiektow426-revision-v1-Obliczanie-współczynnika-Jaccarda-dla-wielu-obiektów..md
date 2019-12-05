@@ -8,7 +8,7 @@ guid: http://www.karalus.eu/2016/03/426-revision-v1/
 permalink: /2016/03/426-revision-v1/
 ---
 **Problem:**  
-Mamy <a href="http://www.karalus.eu/wp-content/uploads/2016/02/facts.7z" target="_blank">dane z serwisu muzycznego</a> &#8211; log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
+Mamy <a href="http://www.karalus.eu/wp-content/uploads/2016/02/facts.7z" target="_blank">dane z serwisu muzycznego</a> - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
 Chcemy się dowiedzieć, którzy użytkownicy mają podobny gust muzyczny. Dla każdego użytkownika chcemy dostać listę jego najbliższych sąsiadów.  
 Do miary podobieństwa użyjemy <a href="https://en.wikipedia.org/wiki/Jaccard_index" target="_blank">współczynnika Jaccarda</a>.  
 Wpisów jest ponad 27 mln. (plik tekstowy ma ponad 500 MB), użyte algorytmy i struktury danych mają więc ogromny wpływ na czas obliczeń.

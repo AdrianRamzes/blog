@@ -62,7 +62,7 @@ Okej. Mamy już tablicę. Teraz czas na funkcję, która policzy nam MinHashe dl
 }
 </pre>
 
-Teraz wystarczy obliczyć MinHash&#8217;e dla każdego użytkownika &#8211; w ten sposób powstanie macierz sygnatur. W celu przyspieszenia obliczeń wykonamy je równolegle:
+Teraz wystarczy obliczyć MinHash&#8217;e dla każdego użytkownika - w ten sposób powstanie macierz sygnatur. W celu przyspieszenia obliczeń wykonamy je równolegle:
 
 <pre class="brush: csharp; title: ; notranslate" title="">Dictionary&lt;int, uint[]&gt; signatureMatrix = new Dictionary&lt;int, uint[]&gt;();
 Parallel.ForEach(users, user =&gt;
@@ -78,6 +78,6 @@ Parallel.ForEach(users, user =&gt;
 
 Na moim komputerze (Intel i7-4702MQ) obliczenie MinHash&#8217;y dla 1014070 użytkowników zajmuje ok 9 sek. Uważam, że jest to całkiem przyzwoity wynik.
 
-Super&#8230; mamy te MinHash&#8217;e i teraz zamiast porównywać zbiory porównujemy sygnatury. Nadal pozostaje JEDEN BARDZO DUŻY PROBLEM &#8211; w celu znalezienia podobnych użytkowników nadal musimy porównać KAŻDEGO Z KAŻDYM! Przyspieszyliśmy nieco czas porównywania, ale wcale nie zmieniła się ilość potrzebnych porównań, która nadal jest ogromna. Ten problem można obejść stosując kolejny trik <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank">LSH</a>. Opiszę go w moim następnym wpisie.
+Super&#8230; mamy te MinHash&#8217;e i teraz zamiast porównywać zbiory porównujemy sygnatury. Nadal pozostaje JEDEN BARDZO DUŻY PROBLEM - w celu znalezienia podobnych użytkowników nadal musimy porównać KAŻDEGO Z KAŻDYM! Przyspieszyliśmy nieco czas porównywania, ale wcale nie zmieniła się ilość potrzebnych porównań, która nadal jest ogromna. Ten problem można obejść stosując kolejny trik <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank">LSH</a>. Opiszę go w moim następnym wpisie.
 
 &nbsp;

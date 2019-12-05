@@ -58,7 +58,7 @@ Najlepiej pokazać to na prostym przykładzie aplikacji z paskiem postępu.
 <img class="alignnone size-medium wp-image-165" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86" alt="2015-03-31 17_28_12-MainWindow" width="300" height="86" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86 300w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?w=656 656w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /> 
 
 Co zyskujemy?  
-&#8211; Większa intuicyjność kodu w przypadku pracy z interfejsem użytkownika,  
-&#8211; w prosty sposób możemy zapewnić responsywność aplikacji.
+- Większa intuicyjność kodu w przypadku pracy z interfejsem użytkownika,  
+- w prosty sposób możemy zapewnić responsywność aplikacji.
 
 Cały kod, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/AsyncAwaitExample" target="_blank">GITHUB</a>! 🙂
