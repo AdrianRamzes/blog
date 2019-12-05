@@ -1,3 +1,6 @@
 url: http://www.karalus.eu
 name: Ramzes
 description: Adrian Karalus
+
+markdown: kramdown
+theme: minima
