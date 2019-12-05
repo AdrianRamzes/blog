@@ -24,7 +24,7 @@ Dodaj do swojego projektu NuGet pakiet Prism (aktualna wersja na 18.10.2014 to 5
 
 [<img class="alignnone wp-image-90 size-full" src="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?resize=900%2C600" alt="" width="900" height="600" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?w=900 900w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?resize=300%2C200 300w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png)
 
-&nbsp;
+ 
 
 Referencje dodają się automatycznie. Jedyne co teraz musisz zrobić to zacząć używać dobrodziejstw Prism&#8217;a 😉
 
@@ -128,10 +128,10 @@ Podsumowując. Prism dostarcza nam już gotowej implementacji klasy DelegateComm
 
 Powoduje to większą kontrole nad kodem oraz zwiększa wydajność (jeśli CanExecute jest zasobożerne). Łatwo natomiast może dojść do sytuacji, w której aktywność przycisku nie będzie odzwierciedlać faktycznej wartości zwracanej przez CanExecute, ponieważ programista zapomni (o co nie łatwo) jawnie wywołać RaiseCanExecuteChanged.
 
-&nbsp;
+ 
 
 **Cały kod jest jak zawsze dostępny na <a href="https://github.com/RamzesBlog/PrismDelegateCommand" target="_blank">GitHub</a>. 😉**
 
-&nbsp;
+ 
 
-&nbsp;
+ 

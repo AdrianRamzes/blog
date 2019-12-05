@@ -89,6 +89,6 @@ i przykład ze stringiem:
 <pre class="brush: csharp; title: ; notranslate" title="">"THE END".ForEach((c) =&gt; { });
 </pre>
 
-&nbsp;
+ 
 
 Jak zawsze kod do tego wpisu został opublikowany na <a href="https://github.com/RamzesBlog/ExtensionMethods" target="_blank">GitHub </a>😉

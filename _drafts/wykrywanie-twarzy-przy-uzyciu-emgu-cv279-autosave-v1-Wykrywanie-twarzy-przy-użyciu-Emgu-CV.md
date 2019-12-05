@@ -120,7 +120,7 @@ Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywan
         }
 </pre>
 
-&nbsp;
+ 
 
 Cały kod jak zawsze dostępny na GITHUB 😉
 

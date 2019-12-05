@@ -11,26 +11,26 @@ wp-syntax-cache-content:
     a:1:{i:1;s:3616:"
     <div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="javascript" style="font-family:monospace;"><span style="color: #009900;">&#123;</span>
     <span style="color: #3366CC;">&quot;manifest_version&quot;</span><span style="color: #339933;">:</span> <span style="color: #CC0000;">2</span><span style="color: #339933;">,</span>
-    &nbsp;
+     
     <span style="color: #3366CC;">&quot;name&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;Timer&quot;</span><span style="color: #339933;">,</span>
     <span style="color: #3366CC;">&quot;description&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;This is a simple pomodoro timer.&quot;</span><span style="color: #339933;">,</span>
     <span style="color: #3366CC;">&quot;version&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;0.1&quot;</span><span style="color: #339933;">,</span>
-    &nbsp;
+     
     <span style="color: #3366CC;">&quot;browser_action&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
     <span style="color: #3366CC;">&quot;default_icon&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;pomodoro_x128.png&quot;</span><span style="color: #339933;">,</span>
     <span style="color: #3366CC;">&quot;default_popup&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;pomodoro-timer.html&quot;</span>
     <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
-    &nbsp;
+     
     <span style="color: #3366CC;">&quot;icons&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
     <span style="color: #3366CC;">&quot;128&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;pomodoro_x128.png&quot;</span>
     <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
-    &nbsp;
+     
     <span style="color: #3366CC;">&quot;permissions&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#91;</span>
     <span style="color: #3366CC;">&quot;background&quot;</span><span style="color: #339933;">,</span>
     <span style="color: #3366CC;">&quot;storage&quot;</span><span style="color: #339933;">,</span>
     <span style="color: #3366CC;">&quot;notifications&quot;</span>
     <span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
-    &nbsp;
+     
     <span style="color: #3366CC;">&quot;background&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
     <span style="color: #3366CC;">&quot;page&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;background.html&quot;</span>
     <span style="color: #009900;">&#125;</span>

@@ -65,7 +65,7 @@ Oto cała zawartość głównego kontenera:
     &lt;/Grid&gt;
 </pre>
 
-&nbsp;
+ 
 
 Efekt powinien być taki:
 
@@ -73,6 +73,6 @@ Efekt powinien być taki:
 
 I to chyba wszystko. Jak widać nie trzeba zawsze stosować wzorca MVVM i <a href="http://www.karalus.eu/Blog/2014/10/c-wpf-mvvm-delegatecommand/" target="_blank">CanExecute</a>. Czasami jest to strzelanie z armaty do muchy. Dlatego powstały powiązania, aby załatwić sprawę prostych zależności.
 
-&nbsp;
+ 
 
 **Całość jak zawsze dostępna na <a href="https://github.com/RamzesBlog/ElementBinding" target="_blank">GitHub!</a> 😉**

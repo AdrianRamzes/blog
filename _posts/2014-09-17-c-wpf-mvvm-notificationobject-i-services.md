@@ -51,7 +51,7 @@ public delegate void TickEventHandler(object sender, int tick);
 #endregion
 </pre>
 
-&nbsp;
+ 
 
 W konstruktorze zawrzemy inicjalizację naszego workera.
 
@@ -144,7 +144,7 @@ Właściwości naszej klasy:
         #endregion
 </pre>
 
-&nbsp;
+ 
 
 Na zewnątrz naszej klasy TimerService udostępniamy również dwie publiczne metody:
 

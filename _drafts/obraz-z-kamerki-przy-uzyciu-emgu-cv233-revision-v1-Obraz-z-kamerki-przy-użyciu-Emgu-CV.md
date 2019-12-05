@@ -142,7 +142,7 @@ I w ten sposób przejdę do drugiej możliwej implementacji klasy WebCamService,
 
 Z zewnątrz działanie tej klasy jest identyczne, jednak w środku działa poboczny wątek i jest miejsce na rozbudowę. Sami decydujemy kiedy event się odpali.
 
-&nbsp;
+ 
 
 Należy jeszcze wspomnieć o tym jak wyświetlić przechwycony obraz.
 
@@ -294,6 +294,6 @@ Kontrolka Image przyjmuję jako źródło obiekt typu ImageSource, a więc potrz
 
 To chyba wszystko. Cały działający kod, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/EmguWebCamExample" target="_blank">GitHub</a>! 😉
 
-&nbsp;
+ 
 
 [<img class="alignnone size-full wp-image-272" src="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2015/04/blog_webcamService.png?resize=588%2C342" alt="blog_webcamService" width="588" height="342" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2015/04/blog_webcamService.png?w=588 588w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2015/04/blog_webcamService.png?resize=300%2C174 300w" sizes="(max-width: 588px) 100vw, 588px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/wp-content/uploads/2015/04/blog_webcamService.png)

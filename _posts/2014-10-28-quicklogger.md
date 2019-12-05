@@ -42,7 +42,7 @@ Ostatnie półgodziny pracy powinieneś poświęcić właśnie na to, aby przygo
 Przychodząc rano, skup się tylko na tym co napisałeś na kartce. Dopiero po wykonaniu zadania możesz zająć się takimi rzeczami jak: poczta, wiadomości, spotkania czy zrobienie sobie herbaty ;).  
 Zrobienie ważnego zadania od samego rana, wprawi Cię od razu w dobry nastrój i nawet jeśli nic innego nie uda Ci się zrobić, będziesz miał poczucie, że chociaż coś odhaczyłeś.
 
-&nbsp;
+ 
 
 2) Prowadź dziennik swojego dnia pracy.  
 Pozwoli Ci to lepiej kontrolować czas i wyciągać wnioski nt. tego co w pracy absorbuje Cię najbardziej.  

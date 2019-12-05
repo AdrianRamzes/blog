@@ -123,7 +123,7 @@ Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywan
         }
 </pre>
 
-&nbsp;
+ 
 
 Cały kod jak zawsze dostępny na <a href="https://github.com/RamzesBlog/FaceDetection" target="_blank">GITHUB </a>😉
 

@@ -15,17 +15,17 @@ W sumie to przesłuchałem, ponieważ wszystkie były w formie audioboków. Taka
 
 [<img class="size-full wp-image-865 alignleft" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2019/01/chrome_2019-01-04_01-05-38.png?resize=166%2C169" alt="" width="166" height="169"  data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2019/01/chrome_2019-01-04_01-05-38.png)
 
-&nbsp;
+ 
 
-&nbsp;
+ 
 
-&nbsp;
+ 
 
-&nbsp;
+ 
 
-&nbsp;
+ 
 
-&nbsp;
+ 
 
 [<img class="alignnone size-full wp-image-863" src="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2019/01/chrome_2019-01-04_01-06-03.png?resize=168%2C168" alt="" width="168" height="168" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2019/01/chrome_2019-01-04_01-06-03.png?w=168 168w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2019/01/chrome_2019-01-04_01-06-03.png?resize=150%2C150 150w" sizes="(max-width: 168px) 100vw, 168px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/wp-content/uploads/2019/01/chrome_2019-01-04_01-06-03.png)
 

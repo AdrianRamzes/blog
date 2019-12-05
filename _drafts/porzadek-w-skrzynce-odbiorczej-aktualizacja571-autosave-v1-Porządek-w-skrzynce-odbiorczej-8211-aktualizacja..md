@@ -16,13 +16,13 @@ Obecnie robię tak:
 np. przypomnienia o zapłacie; wiadomości wymagające odpisania lub sprawdzenia czegoś.
 
 2) wiadomości, które nie wymagają od nas żadnych działań, ale nie są jeszcze skończone lub zawierają informację, która przyda się w najbliższej przyszłości - oznaczam "i" ([<img class="alignnone size-full wp-image-577" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png?resize=22%2C23" alt="" width="22" height="23"  data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png))  
-np. potwierdzenia rezerwacji; interesujący newsletter, którego jeszcze nie przeczytałem,&nbsp;
+np. potwierdzenia rezerwacji; interesujący newsletter, którego jeszcze nie przeczytałem, 
 
 3) wszystkie pozostałe wiadomości, czyli niewymagające działań, ani niezawierające żadnych informacji, potrzebnych w najbliższej przyszłości - odznaczam i wywalam do archiwum.
 
-Dzięki temu&nbsp;w skrzynce odbiorczej (inbox) mam TYLKO I WYŁĄCZNIE maile z dwóch pierwszych kategorii.
+Dzięki temu w skrzynce odbiorczej (inbox) mam TYLKO I WYŁĄCZNIE maile z dwóch pierwszych kategorii.
 
-Zdaję sobie sprawę z tego, że ten jak i poprzedni wpis nie są jakieś turbo odkrywcze. Jednak zastanawia mnie fakt, że większość wiary ma niesamowity&nbsp;burdel w swoich skrzynkach odbiorczych.  
+Zdaję sobie sprawę z tego, że ten jak i poprzedni wpis nie są jakieś turbo odkrywcze. Jednak zastanawia mnie fakt, że większość wiary ma niesamowity burdel w swoich skrzynkach odbiorczych.  
 Jak to możliwe, że pomimo tego, potrafią spokojnie zasnąć?  
 Nie znają satysfakcji jaka płynie z widoku tego zdjęcia w aplikacji Gmail:  
 [<img class="size-full wp-image-572 alignleft" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/03/ApplicationFrameHost_2017-03-08_18-44-36.png?resize=377%2C416" alt="" width="377" height="416" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/03/ApplicationFrameHost_2017-03-08_18-44-36.png?w=377 377w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/03/ApplicationFrameHost_2017-03-08_18-44-36.png?resize=272%2C300 272w" sizes="(max-width: 377px) 100vw, 377px" data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/03/ApplicationFrameHost_2017-03-08_18-44-36.png)Ten obrazek pojawia się, gdy nasza skrzynka odbiorcza jest pusta.  

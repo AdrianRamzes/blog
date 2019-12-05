@@ -40,7 +40,7 @@ Parallel.For(0, (_numHashFunctions / _numRowPerBand), (i) =&gt;
 });
 </pre>
 
-&nbsp;  
+   
 Kod wykonuje się równolegle dla każdego pasma.
 
 Po przejściu przez całą kolekcję w buckets znajdują się już kandydaci - dokumenty podobne do siebie.  

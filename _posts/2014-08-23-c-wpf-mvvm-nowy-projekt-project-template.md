@@ -126,7 +126,7 @@ na
 
 <pre class="brush: csharp; title: ; notranslate" title="">StartupUri="Views\MainWindow.xaml"</pre>
 
-&nbsp;
+ 
 
 Całość powinna wyglądać tak:
 
@@ -135,4 +135,4 @@ Całość powinna wyglądać tak:
 To wszystko co trzeba zrobić. Jeśli posiadasz Visual Studio 2012 możesz dodać do niego rozszerzenie [WPF MVVM project template](http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c). Powyższe klasy DelegateCommand i NotificationObject pochodzą właśnie z tego rozszerzenia. W następnych wpisach dokładnie opiszę do czego się ich używa 😉  
 **Cały projekt jest dostępny na [GitHub](https://github.com/RamzesBlog/MvvmTemplate).**
 
-&nbsp;
+ 

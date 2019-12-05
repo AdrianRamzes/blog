@@ -15,11 +15,11 @@ permalink: /2015/07/326-revision-v1/
 
 ### 
 
-&nbsp;
+ 
 
 ### 1) Raportowanie:
 
-&nbsp;
+ 
 
 Jednym z możliwych sposobów, rozwiązania tego problemu, jest użycie obiektów implementujących interface **IProgress<T>**.  
 Metoda, która ma wykonywać się asynchronicznie, jako parametr powinna przyjmować obiekty typu IProgress<T>:
@@ -57,7 +57,7 @@ do tego metoda raportująca:
 
 ### 2) Przerwanie obliczeń:
 
-&nbsp;
+ 
 
 Do metody asynchronicznej przekazujemy dodatkowy parametr: **CancellationToken**.  
 Dzięki temu możemy, wewnątrz metody, sprawdzać czy nie przyszło żądanie o przerwanie obliczeń.  

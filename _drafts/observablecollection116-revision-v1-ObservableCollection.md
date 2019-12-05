@@ -44,7 +44,7 @@ Przydałby się jeszcze jakiś mechanizm dokonywania zmian w kolekcji, a w szcze
         private Random _rand = new Random();
 </pre>
 
-&nbsp;
+ 
 
 Zaostał nam już tylko widok - View:  
 ListBox - do wyświetlania kolekcji "List":

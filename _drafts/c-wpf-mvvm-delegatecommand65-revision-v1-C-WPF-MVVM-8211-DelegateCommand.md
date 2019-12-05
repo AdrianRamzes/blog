@@ -159,10 +159,10 @@ Nie bez powodu w metodzie "CanExecuteClick()" dodałem linijkę logującą.
 
 [<img class="aligncenter wp-image-72 size-full" src="https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=556%2C287" alt="" width="556" height="287" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_2.png?w=556 556w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=300%2C154 300w" sizes="(max-width: 556px) 100vw, 556px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png)
 
-&nbsp;
+ 
 
 Jest ona wykonywana przy **każdej** drobnej interakcji widoku z użytkownikiem. Najlepiej założyć, że jest po prostu wykonywana bardzo często i w losowych momentach. Nie należy zatem wkładać tam potężnej logiki. O tym jak zwiększyć kontrolę nad wzywaniem metody CanExecute opowiem przy okazji kolejnych wpisów.
 
-&nbsp;
+ 
 
 **Całość, jak zawsze, dostępna na <a href="https://github.com/RamzesBlog/DelegateCommandExample" target="_blank">GitHub </a>😉**
