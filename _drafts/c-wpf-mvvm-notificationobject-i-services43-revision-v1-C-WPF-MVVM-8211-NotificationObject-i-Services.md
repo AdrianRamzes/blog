@@ -1,0 +1,286 @@
+---
+id: 203
+title: 'C# WPF MVVM &#8211; NotificationObject i Services'
+date: 2015-04-08T14:22:34+00:00
+author: admin
+layout: revision
+guid: http://www.karalus.eu/2015/04/43-revision-v1/
+permalink: /2015/04/43-revision-v1/
+---
+Service to nic innego jak klasa, która ma wykonywać pewne operacje na rzecz aplikacji. Jej instancja jest trzymana po stronie ViewModel&#8217;u i jest na jego usługach. Obliczenia, operacje wykonywane na obiektach modelu, plikach, obsługa połączeń z internetem lub innymi aplikacjami (nawet na tym samym komputerze), to wszystko powinno być realizowane przez serwisy.
+
+Z racji tego, że jestem zwolennikiem nauki przez praktykę, zaprezentuje bardzo proste i intuicyjne zastosowanie serwisów.  
+<!--more-->
+
+Po pierwsze, tworzymy nowy projekt o strukturze takiej jaką opisywałem w moim wcześniejszym <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisie</a>.
+
+Gdy mamy już odtworzoną strukturę projektu oraz dodaną klasę pomocniczą NotificationObject, możemy przystąpić do tworzenia &#8222;servisu&#8221;.
+
+Dodajemy nową klasę do katalogu &#8222;Services&#8221;:
+
+<pre class="brush: csharp; title: ; notranslate" title="">public class TimerService
+{
+}
+</pre>
+
+Chcę, aby klasa implementowała mechanizm startowania (w osobnym wątku) zegara, który będzie podnosił event za każdym razem gdy minie wyznaczony czas. Ma to robić bez przerwy, do odwołania.  
+Co prawda jest to troszkę naiwne, ponieważ istnieją już klasy, które mają takie mechanizmy np. Timer. Jednak my zrobimy to po swojemu z użyciem BackgroundWorker&#8217;a.
+
+<pre class="brush: csharp; title: ; notranslate" title="">#region Members
+private BackgroundWorker _worker;
+private int _ticks = 0;
+#endregion
+</pre>
+
+Warto dodać też zmienną, która będzie zliczać tyknięcia i podawać nam tę informację jako parametr eventu.
+
+Definiujemy publiczne zdarzenia, pod które będzie można się podpiąć:
+
+<pre class="brush: csharp; title: ; notranslate" title="">#region Events
+public event TickEventHandler Tick;
+public delegate void TickEventHandler(object sender, int tick);
+#endregion
+</pre>
+
+&nbsp;
+
+W konstruktorze zawrzemy inicjalizację naszego workera.
+
+<pre class="brush: csharp; title: ; notranslate" title="">public TimerService()
+        {
+            InitializeWorkers();
+        }
+
+        private void InitializeWorkers()
+        {
+            _worker = new BackgroundWorker();
+            _worker.WorkerSupportsCancellation = true;
+            _worker.DoWork += _worker_DoWork;
+            _worker.RunWorkerCompleted += _worker_RunWorkerCompleted;
+        }
+        private void _worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int sleepTime = (int)e.Argument;
+
+            while (!_worker.CancellationPending)
+            {
+                RaiseTickEvent();
+                Thread.Sleep(sleepTime);
+            }
+        }
+        private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
+</pre>
+
+Metoda wywołująca zdarzenie, będzie wykonywana poza wątkiem głównym. Musi być zabezpieczona na wypadek odpięcia się nasłuchujących na niej funkcji.
+
+<pre class="brush: csharp; title: ; notranslate" title="">private void RaiseTickEvent()
+        {
+            var copy = Tick;
+            if (Tick != null)
+            {
+                copy(this, _ticks++);
+            }
+        }
+</pre>
+
+Dlaczego akurat tak? Ponieważ, pomiędzy sprawdzeniem czy event jest nullem, a jego wywołaniem, inny wątek może odpiąć się od nasłuchiwania. Wyjaśnię ten mechanizm przy okazji moich następnych wpisów związanych z programowaniem współbieżnym.
+
+Właściwości naszej klasy:
+
+<pre class="brush: csharp; title: ; notranslate" title="">#region Properties
+        private int _sleepTime = 1000;
+        public int SleepTime
+        {
+            get
+            {
+                return _sleepTime;
+            }
+
+            set
+            {
+                if (_sleepTime != value)
+                {
+                    _sleepTime = value;
+                }
+            }
+        }
+
+        private string _serviceName;
+        public string ServiceName
+        {
+            get
+            {
+                return _serviceName;
+            }
+            set
+            {
+                if (value != _serviceName)
+                {
+                    _serviceName = value;
+                }
+            }
+        }
+
+        public bool IsRunning
+        {
+            get
+            {
+                return (_worker != null) ? _worker.IsBusy : false;
+            }
+        }
+        #endregion
+</pre>
+
+&nbsp;
+
+Na zewnątrz naszej klasy TimerService udostępniamy również dwie publiczne metody:
+
+<pre class="brush: csharp; title: ; notranslate" title="">#region Public Methods
+        public void RunServiceAsync()
+        {
+            if (_worker != null)
+            {
+                _worker.RunWorkerAsync(SleepTime);
+            }
+        }
+        public void CancelServiceAsync()
+        {
+            _worker.CancelAsync();
+        }
+        #endregion
+</pre>
+
+To wszystko.
+
+Mamy już zbudowany nasz &#8222;Service&#8221;. Teraz przejdziemy do ViewModel, gdzie utworzymy jego instancję oraz spróbujemy go uruchomić 😉
+
+W tym celu musimy dodać do folderu &#8222;ViewModels&#8221; klasę &#8222;MainWindowViewModel&#8221;, która będzie dziedziczyć po &#8222;BaseViewModel&#8221;.
+
+<pre class="brush: csharp; title: ; notranslate" title="">public class MainWindowViewModel : BaseViewModel
+{
+}
+</pre>
+
+W niej definiujemy nasz serwis:
+
+<pre class="brush: csharp; title: ; notranslate" title="">private TimerService _timer;
+</pre>
+
+Jeszcze jego inicjalizacja i wywołanie w konstruktorze:
+
+<pre class="brush: csharp; title: ; notranslate" title="">#region Constructor
+        public MainWindowViewModel()
+        {
+            InitializeServices();
+
+            _timer.RunServiceAsync();//todo on command
+        }
+
+        #endregion
+
+        #region InitializeServices
+        private void InitializeServices()
+        {
+            _timer = new TimerService();
+            _timer.SleepTime = 1000;//1s
+            _timer.Tick += _timer_Tick;
+        }
+
+        void _timer_Tick(object sender, int tick)
+        {
+        }
+        #endregion
+</pre>
+
+Jeśli można by było podzielić &#8222;**ViewModel**&#8221; na część View-ViewModelu i część Modelu-ViewModelu, to właśnie skończyliśmy pisać tę drugą.  
+Przypomina mi się tutaj <a href="http://nonsensopedia.wikia.com/wiki/Dzida" target="_blank">budowa dzidy</a> ;). Można powiedzieć, że cała logika aplikacji została już napisana. Teraz zajmiemy się wyświetlaniem stanu naszego programu. Co chcielibyśmy wyświetlić? Liczbę tyknięć zegara.
+
+W tym celu dodajemy nową właściwość naszej klasy &#8222;MainWindowViewModel&#8221;:
+
+<pre class="brush: csharp; title: ; notranslate" title="">private string _message;
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+
+            set
+            {
+                if (_message != value)
+                {
+                    _message = value;
+                    RaisePropertyChanged(() =&gt; Message);
+                }
+            }
+        }
+</pre>
+
+To tutaj użyliśmy magicznego pomocnika jakim jest klasa **NotificationObject**, a dokładniej odziedziczona metoda **RaisePropertyChanged**.  
+Ta metoda mówi do naszego widoku: &#8222;Jeśli ktoś mnie słyszy&#8230; to niech wie, że wartość obiektu Message, właśnie się zmieniła!&#8221;.
+
+Funkcją, która będzie zmieniać właściwość &#8222;Message&#8221;, jest funkcja wywoływana podczas zdarzenia Tick.  
+Powinna teraz wyglądać tak:
+
+<pre class="brush: csharp; title: ; notranslate" title="">void _timer_Tick(object sender, int tick)
+        {
+            Message = string.Format(&quot;Tick #{0}&quot;, tick);
+        }
+</pre>
+
+I to wszystko jeśli chodzi o część **ViewModel**. Choć przed nami jeszcze implementacja widoku, tutaj warto się zatrzymać.
+
+Cała idea wzorca MVVM polega właśnie na tym, że ViewModel, krzyczy: &#8222;Jeśli ktoś mnie słyszy[&#8230;]&#8221;. Jeśli tak &#8211; to super, a jeśli nie &#8211; to trudno. Nie wpływa to zupełnie na pracę całej aplikacji. Dzięki temu całkowicie oddzielamy widok aplikacji od jej logiki. Jedynym pomostem są właściwości klas z ViewModelu, które informują (słuchacza/y), o zmianie ich wartości.
+
+Teraz zajmiemy się wyświetlaniem. Musimy podpiąć widok, tak aby nasłuchiwał na naszej zmiennej Message. Nic prostszego:
+
+Jeśli zrobiłeś, drogi czytelniku, wszystko tak jak Cię o to prosiłem (chodzi mi o strukturę projektu), to w katalogu &#8222;View&#8221; powinieneś mieć plik: &#8222;**MainWindow**.**xaml**&#8222;.  
+Do znacznika **Window**, dodajemy atrybut:
+
+<pre class="brush: csharp; title: ; notranslate" title="">xmlns:viewModels=&quot;clr-namespace:ServicesSample.ViewModels&quot;
+</pre>
+
+oraz dodajemy zasób:
+
+<pre class="brush: csharp; title: ; notranslate" title="">&lt;Window.Resources&gt;
+        &lt;viewModels:MainWindowViewModel x:Key=&quot;MainViewModel&quot; /&gt;
+    &lt;/Window.Resources&gt;
+</pre>
+
+A wszystko po to, aby w domyślnym kontenerze zdefiniować DataContext
+
+<pre class="brush: csharp; title: ; notranslate" title="">DataContext=&quot;{StaticResource MainViewModel}&quot;
+</pre>
+
+Jeszcze tylko TextBlock, który nam to wszystko wyświetli
+
+<pre class="brush: csharp; title: ; notranslate" title="">&lt;TextBlock Text=&quot;{Binding Message}&quot; HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot; Width=&quot;Auto&quot;/&gt;
+</pre>
+
+Cały plik widoku powinien wyglądać następująco:
+
+<pre class="brush: csharp; title: ; notranslate" title="">&lt;Window x:Class=&quot;ServicesSample.MainWindow&quot;
+        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        xmlns:viewModels=&quot;clr-namespace:ServicesSample.ViewModels&quot;
+        Title=&quot;MainWindow&quot; Height=&quot;350&quot; Width=&quot;525&quot;&gt;
+    &lt;Window.Resources&gt;
+        &lt;viewModels:MainWindowViewModel x:Key=&quot;MainViewModel&quot; /&gt;
+    &lt;/Window.Resources&gt;
+    &lt;Grid DataContext=&quot;{StaticResource MainViewModel}&quot;&gt;
+        &lt;TextBlock Text=&quot;{Binding Message}&quot; HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot; Width=&quot;Auto&quot;/&gt;
+    &lt;/Grid&gt;
+&lt;/Window&gt;
+</pre>
+
+Koniec :-).
+
+Po uruchomieniu powinniśmy zobaczyć zmieniający się co sekundę (lub inny ustawiony odcinek czasu) tekst.
+
+[<img class="alignnone wp-image-58 size-full" src="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?resize=525%2C350" alt="" width="525" height="350" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?w=525 525w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?resize=300%2C200 300w" sizes="(max-width: 525px) 100vw, 525px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png)
+
+**Cały projekt jest dostępny do pobrania na <a href="https://github.com/RamzesBlog/ServicesSample" target="_blank">GitHub</a>.**

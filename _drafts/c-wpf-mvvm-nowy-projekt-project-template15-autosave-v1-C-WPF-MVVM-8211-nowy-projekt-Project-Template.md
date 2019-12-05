@@ -1,0 +1,135 @@
+---
+id: 204
+title: 'C# WPF MVVM &#8211; nowy projekt (Project Template)'
+date: 2015-04-08T14:22:55+00:00
+author: admin
+layout: revision
+guid: http://www.karalus.eu/2015/04/15-autosave-v1/
+permalink: /2015/04/15-autosave-v1/
+---
+Większość wzorców projektowych, wymaga od programisty większego nakładu pracy, niż bezsensowne klepanie kodu &#8222;na szybko&#8221;. W zamian za czytelny kod i strukturę, musimy się czasami nieźle nagłówkować. Jednak czas poświęcony nad utrzymaniem projektu w zgodzie ze wzorcem, zwraca się z nawiązką.  
+MVVM nie jest tutaj wyjątkiem. Postaram się opisać go dokładniej (wraz z przykładami), przy okazji moich następnych wpisów. Dziś chcę opisać, jak  mvvm wygląda w moim wykonaniu oraz od czego zaczynam gdy tworzę nowy projekt.
+
+A więc, od początku:
+
+<!--more-->
+
+  
+1. Tworzymy nowy projekt C#/WPF  😉  
+Jego struktura jest dość uboga:  
+[<img class="alignnone wp-image-16 size-full" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?resize=354%2C221" alt="" width="354" height="221" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?w=354 354w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?resize=300%2C187 300w" sizes="(max-width: 354px) 100vw, 354px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png)
+
+2. Do projektu dodajemy katalogi:  
+Models, Views, ViewModels oraz Services, Converters i Helpers.  
+(W następnych wpisach dokładnie opiszę, co będziemy w nich trzymać)
+
+3. Tworzymy dwie nowe klasy DelegateCommand i NotificationObject. W tym celu dodajemy do folderu &#8222;Helpers&#8221;, dwa pliki .cs o zawartości:
+
+NotificationObject.cs
+
+<pre class="brush: csharp; title: ; notranslate" title="">using System;
+using System.ComponentModel;
+using System.Linq.Expressions;
+
+namespace MvvmTemplate.Helpers
+{
+    public class NotificationObject : INotifyPropertyChanged
+    {
+        protected void RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; action)
+        {
+            var propertyName = GetPropertyName(action);
+            RaisePropertyChanged(propertyName);
+        }
+
+        private static string GetPropertyName&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; action)
+        {
+            var expression = (MemberExpression)action.Body;
+            var propertyName = expression.Member.Name;
+            return propertyName;
+        }
+
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+}
+</pre>
+
+DelegateCommand.cs
+
+<pre class="brush: csharp; title: ; notranslate" title="">using System;
+using System.Windows.Input;
+
+namespace MvvmTemplate.Helpers
+{
+    public class DelegateCommand : ICommand
+    {
+        private readonly Action _command;
+        private readonly Func&lt;bool&gt; _canExecute;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public DelegateCommand(Action command, Func&lt;bool&gt; canExecute = null)
+        {
+            if (command == null)
+                throw new ArgumentNullException();
+            _canExecute = canExecute;
+            _command = command;
+        }
+
+        public void Execute(object parameter)
+        {
+            _command();
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return _canExecute == null || _canExecute();
+        }
+
+    }
+}
+</pre>
+
+4. Warto jeszcze dodać do folderu &#8222;ViewModels&#8221; klasę BaseViewModel, po której będą dziedziczyć nasze przyszłe ViewModels
+
+BaseViewModel.cs:
+
+<pre class="brush: csharp; title: ; notranslate" title="">using ClipboardAssistant.Helpers;
+
+namespace ClipboardAssistant.ViewModels
+{
+    public class BaseViewModel : NotificationObject
+    {
+    }
+}
+</pre>
+
+5. Pliki MainWindow.xaml i MainWindow.xaml.cs przenosimy do folderu &#8222;Views&#8221;.
+
+6. Jeszcze tylko podmieniamy ścieżkę do widoku, uruchamianego podczas startu aplikacji.  
+z
+
+<pre class="brush: csharp; title: ; notranslate" title="">StartupUri=&quot;MainWindow.xaml&quot;</pre>
+
+na
+
+<pre class="brush: csharp; title: ; notranslate" title="">StartupUri=&quot;Views\MainWindow.xaml&quot;</pre>
+
+&nbsp;
+
+Całość powinna wyglądać tak:
+
+[<img class="alignnone size-medium wp-image-29" src="https://i2.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio-239x300.png?resize=239%2C300" alt="MVVM project template img2" width="239" height="300" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png?resize=239%2C300 239w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png?w=355 355w" sizes="(max-width: 239px) 100vw, 239px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png)
+
+To wszystko co trzeba zrobić. Jeśli posiadasz Visual Studio 2012 możesz dodać do niego rozszerzenie [WPF MVVM project template](http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c). Powyższe klasy DelegateCommand i NotificationObject pochodzą właśnie z tego rozszerzenia. W następnych wpisach dokładnie opiszę do czego się ich używa 😉  
+**Cały projekt jest dostępny na [GitHub](https://github.com/RamzesBlog/MvvmTemplate).**
+
+&nbsp;

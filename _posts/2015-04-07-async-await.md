@@ -1,0 +1,64 @@
+---
+id: 164
+title: Async Await
+date: 2015-04-07T15:25:05+00:00
+author: Adrian Karalus
+layout: post
+guid: http://www.karalus.eu/Blog/?p=164
+permalink: /2015/04/async-await/
+image: /wp-content/uploads/2015/03/20150326_214952.jpg
+categories:
+  - Programowanie
+---
+Mechanizm Async-Await dla programisty, który wcześniej pracował głównie z klasami typu Thread, Parallel, Task, czy BackgroundWorker, może początkowo wydawać się dziwny.
+
+<!--more-->
+
+Szybko idzie się jednak przyzwyczaić, ponieważ sam sposób pisania aplikacji wielowątkowych z wątkiem interfejsu jest bardzo intuicyjny.  
+Jak to robić?
+
+1) Po pierwsze piszemy metodę, która ma się wykonywać równolegle.  
+W moim przypadku skomplikowane obliczenia są symulowane przez Thread.Sleep();
+
+<pre class="brush: csharp; title: ; notranslate" title="">private Task DoSomeWorkAsync()
+        {
+            return Task.Run(() =&gt; { Thread.Sleep(500); });
+        }
+</pre>
+
+Metoda ta musi zwracać obiekt klasy Task (dla metod void) lub Task (dla metod zwracających obiekt T)
+
+<pre class="brush: csharp; title: ; notranslate" title="">private Task&lt;int&gt; DoSomeWorkAsync()
+        {
+            return Task.Run(() =&gt;
+            {
+                Thread.Sleep(500);
+                return 0;
+            });
+        }
+</pre>
+
+2) Słówko kluczowe &#8222;async&#8221;, najprościej mówiąc:  
+Oznacza, że w danej metodzie występuje wywołanie metody ze słowem kluczowym await.  
+Jeśli jakaś metoda ma modyfikator async => w jej ciele jest await.
+
+UWAGA! Nazwy metod, które są poprzedzone modyfikatorem async, kończą sie na Async, np. SomeWorkAsync, GetValueAsync.  
+Jest to ogólnie przyjęta konwencja.
+
+3) Słówko kluczowe &#8222;await&#8221;, powoduje zwrócenie przepływy sterowania do metody wywołującej funkcję async (asynchroniczną).
+
+Od tego momentu &#8222;czekamy&#8221; na zakończenie zadania.
+
+Schemat: (pionowe linie reprezentują wykonywany w czasie kod)
+
+[<img class="alignnone size-full wp-image-166" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?resize=3264%2C2448" alt="20150326_214952" width="3264" height="2448" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?w=3264 3264w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?resize=300%2C225 300w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?resize=1024%2C768 1024w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?w=2000 2000w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?w=3000 3000w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg)
+
+Najlepiej pokazać to na prostym przykładzie aplikacji z paskiem postępu.
+
+<img class="alignnone size-medium wp-image-165" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86" alt="2015-03-31 17_28_12-MainWindow" width="300" height="86" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86 300w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?w=656 656w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /> 
+
+Co zyskujemy?  
+&#8211; Większa intuicyjność kodu w przypadku pracy z interfejsem użytkownika,  
+&#8211; w prosty sposób możemy zapewnić responsywność aplikacji.
+
+Cały kod, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/AsyncAwaitExample" target="_blank">GITHUB</a>! 🙂
