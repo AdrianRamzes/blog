@@ -28,7 +28,7 @@ Teraz dodajmy przycisk:
 </pre>
 
 Ok&#8230; póki co są to niezależne kontrolki.  
-Spróbujmy powiązać stan checkbox&#8217;a ze stanem przycisku, a konkretniej to wartość własności "IsChecked" checkbox&#8217;a z wartością własności "IsEnabled" przycisku.  
+Spróbujmy powiązać stan checkbox'a ze stanem przycisku, a konkretniej to wartość własności "IsChecked" checkbox'a z wartością własności "IsEnabled" przycisku.  
 W tym celu dodajemy do przycisku własność:
 
 <pre class="brush: xml; title: ; notranslate" title="">IsEnabled=

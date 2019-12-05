@@ -16,7 +16,7 @@ tags:
   - viewmodel
   - wpf
 ---
-Service to nic innego jak klasa, która ma wykonywać pewne operacje na rzecz aplikacji. Jej instancja jest trzymana po stronie ViewModel&#8217;u i jest na jego usługach. Obliczenia, operacje wykonywane na obiektach modelu, plikach, obsługa połączeń z internetem lub innymi aplikacjami (nawet na tym samym komputerze), to wszystko powinno być realizowane przez serwisy.
+Service to nic innego jak klasa, która ma wykonywać pewne operacje na rzecz aplikacji. Jej instancja jest trzymana po stronie ViewModel'u i jest na jego usługach. Obliczenia, operacje wykonywane na obiektach modelu, plikach, obsługa połączeń z internetem lub innymi aplikacjami (nawet na tym samym komputerze), to wszystko powinno być realizowane przez serwisy.
 
 Z racji tego, że jestem zwolennikiem nauki przez praktykę, zaprezentuje bardzo proste i intuicyjne zastosowanie serwisów.  
 <!--more-->
@@ -33,7 +33,7 @@ Dodajemy nową klasę do katalogu "Services":
 </pre>
 
 Chcę, aby klasa implementowała mechanizm startowania (w osobnym wątku) zegara, który będzie podnosił event za każdym razem gdy minie wyznaczony czas. Ma to robić bez przerwy, do odwołania.  
-Co prawda jest to troszkę naiwne, ponieważ istnieją już klasy, które mają takie mechanizmy np. Timer. Jednak my zrobimy to po swojemu z użyciem BackgroundWorker&#8217;a.
+Co prawda jest to troszkę naiwne, ponieważ istnieją już klasy, które mają takie mechanizmy np. Timer. Jednak my zrobimy to po swojemu z użyciem BackgroundWorker'a.
 
 <pre class="brush: csharp; title: ; notranslate" title="">#region Members
 private BackgroundWorker _worker;

@@ -13,7 +13,7 @@ tags:
   - '#MVVM #wpf #DelegateCommand #ICommand'
 ---
 Pragnę zaprezentować wam prosty przykład użycia komend.  
-Commanding to po prostu mechanizm umożliwiający powiązanie akcji interfejsu z konkretnymi działaniami, zaimplementowanymi we ViewModel&#8217;u. Dzięki temu, możliwe jest oddzielenie warstwy widoku od logiki biznesowej.
+Commanding to po prostu mechanizm umożliwiający powiązanie akcji interfejsu z konkretnymi działaniami, zaimplementowanymi we ViewModel'u. Dzięki temu, możliwe jest oddzielenie warstwy widoku od logiki biznesowej.
 
 Na początek warto przyjrzeć się interfejsowi ICommand.<!--more-->
 
@@ -27,9 +27,9 @@ Implementacja klasy DelegateCommand, którą używam najczęściej w swoich proj
 
 Przejdźmy do konkretów. (Szablon projektu MVVM, na którym bazuje, opisałem <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wcześniej</a>)  
 Niech nasz program ma jeden przycisk, jeden checkBox i pole, w którym wyświetlać będziemy komunikaty.  
-Przycisk będzie powodował wyświetlenie jakiejś wiadomości w TextBlock&#8217;u, a dostępność przycisku będzie zależna od tego czy CheckBox jest zaznaczony czy nie.
+Przycisk będzie powodował wyświetlenie jakiejś wiadomości w TextBlock'u, a dostępność przycisku będzie zależna od tego czy CheckBox jest zaznaczony czy nie.
 
-We ViewModel&#8217;u definiujemy właściwość, w której będziemy trzymać wartość wiadomości wyświetlanej użytkownikowi.
+We ViewModel'u definiujemy właściwość, w której będziemy trzymać wartość wiadomości wyświetlanej użytkownikowi.
 
 <pre class="brush: csharp; title: ; notranslate" title="">private string _message;
         public string Message
@@ -101,7 +101,7 @@ Po kliknięciu przycisku, wykona się metoda "Click".
 DelegateCommand, może przyjmować jeszcze jeden parametr i jest nim funkcja zwracająca wartość bool.  
 Chodzi o metodę CanExecute, która jest wykonywana za każdym razem gdy zaszły jakieś zmiany w interfejsie (nie we wszystkich implementacjach) i tuż przed wykonaniem metody Execute. Domyślnie, jeśli nie podamy drugiego parametru, CanExecute zawsze będzie zwracał wartość true.
 
-Dodajmy jeszcze jedną właściwość do ViewModel&#8217;u. Po to, aby użytkownik mógł decydować czy przycisk ma być dostępny czy nie.
+Dodajmy jeszcze jedną właściwość do ViewModel'u. Po to, aby użytkownik mógł decydować czy przycisk ma być dostępny czy nie.
 
 <pre class="brush: csharp; title: ; notranslate" title="">private bool _isClickButtonEnable;
         public bool IsClickButtonEnable
@@ -156,7 +156,7 @@ To już chyba wszystko. Po uruchomieniu powinnyśmy zobaczyć coś takiego:
 
 (Przycisk aktywny po prawej i nieaktywny po lewej)
 
-Oczywiście to czy przycisk jest aktywny czy nie, można powiązać z CheckBox&#8217;em tylko na poziomie widoku i używając do tego jedynie XAML&#8217;a.  
+Oczywiście to czy przycisk jest aktywny czy nie, można powiązać z CheckBox'em tylko na poziomie widoku i używając do tego jedynie XAML'a.  
 Jednak o powiązaniach między kontrolkami opowiem <a href="http://www.karalus.eu/Blog/2014/10/c-wpf-mvvm-binding-to-element/" target="_blank">innym razem</a>.
 
 Warto jeszcze wspomnieć o tym, kiedy tak naprawdę wywoływane jest CanExecute.  

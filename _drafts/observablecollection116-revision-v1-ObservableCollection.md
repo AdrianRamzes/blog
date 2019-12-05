@@ -27,7 +27,7 @@ Niech to będzie prosta klasa "Person":
     }
 </pre>
 
-Do ViewModel&#8217;u dodajemy properties "List", będzie to kolekcja obiektów "Person", którą wyświetlimy w ListBox&#8217;ie:
+Do ViewModel'u dodajemy properties "List", będzie to kolekcja obiektów "Person", którą wyświetlimy w ListBox'ie:
 
 <pre class="brush: csharp; title: ; notranslate" title="">public ObservableCollection&lt;Person&gt; List { get; set; }
 </pre>

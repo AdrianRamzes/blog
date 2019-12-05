@@ -29,7 +29,7 @@ Dodaj do swojego projektu NuGet pakiet Prism (aktualna wersja na 18.10.2014 to 5
 
  
 
-Referencje dodają się automatycznie. Jedyne co teraz musisz zrobić to zacząć używać dobrodziejstw Prism&#8217;a 😉
+Referencje dodają się automatycznie. Jedyne co teraz musisz zrobić to zacząć używać dobrodziejstw Prism'a 😉
 
 We ViewModelu deklarujemy komendtę dwie właściwość w celu zapewnienia interakcji z użytkownikiem:
 

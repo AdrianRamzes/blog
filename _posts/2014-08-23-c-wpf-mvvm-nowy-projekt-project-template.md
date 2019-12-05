@@ -17,7 +17,6 @@ A więc, od początku:
 
 <!--more-->
 
-  
 1. Tworzymy nowy projekt C#/WPF  😉  
 Jego struktura jest dość uboga:  
 [<img class="alignnone wp-image-16 size-full" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?resize=354%2C221" alt="" width="354" height="221" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?w=354 354w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?resize=300%2C187 300w" sizes="(max-width: 354px) 100vw, 354px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png)

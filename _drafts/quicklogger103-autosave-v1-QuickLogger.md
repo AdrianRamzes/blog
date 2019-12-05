@@ -52,7 +52,7 @@ Cały kod tego programu jest dostępny na <a href="https://github.com/RamzesBlog
 Program jest bardzo prosty ale mimo to powiem parę słów na temat jego obsługi.
 
 1) Za każdym kliknięciem przycisku "Log It!" (lub klawisza ENTER) - program chowa się do paska tray.  
-2) Po wywołaniu go z paska, kursor jest ustawiony w TextBox&#8217;ie. Dzięki temu po kliknąć w ikonkę można od razu wpisać tekst.  
+2) Po wywołaniu go z paska, kursor jest ustawiony w TextBox'ie. Dzięki temu po kliknąć w ikonkę można od razu wpisać tekst.  
 3) Do każdego wpisu można załączyć prefix np. "Zadanie #12" będzie on dopisywany przed każdym wpisem. Prefix definiujemy raz i dodaje się on do każdego wpisu, dopóki zaznaczony jest checkbox.  
 4) Logi można podejrzeć klikając przycisk: "Open log file"  
 5) program zamyka się klikając PPM na ikonkę i wybierając opcję "Exit".
