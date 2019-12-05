@@ -18,7 +18,8 @@ Generalnie, przyda się flaga, która będzie stawiana gdy obliczenia się wykon
 
 Rozwiązanie jest banalne.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private bool isBusy = false;
+```csharp
+private bool isBusy = false;
         private async void sthAsync(object sender, EventArgs e)
         {
             if (!isBusy)
@@ -31,12 +32,12 @@ Rozwiązanie jest banalne.
 
         private Task someTaskAsync()
         {
-            return Task.Run(() =&gt;
+            return Task.Run(() =>
             {
                 Thread.Sleep(2 * 1000);// 1000ms = 1s
             });
         }
-</pre>
+```
 
 To czy metoda asynchroniczna będzie wywołana uzależniamy od wartości flagi isBusy.  
 Przed i po wywołaniu metody asynchronicznej ze słówkiem await, zmieniamy wartość flagi isBusy.

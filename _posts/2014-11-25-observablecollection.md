@@ -28,21 +28,24 @@ Oto przykładowy program z użyciem klasy ObservableCollection  oraz kontrolki
 Po pierwsze dodajmy sobie klasę do folderu Models, musimy przecież mieć co wyświetlać 😉  
 Niech to będzie prosta klasa "Person":
 
-<pre class="brush: csharp; title: ; notranslate" title="">public class Person
+```csharp
+public class Person
     {
         public string Name { get; set; }
         public int Age { get; set; }
     }
-</pre>
+```
 
 Do ViewModel'u dodajemy properties "List", będzie to kolekcja obiektów "Person", którą wyświetlimy w ListBox'ie:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public ObservableCollection&lt;Person&gt; List { get; set; }
-</pre>
+```csharp
+public ObservableCollection<Person> List { get; set; }
+```
 
 Przydałby się jeszcze jakiś mechanizm dokonywania zmian w kolekcji, a w szczególności dodawania do niej nowych elementów, tak więc dodajemy komendę wraz z implementacją metody "Execue":
 
-<pre class="brush: csharp; title: ; notranslate" title="">public DelegateCommand AddNewPersonCommand { get; set; }
+```csharp
+public DelegateCommand AddNewPersonCommand { get; set; }
 
         private void AddNewPersonExecute()
         {
@@ -50,29 +53,31 @@ Przydałby się jeszcze jakiś mechanizm dokonywania zmian w kolekcji, a w szcze
         }
 
         private Random _rand = new Random();
-</pre>
+```
 
  
 
 Zaostał nam już tylko widok - View:  
 ListBox - do wyświetlania kolekcji "List":
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;ListBox ItemsSource="{Binding List}" &gt;
-            &lt;ListBox.ItemTemplate&gt;
-                &lt;DataTemplate&gt;
-                    &lt;Grid Height="30"&gt;
-                        &lt;TextBlock Text="{Binding Name}" VerticalAlignment="Top" HorizontalAlignment="Left"/&gt;
-                        &lt;TextBlock Text="{Binding Age, StringFormat=Age: {0} }" VerticalAlignment="Bottom" HorizontalAlignment="Right"/&gt;
-                    &lt;/Grid&gt;
-                &lt;/DataTemplate&gt;
-            &lt;/ListBox.ItemTemplate&gt;
-        &lt;/ListBox&gt;
-</pre>
+```xml
+<ListBox ItemsSource="{Binding List}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="30">
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding Age, StringFormat=Age: {0} }" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+```
 
 Oraz przycisk, za pomocą którego wywoływać będziemy komendę "AddNewPersonCommand":
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;Button Command="{Binding AddNewPersonCommand}" Content="Add New Person" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,2"/&gt;
-</pre>
+```xml
+<Button Command="{Binding AddNewPersonCommand}" Content="Add New Person" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,2"/>
+```
 
 I to w zasadzie wszystko, jeśli chodzi o używanie ObservableCollection. Deklaracja kolekcji i powiązanie z nią widoku. Reszta dzieje się "automagicznie" 😉
 

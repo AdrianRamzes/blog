@@ -7,7 +7,7 @@ layout: revision
 guid: http://www.karalus.eu/2018/02/678-revision-v1/
 permalink: /2018/02/678-revision-v1/
 ---
-Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. Wiedziałem wcześniej jedynie, że to nie jest zbyt trudne, tutaj cytat mojego kolegi: "Nie wiem jak robi się rozszerzenia do chrome, ale daję to moim studentom na pierwszym roku i jakoś dają radę, więc&#8230; to nie może być trudne". I rzeczywiście nie jest. Rozszerzenie do przeglądarki to nic innego jak HTML+CSS+JS. 
+Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. Wiedziałem wcześniej jedynie, że to nie jest zbyt trudne, tutaj cytat mojego kolegi: "Nie wiem jak robi się rozszerzenia do chrome, ale daję to moim studentom na pierwszym roku i jakoś dają radę, więc, to nie może być trudne". I rzeczywiście nie jest. Rozszerzenie do przeglądarki to nic innego jak HTML+CSS+JS. 
 
 <span>"Jeśli umiesz podstawy frontend, to umiesz też chrome extension."</span>
 
@@ -41,7 +41,7 @@ Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik
     "page": "background.html"
   }
 }
-</pre>
+```
 
 Najważniejsze jest pole _default_popup_, które mówi przeglądarce - jaki widok ma się wyświetlić po kliknięciu na ikonę rozszerzenia.  
 Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkowej strony - background, która będzie żyć tak długo jak długo działa przeglądarka, bez względu na to czy rozszerzenie jest widoczne. W tym celu należy podać wartość parametru _background.page_. W manifeście znajdują się również inne informacje o aplikacji takie jak: nazwa rozszerzenia, opis, ikona, wersja oraz wykorzystywane uprawnienia. W tym przypadku są to: 

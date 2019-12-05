@@ -29,7 +29,8 @@ Models, Views, ViewModels oraz Services, Converters i Helpers.
 
 NotificationObject.cs
 
-<pre class="brush: csharp; title: ; notranslate" title="">using System;
+```csharp
+using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
 
@@ -37,13 +38,13 @@ namespace MvvmTemplate.Helpers
 {
     public class NotificationObject : INotifyPropertyChanged
     {
-        protected void RaisePropertyChanged&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; action)
+        protected void RaisePropertyChanged<T>(Expression<Func<T>> action)
         {
             var propertyName = GetPropertyName(action);
             RaisePropertyChanged(propertyName);
         }
 
-        private static string GetPropertyName&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; action)
+        private static string GetPropertyName<T>(Expression<Func<T>> action)
         {
             var expression = (MemberExpression)action.Body;
             var propertyName = expression.Member.Name;
@@ -59,11 +60,12 @@ namespace MvvmTemplate.Helpers
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
-</pre>
+```
 
 DelegateCommand.cs
 
-<pre class="brush: csharp; title: ; notranslate" title="">using System;
+```csharp
+using System;
 using System.Windows.Input;
 
 namespace MvvmTemplate.Helpers
@@ -71,14 +73,14 @@ namespace MvvmTemplate.Helpers
     public class DelegateCommand : ICommand
     {
         private readonly Action _command;
-        private readonly Func&lt;bool&gt; _canExecute;
+        private readonly Func<bool> _canExecute;
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public DelegateCommand(Action command, Func&lt;bool&gt; canExecute = null)
+        public DelegateCommand(Action command, Func<bool> canExecute = null)
         {
             if (command == null)
                 throw new ArgumentNullException();
@@ -98,13 +100,14 @@ namespace MvvmTemplate.Helpers
 
     }
 }
-</pre>
+```
 
 4. Warto jeszcze dodać do folderu "ViewModels" klasę BaseViewModel, po której będą dziedziczyć nasze przyszłe ViewModels
 
 BaseViewModel.cs:
 
-<pre class="brush: csharp; title: ; notranslate" title="">using ClipboardAssistant.Helpers;
+```csharp
+using ClipboardAssistant.Helpers;
 
 namespace ClipboardAssistant.ViewModels
 {
@@ -112,18 +115,20 @@ namespace ClipboardAssistant.ViewModels
     {
     }
 }
-</pre>
+```
 
 5. Pliki MainWindow.xaml i MainWindow.xaml.cs przenosimy do folderu "Views".
 
 6. Jeszcze tylko podmieniamy ścieżkę do widoku, uruchamianego podczas startu aplikacji.  
 z
 
-<pre class="brush: csharp; title: ; notranslate" title="">StartupUri="MainWindow.xaml"</pre>
+```csharp
+StartupUri="MainWindow.xaml"```
 
 na
 
-<pre class="brush: csharp; title: ; notranslate" title="">StartupUri="Views\MainWindow.xaml"</pre>
+```csharp
+StartupUri="Views\MainWindow.xaml"```
 
  
 

@@ -10,54 +10,54 @@ wp-syntax-cache-content:
   - |
     a:1:{i:1;s:3616:"
     <div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="javascript" style="font-family:monospace;"><span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">&quot;manifest_version&quot;</span><span style="color: #339933;">:</span> <span style="color: #CC0000;">2</span><span style="color: #339933;">,</span>
+    <span style="color: #3366CC;">"manifest_version"</span><span style="color: #339933;">:</span> <span style="color: #CC0000;">2</span><span style="color: #339933;">,</span>
      
-    <span style="color: #3366CC;">&quot;name&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;Timer&quot;</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">&quot;description&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;This is a simple pomodoro timer.&quot;</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">&quot;version&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;0.1&quot;</span><span style="color: #339933;">,</span>
+    <span style="color: #3366CC;">"name"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"Timer"</span><span style="color: #339933;">,</span>
+    <span style="color: #3366CC;">"description"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"This is a simple pomodoro timer."</span><span style="color: #339933;">,</span>
+    <span style="color: #3366CC;">"version"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"0.1"</span><span style="color: #339933;">,</span>
      
-    <span style="color: #3366CC;">&quot;browser_action&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">&quot;default_icon&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;pomodoro_x128.png&quot;</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">&quot;default_popup&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;pomodoro-timer.html&quot;</span>
+    <span style="color: #3366CC;">"browser_action"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #3366CC;">"default_icon"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"pomodoro_x128.png"</span><span style="color: #339933;">,</span>
+    <span style="color: #3366CC;">"default_popup"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"pomodoro-timer.html"</span>
     <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
      
-    <span style="color: #3366CC;">&quot;icons&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">&quot;128&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;pomodoro_x128.png&quot;</span>
+    <span style="color: #3366CC;">"icons"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #3366CC;">"128"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"pomodoro_x128.png"</span>
     <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
      
-    <span style="color: #3366CC;">&quot;permissions&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#91;</span>
-    <span style="color: #3366CC;">&quot;background&quot;</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">&quot;storage&quot;</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">&quot;notifications&quot;</span>
+    <span style="color: #3366CC;">"permissions"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#91;</span>
+    <span style="color: #3366CC;">"background"</span><span style="color: #339933;">,</span>
+    <span style="color: #3366CC;">"storage"</span><span style="color: #339933;">,</span>
+    <span style="color: #3366CC;">"notifications"</span>
     <span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
      
-    <span style="color: #3366CC;">&quot;background&quot;</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">&quot;page&quot;</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">&quot;background.html&quot;</span>
+    <span style="color: #3366CC;">"background"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #3366CC;">"page"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"background.html"</span>
     <span style="color: #009900;">&#125;</span>
-    <span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">{
-    &quot;manifest_version&quot;: 2,
+    <span style="color: #009900;">&#125;</span>```</td></tr></table><p class="theCode" style="display:none;">{
+    "manifest_version": 2,
     
-    &quot;name&quot;: &quot;Timer&quot;,
-    &quot;description&quot;: &quot;This is a simple pomodoro timer.&quot;,
-    &quot;version&quot;: &quot;0.1&quot;,
+    "name": "Timer",
+    "description": "This is a simple pomodoro timer.",
+    "version": "0.1",
     
-    &quot;browser_action&quot;: {
-    &quot;default_icon&quot;: &quot;pomodoro_x128.png&quot;,
-    &quot;default_popup&quot;: &quot;pomodoro-timer.html&quot;
+    "browser_action": {
+    "default_icon": "pomodoro_x128.png",
+    "default_popup": "pomodoro-timer.html"
     },
     
-    &quot;icons&quot;: {
-    &quot;128&quot;: &quot;pomodoro_x128.png&quot;
+    "icons": {
+    "128": "pomodoro_x128.png"
     },
     
-    &quot;permissions&quot;: [
-    &quot;background&quot;,
-    &quot;storage&quot;,
-    &quot;notifications&quot;
+    "permissions": [
+    "background",
+    "storage",
+    "notifications"
     ],
     
-    &quot;background&quot;: {
-    &quot;page&quot;: &quot;background.html&quot;
+    "background": {
+    "page": "background.html"
     }
     }</p></div>
     ";}
@@ -65,7 +65,7 @@ image: /wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png
 categories:
   - Programowanie
 ---
-Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. Wiedziałem wcześniej jedynie, że to nie jest zbyt trudne, tutaj cytat mojego kolegi: "Nie wiem jak robi się rozszerzenia do chrome, ale daję to moim studentom na pierwszym roku i jakoś dają radę, więc&#8230; to nie może być trudne". I rzeczywiście nie jest. Rozszerzenie do przeglądarki to nic innego jak HTML+CSS+JS. 
+Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. Wiedziałem wcześniej jedynie, że to nie jest zbyt trudne, tutaj cytat mojego kolegi: "Nie wiem jak robi się rozszerzenia do chrome, ale daję to moim studentom na pierwszym roku i jakoś dają radę, więc, to nie może być trudne". I rzeczywiście nie jest. Rozszerzenie do przeglądarki to nic innego jak HTML+CSS+JS. 
 
 <span>"Jeśli umiesz podstawy frontend, to umiesz też chrome extension."</span>
 
@@ -99,7 +99,7 @@ Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik
     "page": "background.html"
   }
 }
-</pre>
+```
 
 Najważniejsze jest pole _default_popup_, które mówi przeglądarce - jaki widok ma się wyświetlić po kliknięciu na ikonę rozszerzenia.  
 Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkowej strony - background, która będzie żyć tak długo jak długo działa przeglądarka, bez względu na to czy rozszerzenie jest widoczne. W tym celu należy podać wartość parametru _background.page_. W manifeście znajdują się również inne informacje o aplikacji takie jak: nazwa rozszerzenia, opis, ikona, wersja oraz wykorzystywane uprawnienia. W tym przypadku są to: 

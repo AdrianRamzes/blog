@@ -26,7 +26,8 @@ Przycisk będzie powodował wyświetlenie jakiejś wiadomości w TextBlock'u, a 
 
 We ViewModel'u definiujemy właściwość, w której będziemy trzymać wartość wiadomości wyświetlanej użytkownikowi.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private string _message;
+```csharp
+private string _message;
         public string Message
         {
             get
@@ -38,33 +39,36 @@ We ViewModel'u definiujemy właściwość, w której będziemy trzymać wartoś�
                 if(_message != value)
                 {
                     _message = value;
-                    RaisePropertyChanged(() =&gt; Message);
+                    RaisePropertyChanged(() => Message);
                 }
             }
         }
-</pre>
+```
 
 I powiązany element we View:
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;TextBlock Text=&quot;{Binding Message}&quot; VerticalAlignment=&quot;Top&quot; HorizontalAlignment=&quot;Center&quot;/&gt;
-</pre>
+```xml
+<TextBlock Text="{Binding Message}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+```
 
 Zaimplementujmy metodę, która będzie wykonywana po wciśnięciu przycisku.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private int _count = 0;
+```csharp
+private int _count = 0;
         private void Click()
         {
             _count++;
-            Message = string.Format(&quot;Click #{0}&quot;, _count);
+            Message = string.Format("Click #{0}", _count);
         }
-</pre>
+```
 
 Aby nasz komunikat nie wyglądał cały czas tak samo, dodałem zmienną pomocniczą _count.
 
 Do tej pory wszystko jasne, ale jak powiązać naszą metodę "Click" z widokiem?  
 Za pomocą DelegateCommand!
 
-<pre class="brush: csharp; title: ; notranslate" title="">private ICommand _clickCommand;
+```csharp
+private ICommand _clickCommand;
         public ICommand ClickCommand
         {
             get
@@ -74,22 +78,24 @@ Za pomocą DelegateCommand!
 
             private set { }
         }
-</pre>
+```
 
 Definiujemy właściwość typu ICommand i tworzymy jej instancję ją w konstruktorze:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public MainWindowViewModel()
+```csharp
+public MainWindowViewModel()
         {
             _clickCommand = new DelegateCommand(Click);
         }
-</pre>
+```
 
 Jak widać, do zmiennej przypisaliśmy obiekt DelegateCommand, którego konstruktor przyjmuje jako parametr funkcję typu void. Metoda ta jest wykonywana gdy na właściwości ClickCommand wywołana zostanie metoda Execute.
 
 Teraz w widoku wystarczy zdefiniować przycisk w następujący sposób:
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;Button Command=&quot;{Binding ClickCommand}&quot; Content=&quot;Click!&quot;/&gt;
-</pre>
+```xml
+<Button Command="{Binding ClickCommand}" Content="Click!"/>
+```
 
 Po kliknięciu przycisku, wykona się metoda "Click".
 
@@ -98,7 +104,8 @@ Chodzi o metodę CanExecute, która jest wykonywana za każdym razem gdy zaszły
 
 Dodajmy jeszcze jedną właściwość do ViewModel'u. Po to, aby użytkownik mógł decydować czy przycisk ma być dostępny czy nie.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private bool _isClickButtonEnable;
+```csharp
+private bool _isClickButtonEnable;
         public bool IsClickButtonEnable
         {
             get
@@ -110,40 +117,44 @@ Dodajmy jeszcze jedną właściwość do ViewModel'u. Po to, aby użytkownik mó
                 if(_isClickButtonEnable != value)
                 {
                     _isClickButtonEnable = value;
-                    RaisePropertyChanged(() =&gt; IsClickButtonEnable);
+                    RaisePropertyChanged(() => IsClickButtonEnable);
                 }
             }
         }
-</pre>
+```
 
 Kontrolka powiązana z IsClickButtonEnable:
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;CheckBox Content=&quot;Enable&quot; IsChecked=&quot;{Binding IsClickButtonEnable}&quot; VerticalAlignment=&quot;Top&quot; HorizontalAlignment=&quot;Left&quot;/&gt;
-</pre>
+```xml
+<CheckBox Content="Enable" IsChecked="{Binding IsClickButtonEnable}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+```
 
 Do konstruktora dodamy linijkę:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public MainWindowViewModel()
+```csharp
+public MainWindowViewModel()
         {
             _clickCommand = new DelegateCommand(Click);
             _isClickButtonEnable = true;
         }
-</pre>
+```
 
 Teraz dodamy naszą własną metodę CanExecute:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private bool CanExecuteClick()
+```csharp
+private bool CanExecuteClick()
         {
-            Debug.WriteLine(&quot;called CanExecuteClick: {0}&quot;, DateTime.Now);
+            Debug.WriteLine("called CanExecuteClick: {0}", DateTime.Now);
 
             return IsClickButtonEnable;
         }
-</pre>
+```
 
 Pozostało jeszcze dodać ją do parametrów konstruktora DelegateCommand:
 
-<pre class="brush: csharp; title: ; notranslate" title="">_clickCommand = new DelegateCommand(Click, CanExecuteClick);
-</pre>
+```csharp
+_clickCommand = new DelegateCommand(Click, CanExecuteClick);
+```
 
 To już chyba wszystko. Po uruchomieniu powinnyśmy zobaczyć coś takiego:
 

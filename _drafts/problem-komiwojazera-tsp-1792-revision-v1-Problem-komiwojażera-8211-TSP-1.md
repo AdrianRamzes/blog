@@ -31,28 +31,30 @@ To podejście jest bardzo szybkie, jednak zazwyczaj nie daje ono optymalnego wyn
 
 Dane wejściowe programu znajdują się w pliku <a href="http://www.karalus.eu/wp-content/uploads/2018/03/kroA100.txt" rel="noopener" target="_blank">kroA100</a>, który zawiera 100 losowych punktów w postaci `{id} {x} {y}`. Program na starcie wczytuje dane do dwóch kolekcji:
 
-<pre class="brush: csharp; title: ; notranslate" title="">static Dictionary&lt;int, Vertex&gt; vertices;
-static Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt; distances;
-</pre>
+```csharp
+static Dictionary<int, Vertex> vertices;
+static Dictionary<int, Dictionary<int, double>> distances;
+```
 
 `vertices` - słownik zawierający wczytane punkty, kluczem jest id punktu.  
 `distances` - słowik zawierający informacje o odległości pomiędzy dowolną parą punktów. 
 
 Poniżej znajduje się kod metody, która przyjmuje punkt startowy i zwraca pojedyncze rozwiązanie.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private static List&lt;Edge&gt; NN(Vertex firstVertex)
+```csharp
+private static List<Edge> NN(Vertex firstVertex)
 {
-    var used = new HashSet&lt;int&gt;();
+    var used = new HashSet<int>();
 
-    var solution = new List&lt;Edge&gt;();
+    var solution = new List<Edge>();
     var source = firstVertex;
-    for (int i = 0; i &lt; vertices.Count - 1; i++)
+    for (int i = 0; i < vertices.Count - 1; i++)
     {
         used.Add(source.Id);
 
         var targetId = distances[source.Id]
-            .OrderBy(x =&gt; x.Value)
-            .First(n =&gt; !used.Contains(n.Key))
+            .OrderBy(x => x.Value)
+            .First(n => !used.Contains(n.Key))
             .Key;
 
         var target = vertices[targetId];
@@ -66,7 +68,7 @@ Poniżej znajduje się kod metody, która przyjmuje punkt startowy i zwraca poje
 
     return solution;
 }
-</pre></p> 
+```</p> 
 
 ## Wynik
 

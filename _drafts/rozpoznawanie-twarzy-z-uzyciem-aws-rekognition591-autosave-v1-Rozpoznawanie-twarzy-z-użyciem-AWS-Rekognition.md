@@ -29,7 +29,8 @@ Instrukcje, krok po kroku znajdziecie w <a href="http://docs.aws.amazon.com/reko
 ](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png) </li> 
     
       * Zgodnie z wybraną strategią używania kluczy, edytujemy plik App.config. W moim przypadku jest to podanie ścieżki do pliku "credentials"
-      * Korzystanie z AWSSDK.Rekognition jest banalnie proste: <pre class="brush: csharp; title: ; notranslate" title="">public class RekognitionService
+      * Korzystanie z AWSSDK.Rekognition jest banalnie proste: ```csharp
+public class RekognitionService
     {
         AmazonRekognitionClient _client;
 
@@ -46,14 +47,14 @@ Instrukcje, krok po kroku znajdziecie w <a href="http://docs.aws.amazon.com/reko
 
             var result = _client.DetectFaces(new DetectFacesRequest()
             {
-                Attributes = new List&amp;lt;string&amp;gt; { &quot;ALL&quot; },
+                Attributes = new List&amp;lt;string&amp;gt; { "ALL" },
                 Image = new Amazon.Rekognition.Model.Image() { Bytes = memoryStream }
             });
 
             return result;
         }
     }
-</pre>
+```
         
         Do wcześniej już opisywanego projektu dodałem klasę RekognitionService, która implementuje metodę Recognize. Domyślnie metody przyjmują stream pliku w formacie JPEG, użyłem MemoryStream, aby umożliwić przerobienie bitmapy na jpeg "w locie" bez konieczności zapisywania pliku na dysku.
         

@@ -10,7 +10,7 @@ permalink: /2015/04/233-autosave-v1/
 W tym wpisie zaprezentuję prosty przykład aplikacji używającej kamerki internetowej z użyciem biblioteki Emgu CV (wrapper Open CV).  
 <!--more-->Jednocześnie pokażę bardzo praktyczne zastosowanie "serwisów" we wzorcu MVVM.
 
-Aby w ogóle rozpocząć pracę z kamerką należy ściągnąć i zainstalować bibliotekę EmguCV&#8230; można to zrobić przy pomocy NuGet packages manager (co w moim przypadku nie zadziałało - wiesza się przy ściąganiu i za chiny nie chce iść dalej&#8230;)  lub ze strony <a href="http://www.emgu.com/wiki/index.php/Main_Page" target="_blank">emgu</a>.
+Aby w ogóle rozpocząć pracę z kamerką należy ściągnąć i zainstalować bibliotekę EmguCV, można to zrobić przy pomocy NuGet packages manager (co w moim przypadku nie zadziałało - wiesza się przy ściąganiu i za chiny nie chce iść dalej,)  lub ze strony <a href="http://www.emgu.com/wiki/index.php/Main_Page" target="_blank">emgu</a>.
 
 Jeśli skorzystałeś/łaś z NuGet'a to wszystkie pliki dll i odpowiednie referencje dodały się same. Natomiast w przypadku zwykłej instalacji, należy przejść do folderu zawierającegu (domyślnie C:\Emgu\), następnie do folderu bin. Skopiować wszystkie pliki *.dll dla odpowiedniej wersji (x86 lub x64) i przenieść do naszego projektu np. do folderu lib. Pamiętaj, żeby nadać im opcję "copy to output directory".
 
@@ -21,7 +21,8 @@ Będzie to aplikacji napisana w zgodzie ze wzorcem MVVM, więc przygotuj najpier
 
 W folderze Services dodajemy nową klasę o nazwie WebCamService. Ta klasa będzie obsługiwać kamerkę. Powinna posaidać dwie metody "Run" i "Cancel". Po uruchomieniu powinna podnosić event o przechwyceniu obrazu z kamerki. Wszystko to robi już klasa Capture z biblioteki emgu, jednak my opakujemy to w bardziej elegancką w tym przypadku formę.
 
-<pre class="brush: csharp; title: ; notranslate" title="">public class WebCamService
+```csharp
+public class WebCamService
     {
         private Capture _capture;
 
@@ -68,7 +69,7 @@ W folderze Services dodajemy nową klasę o nazwie WebCamService. Ta klasa będz
             }
         }
     }
-</pre>
+```
 
 Jak widać obiekty klasy Capture dostarczają już event "ImageGrabbed". Jednak co w przypadku gdy nie chcemy być bombardowani wywołaniami tego zdarzenia z częstotliwością równą częstotliwości kamerki (fps).
 
@@ -76,13 +77,14 @@ Caputre dostarcza również taką metodę jak: "QueryFrame()", dzięki niej, sam
 
 I w ten sposób przejdę do drugiej możliwej implementacji klasy WebCamService, która może się przydać wtedy gdy mamy zamiar wykonywać na obrazie jakieś bardziej zasobożerne zadania.
 
-<pre class="brush: csharp; title: ; notranslate" title="">public class WebCamService
+```csharp
+public class WebCamService
     {
         private Capture _capture;
         private BackgroundWorker _webCamWorker;
 
         public event ImageChangedEventHndler ImageChanged;
-        public delegate void ImageChangedEventHndler(object sender, Image&lt;Bgr, Byte&gt; image);
+        public delegate void ImageChangedEventHndler(object sender, Image<Bgr, Byte> image);
 
         public bool IsRunning
         {
@@ -105,7 +107,7 @@ I w ten sposób przejdę do drugiej możliwej implementacji klasy WebCamService,
             }
         }
 
-        private void RaiseImageChangedEvent(Image&lt;Bgr, Byte&gt; image)
+        private void RaiseImageChangedEvent(Image<Bgr, Byte> image)
         {
             if (ImageChanged != null)
             {
@@ -138,7 +140,7 @@ I w ten sposób przejdę do drugiej możliwej implementacji klasy WebCamService,
 
         }
     }
-</pre>
+```
 
 Z zewnątrz działanie tej klasy jest identyczne, jednak w środku działa poboczny wątek i jest miejsce na rozbudowę. Sami decydujemy kiedy event się odpali.
 
@@ -148,7 +150,8 @@ Należy jeszcze wspomnieć o tym jak wyświetlić przechwycony obraz.
 
 **MainViewModel**
 
-<pre class="brush: csharp; title: ; notranslate" title="">public class MainWindowViewModel : BaseViewModel
+```csharp
+public class MainWindowViewModel : BaseViewModel
     {
         private WebCamService _webCamService;
 
@@ -165,7 +168,7 @@ Należy jeszcze wspomnieć o tym jak wyświetlić przechwycony obraz.
                 if (_frame != value)
                 {
                     _frame = value;
-                    RaisePropertyChanged(() =&gt; Frame);
+                    RaisePropertyChanged(() => Frame);
                 }
             }
         }
@@ -215,7 +218,7 @@ Należy jeszcze wspomnieć o tym jak wyświetlić przechwycony obraz.
             }
         }
     }
-</pre>
+```
 
 ViewModel w tym przypadku będzie bardzo prostu. Implementujemy jedynie komendę włączania/wyłączania kamerki oraz wystawiamy obiekt typu "Bitmap", który będziemy wyświetlać.
 
@@ -223,50 +226,53 @@ Przyjrzyjmy się widokowi:
 
 **MainWindow**
 
-<pre class="brush: csharp; title: ; notranslate" title="">&lt;Window x:Class=&quot;WebCamExample.Views.MainWindow&quot;
-        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-        xmlns:viewModels=&quot;clr-namespace:WebCamExample.ViewModels&quot;
-        xmlns:converters=&quot;clr-namespace:WebCamExample.Converters&quot;
-        Title=&quot;MainWindow&quot; Height=&quot;350&quot; Width=&quot;525&quot;&gt;
-    &lt;Window.Resources&gt;
-        &lt;viewModels:MainWindowViewModel x:Key=&quot;MainWindowViewModel&quot; /&gt;
-        &lt;converters:BitmapToImageSourceConverter x:Key=&quot;BitmapToImageSourceConverter&quot;/&gt;
-    &lt;/Window.Resources&gt;
-    &lt;Grid DataContext=&quot;{StaticResource MainWindowViewModel}&quot;&gt;
-        &lt;Grid.RowDefinitions&gt;
-            &lt;RowDefinition Height=&quot;*&quot;/&gt;
-            &lt;RowDefinition Height=&quot;30&quot;/&gt;
-        &lt;/Grid.RowDefinitions&gt;
+```csharp
+<Window x:Class="WebCamExample.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:WebCamExample.ViewModels"
+        xmlns:converters="clr-namespace:WebCamExample.Converters"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />
+        <converters:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource MainWindowViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
 
-        &lt;Image Name=&quot;v_Image_Frame&quot; Source=&quot;{Binding Frame, Converter={StaticResource BitmapToImageSourceConverter}}&quot; Stretch=&quot;Uniform&quot;/&gt;
+        <Image Name="v_Image_Frame" Source="{Binding Frame, Converter={StaticResource BitmapToImageSourceConverter}}" Stretch="Uniform"/>
 
-        &lt;Button Name=&quot;v_Button_ToggleWebCam&quot; Grid.Row=&quot;1&quot; Command=&quot;{Binding ToggleWebServiceCommand}&quot;
-                Click=&quot;v_Button_ToggleWebCam_Click&quot; VerticalAlignment=&quot;Center&quot; Content=&quot;Start!&quot; HorizontalAlignment=&quot;Center&quot; Margin=&quot;5&quot;/&gt;
-    &lt;/Grid&gt;
-&lt;/Window&gt;
-</pre>
+        <Button Name="v_Button_ToggleWebCam" Grid.Row="1" Command="{Binding ToggleWebServiceCommand}"
+                Click="v_Button_ToggleWebCam_Click" VerticalAlignment="Center" Content="Start!" HorizontalAlignment="Center" Margin="5"/>
+    </Grid>
+</Window>
+```
 
 oraz implementacja kliknięcia w przycisk w code-behind:
 
-<pre class="brush: csharp; title: ; notranslate" title="">bool _isRunning = false;
+```csharp
+bool _isRunning = false;
 
         private void v_Button_ToggleWebCam_Click(object sender, RoutedEventArgs e)
         {
             _isRunning = !_isRunning;
 
-            v_Button_ToggleWebCam.Content = _isRunning ? &quot;Stop&quot; : &quot;Start&quot;;
+            v_Button_ToggleWebCam.Content = _isRunning ? "Stop" : "Start";
         }
-</pre>
+```
 
 Mała adnotacja co do zgodności ze wzorcem. Oczywiście, żeby być w 100% zgodnym ze wzorcem musiałbym we ViewModel wystawić properties "IsRunning" i od stanu tej zmiennej uzależniać widok. Jednak w tym przypadku, zrobiłem to celowo aby pokazać, że czasami ścisłe trzymanie się wzorca jest pozbawione sensu i kompletnie nadmiarowe. Łatwiej, prościej i czytelniej będzie, gdy tekst przycisku będzie ustawiany po prostu w C-B.
 
 UWAGA!  
 Kontrolka Image przyjmuję jako źródło obiekt typu ImageSource, a więc potrzebna jest nam jeszcze konwersja typów z Bitmap -> ImageSource. Oto implementacja tego konwertera (nie ukrywam, że znaleziona w internecie prawdopodobnie na <a href="http://stackoverflow.com" target="_blank">StackOverflow</a>)
 
-<pre>B</pre>
+<pre>B```
 
-<pre class="brush: csharp; title: ; notranslate" title="">public class BitmapToImageSourceConverter : IValueConverter
+```csharp
+public class BitmapToImageSourceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -290,7 +296,7 @@ Kontrolka Image przyjmuję jako źródło obiekt typu ImageSource, a więc potrz
             throw new NotImplementedException();
         }
     }
-</pre>
+```
 
 To chyba wszystko. Cały działający kod, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/EmguWebCamExample" target="_blank">GitHub</a>! 😉
 

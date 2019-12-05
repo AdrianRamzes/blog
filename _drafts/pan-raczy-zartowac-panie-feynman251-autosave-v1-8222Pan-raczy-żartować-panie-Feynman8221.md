@@ -24,7 +24,7 @@ Mam identyczne!
 
 Toteż bardzo emocjonowałem się gdy czytałem o jego walce z "ludźmi pseudonauki", ponieważ świetnie go rozumiałem.
 
-Opowiada o bezsilności w rozmownie z nimi, która jest spowodowana tym, że argumenty padające z drugiej strony są kompletnie niezwiązane z tematam tak ogólne, że nie wiadomo co odpowiedzieć. Aby wytłumaczyć tym ludziom gdzie leży błąd w ich rozumowaniu, trzeba by im wytłumaczyć wszystko od totalnych podstaw, a to jest nie do zrobienia w krótkich czasie. Z tymi ludźmi nie da się prowadzić rozmowy "na poziomie", ponieważ różnica jest zbyt duża. To też jedynym rozwiązaniem jest odpuścić i nie tłumaczyć - szkoda czasu. Co z kolei jest odbierane przez nich jako "Ha! brakuje ci argumentów!". Nie nie brakuje mi argumentów! po prostu mam ich tak dużo, że przytłacza mnie ilość informacji, którą musiałbym przekazać, żebyś w ogóle zrozumiał gdzie popełniasz błąd!&#8230;
+Opowiada o bezsilności w rozmownie z nimi, która jest spowodowana tym, że argumenty padające z drugiej strony są kompletnie niezwiązane z tematam tak ogólne, że nie wiadomo co odpowiedzieć. Aby wytłumaczyć tym ludziom gdzie leży błąd w ich rozumowaniu, trzeba by im wytłumaczyć wszystko od totalnych podstaw, a to jest nie do zrobienia w krótkich czasie. Z tymi ludźmi nie da się prowadzić rozmowy "na poziomie", ponieważ różnica jest zbyt duża. To też jedynym rozwiązaniem jest odpuścić i nie tłumaczyć - szkoda czasu. Co z kolei jest odbierane przez nich jako "Ha! brakuje ci argumentów!". Nie nie brakuje mi argumentów! po prostu mam ich tak dużo, że przytłacza mnie ilość informacji, którą musiałbym przekazać, żebyś w ogóle zrozumiał gdzie popełniasz błąd!,
 
 Emocjonuje się nawet pisząc ten post xD.
 

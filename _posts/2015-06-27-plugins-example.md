@@ -28,48 +28,53 @@ W tym celu stwórzmy bazę, czyli główną aplikację. W tym przypadku będzie 
 
 Na sam początek dodajmy do naszej aplikacji menu:
 
-<pre class="brush: csharp; title: ; notranslate" title="">&lt;Grid.RowDefinitions&gt;
-            &lt;RowDefinition Height="25" /&gt;
-            &lt;RowDefinition Height="*" /&gt;
-        &lt;/Grid.RowDefinitions&gt;
+```csharp
+<Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        &lt;Menu Grid.Row="0"&gt;
-            &lt;MenuItem Header="Program"&gt;
-                &lt;MenuItem Header="Close" Click="MenuItem_Click"/&gt;
-            &lt;/MenuItem&gt;
-        &lt;/Menu&gt;
-</pre>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Program">
+                <MenuItem Header="Close" Click="MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+```
 
 Będzie tam tylko jedna opcja pozwalająca zamknąć program.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private void MenuItem_Click(object sender, RoutedEventArgs e)
+```csharp
+private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-</pre>
+```
 
 Żeby rysować trzeba mieć na czym, dodajmy więc "**Canvas"**:
 
  
 
-<pre class="brush: csharp; title: ; notranslate" title="">&lt;Canvas Grid.Row="1" Background="Transparent" /&gt;
-</pre>
+```csharp
+<Canvas Grid.Row="1" Background="Transparent" />
+```
 
 I to w zasadzie cały nasz interfejs.
 
 Od teraz drodzy fanatycy technologii WPF i MVVM, zamknijcie oczy, ponieważ nie będziemy tutaj bawić się w żadne wzorce projektowe. Nie o to w tym przykładzie chodzi.
 
-Więc&#8230; nadamy nazwy naszym kontrolką 😉
+Więc, nadamy nazwy naszym kontrolką 😉
 
 odpowiednio:
 
-<pre class="brush: csharp; title: ; notranslate" title="">&lt;Menu Name="v_Menu" Grid.Row="0"&gt;
-</pre>
+```csharp
+<Menu Name="v_Menu" Grid.Row="0">
+```
 
 i
 
-<pre class="brush: csharp; title: ; notranslate" title="">&lt;Canvas Name="v_Canvas" Grid.Row="1" Background="Transparent" /&gt;
-</pre>
+```csharp
+<Canvas Name="v_Canvas" Grid.Row="1" Background="Transparent" />
+```
 
 Teraz omówmy jak zrobić mechanizm wtyczek.
 
@@ -79,7 +84,8 @@ W tym celu dodajemy do naszej solucji nowy projekt typu "**Class Library**" o na
 
 W tym projekcie będziemy trzymać tylko jeden plik z interfejsem **IPlugin**:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public interface IPlugin : IDisposable
+```csharp
+public interface IPlugin : IDisposable
     {
         MenuItem GetMenuItem();
 
@@ -89,7 +95,7 @@ W tym projekcie będziemy trzymać tylko jeden plik z interfejsem **IPlugin**:
 
         void SetThickness(int thickness);
     }
-</pre>
+```
 
 Pomysł jest prosty, każdy plugin musi podać swój **MenuItem** - tak abyśmy mogli dodać go do menu naszej aplikacji (integracja z istniejącym interfejsem).
 
@@ -100,9 +106,10 @@ Dodajemy referencję do **PluginInterface** do naszego projektu.
 Teraz należy zaimplementować obsługę przyszłych wtyczek.  
 Zakładam, że wszystkie wtyczki będą wsadzane do folderu "**Plugins**", w miejscu gdzie leży program. Oto metoda, która przeszuka ten folder i załaduje listę obiektów typu **Assembly**.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private List&lt;Assembly&gt; GetAssemblies(string directory)
+```csharp
+private List<Assembly> GetAssemblies(string directory)
         {
-            var assemblies = new List&lt;Assembly&gt;();
+            var assemblies = new List<Assembly>();
             if (Directory.Exists(directory))
             {
                 foreach (var file in Directory.GetFiles(directory, "*.dll"))
@@ -112,7 +119,7 @@ Zakładam, że wszystkie wtyczki będą wsadzane do folderu "**Plugins**", w mie
             }
             return assemblies;
         }
-</pre>
+```
 
 Teraz dla każdego **Assembly** sprawdzamy czy zawiera on klasy implementujące **IPlugin**.  
 Jeśli tak, to tworzymy instancje tych klas.
@@ -121,11 +128,12 @@ W przypadku tej konkretnej aplikacji, na każdym z tych obiektów wykonywane są
 
 Cała metoda inicjująca wtyczki wygląda tak:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private void InitializePlugins()
+```csharp
+private void InitializePlugins()
         {
             var assemblies = GetAssemblies("Plugins");
 
-            List&lt;MenuItem&gt; menuItems = new List&lt;MenuItem&gt;();
+            List<MenuItem> menuItems = new List<MenuItem>();
 
             foreach (var assembly in assemblies)
             {
@@ -148,16 +156,17 @@ Cała metoda inicjująca wtyczki wygląda tak:
             {
                 var tools = new MenuItem();
                 tools.Header = "Tools";
-                menuItems.ForEach((i) =&gt; { tools.Items.Add(i); });
+                menuItems.ForEach((i) => { tools.Items.Add(i); });
 
                 v_Menu.Items.Add(tools);
             }
         }
-</pre>
+```
 
 W obsłudze zdarzenia "**Click**", podmieniamy aktualnie aktywną wtyczkę na nową (ukrytą we własności "**Tag**"):
 
-<pre class="brush: csharp; title: ; notranslate" title="">private void pluginMenuItem_Click(object sender, RoutedEventArgs e)
+```csharp
+private void pluginMenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = sender as MenuItem;
 
@@ -174,7 +183,7 @@ W obsłudze zdarzenia "**Click**", podmieniamy aktualnie aktywną wtyczkę na no
                 _currentActivePlugin.Initialize(v_Canvas, _currentColor, _currentThickness);
             }
         }
-</pre>
+```
 
 To tyle jeśli chodzi o obsługę wtyczek w naszej aplikacji. Jedyne co musimy teraz zrobić to napisać plugin i sprawdzić czy całość działa 😉
 
@@ -186,7 +195,8 @@ Pamiętajmy, że każdy plugin musi implementować interfejs **IPlugin**, więc 
 
 Oto implementacja całej klasy **LineTool**:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public class LineTool : IPlugin
+```csharp
+public class LineTool : IPlugin
     {
         private int _thickness = 3; // default value
         private Color _color = Colors.Black; //default color
@@ -222,7 +232,7 @@ Oto implementacja całej klasy **LineTool**:
 
         public void SetThickness(int thickness)
         {
-            if (thickness &gt;= 0)
+            if (thickness >= 0)
             {
                 _thickness = thickness;
             }
@@ -265,7 +275,7 @@ Oto implementacja całej klasy **LineTool**:
 
             if (canvas.IsMouseCaptured && e.LeftButton == MouseButtonState.Pressed)
             {
-                var line = canvas.Children.OfType&lt;Line&gt;().LastOrDefault();
+                var line = canvas.Children.OfType<Line>().LastOrDefault();
 
                 if (line != null)
                 {
@@ -281,7 +291,7 @@ Oto implementacja całej klasy **LineTool**:
             ((Canvas)sender).ReleaseMouseCapture();
         }
     }
-</pre>
+```
 
 Budujemy naszą wtyczkę i dodajemy wygenerowany plik "**LineToolPlugin.dll**" do folderu **Plugins**
 

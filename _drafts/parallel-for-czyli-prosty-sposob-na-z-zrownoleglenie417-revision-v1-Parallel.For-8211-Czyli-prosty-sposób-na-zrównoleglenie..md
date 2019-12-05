@@ -16,37 +16,40 @@ Te założenia w praktyce dość mocno ograniczają nam ilość przypadków, w k
 
 Jednym z najprostszych sposobów zrównoleglenia obliczeń wykonywanych w pętli - jest skorzystanie z dobrodziejstw klasy _Parallel_, a dokładniej metod _For_ i _ForEach_.
 
-<pre class="brush: csharp; title: ; notranslate" title="">var start = 0;
+```csharp
+var start = 0;
             var stop = 100;
 
-            Parallel.For(start, stop, (i) =&gt;
+            Parallel.For(start, stop, (i) =>
             {
                 //Do something with: i
             });
-</pre>
+```
 
 Chyba nie da się prościej.  
 Funkcja przyjmowana przez metodę _For_ (w tym przypadku wyrażenie lambda z jednym parametrem), może przyjmować dwa parametry.  
 Drugim jest obiekty typy _ParallelLoopState_, który może posłużyć do komunikacji pomiędzy iteracjami, oraz do przerwania wykonywania pętli.
 
-<pre class="brush: csharp; title: ; notranslate" title="">Parallel.For(start, stop, (i, loopState) =&gt;
+```csharp
+Parallel.For(start, stop, (i, loopState) =>
             {
-                Console.WriteLine(i + &quot; &quot; + Thread.CurrentThread.ManagedThreadId);
+                Console.WriteLine(i + " " + Thread.CurrentThread.ManagedThreadId);
 
                 if (i.Equals(10))
                     loopState.Stop(); //or loopState.Break();
 
             });
-</pre>
+```
 
 Do przerwania obliczeń, mamy do wyboru, <a href="http://stackoverflow.com/questions/8818203/what-is-difference-between-loopstate-break-loopstate-stop-and-cancellationt" target="_blank">aż dwie metody - każda ma inne działanie</a>.
 
 Dzięki metodzie _Parallel.ForEach_ możliwe jest, zrównoleglenie działań na obiektach kolekcji.
 
-<pre class="brush: csharp; title: ; notranslate" title="">Parallel.ForEach(new List&lt;int&gt;() { 0, 1, 2, 3 }, (i) =&gt;
+```csharp
+Parallel.ForEach(new List<int>() { 0, 1, 2, 3 }, (i) =>
              {
                  Console.WriteLine(i);
              });
-</pre>
+```
 
 Jedną z największych, moim zdaniem, zalet używania _Parallel.For_ oraz _Parallel.ForEach_ jest taki, że liczba użytych wątków jest dobrana tak, aby maksymalnie wykorzystać sprzęt na jakim działa program, a tym samym zmaksymalizować zysk czasowy. Wszystko to dzieje się automagicznie 😉

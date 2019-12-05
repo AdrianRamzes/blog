@@ -32,20 +32,23 @@ We ViewModelu deklarujemy komendtę dwie właściwość w celu zapewnienia inte
 
 Deklaracja komendy:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public DelegateCommand ClickCommand { get; private set; }
-</pre>
+```csharp
+public DelegateCommand ClickCommand { get; private set; }
+```
 
 Oraz jej inicjalizacja w konstruktorze:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public MainWindowViewModel()
+```csharp
+public MainWindowViewModel()
         {
             ClickCommand = new DelegateCommand(Click, CanExecuteClick);
         }
-</pre>
+```
 
 Message - do wyświetlania komunikatów:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private string _message;
+```csharp
+private string _message;
         public string Message
         {
             get
@@ -57,15 +60,16 @@ Message - do wyświetlania komunikatów:
                 if(_message != value)
                 {
                     _message = value;
-                    RaisePropertyChanged(() =&gt; Message);
+                    RaisePropertyChanged(() => Message);
                 }
             }
         }
-</pre>
+```
 
 Input - wartość wprowadzana przez użytkownika:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private string _input;
+```csharp
+private string _input;
         public string Input
         {
             get
@@ -78,49 +82,52 @@ Input - wartość wprowadzana przez użytkownika:
                 if(value != _input)
                 {
                     _input = value;
-                    RaisePropertyChanged(() =&gt; Input);
+                    RaisePropertyChanged(() => Input);
                     ClickCommand.RaiseCanExecuteChanged();
                 }
             }
         }
-</pre>
+```
 
 Bardzo ważna jest turaj linijka:
 
-<pre class="brush: csharp; title: ; notranslate" title="">ClickCommand.RaiseCanExecuteChanged();
-</pre>
+```csharp
+ClickCommand.RaiseCanExecuteChanged();
+```
 
 W tym miejscu wykonana zostanie metoda CanExecute zdefiniowana dla ClickCommand. Jest to dokładnie taka informacja:  
 "Oj! Wartość zwracana przez CanExecute mogła ulec zmianie. Proszę to sprawdzić."
 
 Odpowiednio metody Execute i CanExecute:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private int _count = 0;
+```csharp
+private int _count = 0;
         private void Click()
         {
             _count++;
-            Message = string.Format(&quot;Click #{0}&quot;, _count);
+            Message = string.Format("Click #{0}", _count);
         }
 
         private bool CanExecuteClick()
         {
-            Debug.WriteLine(&quot;called CanExecuteClick: {0}; Input value: {1}&quot;, DateTime.Now, Input);
+            Debug.WriteLine("called CanExecuteClick: {0}; Input value: {1}", DateTime.Now, Input);
 
             return string.IsNullOrEmpty(Input) || (Input.Length % 2) == 0;
         }
-</pre>
+```
 
 Metoda CanExecuteClick() zwraca true jeśli wartość wpisana przez użytkownika ma parzystą ilość znaków (mało przydatne ale obrazujące o co chodzi).
 
 Po stronie widoku:
 
-<pre class="brush: xml; title: ; notranslate" title="">&lt;Grid DataContext=&quot;{StaticResource MainViewModel}&quot;&gt;
-        &lt;Label Content=&quot;Input:&quot;/&gt;
-        &lt;TextBox Text=&quot;{Binding Input, UpdateSourceTrigger=PropertyChanged}&quot; Margin=&quot;40,5,0,0&quot; Width=&quot;120&quot; VerticalAlignment=&quot;Top&quot; HorizontalAlignment=&quot;Left&quot;/&gt;
-        &lt;TextBlock Text=&quot;{Binding Message}&quot; VerticalAlignment=&quot;Top&quot; HorizontalAlignment=&quot;Center&quot;/&gt;
-        &lt;Button Command=&quot;{Binding ClickCommand}&quot; VerticalAlignment=&quot;Center&quot; HorizontalAlignment=&quot;Center&quot; Content=&quot;Click!&quot;/&gt;
-    &lt;/Grid&gt;
-</pre>
+```xml
+<Grid DataContext="{StaticResource MainViewModel}">
+        <Label Content="Input:"/>
+        <TextBox Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" Margin="40,5,0,0" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding Message}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Button Command="{Binding ClickCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Click!"/>
+    </Grid>
+```
 
 Podsumowując. Prism dostarcza nam już gotowej implementacji klasy DelegateCommand. W tej implementacji metoda CanExecute jest wykonywana tylko na żądanie programisty oraz bezpośrednio przed metodą Execute.
 

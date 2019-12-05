@@ -15,40 +15,43 @@ Dużo ciekawych (ale i beznadziejnie bezużytecznych) przykładów znajdziecie 
 Mnie osobiście urzekła pętla Times. Wcześniej spotkałem się z tą pętlą przy okazji nauki języka Ruby.  
 Przykład użycia:
 
-<pre class="brush: csharp; title: ; notranslate" title="">10.Times(() =&gt; DoSomething());
-10.Times((i) =&gt; DoSomething(i));
-</pre>
+```csharp
+10.Times(() => DoSomething());
+10.Times((i) => DoSomething(i));
+```
 
 Przyznacie, że nie można odmówić jej uroku 😉
 
 Implementacja:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public static void Times(this int count, Action action)
+```csharp
+public static void Times(this int count, Action action)
         {
-            for (int i = 0; i &lt; count; i++)
+            for (int i = 0; i < count; i++)
             {
                 action();
             }
         }
 
-        public static void Times(this int count, Action&lt;int&gt; action)
+        public static void Times(this int count, Action<int> action)
         {
-            for (int i = 0; i &lt; count; i++)
+            for (int i = 0; i < count; i++)
             {
                 action(i);
             }
         }
-</pre>
+```
 
 Kolejną ciekawą metodą jest IsNull(), która rozszerza klasę "object".  
 Pamiętajmy, że po tej klasie dziedziczą wszystkie inne klasy, a więc metody IsNull() można używać na każdym obiekcie.  
 Implementacja:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public static bool IsNull(this object o)
+```csharp
+public static bool IsNull(this object o)
         {
             return o == null;
         }
-</pre>
+```
 
 Po co używać tej metody? Jakie są argumenty za?  
 Nie ma żadnych! Tylko i wyłącznie estetyka i trochę większe zbliżenie języka programowania do języka mówionego 😉  
@@ -58,25 +61,28 @@ Jednym z praktycznych zastosowań jest rozszerzenie kolekcji IEnumerable<> o met
 Taką metodę posiada lista, ale np. tablica już nie. Dzięki temu rozszerzeniu możemy wywoływać ForEach() na dowolnym obiekci klasy implementującej interfejs IEnumerable. Nawet na stringach!  
 Implementacja:
 
-<pre class="brush: csharp; title: ; notranslate" title="">public static void ForEach&lt;T&gt;(this IEnumerable&lt;T&gt; collection, Action&lt;T&gt; action)
+```csharp
+public static void ForEach<T>(this IEnumerable<T> collection, Action<T> action)
         {
             foreach (T element in collection)
             {
                 action(element);
             }
         }
-</pre>
+```
 
 przykład użycia:
 
-<pre class="brush: csharp; title: ; notranslate" title="">object[] array = new object[5];
-            array.ForEach((o) =&gt; Console.WriteLine(o.IsNull() ? &quot;null&quot; : &quot;not null&quot;));
-</pre>
+```csharp
+object[] array = new object[5];
+            array.ForEach((o) => Console.WriteLine(o.IsNull() ? "null" : "not null"));
+```
 
 i przykład ze stringiem:
 
-<pre class="brush: csharp; title: ; notranslate" title="">&quot;THE END&quot;.ForEach((c) =&gt; { });
-</pre>
+```csharp
+"THE END".ForEach((c) => { });
+```
 
  
 

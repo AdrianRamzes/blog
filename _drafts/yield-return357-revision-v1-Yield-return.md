@@ -14,38 +14,41 @@ _yield_ to jej wywołanie nie powoduje od razu wykonania kodu - odwrotnie niż t
 
 Załóżmy, że mamy funkcję, która wraca nam _IEnumerable<int>_ kolejnych liczb naturalnych:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private static IEnumerable&lt;int&gt; Regular(int size)
+```csharp
+private static IEnumerable<int> Regular(int size)
         {
             var result = new int[size];
 
-            for (int i = 0; i &lt; size; i++)
+            for (int i = 0; i < size; i++)
             {
                 result[i] = i;
             }
 
             return result;
         }
-</pre>
+```
 
 Jeśli wywołamy ją w następujący sposób:
 
-<pre class="brush: csharp; title: ; notranslate" title="">var regular = Regular(1000);
+```csharp
+var regular = Regular(1000);
             var x = regular.ElementAt(0);
-</pre>
+```
 
 to pomimo tego, że potrzebujemy jedynie pierwszy element kolekcji, zużyliśmy tyle samo zasobów pamięci i procesora co dla tysięcznego elementu.  
 Jest to ogromne marnotrawstwo!
 
 Gdyby ciało metody wyglądało tak:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private static IEnumerable&lt;int&gt; Yield(int count)
+```csharp
+private static IEnumerable<int> Yield(int count)
         {
-            for (int i = 0; i &lt; count; i++)
+            for (int i = 0; i < count; i++)
             {
                 yield return i;
             }
         }
-</pre>
+```
 
 to pętla wykona się tylko raz!  
 Dlaczego? Ponieważ wywołanie metody _Yield(1000)_ nie powoduje jej wykonania z miejsca, a dopiero przy pierwszym odwołaniu się do kolekcji. Dodatkowo wykonuje się tylko tyle razy ile potrzeba, aby zwrócić wynik.

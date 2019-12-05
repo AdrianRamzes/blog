@@ -17,23 +17,25 @@ Jak to robić?
 1) Po pierwsze piszemy metodę, która ma się wykonywać równolegle.  
 W moim przypadku skomplikowane obliczenia są symulowane przez Thread.Sleep();
 
-<pre class="brush: csharp; title: ; notranslate" title="">private Task DoSomeWorkAsync()
+```csharp
+private Task DoSomeWorkAsync()
         {
-            return Task.Run(() =&gt; { Thread.Sleep(500); });
+            return Task.Run(() => { Thread.Sleep(500); });
         }
-</pre>
+```
 
 Metoda ta musi zwracać obiekt klasy Task (dla metod void) lub Task (dla metod zwracających obiekt T)
 
-<pre class="brush: csharp; title: ; notranslate" title="">private Task&lt;int&gt; DoSomeWorkAsync()
+```csharp
+private Task<int> DoSomeWorkAsync()
         {
-            return Task.Run(() =&gt;
+            return Task.Run(() =>
             {
                 Thread.Sleep(500);
                 return 0;
             });
         }
-</pre>
+```
 
 2) Słówko kluczowe "async", najprościej mówiąc:  
 Oznacza, że w danej metodzie występuje wywołanie metody ze słowem kluczowym await.  

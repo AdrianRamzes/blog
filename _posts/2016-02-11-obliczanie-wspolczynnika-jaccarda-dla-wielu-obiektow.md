@@ -29,7 +29,8 @@ Wpisów jest ponad 27 mln. (plik tekstowy ma ponad 500 MB), użyte algorytmy i s
 
 **b)** do przechowywanie danych proponuję użyć słownika Dictionary<int, HashSet<int>>. Kluczem będzie IdUżytkownika, a wartością zbiór pisenek. Dlaczego HashSet? Ponieważ, nie interesuje nas ile razy użytkownik odtworzył daną piosenkę, a jedynie czy w ogóle ją odtworzył. HashSet ma jeszcze jedną niewątpliwą zaletę: przy dużej ilości elementów, czas operacji Contains jest stały. Oczywiście wiąże się to z większą zajętością pamięci fizycznej. Moja maszyna ma 16GB RAM, więc w tym przypadku nie mam co się martwić o OutOfMemoryException.
 
-<pre class="brush: csharp; title: ; notranslate" title="">Dictionary&lt;int, HashSet&lt;int&gt;&gt; users = new Dictionary&lt;int, HashSet&lt;int&gt;&gt;();
+```csharp
+Dictionary<int, HashSet<int>> users = new Dictionary<int, HashSet<int>>();
             using (StreamReader sr = File.OpenText("facts.csv"))
             {
                 string s = String.Empty;
@@ -48,11 +49,11 @@ Wpisów jest ponad 27 mln. (plik tekstowy ma ponad 500 MB), użyte algorytmy i s
                     }
                     else
                     {
-                        users[userId] = new HashSet&lt;int&gt;() { songId };
+                        users[userId] = new HashSet<int>() { songId };
                     }
                 }
             }
-</pre>
+```
 
 Wykonanie powyższego kody zajmuje średnio 20 sek.
 
@@ -60,7 +61,8 @@ Wykonanie powyższego kody zajmuje średnio 20 sek.
 
 **a)** znajdziemy wszystkich najbliższych sąsiadów dla 100 pierwszych użytkowników. Wyniki będą trzymane w słowniku Dictionary<int, Dictionary<int, double>>, będzie IdUżytkownika, a wartością słownik IdUżytkownika-Wartość współczynnika Jaccarda.
 
-<pre class="brush: csharp; title: ; notranslate" title="">Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt; similarity = new Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt;();
+```csharp
+Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictionary<int, double>>();
             foreach(var currentUser in users.Take(100))
             {
                 foreach (var user in users)
@@ -68,17 +70,18 @@ Wykonanie powyższego kody zajmuje średnio 20 sek.
                     //calculate Jaccard
                 }
             }
-</pre>
+```
 
 **b)** współczynnik Jaccarda wyznaczymy dzieląc liczebność części wspólnej zbiorów przez liczebność sumy zbiorów.  
 Można to zrobić na wiele różnych sposobów np. używając metod Intersect i Union. Warto jednak wykorzystać fakt, że jedne zbiory piosenek są mniejsze od drugich.  
 Okazuje się, że najszybszą metodą (przynajmniej z tych, które znam) jest "ręczne" iterowanie po mniejszym zbiorze i sprawdzanie (przy pomocy metody Contains) czy dana piosenka występuje w drugim zbiorze.  
 Nie trzeba również wykonywać operacji Union. Wystarczy dodać do siebie liczności zbiorów, a następnie od sumy odjąć część wspólną. Takie proste zabiegi powodują znaczne zwiększenie wydajności.
 
-<pre class="brush: csharp; title: ; notranslate" title="">Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt; similarity = new Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt;();
+```csharp
+Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictionary<int, double>>();
             foreach(var currentUser in users.Take(100))
             {
-                similarity[currentUser.Key] = new Dictionary&lt;int, double&gt;();
+                similarity[currentUser.Key] = new Dictionary<int, double>();
 
                 foreach (var user in users)
                 {
@@ -87,7 +90,7 @@ Nie trzeba również wykonywać operacji Union. Wystarczy dodać do siebie liczn
                     else
                     {
                         var sameSongs = 0;
-                        if (currentUser.Value.Count &lt; user.Value.Count)
+                        if (currentUser.Value.Count < user.Value.Count)
                         {
                             foreach (var currentSong in currentUser.Value)
                             {
@@ -104,23 +107,24 @@ Nie trzeba również wykonywać operacji Union. Wystarczy dodać do siebie liczn
                             }
                         }
 
-                        if (sameSongs &gt; 0)
+                        if (sameSongs > 0)
                         {
                             similarity[currentUser.Key][user.Key] = ((double)sameSongs / ((currentUser.Value.Count() + user.Value.Count()) - sameSongs));
                         }
                     }
                 }
             }
-</pre>
+```
 
 Całość możemy dodatkowo zrównoleglić przy pomocy <a href="http://www.karalus.eu/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
 
-<pre class="brush: csharp; title: ; notranslate" title="">Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt; similarity = new Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt;();
-            Parallel.ForEach(users.Take(100).ToArray(), (currentUser) =&gt;
+```csharp
+Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictionary<int, double>>();
+            Parallel.ForEach(users.Take(100).ToArray(), (currentUser) =>
             {
                 lock (sync)
                 {
-                    similarity[currentUser.Key] = new Dictionary&lt;int, double&gt;(); ;
+                    similarity[currentUser.Key] = new Dictionary<int, double>(); ;
                 }
 				
                 foreach (var user in users)
@@ -131,7 +135,7 @@ Całość możemy dodatkowo zrównoleglić przy pomocy <a href="http://www.karal
                     {
                         var sameSongs = 0;
                         
-                        if (currentUser.Value.Count &lt; user.Value.Count)
+                        if (currentUser.Value.Count < user.Value.Count)
                         {
                             foreach (var currentSong in currentUser.Value)
                             {
@@ -148,7 +152,7 @@ Całość możemy dodatkowo zrównoleglić przy pomocy <a href="http://www.karal
                             }
                         }
 						
-                        if (sameSongs &gt; 0)
+                        if (sameSongs > 0)
                         {
                             lock (sync)
                             {
@@ -158,7 +162,7 @@ Całość możemy dodatkowo zrównoleglić przy pomocy <a href="http://www.karal
                     }
                 }
             });
-</pre>
+```
 
 Należy pamiętać, że operację na słowniku należy zamknąć w sekcji krytycznej.  
 U mnie obliczenia zajmują jakieś 10 sek. (Intel i7-4702MQ) ale to jest tylko dla 100 pierwszych użytkowników. Użytkowników jest ponad milion, co sprawia, że jeśli chciałbym policzyć współczynnik Jaccarda dla wszystkich zajęłoby to ponad 27h.

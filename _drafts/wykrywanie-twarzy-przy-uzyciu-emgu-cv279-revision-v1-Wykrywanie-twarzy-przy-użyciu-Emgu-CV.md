@@ -17,19 +17,21 @@ Do projektu poprzedniej aplikacji dodaję jedynie nowy serwis "FaceDetectionServ
 
 Mój pomysł polega na tym, aby rozszerzyć klasę WebCamService o dodatkowy event,
 
-<pre class="brush: csharp; title: ; notranslate" title="">public event ImageWithDetectionChangedEventHandler ImageWithDetectionChanged;
-        public delegate void ImageWithDetectionChangedEventHandler(object sender, Image&lt;Bgr, Byte&gt; image);
-</pre>
+```csharp
+public event ImageWithDetectionChangedEventHandler ImageWithDetectionChanged;
+        public delegate void ImageWithDetectionChangedEventHandler(object sender, Image<Bgr, Byte> image);
+```
 
 który ma być "rozszerzeniem" na istniejący już istniejący "ImageChanged".  
 Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywane w parametrze jest dodatkowo obrabiane - rysowane są na nim prostokąty w miejscu wykrycia twarzy.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private void InitializeServices()
+```csharp
+private void InitializeServices()
         {
             base.ImageChanged += _webCamService_ImageChanged;
         }
 
-        private void RaiseImageWithDetectionChangedEvent(Image&lt;Bgr, Byte&gt; image)
+        private void RaiseImageWithDetectionChangedEvent(Image<Bgr, Byte> image)
         {
             if (ImageWithDetectionChanged != null)
             {
@@ -38,7 +40,7 @@ Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywan
         }
 
         private bool isDetecting = false;
-        private async void _webCamService_ImageChanged(object sender, Image&lt;Bgr, byte&gt; image)
+        private async void _webCamService_ImageChanged(object sender, Image<Bgr, byte> image)
         {
             bool isDelayed = false;
 
@@ -61,19 +63,20 @@ Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywan
             }
         }
 
-</pre>
+```
 
 **Funkcja wykrywania twarzy** (lekko zmodyfikowana wersja funkcji dostarczonej wraz z przykładami):
 
-<pre class="brush: csharp; title: ; notranslate" title="">private void DetectFace(Image&lt;Bgr, Byte&gt; image, List&lt;Rectangle&gt; faces)
+```csharp
+private void DetectFace(Image<Bgr, Byte> image, List<Rectangle> faces)
         {
 #if !IOS
             if (GpuInvoke.HasCuda)
             {
                 using (GpuCascadeClassifier face = new GpuCascadeClassifier(_faceFileName))
                 {
-                    using (GpuImage&lt;Bgr, Byte&gt; gpuImage = new GpuImage&lt;Bgr, byte&gt;(image))
-                    using (GpuImage&lt;Gray, Byte&gt; gpuGray = gpuImage.Convert&lt;Gray, Byte&gt;())
+                    using (GpuImage<Bgr, Byte> gpuImage = new GpuImage<Bgr, byte>(image))
+                    using (GpuImage<Gray, Byte> gpuGray = gpuImage.Convert<Gray, Byte>())
                     {
                         Rectangle[] faceRegion = face.DetectMultiScale(gpuGray, 1.1, 10, Size.Empty);
                         faces.AddRange(faceRegion);
@@ -86,7 +89,7 @@ Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywan
                 //Read the HaarCascade objects
                 using (CascadeClassifier face = new CascadeClassifier(_faceFileName))
                 {
-                    using (Image&lt;Gray, Byte&gt; gray = image.Convert&lt;Gray, Byte&gt;()) //Convert it to Grayscale
+                    using (Image<Gray, Byte> gray = image.Convert<Gray, Byte>()) //Convert it to Grayscale
                     {
                         //normalizes brightness and increases contrast of the image
                         gray._EqualizeHist();
@@ -106,22 +109,23 @@ Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywan
             }
         }
 
-</pre>
+```
 
 **Metoda w wersji asynchronicznej:**
 
-<pre class="brush: csharp; title: ; notranslate" title="">private Task&lt;List&lt;Rectangle&gt;&gt; DetectFacesAsync(Image&lt;Bgr, byte&gt; image)
+```csharp
+private Task<List<Rectangle>> DetectFacesAsync(Image<Bgr, byte> image)
         {
-            return Task.Run(() =&gt;
+            return Task.Run(() =>
             {
-                List&lt;Rectangle&gt; faces = new List&lt;Rectangle&gt;();
+                List<Rectangle> faces = new List<Rectangle>();
 
                 DetectFace(image, faces);
 
                 return faces;
             });
         }
-</pre>
+```
 
  
 

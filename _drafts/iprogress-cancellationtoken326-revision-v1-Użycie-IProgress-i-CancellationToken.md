@@ -24,36 +24,39 @@ permalink: /2015/07/326-revision-v1/
 Jednym z możliwych sposobów, rozwiązania tego problemu, jest użycie obiektów implementujących interface **IProgress<T>**.  
 Metoda, która ma wykonywać się asynchronicznie, jako parametr powinna przyjmować obiekty typu IProgress<T>:
 
-<pre class="brush: csharp; title: ; notranslate" title="">Task DoSomeWorkAsync(IProgress&lt;int&gt; progress)
-</pre>
+```csharp
+Task DoSomeWorkAsync(IProgress<int> progress)
+```
 
 Obiekt ten zawiera metodę Report(T), która jako parametr przyjmuje typ generyczny w tym przypadku będzie to int.  
 Wywołanie tych obliczeń wygląda w następujący sposób:
 
-<pre class="brush: csharp; title: ; notranslate" title="">var progressIndicator = new Progress&lt;int&gt;(ReportProgress);
+```csharp
+var progressIndicator = new Progress<int>(ReportProgress);
 await DoSomeWorkAsync(progressIndicator, token);
 .
 .
 .
-private Task DoSomeWorkAsync(IProgress&lt;int&gt; progress)
+private Task DoSomeWorkAsync(IProgress<int> progress)
 {
-    return Task.Run(() =&gt;
+    return Task.Run(() =>
     {
-        for (int i = 0; i &lt; int.MaxValue; i++)
+        for (int i = 0; i < int.MaxValue; i++)
         {
             progress.Report(i);
         }
     });
 }
-</pre>
+```
 
 do tego metoda raportująca:
 
-<pre class="brush: csharp; title: ; notranslate" title="">private void ReportProgress(int value)
+```csharp
+private void ReportProgress(int value)
 {
-    Console.WriteLine(&quot;Current progress: {0}&quot;, value);
+    Console.WriteLine("Current progress: {0}", value);
 }
-</pre>
+```
 
 ### 2) Przerwanie obliczeń:
 
@@ -63,11 +66,12 @@ Do metody asynchronicznej przekazujemy dodatkowy parametr: **CancellationToken*
 Dzięki temu możemy, wewnątrz metody, sprawdzać czy nie przyszło żądanie o przerwanie obliczeń.  
 Wystarczy sprawdzić stan flagi **IsCancellationRequested**.
 
-<pre class="brush: csharp; title: ; notranslate" title="">private Task DoSomeWorkAsync(CancellationToken cancellationToken)
+```csharp
+private Task DoSomeWorkAsync(CancellationToken cancellationToken)
         {
-            return Task.Run(() =&gt;
+            return Task.Run(() =>
             {
-                for (int i = 0; i &lt; int.MaxValue; i++)
+                for (int i = 0; i < int.MaxValue; i++)
                 {
                     if (cancellationToken.IsCancellationRequested)
                     {
@@ -76,18 +80,20 @@ Wystarczy sprawdzić stan flagi **IsCancellationRequested**.
                 }
             });
         }
-</pre>
+```
 
 wywołanie metody w tym przypadku wygląda tak:
 
-<pre class="brush: csharp; title: ; notranslate" title="">var cts = new CancellationTokenSource();
+```csharp
+var cts = new CancellationTokenSource();
 var token = cts.Token;
 await DoSomeWorkAsync(token);
-</pre>
+```
 
 oraz żądanie przerwania:
 
-<pre class="brush: csharp; title: ; notranslate" title="">cts.Cancel();
-</pre>
+```csharp
+cts.Cancel();
+```
 
 Cały działający kod z przykładem (pomimo tego, że ma on tylko 55 linii) jak zawsze dostępny na <a href="https://github.com/RamzesBlog/IPorgressConsoleDemo" target="_blank"><strong>GitHub</strong> </a>😉
