@@ -7,9 +7,9 @@ layout: revision
 guid: http://www.karalus.eu/2018/02/678-autosave-v1/
 permalink: /2018/02/678-autosave-v1/
 ---
-Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. Wiedziałem wcześniej jedynie, że to nie jest zbyt trudne, tutaj cytat mojego kolegi: &#8222;Nie wiem jak robi się rozszerzenia do chrome, ale daję to moim studentom na pierwszym roku i jakoś dają radę, więc&#8230; to nie może być trudne&#8221;. I rzeczywiście nie jest. Rozszerzenie do przeglądarki to nic innego jak HTML+CSS+JS. 
+Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. Wiedziałem wcześniej jedynie, że to nie jest zbyt trudne, tutaj cytat mojego kolegi: "Nie wiem jak robi się rozszerzenia do chrome, ale daję to moim studentom na pierwszym roku i jakoś dają radę, więc&#8230; to nie może być trudne". I rzeczywiście nie jest. Rozszerzenie do przeglądarki to nic innego jak HTML+CSS+JS. 
 
-<span>&#8222;Jeśli umiesz podstawy frontend, to umiesz też chrome extension.&#8221;</span>
+<span>"Jeśli umiesz podstawy frontend, to umiesz też chrome extension."</span>
 
 ## manifest.json
 
@@ -61,12 +61,12 @@ Skrypt okna `pomodoro-timer.js`, zawiera obsługę kliknięć &#8211; sterowanie
 
 ## Background
 
-Timer będzie działać w tle, dlatego potrzebne jest utworzenie strony oraz skryptu, który działa nawet po zamknięciu widoku rozszerzenia. Skrypty widoku oraz tła mogą komunikować się dzięki &#8222;messages&#8221;, czyli mechanizmowi wysyłania i odbierania wiadomości, który jest realizowany przez przeglądarkę.  
+Timer będzie działać w tle, dlatego potrzebne jest utworzenie strony oraz skryptu, który działa nawet po zamknięciu widoku rozszerzenia. Skrypty widoku oraz tła mogą komunikować się dzięki "messages", czyli mechanizmowi wysyłania i odbierania wiadomości, który jest realizowany przez przeglądarkę.  
 `chrome.extension.sendMessage()` oraz `chrome.extension.onMessage.addListener(func)` 
 
 ## Testowanie
 
-Rozszerzenia nie trzeba umieszczać w sklepie, aby dodać je do przeglądarki. W celu przetestowania rozszerzenia należy przejść na stronę rozszerzeń (wpisując w pasek adresu &#8222;chrome://extensions/&#8221;) oraz zaznaczyć opcję &#8222;Tryb programisty&#8221;. Wtedy pojawi się przycisk umożliwiający wczytanie rozszerzenia w postaci spakowanego pliku .zip. 
+Rozszerzenia nie trzeba umieszczać w sklepie, aby dodać je do przeglądarki. W celu przetestowania rozszerzenia należy przejść na stronę rozszerzeń (wpisując w pasek adresu "chrome://extensions/") oraz zaznaczyć opcję "Tryb programisty". Wtedy pojawi się przycisk umożliwiający wczytanie rozszerzenia w postaci spakowanego pliku .zip. 
 
 Zapraszam do pobrania mojego <a target="_blank" href="https://chrome.google.com/webstore/detail/timer/pakimokpohbojafpbgknlohgoepnelki?utm_source=chrome-ntp-icon">rozszerzenia</a>.  
 Kod, który posłużył mi do jego napisania jest w całości dostępny na <a target="_blank" href="https://github.com/RamzesBlog/pomodoro-timer">GitHub</a>.

@@ -51,7 +51,7 @@ Implementacja:
         }
 </pre>
 
-Kolejną ciekawą metodą jest IsNull(), która rozszerza klasę &#8222;object&#8221;.  
+Kolejną ciekawą metodą jest IsNull(), która rozszerza klasę "object".  
 Pamiętajmy, że po tej klasie dziedziczą wszystkie inne klasy, a więc metody IsNull() można używać na każdym obiekcie.  
 Implementacja:
 
@@ -63,7 +63,7 @@ Implementacja:
 
 Po co używać tej metody? Jakie są argumenty za?  
 Nie ma żadnych! Tylko i wyłącznie estetyka i trochę większe zbliżenie języka programowania do języka mówionego 😉  
-&#8222;if(variable.IsNull())&#8221; czy &#8222;&#8221;if(variable == null)&#8221;. Kwestia tylko i wyłącznie gustu, a o nim się nie dyskutuje.
+"if(variable.IsNull())" czy ""if(variable == null)". Kwestia tylko i wyłącznie gustu, a o nim się nie dyskutuje.
 
 Jednym z praktycznych zastosowań jest rozszerzenie kolekcji IEnumerable<> o metodę ForEach().  
 Taką metodę posiada lista, ale np. tablica już nie. Dzięki temu rozszerzeniu możemy wywoływać ForEach() na dowolnym obiekci klasy implementującej interfejs IEnumerable. Nawet na stringach!  

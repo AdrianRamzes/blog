@@ -30,14 +30,14 @@ Jeśli to znasz, mam dla Ciebie dwie rady:
 
 1) Spraw, aby od rana zrobić najbardziej palące zadanie! (jeszcze przed sprawdzeniem poczty i zrobieniem sobie herbaty!)  
 Aby tego dokonać, już wcześniej musisz mieć jasno określone co chcesz zrobić i mieć wszystko czego potrzebujesz. Pod koniec każdego dnia pracy, przygotuj na kartce JEDNO ale WAŻNE zadanie, które wykonasz następnego dnia zaraz po przyjściu. Zostaw sobie kartkę z tym zadaniem na klawiaturze albo na monitorze komputera. Musisz sam dla siebie, być najlepszym asystentem. Pomyśl o sobie tak:  
-&#8222;Jutro rano przyjdę i nie będę miał czasu zastanawiać się co jest do zrobienia! Muszę mieć jasno określony cel i wszystkie potrzebne materiały aby go wykonać.&#8221; Ostatnie półgodziny pracy powinieneś poświęcić właśnie na to aby przygotować sobie wszystko na jutrzejszy dzień.  
+"Jutro rano przyjdę i nie będę miał czasu zastanawiać się co jest do zrobienia! Muszę mieć jasno określony cel i wszystkie potrzebne materiały aby go wykonać." Ostatnie półgodziny pracy powinieneś poświęcić właśnie na to aby przygotować sobie wszystko na jutrzejszy dzień.  
 Przychodząc rano, skup się tylko na tym co napisałeś na kartce. Dopiero po wykonaniu zadania możesz zająć się takimi rzeczami jak poczta, wiadomości, spotkania czy zrobienie sobie herbaty.  
 Zrobienie jednego ważnego zadania od samego rana, wprawi Cię od razu w dobry nastrój i nawet jeśli nic innego nie uda Ci się zrobić, będziesz miał poczucie, że chociaż coś odhaczyłeś.
 
 2) Prowadź dziennik swojego dnia pracy.  
 Pozwoli Ci to lepiej kontrolować czas i wyciągać wnioski nt. tego co w pracy absorbuje Cię najbardziej.  
 Jak prowadzić dziennik pracy?  
-Tutaj z pomocą przychodzi chyba już cała rodzina programów &#8222;QuickLogger&#8221;, tę nazwę nosi już cała masa aplikacji, a ich wspólną cechą jest maksymalna prostota i łatwość obsługi.  
+Tutaj z pomocą przychodzi chyba już cała rodzina programów "QuickLogger", tę nazwę nosi już cała masa aplikacji, a ich wspólną cechą jest maksymalna prostota i łatwość obsługi.  
 Sam napisałem taką aplikację, którą możecie ściągnąć tutaj: [QuickLogger](http://www.karalus.eu/Blog/wp-content/uploads/2014/10/QuickLogger.zip).
 
 Cały kod tego programu jest dostępny na <a href="https://github.com/RamzesBlog/QuickLogger" target="_blank">GitHub</a>.

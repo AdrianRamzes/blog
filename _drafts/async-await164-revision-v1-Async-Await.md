@@ -35,16 +35,16 @@ Metoda ta musi zwracać obiekt klasy Task (dla metod void) lub Task (dla metod z
         }
 </pre>
 
-2) Słówko kluczowe &#8222;async&#8221;, najprościej mówiąc:  
+2) Słówko kluczowe "async", najprościej mówiąc:  
 Oznacza, że w danej metodzie występuje wywołanie metody ze słowem kluczowym await.  
 Jeśli jakaś metoda ma modyfikator async => w jej ciele jest await.
 
 UWAGA! Nazwy metod, które są poprzedzone modyfikatorem async, kończą sie na Async, np. SomeWorkAsync, GetValueAsync.  
 Jest to ogólnie przyjęta konwencja.
 
-3) Słówko kluczowe &#8222;await&#8221;, powoduje zwrócenie przepływy sterowania do metody wywołującej funkcję async (asynchroniczną).
+3) Słówko kluczowe "await", powoduje zwrócenie przepływy sterowania do metody wywołującej funkcję async (asynchroniczną).
 
-Od tego momentu &#8222;czekamy&#8221; na zakończenie zadania.
+Od tego momentu "czekamy" na zakończenie zadania.
 
 Schemat: (pionowe linie reprezentują wykonywany w czasie kod)
 

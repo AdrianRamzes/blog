@@ -15,13 +15,13 @@ Pomysł jest prosty. Wystarczy utworzyć dodatkowe trzy foldery: Archiwum, Bież
 
 Następnie należy trzymać się tych&nbsp;zasad:
 
-  * Maile, które wymagają od nas podjęcia działań wsadzamy do folderu &#8222;**Zadania**&#8222;.  
+  * Maile, które wymagają od nas podjęcia działań wsadzamy do folderu "**Zadania**".  
     Przykładowo: Ponaglenia z biblioteki, prośby o zrobienie czegoś, przypomnienie o terminie zapłaty za hosting, maile wymagające odpowiedzi itp.
-  * Sprawy ważne, niezakończone ale niewymagające od nas żadnych działań wsadzamy do folderu &#8222;**Bieżące**&#8222;.  
-    Przykładowo: informacja o nadaniu do nas paczki (która jeszcze nie doszła), informacje, które mogą nam się przydać przy wykonywaniu zadań z folderu &#8222;Zadania&#8221;.
-  * Cała reszta + Zakończone zadania(z folderu &#8222;Zadania&#8221;) i zakończone sprawy (folder &#8222;Bieżące&#8221;) trafia do &#8222;**Archiwum&#8221;**
+  * Sprawy ważne, niezakończone ale niewymagające od nas żadnych działań wsadzamy do folderu "**Bieżące**".  
+    Przykładowo: informacja o nadaniu do nas paczki (która jeszcze nie doszła), informacje, które mogą nam się przydać przy wykonywaniu zadań z folderu "Zadania".
+  * Cała reszta + Zakończone zadania(z folderu "Zadania") i zakończone sprawy (folder "Bieżące") trafia do "**Archiwum"**
 
-Większość dobrych klientów poczty ma już wstępnie utworzoną strukturę folderów mniej lub bardziej pasujących do powyższego opisu. Użytkownicy poczty Gmail, mają dodatkowo narzędzie: &#8222;Oznaczone gwiazdką&#8221;**.**&nbsp;Gwiazdki mogą być bardzo przydatne i stanowić alternatywę dla folderów. Posługiwanie się gwiazdkami może być wygodniejsze, gdyż nie trzeba zaglądać do powyższych folderów, od razu widać, ile mamy zadań, ile niezakończonych spraw, a ile nieprzeczytanej poczty.  
+Większość dobrych klientów poczty ma już wstępnie utworzoną strukturę folderów mniej lub bardziej pasujących do powyższego opisu. Użytkownicy poczty Gmail, mają dodatkowo narzędzie: "Oznaczone gwiazdką"**.**&nbsp;Gwiazdki mogą być bardzo przydatne i stanowić alternatywę dla folderów. Posługiwanie się gwiazdkami może być wygodniejsze, gdyż nie trzeba zaglądać do powyższych folderów, od razu widać, ile mamy zadań, ile niezakończonych spraw, a ile nieprzeczytanej poczty.  
 [<img class="alignnone wp-image-374" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/09/emial_stars.png?resize=127%2C169" alt="emial_stars" width="127" height="169"  data-recalc-dims="1" />  
 ](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/09/emial_stars.png) Ustawienia -> Ogólne -> Gwiazdki:
 

@@ -1,6 +1,6 @@
 ---
 id: 254
-title: '&#8222;Pan raczy żartować panie Feynman&#8221;'
+title: '"Pan raczy żartować panie Feynman"'
 date: 2015-04-26T13:29:55+00:00
 author: admin
 layout: revision
@@ -22,9 +22,9 @@ Podpisuje się pod tymi poglądami obiema rękoma!
 Czytając tę książkę, czułem jakby autor znał moje przemyślenia.  
 Mam identyczne!
 
-Toteż bardzo emocjonowałem się gdy czytałem o jego walce z &#8222;ludźmi pseudonauki&#8221;, ponieważ świetnie go rozumiałem.
+Toteż bardzo emocjonowałem się gdy czytałem o jego walce z "ludźmi pseudonauki", ponieważ świetnie go rozumiałem.
 
-Opowiada o bezsilności w rozmownie z nimi, która jest spowodowana tym, że argumenty padające z drugiej strony są kompletnie niezwiązane z tematam tak ogólne, że nie wiadomo co odpowiedzieć. Aby wytłumaczyć tym ludziom gdzie leży błąd w ich rozumowaniu, trzeba by im wytłumaczyć wszystko od totalnych podstaw, a to jest nie do zrobienia w krótkich czasie. Z tymi ludźmi nie da się prowadzić rozmowy &#8222;na poziomie&#8221;, ponieważ różnica jest zbyt duża. To też jedynym rozwiązaniem jest odpuścić i nie tłumaczyć &#8211; szkoda czasu. Co z kolei jest odbierane przez nich jako &#8222;Ha! brakuje ci argumentów!&#8221;. Nie nie brakuje mi argumentów! po prostu mam ich tak dużo, że przytłacza mnie ilość informacji, którą musiałbym przekazać, żebyś w ogóle zrozumiał gdzie popełniasz błąd!&#8230;
+Opowiada o bezsilności w rozmownie z nimi, która jest spowodowana tym, że argumenty padające z drugiej strony są kompletnie niezwiązane z tematam tak ogólne, że nie wiadomo co odpowiedzieć. Aby wytłumaczyć tym ludziom gdzie leży błąd w ich rozumowaniu, trzeba by im wytłumaczyć wszystko od totalnych podstaw, a to jest nie do zrobienia w krótkich czasie. Z tymi ludźmi nie da się prowadzić rozmowy "na poziomie", ponieważ różnica jest zbyt duża. To też jedynym rozwiązaniem jest odpuścić i nie tłumaczyć &#8211; szkoda czasu. Co z kolei jest odbierane przez nich jako "Ha! brakuje ci argumentów!". Nie nie brakuje mi argumentów! po prostu mam ich tak dużo, że przytłacza mnie ilość informacji, którą musiałbym przekazać, żebyś w ogóle zrozumiał gdzie popełniasz błąd!&#8230;
 
 Emocjonuje się nawet pisząc ten post xD.
 

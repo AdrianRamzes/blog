@@ -8,6 +8,6 @@ guid: http://www.karalus.eu/2015/04/233-revision-v1/
 permalink: /2015/04/233-revision-v1/
 ---
 W tym wpisie zaprezentuję prosty przykład aplikacji używającej kamerki internetowej z użyciem biblioteki Emgu CV (wrapper Open CV).  
-<!--more-->Jednocześnie pokażę bardzo praktyczne zastosowanie &#8222;serwisów&#8221; we wzorcu MVVM.
+<!--more-->Jednocześnie pokażę bardzo praktyczne zastosowanie "serwisów" we wzorcu MVVM.
 
 &nbsp;

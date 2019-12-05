@@ -14,9 +14,9 @@ Z racji tego, że jestem zwolennikiem nauki przez praktykę, zaprezentuje bardzo
 
 Po pierwsze, tworzymy nowy projekt o strukturze takiej jaką opisywałem w moim wcześniejszym <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisie</a>.
 
-Gdy mamy już odtworzoną strukturę projektu oraz dodaną klasę pomocniczą NotificationObject, możemy przystąpić do tworzenia &#8222;servisu&#8221;.
+Gdy mamy już odtworzoną strukturę projektu oraz dodaną klasę pomocniczą NotificationObject, możemy przystąpić do tworzenia "servisu".
 
-Dodajemy nową klasę do katalogu &#8222;Services&#8221;:
+Dodajemy nową klasę do katalogu "Services":
 
 <pre class="brush: csharp; title: ; notranslate" title="">public class TimerService
 {
@@ -156,9 +156,9 @@ Na zewnątrz naszej klasy TimerService udostępniamy również dwie publiczne me
 
 To wszystko.
 
-Mamy już zbudowany nasz &#8222;Service&#8221;. Teraz przejdziemy do ViewModel, gdzie utworzymy jego instancję oraz spróbujemy go uruchomić 😉
+Mamy już zbudowany nasz "Service". Teraz przejdziemy do ViewModel, gdzie utworzymy jego instancję oraz spróbujemy go uruchomić 😉
 
-W tym celu musimy dodać do folderu &#8222;ViewModels&#8221; klasę &#8222;MainWindowViewModel&#8221;, która będzie dziedziczyć po &#8222;BaseViewModel&#8221;.
+W tym celu musimy dodać do folderu "ViewModels" klasę "MainWindowViewModel", która będzie dziedziczyć po "BaseViewModel".
 
 <pre class="brush: csharp; title: ; notranslate" title="">public class MainWindowViewModel : BaseViewModel
 {
@@ -196,10 +196,10 @@ Jeszcze jego inicjalizacja i wywołanie w konstruktorze:
         #endregion
 </pre>
 
-Jeśli można by było podzielić &#8222;**ViewModel**&#8221; na część View-ViewModelu i część Modelu-ViewModelu, to właśnie skończyliśmy pisać tę drugą.  
+Jeśli można by było podzielić "**ViewModel**" na część View-ViewModelu i część Modelu-ViewModelu, to właśnie skończyliśmy pisać tę drugą.  
 Przypomina mi się tutaj <a href="http://nonsensopedia.wikia.com/wiki/Dzida" target="_blank">budowa dzidy</a> ;). Można powiedzieć, że cała logika aplikacji została już napisana. Teraz zajmiemy się wyświetlaniem stanu naszego programu. Co chcielibyśmy wyświetlić? Liczbę tyknięć zegara.
 
-W tym celu dodajemy nową właściwość naszej klasy &#8222;MainWindowViewModel&#8221;:
+W tym celu dodajemy nową właściwość naszej klasy "MainWindowViewModel":
 
 <pre class="brush: csharp; title: ; notranslate" title="">private string _message;
         public string Message
@@ -221,9 +221,9 @@ W tym celu dodajemy nową właściwość naszej klasy &#8222;MainWindowViewModel
 </pre>
 
 To tutaj użyliśmy magicznego pomocnika jakim jest klasa **NotificationObject**, a dokładniej odziedziczona metoda **RaisePropertyChanged**.  
-Ta metoda mówi do naszego widoku: &#8222;Jeśli ktoś mnie słyszy&#8230; to niech wie, że wartość obiektu Message, właśnie się zmieniła!&#8221;.
+Ta metoda mówi do naszego widoku: "Jeśli ktoś mnie słyszy&#8230; to niech wie, że wartość obiektu Message, właśnie się zmieniła!".
 
-Funkcją, która będzie zmieniać właściwość &#8222;Message&#8221;, jest funkcja wywoływana podczas zdarzenia Tick.  
+Funkcją, która będzie zmieniać właściwość "Message", jest funkcja wywoływana podczas zdarzenia Tick.  
 Powinna teraz wyglądać tak:
 
 <pre class="brush: csharp; title: ; notranslate" title="">void _timer_Tick(object sender, int tick)
@@ -234,11 +234,11 @@ Powinna teraz wyglądać tak:
 
 I to wszystko jeśli chodzi o część **ViewModel**. Choć przed nami jeszcze implementacja widoku, tutaj warto się zatrzymać.
 
-Cała idea wzorca MVVM polega właśnie na tym, że ViewModel, krzyczy: &#8222;Jeśli ktoś mnie słyszy[&#8230;]&#8221;. Jeśli tak &#8211; to super, a jeśli nie &#8211; to trudno. Nie wpływa to zupełnie na pracę całej aplikacji. Dzięki temu całkowicie oddzielamy widok aplikacji od jej logiki. Jedynym pomostem są właściwości klas z ViewModelu, które informują (słuchacza/y), o zmianie ich wartości.
+Cała idea wzorca MVVM polega właśnie na tym, że ViewModel, krzyczy: "Jeśli ktoś mnie słyszy[&#8230;]". Jeśli tak &#8211; to super, a jeśli nie &#8211; to trudno. Nie wpływa to zupełnie na pracę całej aplikacji. Dzięki temu całkowicie oddzielamy widok aplikacji od jej logiki. Jedynym pomostem są właściwości klas z ViewModelu, które informują (słuchacza/y), o zmianie ich wartości.
 
 Teraz zajmiemy się wyświetlaniem. Musimy podpiąć widok, tak aby nasłuchiwał na naszej zmiennej Message. Nic prostszego:
 
-Jeśli zrobiłeś, drogi czytelniku, wszystko tak jak Cię o to prosiłem (chodzi mi o strukturę projektu), to w katalogu &#8222;View&#8221; powinieneś mieć plik: &#8222;**MainWindow**.**xaml**&#8222;.  
+Jeśli zrobiłeś, drogi czytelniku, wszystko tak jak Cię o to prosiłem (chodzi mi o strukturę projektu), to w katalogu "View" powinieneś mieć plik: "**MainWindow**.**xaml**".  
 Do znacznika **Window**, dodajemy atrybut:
 
 <pre class="brush: csharp; title: ; notranslate" title="">xmlns:viewModels=&quot;clr-namespace:ServicesSample.ViewModels&quot;

@@ -37,7 +37,7 @@ Będzie tam tylko jedna opcja pozwalająca zamknąć program.
         }
 </pre>
 
-Żeby rysować trzeba mieć na czym, dodajmy więc &#8222;**Canvas&#8221;**:
+Żeby rysować trzeba mieć na czym, dodajmy więc "**Canvas"**:
 
 &nbsp;
 
@@ -64,7 +64,7 @@ Teraz omówmy jak zrobić mechanizm wtyczek.
 
 Chcemy umożliwić innym programistom pisanie wtyczek do naszego programu. Aby zapewnić obsługę tych wtyczek muszą one implementować znany naszej aplikacji interface. Interface powinien być zadeklarowany w zewnętrznym projekcie. Dzięki temu będziemy mogli udostępnić go innym.
 
-W tym celu dodajemy do naszej solucji nowy projekt typu &#8222;**Class Library**&#8221; o nazwie &#8222;**PluginInterface**&#8222;.
+W tym celu dodajemy do naszej solucji nowy projekt typu "**Class Library**" o nazwie "**PluginInterface**".
 
 W tym projekcie będziemy trzymać tylko jeden plik z interfejsem **IPlugin**:
 
@@ -82,12 +82,12 @@ W tym projekcie będziemy trzymać tylko jeden plik z interfejsem **IPlugin**:
 
 Pomysł jest prosty, każdy plugin musi podać swój **MenuItem** &#8211; tak abyśmy mogli dodać go do menu naszej aplikacji (integracja z istniejącym interfejsem).
 
-Metoda **Initialize** ma pozwolić przekazać do wtyczki kontrolkę &#8222;**Canvas**&#8221; oraz ustawić wartości początkowe takie jak kolor czy grubość (w końcu są to wtyczki z narzędziami do rysowania).
+Metoda **Initialize** ma pozwolić przekazać do wtyczki kontrolkę "**Canvas**" oraz ustawić wartości początkowe takie jak kolor czy grubość (w końcu są to wtyczki z narzędziami do rysowania).
 
 Dodajemy referencję do **PluginInterface** do naszego projektu.
 
 Teraz należy zaimplementować obsługę przyszłych wtyczek.  
-Zakładam, że wszystkie wtyczki będą wsadzane do folderu &#8222;**Plugins**&#8222;, w miejscu gdzie leży program. Oto metoda, która przeszuka ten folder i załaduje listę obiektów typu **Assembly**.
+Zakładam, że wszystkie wtyczki będą wsadzane do folderu "**Plugins**", w miejscu gdzie leży program. Oto metoda, która przeszuka ten folder i załaduje listę obiektów typu **Assembly**.
 
 <pre class="brush: csharp; title: ; notranslate" title="">private List&lt;Assembly&gt; GetAssemblies(string directory)
         {
@@ -144,7 +144,7 @@ Cała metoda inicjująca wtyczki wygląda tak:
         }
 </pre>
 
-W obsłudze zdarzenia &#8222;**Click**&#8222;, podmieniamy aktualnie aktywną wtyczkę na nową (ukrytą we własności &#8222;**Tag**&#8222;):
+W obsłudze zdarzenia "**Click**", podmieniamy aktualnie aktywną wtyczkę na nową (ukrytą we własności "**Tag**"):
 
 <pre class="brush: csharp; title: ; notranslate" title="">private void pluginMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -169,9 +169,9 @@ To tyle jeśli chodzi o obsługę wtyczek w naszej aplikacji. Jedyne co musimy t
 
 (W projekcie na <a href="https://github.com/RamzesBlog/PluginsExample" target="_blank">GITHUB </a>są napisane 3 pluginy, jednak w tym wpisie opiszę tylko jeden z nich).
 
-Tworzymy nowy projekt &#8222;**Class Library**&#8221; w naszej solucji.  
-Naszą wtyczką będzie narzędzie do rysowania linii więc projekt nazwałem &#8222;**LineToolPlugin**&#8222;.  
-Pamiętajmy, że każdy plugin musi implementować interfejs **IPlugin**, więc należy dodać referencję do projektu &#8222;**PluginInterface**&#8222;.
+Tworzymy nowy projekt "**Class Library**" w naszej solucji.  
+Naszą wtyczką będzie narzędzie do rysowania linii więc projekt nazwałem "**LineToolPlugin**".  
+Pamiętajmy, że każdy plugin musi implementować interfejs **IPlugin**, więc należy dodać referencję do projektu "**PluginInterface**".
 
 Oto implementacja całej klasy **LineTool**:
 
@@ -272,17 +272,17 @@ Oto implementacja całej klasy **LineTool**:
     }
 </pre>
 
-Budujemy naszą wtyczkę i dodajemy wygenerowany plik &#8222;**LineToolPlugin.dll**&#8221; do folderu **Plugins**
+Budujemy naszą wtyczkę i dodajemy wygenerowany plik "**LineToolPlugin.dll**" do folderu **Plugins**
 
 [<img class="alignnone size-full wp-image-313" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png?resize=308%2C351" alt="LineToolsPluin-dll-content" width="308" height="351" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png?w=308 308w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png?resize=263%2C300 263w" sizes="(max-width: 308px) 100vw, 308px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png)
 
-Ważne jest aby wybrać opcję &#8222;**Copy always**&#8221;
+Ważne jest aby wybrać opcję "**Copy always**"
 
 [<img class="alignnone size-full wp-image-314" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png?resize=447%2C219" alt="PluginsExample-copyAlways" width="447" height="219" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png?w=447 447w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png?resize=300%2C147 300w" sizes="(max-width: 447px) 100vw, 447px" data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png)
 
 &nbsp;
 
-Pliki &#8222;*.pdb&#8221; to tzw. symbole, przydają się przy debugowaniu ale o tym przy okazji następnych wpisów 😉
+Pliki "*.pdb" to tzw. symbole, przydają się przy debugowaniu ale o tym przy okazji następnych wpisów 😉
 
 &nbsp;
 

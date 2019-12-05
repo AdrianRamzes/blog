@@ -8,18 +8,18 @@ guid: http://www.karalus.eu/2015/04/233-autosave-v1/
 permalink: /2015/04/233-autosave-v1/
 ---
 W tym wpisie zaprezentuję prosty przykład aplikacji używającej kamerki internetowej z użyciem biblioteki Emgu CV (wrapper Open CV).  
-<!--more-->Jednocześnie pokażę bardzo praktyczne zastosowanie &#8222;serwisów&#8221; we wzorcu MVVM.
+<!--more-->Jednocześnie pokażę bardzo praktyczne zastosowanie "serwisów" we wzorcu MVVM.
 
 Aby w ogóle rozpocząć pracę z kamerką należy ściągnąć i zainstalować bibliotekę EmguCV&#8230; można to zrobić przy pomocy NuGet packages manager (co w moim przypadku nie zadziałało &#8211; wiesza się przy ściąganiu i za chiny nie chce iść dalej&#8230;)  lub ze strony <a href="http://www.emgu.com/wiki/index.php/Main_Page" target="_blank">emgu</a>.
 
-Jeśli skorzystałeś/łaś z NuGet&#8217;a to wszystkie pliki dll i odpowiednie referencje dodały się same. Natomiast w przypadku zwykłej instalacji, należy przejść do folderu zawierającegu (domyślnie C:\Emgu\), następnie do folderu bin. Skopiować wszystkie pliki *.dll dla odpowiedniej wersji (x86 lub x64) i przenieść do naszego projektu np. do folderu lib. Pamiętaj, żeby nadać im opcję &#8222;copy to output directory&#8221;.
+Jeśli skorzystałeś/łaś z NuGet&#8217;a to wszystkie pliki dll i odpowiednie referencje dodały się same. Natomiast w przypadku zwykłej instalacji, należy przejść do folderu zawierającegu (domyślnie C:\Emgu\), następnie do folderu bin. Skopiować wszystkie pliki *.dll dla odpowiedniej wersji (x86 lub x64) i przenieść do naszego projektu np. do folderu lib. Pamiętaj, żeby nadać im opcję "copy to output directory".
 
 OK! Jeśli część dodawania referencji jest już za nami, to możemy przejść do implementacji naszego projektu.  
 Będzie to aplikacji napisana w zgodzie ze wzorcem MVVM, więc przygotuj najpierw wszystko tak jak w moim wcześniejszym wpisie.
 
 **WebCamService**
 
-W folderze Services dodajemy nową klasę o nazwie WebCamService. Ta klasa będzie obsługiwać kamerkę. Powinna posaidać dwie metody &#8222;Run&#8221; i &#8222;Cancel&#8221;. Po uruchomieniu powinna podnosić event o przechwyceniu obrazu z kamerki. Wszystko to robi już klasa Capture z biblioteki emgu, jednak my opakujemy to w bardziej elegancką w tym przypadku formę.
+W folderze Services dodajemy nową klasę o nazwie WebCamService. Ta klasa będzie obsługiwać kamerkę. Powinna posaidać dwie metody "Run" i "Cancel". Po uruchomieniu powinna podnosić event o przechwyceniu obrazu z kamerki. Wszystko to robi już klasa Capture z biblioteki emgu, jednak my opakujemy to w bardziej elegancką w tym przypadku formę.
 
 <pre class="brush: csharp; title: ; notranslate" title="">public class WebCamService
     {
@@ -70,9 +70,9 @@ W folderze Services dodajemy nową klasę o nazwie WebCamService. Ta klasa będz
     }
 </pre>
 
-Jak widać obiekty klasy Capture dostarczają już event &#8222;ImageGrabbed&#8221;. Jednak co w przypadku gdy nie chcemy być bombardowani wywołaniami tego zdarzenia z częstotliwością równą częstotliwości kamerki (fps).
+Jak widać obiekty klasy Capture dostarczają już event "ImageGrabbed". Jednak co w przypadku gdy nie chcemy być bombardowani wywołaniami tego zdarzenia z częstotliwością równą częstotliwości kamerki (fps).
 
-Caputre dostarcza również taką metodę jak: &#8222;QueryFrame()&#8221;, dzięki niej, sami możemy odpytywać kamerkę o aktualną klatkę.
+Caputre dostarcza również taką metodę jak: "QueryFrame()", dzięki niej, sami możemy odpytywać kamerkę o aktualną klatkę.
 
 I w ten sposób przejdę do drugiej możliwej implementacji klasy WebCamService, która może się przydać wtedy gdy mamy zamiar wykonywać na obrazie jakieś bardziej zasobożerne zadania.
 
@@ -217,7 +217,7 @@ Należy jeszcze wspomnieć o tym jak wyświetlić przechwycony obraz.
     }
 </pre>
 
-ViewModel w tym przypadku będzie bardzo prostu. Implementujemy jedynie komendę włączania/wyłączania kamerki oraz wystawiamy obiekt typu &#8222;Bitmap&#8221;, który będziemy wyświetlać.
+ViewModel w tym przypadku będzie bardzo prostu. Implementujemy jedynie komendę włączania/wyłączania kamerki oraz wystawiamy obiekt typu "Bitmap", który będziemy wyświetlać.
 
 Przyjrzyjmy się widokowi:
 
@@ -259,7 +259,7 @@ oraz implementacja kliknięcia w przycisk w code-behind:
         }
 </pre>
 
-Mała adnotacja co do zgodności ze wzorcem. Oczywiście, żeby być w 100% zgodnym ze wzorcem musiałbym we ViewModel wystawić properties &#8222;IsRunning&#8221; i od stanu tej zmiennej uzależniać widok. Jednak w tym przypadku, zrobiłem to celowo aby pokazać, że czasami ścisłe trzymanie się wzorca jest pozbawione sensu i kompletnie nadmiarowe. Łatwiej, prościej i czytelniej będzie, gdy tekst przycisku będzie ustawiany po prostu w C-B.
+Mała adnotacja co do zgodności ze wzorcem. Oczywiście, żeby być w 100% zgodnym ze wzorcem musiałbym we ViewModel wystawić properties "IsRunning" i od stanu tej zmiennej uzależniać widok. Jednak w tym przypadku, zrobiłem to celowo aby pokazać, że czasami ścisłe trzymanie się wzorca jest pozbawione sensu i kompletnie nadmiarowe. Łatwiej, prościej i czytelniej będzie, gdy tekst przycisku będzie ustawiany po prostu w C-B.
 
 UWAGA!  
 Kontrolka Image przyjmuję jako źródło obiekt typu ImageSource, a więc potrzebna jest nam jeszcze konwersja typów z Bitmap -> ImageSource. Oto implementacja tego konwertera (nie ukrywam, że znaleziona w internecie prawdopodobnie na <a href="http://stackoverflow.com" target="_blank">StackOverflow</a>)

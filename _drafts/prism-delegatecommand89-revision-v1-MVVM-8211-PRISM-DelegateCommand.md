@@ -12,10 +12,10 @@ DelegateCommand jest klasą dostarczaną wraz z pakietem NuGet Prism v5.0
 
 <!--more-->
 
-Działa identycznie jak ta, którą przedstawiałem w moim wcześniejszym <a href="http://www.karalus.eu/Blog/2014/10/c-wpf-mvvm-delegatecommand/" target="_blank">wpisie</a>. Jedyną różnicą jest wykonywanie metody &#8222;CanExecute&#8221;.  
+Działa identycznie jak ta, którą przedstawiałem w moim wcześniejszym <a href="http://www.karalus.eu/Blog/2014/10/c-wpf-mvvm-delegatecommand/" target="_blank">wpisie</a>. Jedyną różnicą jest wykonywanie metody "CanExecute".  
 Tutaj to programista jest odpowiedzialny za poinformowanie widoku o możliwości zmiany wartości zwracanej przez CanEecute.
 
-Poprzednio udowadniałem, że CanExecute wykonuje się praktycznie w &#8222;losowych&#8221; momentach i to całkiem często. Ostrzegałem też, przed wsadzaniem do tej metody ciężkich obliczeń.  
+Poprzednio udowadniałem, że CanExecute wykonuje się praktycznie w "losowych" momentach i to całkiem często. Ostrzegałem też, przed wsadzaniem do tej metody ciężkich obliczeń.  
 Jeśli jednak z jakiegoś egzotycznego powodu Twoja metoda CanExecute musi wykonywać takie operacje lub jeśli po prostu zależy Ci na całkowitej kontroli swojego kodu. To użyj klasy DelegateCommand z pakietu Prism. Jak to zrobić?
 
 (Projekt przygotowany do pracy we wzorcu MVVM zgodnie z moim wcześniejszym <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisem</a>)
@@ -91,7 +91,7 @@ Bardzo ważna jest turaj linijka:
 </pre>
 
 W tym miejscu wykonana zostanie metoda CanExecute zdefiniowana dla ClickCommand. Jest to dokładnie taka informacja:  
-&#8222;Oj! Wartość zwracana przez CanExecute mogła ulec zmianie. Proszę to sprawdzić.&#8221;
+"Oj! Wartość zwracana przez CanExecute mogła ulec zmianie. Proszę to sprawdzić."
 
 Odpowiednio metody Execute i CanExecute:
 

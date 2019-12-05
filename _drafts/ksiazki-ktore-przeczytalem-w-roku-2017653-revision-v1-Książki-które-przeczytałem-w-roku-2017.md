@@ -9,8 +9,8 @@ permalink: /2018/01/653-revision-v1/
 ---
 Wśród znajomych pojawiły się głosy, że na moim blogu jest już za dużo recenzji książek, a za mało tematyki związanej z moim zawodem.  
 Dlatego postanowiłem dowalić kolejną recenzję, ale tym razem zbiorczą, wszystkich książek, które udało mi się przeczytać w 2017 roku.  
-Na wstępie dodam, że słowo &#8222;przeczytać&#8221; nie jest prawdą we wszystkich przypadkach, ponieważ część z nich odsłuchem w formie audiobooka.  
-O serwisie Audioteka.pl słyszałem już dawno, jednak faktycznie zapoznałem się z nim dopiero przy okazji czytania książki &#8222;Opowieści o pilocie Pirxie&#8221;. Muszę przyznać, że chyba trafiłem na najlepszą dla mnie formę przyswajania książek.
+Na wstępie dodam, że słowo "przeczytać" nie jest prawdą we wszystkich przypadkach, ponieważ część z nich odsłuchem w formie audiobooka.  
+O serwisie Audioteka.pl słyszałem już dawno, jednak faktycznie zapoznałem się z nim dopiero przy okazji czytania książki "Opowieści o pilocie Pirxie". Muszę przyznać, że chyba trafiłem na najlepszą dla mnie formę przyswajania książek.
 
 Oto pełna lista z 2017 roku (w kolejności w jakiej je przeczytałem).
 
@@ -24,7 +24,7 @@ Recenzja pojawiła się na <a href="http://www.karalus.eu/2017/07/kosmiczny-pora
 Recenzja pojawiła się na <a href="http://www.karalus.eu/2017/08/opowiesci-o-pilocie-pirxie/" target="_blank" rel="noopener">moim blogu 23.08.2017</a>.
 
 4. Solaris  
-[<img class="alignleft wp-image-640 size-thumbnail" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=150%2C150" alt="" width="150" height="150" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=150%2C150 150w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=298%2C300 298w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=250%2C250 250w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=174%2C174 174w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?w=320 320w" sizes="(max-width: 150px) 100vw, 150px" data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png)Świetna superprodukcja. Momentami troszkę nudna &#8211; głównie za sprawą wyczerpujących opisów &#8222;oceanu&#8221; znajdującego się na tytułowej planecie Solaris. Od początku do końca autor utrzymuje klimat tajemnicy. Główny bohater, przylatuje na stację badawczą i próbuje zrozumieć wydarzenia jakie miały tam miejsce.
+[<img class="alignleft wp-image-640 size-thumbnail" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=150%2C150" alt="" width="150" height="150" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=150%2C150 150w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=298%2C300 298w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=250%2C250 250w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?resize=174%2C174 174w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png?w=320 320w" sizes="(max-width: 150px) 100vw, 150px" data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/09/solaris.png)Świetna superprodukcja. Momentami troszkę nudna &#8211; głównie za sprawą wyczerpujących opisów "oceanu" znajdującego się na tytułowej planecie Solaris. Od początku do końca autor utrzymuje klimat tajemnicy. Główny bohater, przylatuje na stację badawczą i próbuje zrozumieć wydarzenia jakie miały tam miejsce.
 
 &nbsp;
 

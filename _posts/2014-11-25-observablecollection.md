@@ -26,7 +26,7 @@ INotifyPropertyChanged i INotifyCollectionChanged. Każda zmiana w kolekcji powo
 Praca z ObservableCollection jest banalna.  
 Oto przykładowy program z użyciem klasy ObservableCollection  oraz kontrolki ListBox:  
 Po pierwsze dodajmy sobie klasę do folderu Models, musimy przecież mieć co wyświetlać 😉  
-Niech to będzie prosta klasa &#8222;Person&#8221;:
+Niech to będzie prosta klasa "Person":
 
 <pre class="brush: csharp; title: ; notranslate" title="">public class Person
     {
@@ -35,12 +35,12 @@ Niech to będzie prosta klasa &#8222;Person&#8221;:
     }
 </pre>
 
-Do ViewModel&#8217;u dodajemy properties &#8222;List&#8221;, będzie to kolekcja obiektów &#8222;Person&#8221;, którą wyświetlimy w ListBox&#8217;ie:
+Do ViewModel&#8217;u dodajemy properties "List", będzie to kolekcja obiektów "Person", którą wyświetlimy w ListBox&#8217;ie:
 
 <pre class="brush: csharp; title: ; notranslate" title="">public ObservableCollection&lt;Person&gt; List { get; set; }
 </pre>
 
-Przydałby się jeszcze jakiś mechanizm dokonywania zmian w kolekcji, a w szczególności dodawania do niej nowych elementów, tak więc dodajemy komendę wraz z implementacją metody &#8222;Execue&#8221;:
+Przydałby się jeszcze jakiś mechanizm dokonywania zmian w kolekcji, a w szczególności dodawania do niej nowych elementów, tak więc dodajemy komendę wraz z implementacją metody "Execue":
 
 <pre class="brush: csharp; title: ; notranslate" title="">public DelegateCommand AddNewPersonCommand { get; set; }
 
@@ -55,7 +55,7 @@ Przydałby się jeszcze jakiś mechanizm dokonywania zmian w kolekcji, a w szcze
 &nbsp;
 
 Zaostał nam już tylko widok &#8211; View:  
-ListBox &#8211; do wyświetlania kolekcji &#8222;List&#8221;:
+ListBox &#8211; do wyświetlania kolekcji "List":
 
 <pre class="brush: xml; title: ; notranslate" title="">&lt;ListBox ItemsSource="{Binding List}" &gt;
             &lt;ListBox.ItemTemplate&gt;
@@ -69,11 +69,11 @@ ListBox &#8211; do wyświetlania kolekcji &#8222;List&#8221;:
         &lt;/ListBox&gt;
 </pre>
 
-Oraz przycisk, za pomocą którego wywoływać będziemy komendę &#8222;AddNewPersonCommand&#8221;:
+Oraz przycisk, za pomocą którego wywoływać będziemy komendę "AddNewPersonCommand":
 
 <pre class="brush: xml; title: ; notranslate" title="">&lt;Button Command="{Binding AddNewPersonCommand}" Content="Add New Person" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,2"/&gt;
 </pre>
 
-I to w zasadzie wszystko, jeśli chodzi o używanie ObservableCollection. Deklaracja kolekcji i powiązanie z nią widoku. Reszta dzieje się &#8222;automagicznie&#8221; 😉
+I to w zasadzie wszystko, jeśli chodzi o używanie ObservableCollection. Deklaracja kolekcji i powiązanie z nią widoku. Reszta dzieje się "automagicznie" 😉
 
 Cały program jak zawsze dostępny na <a href="https://github.com/RamzesBlog/ObservableCollectionExample" target="_blank">GitHub </a>😉

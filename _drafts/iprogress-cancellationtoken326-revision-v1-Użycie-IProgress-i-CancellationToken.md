@@ -8,7 +8,7 @@ guid: http://www.karalus.eu/2015/07/326-revision-v1/
 permalink: /2015/07/326-revision-v1/
 ---
 <p style="padding-left: 60px;">
-  Pisząc aplikację wielowątkowe często istnieje potrzeba raportowania aktualnego postępu lub przerwania obliczeń &#8222;z zewnątrz&#8221;.<br /> Klasa <strong>BackgroundWorker</strong> dostarcza do tego gotowe metody. Jednak jak to zrobić gdy pracujemy z klasą <strong>Task</strong>?
+  Pisząc aplikację wielowątkowe często istnieje potrzeba raportowania aktualnego postępu lub przerwania obliczeń "z zewnątrz".<br /> Klasa <strong>BackgroundWorker</strong> dostarcza do tego gotowe metody. Jednak jak to zrobić gdy pracujemy z klasą <strong>Task</strong>?
 </p>
 
 <!--more-->

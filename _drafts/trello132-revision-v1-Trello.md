@@ -9,12 +9,12 @@ permalink: /2015/04/132-revision-v1/
 ---
 Nie chce aby ten wpis był odebrany jako reklama (nikt mi za to nie płaci ;p).  
 Trello to świetne narzędzie. Im dłużej go używam tym bardziej mi się podoba oraz odkrywam jego coraz to nowe możliwości.  
-<!--more-->Oczywiście absolutnie NIC nie zastąpi klasycznego, &#8222;analogowego&#8221; kalendarza oraz notatnika ale trzeba przyznać, że Trello jest bardzo blisko.
+<!--more-->Oczywiście absolutnie NIC nie zastąpi klasycznego, "analogowego" kalendarza oraz notatnika ale trzeba przyznać, że Trello jest bardzo blisko.
 
 Chce podzielić się swoim sposobem korzystania z tego serwisu. Uważam, że da się go używać do wspomagania metod opisanych w książkach:  
-&#8222;7 Nawyków skutecznego działania&#8221; oraz &#8222;GTD&#8221;. Ale do rzeczy!
+"7 Nawyków skutecznego działania" oraz "GTD". Ale do rzeczy!
 
-Tworzę sobie tablicę na każdy miesiąc. Tablice są agregowane w tzw. &#8222;organizacjach&#8221;. Niestety wewnątrz organizacji tablice sortowane są alfabetycznie i (chyba) nie ma możliwości ustawiania ich wedle własnego życzenia. z tego powodu każdemu miesiącowi nadaję numerek porządkowy 😉
+Tworzę sobie tablicę na każdy miesiąc. Tablice są agregowane w tzw. "organizacjach". Niestety wewnątrz organizacji tablice sortowane są alfabetycznie i (chyba) nie ma możliwości ustawiania ich wedle własnego życzenia. z tego powodu każdemu miesiącowi nadaję numerek porządkowy 😉
 
 &nbsp;
 
@@ -26,7 +26,7 @@ Co w tablicach? Trzymam tam zadania, które chce w danym miesiącu zrobić, taki
 
 Jak widać, zadania organizuję wg ich aktualnego stanu, a nie priorytetu.
 
-Założyłem również  tablicę &#8222;Może kiedyś&#8221;, w której trzymam tytuły książek, które chciałbym kiedyś przeczytać oraz artykułu, filmy, rzeczy do kupienia.
+Założyłem również  tablicę "Może kiedyś", w której trzymam tytuły książek, które chciałbym kiedyś przeczytać oraz artykułu, filmy, rzeczy do kupienia.
 
 [<img class="alignnone wp-image-140 size-full" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled2.png?resize=1617%2C563" alt="" width="1617" height="563" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled2.png?w=1617 1617w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled2.png?resize=300%2C104 300w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled2.png?resize=1024%2C357 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled2.png)
 

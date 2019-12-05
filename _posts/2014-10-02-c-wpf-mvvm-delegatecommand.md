@@ -66,7 +66,7 @@ Zaimplementujmy metodę, która będzie wykonywana po wciśnięciu przycisku.
 
 Aby nasz komunikat nie wyglądał cały czas tak samo, dodałem zmienną pomocniczą _count.
 
-Do tej pory wszystko jasne, ale jak powiązać naszą metodę &#8222;Click&#8221; z widokiem?  
+Do tej pory wszystko jasne, ale jak powiązać naszą metodę "Click" z widokiem?  
 Za pomocą DelegateCommand!
 
 <pre class="brush: csharp; title: ; notranslate" title="">private ICommand _clickCommand;
@@ -96,7 +96,7 @@ Teraz w widoku wystarczy zdefiniować przycisk w następujący sposób:
 <pre class="brush: xml; title: ; notranslate" title="">&lt;Button Command="{Binding ClickCommand}" Content="Click!"/&gt;
 </pre>
 
-Po kliknięciu przycisku, wykona się metoda &#8222;Click&#8221;.
+Po kliknięciu przycisku, wykona się metoda "Click".
 
 DelegateCommand, może przyjmować jeszcze jeden parametr i jest nim funkcja zwracająca wartość bool.  
 Chodzi o metodę CanExecute, która jest wykonywana za każdym razem gdy zaszły jakieś zmiany w interfejsie (nie we wszystkich implementacjach) i tuż przed wykonaniem metody Execute. Domyślnie, jeśli nie podamy drugiego parametru, CanExecute zawsze będzie zwracał wartość true.
@@ -160,7 +160,7 @@ Oczywiście to czy przycisk jest aktywny czy nie, można powiązać z CheckBox&#
 Jednak o powiązaniach między kontrolkami opowiem <a href="http://www.karalus.eu/Blog/2014/10/c-wpf-mvvm-binding-to-element/" target="_blank">innym razem</a>.
 
 Warto jeszcze wspomnieć o tym, kiedy tak naprawdę wywoływane jest CanExecute.  
-Nie bez powodu w metodzie &#8222;CanExecuteClick()&#8221; dodałem linijkę logującą.
+Nie bez powodu w metodzie "CanExecuteClick()" dodałem linijkę logującą.
 
 [<img class="aligncenter wp-image-72 size-full" src="https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=556%2C287" alt="" width="556" height="287" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_2.png?w=556 556w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=300%2C154 300w" sizes="(max-width: 556px) 100vw, 556px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png)
 

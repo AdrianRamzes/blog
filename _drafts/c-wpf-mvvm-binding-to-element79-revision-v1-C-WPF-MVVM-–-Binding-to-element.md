@@ -7,10 +7,10 @@ layout: revision
 guid: http://www.karalus.eu/2015/04/79-revision-v1/
 permalink: /2015/04/79-revision-v1/
 ---
-Dzisiaj obędzie się bez użycia wzorca <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">MVVM</a>. To co chcę pokazać jest &#8222;wykonywane&#8221; jedynie po stronie widoku.  
+Dzisiaj obędzie się bez użycia wzorca <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">MVVM</a>. To co chcę pokazać jest "wykonywane" jedynie po stronie widoku.  
 <!--more-->
 
-Nieraz zdarza się, że chcemy aby zachowanie niektórych kontrolek w naszym programie zależało od stanu innej kontrolki. Każdy chyba widział jak podczas instalacji nie możemy przejść do następnego kroku jeśli nie zaakceptujemy regulaminu. W tym przypadku &#8222;**button**&#8221; jest niedostępny, dopóki nie zmienimy stanu &#8222;**checkbox**‚a&#8221;. Tutaj WPF dostarcza nam mechanizm **powiązań.**
+Nieraz zdarza się, że chcemy aby zachowanie niektórych kontrolek w naszym programie zależało od stanu innej kontrolki. Każdy chyba widział jak podczas instalacji nie możemy przejść do następnego kroku jeśli nie zaakceptujemy regulaminu. W tym przypadku "**button**" jest niedostępny, dopóki nie zmienimy stanu "**checkbox**‚a". Tutaj WPF dostarcza nam mechanizm **powiązań.**
 
 Tak więc&#8230; bardzo prosty przykład:
 
@@ -25,7 +25,7 @@ Teraz dodajmy przycisk:
 </pre>
 
 Ok&#8230; póki co są to niezależne kontrolki.  
-Spróbujmy powiązać stan checkbox&#8217;a ze stanem przycisku, a konkretniej to wartość własności &#8222;IsChecked&#8221; checkbox&#8217;a z wartością własności &#8222;IsEnabled&#8221; przycisku.  
+Spróbujmy powiązać stan checkbox&#8217;a ze stanem przycisku, a konkretniej to wartość własności "IsChecked" checkbox&#8217;a z wartością własności "IsEnabled" przycisku.  
 W tym celu dodajemy do przycisku własność:
 
 <pre class="brush: xml; title: ; notranslate" title="">IsEnabled=
@@ -36,7 +36,7 @@ Jako wartość podajemy powiązanie z dwoma parametrami:
 <pre class="brush: xml; title: ; notranslate" title="">{Binding ElementName=v_CheckBox, Path=IsChecked}
 </pre>
 
-ElementName jak nie trudno się domyśleć służy do wskazania na element, z którym chcemy powiązać, a &#8222;Path&#8221; oznacza z jakim properties.
+ElementName jak nie trudno się domyśleć służy do wskazania na element, z którym chcemy powiązać, a "Path" oznacza z jakim properties.
 
 Oczywiście możemy wiązać, ze sobą nie tylko wartości boolowskie, ale także string.  
 W zasadzie to powiązać można ze sobą dowolne wartości, jednak wtedy trzeba dopisać **Converter**. O konwerterach napiszę innym razem 😉

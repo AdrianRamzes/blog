@@ -64,7 +64,7 @@ a) znajdziemy wszystkich najbliższych sąsiadów dla 100 pierwszych użytkownik
 
 b) współczynnik Jaccarda wyznaczymy dzieląc liczebność części wspólnej zbiorów przez liczebność sumy zbiorów.  
 Można to zrobić na wiele różnych sposobów np. używając metod Intersect i Union. Warto jednak wykorzystać fakt, że jedne zbiory piosenek są mniejsze od drugich.  
-Okazuje się, że najszybszą metodą (przynajmniej z tych, które znam) jest &#8222;ręczne&#8221; iterowanie po mniejszym zbiorze i sprawdzanie (przy pomocy metody Contains) czy dana piosenka występuje w drugim zbiorze.  
+Okazuje się, że najszybszą metodą (przynajmniej z tych, które znam) jest "ręczne" iterowanie po mniejszym zbiorze i sprawdzanie (przy pomocy metody Contains) czy dana piosenka występuje w drugim zbiorze.  
 Nie trzeba również wykonywać operacji Union. Wystarczy dodać do siebie liczności zbiorów, a następnie od sumy odjąć część wspólną. Takie proste zabiegi powodują znaczne zwiększenie wydajności.
 
 <pre class="brush: csharp; title: ; notranslate" title="">Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt; similarity = new Dictionary&lt;int, Dictionary&lt;int, double&gt;&gt;();

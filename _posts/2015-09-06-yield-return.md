@@ -71,4 +71,4 @@ I tutaj jeszcze jest ok, ponieważ w tym przypadku nie ma znaczenia czy użyjemy
 Z tego wynika, że nie jest to wartościowanie leniwe z prawdziwego zdarzenia. Brakuje mechanizmu trzymającego w pamięci wszystkie poprzednie wyniki.  
 Odwołanie się do elementu #5 powinno zapisać w pamięci ten element, oraz wszystkie wcześniejsze (#1 #2 #3 i #4).
 
-Tak, więc słowo kluczowe &#8222;yield&#8221;, może pomóc nam zaoszczędzić nieco czasu i zasobów, ale w pewnych przypadkach może być odwrotnie.
+Tak, więc słowo kluczowe "yield", może pomóc nam zaoszczędzić nieco czasu i zasobów, ale w pewnych przypadkach może być odwrotnie.

@@ -9,7 +9,7 @@ permalink: /2018/03/792-revision-v1/
 ---
 ## Wstęp
 
-Chciałbym zacząć mini serię wpisów o algorytmach używanych do wyznaczenia trasy w [problemie komiwojażera](https://pl.wikipedia.org/wiki/Problem_komiwojażera). TSP (Travelling Salesman Problem) jest problemem NP-trudnym. Żaden z dzisiejszych algorytmów, nie gwarantuje znalezienia optymalnej trasy. Oczywiście chodzi tutaj o wyznaczenie jej w sensownym czasie. &#8222;W sensownym czasie&#8221; jest tutaj kluczem, ponieważ zawsze można użyć brutalnej siły (brute force), jednak takie podejście nie jest akceptowane z racji tego, że już dla 20 miast (wierzchołków) mamy 60822550204416000 możliwości (6,08&#215;10<sup>16</sup>).  
+Chciałbym zacząć mini serię wpisów o algorytmach używanych do wyznaczenia trasy w [problemie komiwojażera](https://pl.wikipedia.org/wiki/Problem_komiwojażera). TSP (Travelling Salesman Problem) jest problemem NP-trudnym. Żaden z dzisiejszych algorytmów, nie gwarantuje znalezienia optymalnej trasy. Oczywiście chodzi tutaj o wyznaczenie jej w sensownym czasie. "W sensownym czasie" jest tutaj kluczem, ponieważ zawsze można użyć brutalnej siły (brute force), jednak takie podejście nie jest akceptowane z racji tego, że już dla 20 miast (wierzchołków) mamy 60822550204416000 możliwości (6,08&#215;10<sup>16</sup>).  
 GOOD-LUCK-WITH-THAT. 
 
 ## NN

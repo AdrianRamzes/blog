@@ -9,13 +9,13 @@ permalink: /2017/03/571-revision-v1/
 ---
 Mała aktualizacja do mojego wcześniejszego [wpisu o porządku w skrzynce odbiorczej](http://www.karalus.eu/2015/09/porzadek-w-skrzynce-odbiorczej-lifehack/).  
 Absolutnie każdy klient poczty, lokalny czy webowy, ma możliwość oznaczenia wiadomości gwiazdką czy czymkolwiek innym.  
-Ewolucja poprzedniego pomysłu polega na tym, aby olać foldery &#8222;Zadania&#8221; i &#8222;Bieżące&#8221;. Zamiast tego można używać wcześniej wspomnianych gwiazdek. W przypadku Gmail, oraz wielu innych dostawców, mamy już pre-utworzony folder Archiwum lub jego odpowiednik (w Gmail jest to folder &#8222;Wszystkie&#8221;). Dlatego możemy pozbyć się nawet trzeciego folderu &#8211; &#8222;Archiwum&#8221;.  
+Ewolucja poprzedniego pomysłu polega na tym, aby olać foldery "Zadania" i "Bieżące". Zamiast tego można używać wcześniej wspomnianych gwiazdek. W przypadku Gmail, oraz wielu innych dostawców, mamy już pre-utworzony folder Archiwum lub jego odpowiednik (w Gmail jest to folder "Wszystkie"). Dlatego możemy pozbyć się nawet trzeciego folderu &#8211; "Archiwum".  
 Obecnie robię tak:
 
 1) wiadomości, które wymagają od nas podjęcia jakichś działań &#8211; oznaczam wykrzyknikiem([<img class="size-full wp-image-576 alignnone" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-52-53.png?resize=24%2C22" alt="" width="24" height="22"  data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-52-53.png))  
 np. przypomnienia o zapłacie; wiadomości wymagające odpisania lub sprawdzenia czegoś.
 
-2) wiadomości, które nie wymagają od nas żadnych działań, ale nie są jeszcze skończone lub zawierają informację, która przyda się w najbliższej przyszłości &#8211; oznaczam &#8222;i&#8221; ([<img class="alignnone size-full wp-image-577" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png?resize=22%2C23" alt="" width="22" height="23"  data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png))  
+2) wiadomości, które nie wymagają od nas żadnych działań, ale nie są jeszcze skończone lub zawierają informację, która przyda się w najbliższej przyszłości &#8211; oznaczam "i" ([<img class="alignnone size-full wp-image-577" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png?resize=22%2C23" alt="" width="22" height="23"  data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png))  
 np. potwierdzenia rezerwacji; interesujący newsletter, którego jeszcze nie przeczytałem,&nbsp;
 
 3) wszystkie pozostałe wiadomości, czyli niewymagające działań, ani niezawierające żadnych informacji, potrzebnych w najbliższej przyszłości &#8211; odznaczam i wywalam do archiwum.

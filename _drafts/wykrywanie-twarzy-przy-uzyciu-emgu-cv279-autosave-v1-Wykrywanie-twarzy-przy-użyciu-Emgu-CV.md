@@ -10,7 +10,7 @@ permalink: /2015/05/279-autosave-v1/
 W oparciu o aplikację, którą przedstawiałem w poprzednim <a href="http://www.karalus.eu/2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/" target="_blank">wpisie</a>, zademonstruję jak napisać aplikację wykrywającą twarz przy pomocy biblioteki Emgu CV.  
 Cały kod bezpośrednio związany z wykrywaniem twarzy można znaleźć w przykładach dostarczonych wraz z biblioteką.
 
-Do projektu poprzedniej aplikacji dodaję jedynie nowy serwis &#8222;FaceDetectionService&#8221;, który dziedziczy po klasie WebCamService.
+Do projektu poprzedniej aplikacji dodaję jedynie nowy serwis "FaceDetectionService", który dziedziczy po klasie WebCamService.
 
 Mój pomysł polega na tym, aby rozszerzyć klasę WebCamService o dodatkowy event,
 
@@ -18,7 +18,7 @@ Mój pomysł polega na tym, aby rozszerzyć klasę WebCamService o dodatkowy ev
         public delegate void ImageWithDetectionChangedEventHandler(object sender, Image&lt;Bgr, Byte&gt; image);
 </pre>
 
-który ma być &#8222;rozszerzeniem na istniejący już istniejący &#8222;ImageChanged&#8221;.  
+który ma być "rozszerzeniem na istniejący już istniejący "ImageChanged".  
 Różnica polega na tym, że przed podniesieniem zdarzenia, zdjęcie przekazywane w parametrze jest dodatkowo obrabiane &#8211; rysowane są na nim prostokąty w miejscu wykrycia twarzy.
 
 <pre class="brush: csharp; title: ; notranslate" title="">private void InitializeServices()

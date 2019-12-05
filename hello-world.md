@@ -6,4 +6,4 @@ author: admin
 layout: page
 guid: http://www.karalus.eu/?page_id=170
 ---
-&#8222;Obracam się jedynie w złym Towarzystwie nie trawie dobrych uczynków i grzecznych dziewczynek, brzydkie twarze poprawiają mi humor. Uwielbiam staczać się na dno i zawsze jako pierwszy daje zły przykład.&#8221;
+"Obracam się jedynie w złym Towarzystwie nie trawie dobrych uczynków i grzecznych dziewczynek, brzydkie twarze poprawiają mi humor. Uwielbiam staczać się na dno i zawsze jako pierwszy daje zły przykład."

@@ -9,8 +9,8 @@ permalink: /2014/08/c-wpf-mvvm-nowy-projekt-project-template/
 image: /wp-content/uploads/2014/08/2014-08-23-19_21_47-MvvmTemplate-Microsoft-Visual-Studio.png
 categories:
   - Programowanie
----
-Większość wzorców projektowych, wymaga od programisty większego nakładu pracy, niż bezsensowne klepanie kodu &#8222;na szybko&#8221;. W zamian za czytelny kod i strukturę, musimy się czasami nieźle nagłówkować. Jednak czas poświęcony nad utrzymaniem projektu w zgodzie ze wzorcem, zwraca się z nawiązką.  
+--- 
+Większość wzorców projektowych, wymaga od programisty większego nakładu pracy, niż bezsensowne klepanie kodu "na szybko". W zamian za czytelny kod i strukturę, musimy się czasami nieźle nagłówkować. Jednak czas poświęcony nad utrzymaniem projektu w zgodzie ze wzorcem, zwraca się z nawiązką.  
 MVVM nie jest tutaj wyjątkiem. Postaram się opisać go dokładniej (wraz z przykładami), przy okazji moich następnych wpisów. Dziś chcę opisać, jak  mvvm wygląda w moim wykonaniu oraz od czego zaczynam gdy tworzę nowy projekt.
 
 A więc, od początku:
@@ -26,7 +26,7 @@ Jego struktura jest dość uboga:
 Models, Views, ViewModels oraz Services, Converters i Helpers.  
 (W następnych wpisach dokładnie opiszę, co będziemy w nich trzymać)
 
-3. Tworzymy dwie nowe klasy DelegateCommand i NotificationObject. W tym celu dodajemy do folderu &#8222;Helpers&#8221;, dwa pliki .cs o zawartości:
+3. Tworzymy dwie nowe klasy DelegateCommand i NotificationObject. W tym celu dodajemy do folderu "Helpers", dwa pliki .cs o zawartości:
 
 NotificationObject.cs
 
@@ -101,7 +101,7 @@ namespace MvvmTemplate.Helpers
 }
 </pre>
 
-4. Warto jeszcze dodać do folderu &#8222;ViewModels&#8221; klasę BaseViewModel, po której będą dziedziczyć nasze przyszłe ViewModels
+4. Warto jeszcze dodać do folderu "ViewModels" klasę BaseViewModel, po której będą dziedziczyć nasze przyszłe ViewModels
 
 BaseViewModel.cs:
 
@@ -115,7 +115,7 @@ namespace ClipboardAssistant.ViewModels
 }
 </pre>
 
-5. Pliki MainWindow.xaml i MainWindow.xaml.cs przenosimy do folderu &#8222;Views&#8221;.
+5. Pliki MainWindow.xaml i MainWindow.xaml.cs przenosimy do folderu "Views".
 
 6. Jeszcze tylko podmieniamy ścieżkę do widoku, uruchamianego podczas startu aplikacji.  
 z
