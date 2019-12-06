@@ -60,4 +60,4 @@ Co zyskujemy?
 - Większa intuicyjność kodu w przypadku pracy z interfejsem użytkownika,  
 - w prosty sposób możemy zapewnić responsywność aplikacji.
 
-Cały kod, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/AsyncAwaitExample" target="_blank">GITHUB</a>! 🙂
+Cały kod, jak zawsze, dostępny na <a href="https://github.com/AdrianRamzes/AsyncAwaitExample" target="_blank">GITHUB</a>! 🙂

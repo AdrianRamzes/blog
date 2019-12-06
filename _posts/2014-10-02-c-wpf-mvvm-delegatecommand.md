@@ -181,4 +181,4 @@ Jest ona wykonywana przy **każdej** drobnej interakcji widoku z użytkownikiem
 
  
 
-**Całość, jak zawsze, dostępna na <a href="https://github.com/RamzesBlog/DelegateCommandExample" target="_blank">GitHub </a>😉**
+**Całość, jak zawsze, dostępna na <a href="https://github.com/AdrianRamzes/DelegateCommandExample" target="_blank">GitHub </a>😉**

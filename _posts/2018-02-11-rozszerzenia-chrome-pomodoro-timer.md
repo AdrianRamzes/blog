@@ -58,7 +58,7 @@ Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkow
 
 <img src="/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=553%2C288" alt="" width="553" height="288" class="alignnone size-full wp-image-752" srcset="/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?w=553 553w, /wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=300%2C156 300w" sizes="(max-width: 553px) 100vw, 553px" data-recalc-dims="1" /> 
 
-Popup czyli główne okienko rozszerzenia pokazujące się po kliknięciu ikony. <a target="_blank" href="https://github.com/RamzesBlog/pomodoro-timer/blob/master/pomodoro-timer.html">(pomodoro-timer.html)</a>  
+Popup czyli główne okienko rozszerzenia pokazujące się po kliknięciu ikony. <a target="_blank" href="https://github.com/AdrianRamzes/pomodoro-timer/blob/master/pomodoro-timer.html">(pomodoro-timer.html)</a>  
 Tutaj dołączamy pliki javascript.`<script src="js/pomodoro-timer.js"></script>` 
 
 Skrypt okna `pomodoro-timer.js`, zawiera obsługę kliknięć - sterowanie timerem oraz wyświetla aktualną wartość zegara. 
@@ -73,4 +73,4 @@ Timer będzie działać w tle, dlatego potrzebne jest utworzenie strony oraz skr
 Rozszerzenia nie trzeba umieszczać w sklepie, aby dodać je do przeglądarki. W celu przetestowania rozszerzenia należy przejść na stronę rozszerzeń (wpisując w pasek adresu "chrome://extensions/") oraz zaznaczyć opcję "Tryb programisty". Wtedy pojawi się przycisk umożliwiający wczytanie rozszerzenia w postaci spakowanego pliku .zip. 
 
 Zapraszam do pobrania mojego <a target="_blank" href="https://chrome.google.com/webstore/detail/timer/pakimokpohbojafpbgknlohgoepnelki?utm_source=chrome-ntp-icon">rozszerzenia</a>.  
-Kod, który posłużył mi do jego napisania jest w całości dostępny na <a target="_blank" href="https://github.com/RamzesBlog/pomodoro-timer">GitHub</a>.
+Kod, który posłużył mi do jego napisania jest w całości dostępny na <a target="_blank" href="https://github.com/AdrianRamzes/pomodoro-timer">GitHub</a>.

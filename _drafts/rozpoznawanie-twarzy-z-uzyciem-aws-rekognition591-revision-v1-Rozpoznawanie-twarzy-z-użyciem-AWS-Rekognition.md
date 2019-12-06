@@ -64,4 +64,4 @@ public class RekognitionService
         
         [<img class="size-full wp-image-600 aligncenter" src="/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=1036%2C593" alt="" width="1036" height="593" srcset="/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?w=1036 1036w, /wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=300%2C172 300w, /wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=768%2C440 768w, /wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=1024%2C586 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />  
 ](/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png)  
-        Cały kod dostępny na <a href="https://github.com/RamzesBlog/AWSRekognitionDemo" target="_blank" rel="noopener noreferrer">GitHub</a>.</li> </ol>
+        Cały kod dostępny na <a href="https://github.com/AdrianRamzes/AWSRekognitionDemo" target="_blank" rel="noopener noreferrer">GitHub</a>.</li> </ol>

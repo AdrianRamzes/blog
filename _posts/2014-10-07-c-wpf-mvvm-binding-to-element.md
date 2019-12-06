@@ -82,4 +82,4 @@ I to chyba wszystko. Jak widać nie trzeba zawsze stosować wzorca MVVM i <a hre
 
  
 
-**Całość jak zawsze dostępna na <a href="https://github.com/RamzesBlog/ElementBinding" target="_blank">GitHub!</a> 😉**
+**Całość jak zawsze dostępna na <a href="https://github.com/AdrianRamzes/ElementBinding" target="_blank">GitHub!</a> 😉**

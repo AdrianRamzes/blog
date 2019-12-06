@@ -301,7 +301,7 @@ public class BitmapToImageSourceConverter : IValueConverter
     }
 ```
 
-To chyba wszystko. Cały działający kod, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/EmguWebCamExample" target="_blank">GitHub</a>! 😉
+To chyba wszystko. Cały działający kod, jak zawsze, dostępny na <a href="https://github.com/AdrianRamzes/EmguWebCamExample" target="_blank">GitHub</a>! 😉
 
  
 

@@ -16,7 +16,7 @@ tags:
   - programowanie
 ---
 **Problem:**  
-Mamy <a href="http://www.karalus.eu/wp-content/uploads/2016/02/facts.7z" target="_blank">dane z serwisu muzycznego</a> - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
+Mamy <a href="/wp-content/uploads/2016/02/facts.7z" target="_blank">dane z serwisu muzycznego</a> - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
 Chcemy się dowiedzieć, którzy użytkownicy mają podobny gust muzyczny. Dla każdego użytkownika chcemy dostać listę jego najbliższych sąsiadów.  
 Do miary podobieństwa użyjemy <a href="https://en.wikipedia.org/wiki/Jaccard_index" target="_blank">współczynnika Jaccarda</a>.  
 Wpisów jest ponad 27 mln. (plik tekstowy ma ponad 500 MB), użyte algorytmy i struktury danych mają więc ogromny wpływ na czas obliczeń.

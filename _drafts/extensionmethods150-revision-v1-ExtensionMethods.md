@@ -86,4 +86,4 @@ i przykład ze stringiem:
 
  
 
-Jak zawsze kod do tego wpisu został opublikowany na <a href="https://github.com/RamzesBlog/ExtensionMethods" target="_blank">GitHub </a>😉
+Jak zawsze kod do tego wpisu został opublikowany na <a href="https://github.com/AdrianRamzes/ExtensionMethods" target="_blank">GitHub </a>😉

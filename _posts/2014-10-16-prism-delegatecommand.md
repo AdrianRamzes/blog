@@ -140,7 +140,7 @@ Powoduje to większą kontrole nad kodem oraz zwiększa wydajność (jeśli CanE
 
  
 
-**Cały kod jest jak zawsze dostępny na <a href="https://github.com/RamzesBlog/PrismDelegateCommand" target="_blank">GitHub</a>. 😉**
+**Cały kod jest jak zawsze dostępny na <a href="https://github.com/AdrianRamzes/PrismDelegateCommand" target="_blank">GitHub</a>. 😉**
 
  
 

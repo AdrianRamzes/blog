@@ -34,7 +34,7 @@ To podejście jest bardzo szybkie, jednak zazwyczaj nie daje ono optymalnego wyn
 
 ## Implementacja oraz testy
 
-Dane wejściowe programu znajdują się w pliku <a href="http://www.karalus.eu/wp-content/uploads/2018/03/kroA100.txt" rel="noopener" target="_blank">kroA100</a>, który zawiera 100 losowych punktów w postaci `{id} {x} {y}`. Program na starcie wczytuje dane do dwóch kolekcji:
+Dane wejściowe programu znajdują się w pliku <a href="/wp-content/uploads/2018/03/kroA100.txt" rel="noopener" target="_blank">kroA100</a>, który zawiera 100 losowych punktów w postaci `{id} {x} {y}`. Program na starcie wczytuje dane do dwóch kolekcji:
 
 ```csharp
 static Dictionary<int, Vertex> vertices;

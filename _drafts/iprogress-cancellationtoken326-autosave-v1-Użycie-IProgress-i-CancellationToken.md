@@ -96,4 +96,4 @@ oraz żądanie przerwania:
 cts.Cancel();
 ```
 
-Cały działający kod z przykładem (pomimo tego, że ma on tylko 55 linii) jak zawsze dostępny na <a href="https://github.com/RamzesBlog/IPorgressConsoleDemo" target="_blank"><strong>GitHub</strong> </a>😉
+Cały działający kod z przykładem (pomimo tego, że ma on tylko 55 linii) jak zawsze dostępny na <a href="https://github.com/AdrianRamzes/IPorgressConsoleDemo" target="_blank"><strong>GitHub</strong> </a>😉

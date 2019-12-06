@@ -129,7 +129,7 @@ private Task<List<Rectangle>> DetectFacesAsync(Image<Bgr, byte> image)
 
  
 
-Cały kod jak zawsze dostępny na <a href="https://github.com/RamzesBlog/FaceDetection" target="_blank">GITHUB </a>😉
+Cały kod jak zawsze dostępny na <a href="https://github.com/AdrianRamzes/FaceDetection" target="_blank">GITHUB </a>😉
 
 Efekt na zdjęciu:
 

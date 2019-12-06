@@ -19,7 +19,7 @@ W czasach gdy wszystko jest mobilne i na baterii, warto dowiedzieć się jak to 
 
 Wracając do mojej aplikacji:
 
-<a href="http://www.karalus.eu/wp-content/uploads/2014/12/FullBatteryAlarm.zip" target="_blank">DOWNLOAD</a>
+<a href="/wp-content/uploads/2014/12/FullBatteryAlarm.zip" target="_blank">DOWNLOAD</a>
 
 Po uruchomieniu, chowa się on w systemowym tray.
 
@@ -27,6 +27,6 @@ Skompilowany jest pod wersję .NET framework 4.5, więc jeśli macie problem z u
 
 Niektóre przeglądarki ostrzegają (i dobrze), że plik może być niebezpieczny. W tym przypadku nie należy się tym przejmować - jest to związane z małą ilością pobrań przez użytkowników 😉
 
-Kod całego programu, jak zawsze, dostępny na <a href="https://github.com/RamzesBlog/FullBatteryAlarm" target="_blank">GitHub </a>;).
+Kod całego programu, jak zawsze, dostępny na <a href="https://github.com/AdrianRamzes/FullBatteryAlarm" target="_blank">GitHub </a>;).
 
 Niech każdy czuje się swobodnie do zmieniania kodu aplikacji. Prosiłbym jedynie o kontakt, jeśli macie jakieś ciekawe wskazówki co do działania programu lub jeśli macie pomysły na usprawnienie.
