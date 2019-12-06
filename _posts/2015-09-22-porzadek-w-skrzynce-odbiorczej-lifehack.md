@@ -26,7 +26,7 @@ Jakiś rok temu, postanowiłem zrobić porządek w mojej skrzynce pocztowej. Prz
 <!--more-->
 
 Pomysł jest prosty. Wystarczy utworzyć dodatkowe trzy foldery: Archiwum, Bieżące, Zadania.  
-[<img class="alignnone wp-image-373" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/09/email_folders.png?resize=227%2C115" alt="email_folders" width="227" height="115"  data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/09/email_folders.png)
+[<img class="alignnone wp-image-373" src="/wp-content/uploads/2015/09/email_folders.png?resize=227%2C115" alt="email_folders" width="227" height="115"  data-recalc-dims="1" />](/wp-content/uploads/2015/09/email_folders.png)
 
 Następnie należy trzymać się tych zasad:
 
@@ -40,7 +40,7 @@ Większość dobrych klientów poczty ma już wstępnie utworzoną strukturę fo
 [<img class="alignnone wp-image-374" src="/wp-content/uploads/2015/09/emial_stars.png?resize=127%2C169" alt="emial_stars" width="127" height="169"  data-recalc-dims="1" />  
 ](/wp-content/uploads/2015/09/emial_stars.png) Ustawienia -> Ogólne -> Gwiazdki:
 
-[<img class="alignnone size-full wp-image-377" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/09/gmail-gwiazdki.png?resize=404%2C55" alt="gmail-gwiazdki" width="404" height="55" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/09/gmail-gwiazdki.png?w=404 404w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/09/gmail-gwiazdki.png?resize=300%2C41 300w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/09/gmail-gwiazdki.png?resize=400%2C55 400w" sizes="(max-width: 404px) 100vw, 404px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/09/gmail-gwiazdki.png)
+[<img class="alignnone size-full wp-image-377" src="/wp-content/uploads/2015/09/gmail-gwiazdki.png?resize=404%2C55" alt="gmail-gwiazdki" width="404" height="55" srcset="/wp-content/uploads/2015/09/gmail-gwiazdki.png?w=404 404w, /wp-content/uploads/2015/09/gmail-gwiazdki.png?resize=300%2C41 300w, /wp-content/uploads/2015/09/gmail-gwiazdki.png?resize=400%2C55 400w" sizes="(max-width: 404px) 100vw, 404px" data-recalc-dims="1" />](/wp-content/uploads/2015/09/gmail-gwiazdki.png)
 
    
 Odkąd stosuję się do powyższych zasad, moja skrzynka pocztowa jest przez większość czasu pusta. Każdy nowy email OD RAZU trafia do jednej z kategorii.

@@ -18,7 +18,7 @@ Tworzę sobie tablicę na każdy miesiąc. Tablice są agregowane w tzw. "organi
 
  
 
-[<img class="alignnone size-full wp-image-133" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled.png?resize=1401%2C186" alt="trello - months" width="1401" height="186" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled.png?w=1401 1401w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled.png?resize=300%2C40 300w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled.png?resize=1024%2C136 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/02/Untitled.png)
+[<img class="alignnone size-full wp-image-133" src="/wp-content/uploads/2015/02/Untitled.png?resize=1401%2C186" alt="trello - months" width="1401" height="186" srcset="/wp-content/uploads/2015/02/Untitled.png?w=1401 1401w, /wp-content/uploads/2015/02/Untitled.png?resize=300%2C40 300w, /wp-content/uploads/2015/02/Untitled.png?resize=1024%2C136 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](/wp-content/uploads/2015/02/Untitled.png)
 
 Co w tablicach? Trzymam tam zadania, które chce w danym miesiącu zrobić, takie jak: kupić nowe biurko, zrobić porządek w garażu itp. Wewnątrz mam następujące listy zadań:
 

@@ -73,7 +73,7 @@ Oto cała zawartość głównego kontenera:
 
 Efekt powinien być taki:
 
-[<img class="alignnone wp-image-80 size-full" src="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/ElementBinding.png?resize=1053%2C706" alt="" width="1053" height="706" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/ElementBinding.png?w=1053 1053w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/ElementBinding.png?resize=300%2C201 300w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/ElementBinding.png?resize=1024%2C686 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/ElementBinding.png)
+[<img class="alignnone wp-image-80 size-full" src="/wp-content/uploads/2014/10/ElementBinding.png?resize=1053%2C706" alt="" width="1053" height="706" srcset="/wp-content/uploads/2014/10/ElementBinding.png?w=1053 1053w, /wp-content/uploads/2014/10/ElementBinding.png?resize=300%2C201 300w, /wp-content/uploads/2014/10/ElementBinding.png?resize=1024%2C686 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](/wp-content/uploads/2014/10/ElementBinding.png)
 
 I to chyba wszystko. Jak widać nie trzeba zawsze stosować wzorca MVVM i <a href="http://www.karalus.eu/Blog/2014/10/c-wpf-mvvm-delegatecommand/" target="_blank">CanExecute</a>. Czasami jest to strzelanie z armaty do muchy. Dlatego powstały powiązania, aby załatwić sprawę prostych zależności.
 

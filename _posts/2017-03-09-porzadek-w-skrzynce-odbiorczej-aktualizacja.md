@@ -18,7 +18,7 @@ Obecnie robię tak:
 1) wiadomości, które wymagają od nas podjęcia jakichś działań - oznaczam wykrzyknikiem([<img class="size-full wp-image-576 alignnone" src="/wp-content/uploads/2017/03/chrome_2017-03-08_23-52-53.png?resize=24%2C22" alt="" width="24" height="22"  data-recalc-dims="1" />](/wp-content/uploads/2017/03/chrome_2017-03-08_23-52-53.png))  
 np. przypomnienia o zapłacie; wiadomości wymagające odpisania lub sprawdzenia czegoś.
 
-2) wiadomości, które nie wymagają od nas żadnych działań, ale nie są jeszcze skończone lub zawierają informację, która przyda się w najbliższej przyszłości - oznaczam "i" ([<img class="alignnone size-full wp-image-577" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png?resize=22%2C23" alt="" width="22" height="23"  data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png))  
+2) wiadomości, które nie wymagają od nas żadnych działań, ale nie są jeszcze skończone lub zawierają informację, która przyda się w najbliższej przyszłości - oznaczam "i" ([<img class="alignnone size-full wp-image-577" src="/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png?resize=22%2C23" alt="" width="22" height="23"  data-recalc-dims="1" />](/wp-content/uploads/2017/03/chrome_2017-03-08_23-53-11.png))  
 np. potwierdzenia rezerwacji; interesujący newsletter, którego jeszcze nie przeczytałem, 
 
 3) wszystkie pozostałe wiadomości, czyli niewymagające działań, ani niezawierające żadnych informacji, potrzebnych w najbliższej przyszłości - odznaczam i wywalam do archiwum.

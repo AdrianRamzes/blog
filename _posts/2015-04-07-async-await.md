@@ -53,7 +53,7 @@ Od tego momentu "czekamy" na zakończenie zadania.
 
 Schemat: (pionowe linie reprezentują wykonywany w czasie kod)
 
-[<img class="alignnone size-full wp-image-166" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?resize=3264%2C2448" alt="20150326_214952" width="3264" height="2448" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?w=3264 3264w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?resize=300%2C225 300w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?resize=1024%2C768 1024w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?w=2000 2000w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg?w=3000 3000w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/03/20150326_214952.jpg)
+[<img class="alignnone size-full wp-image-166" src="/wp-content/uploads/2015/03/20150326_214952.jpg?resize=3264%2C2448" alt="20150326_214952" width="3264" height="2448" srcset="/wp-content/uploads/2015/03/20150326_214952.jpg?w=3264 3264w, /wp-content/uploads/2015/03/20150326_214952.jpg?resize=300%2C225 300w, /wp-content/uploads/2015/03/20150326_214952.jpg?resize=1024%2C768 1024w, /wp-content/uploads/2015/03/20150326_214952.jpg?w=2000 2000w, /wp-content/uploads/2015/03/20150326_214952.jpg?w=3000 3000w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](/wp-content/uploads/2015/03/20150326_214952.jpg)
 
 Najlepiej pokazać to na prostym przykładzie aplikacji z paskiem postępu.
 

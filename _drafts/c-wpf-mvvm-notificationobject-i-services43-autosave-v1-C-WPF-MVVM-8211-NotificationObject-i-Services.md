@@ -298,6 +298,6 @@ Koniec :-).
 
 Po uruchomieniu powinniśmy zobaczyć zmieniający się co sekundę (lub inny ustawiony odcinek czasu) tekst.
 
-[<img class="alignnone wp-image-58 size-full" src="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?resize=525%2C350" alt="" width="525" height="350" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?w=525 525w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?resize=300%2C200 300w" sizes="(max-width: 525px) 100vw, 525px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png)
+[<img class="alignnone wp-image-58 size-full" src="/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?resize=525%2C350" alt="" width="525" height="350" srcset="/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?w=525 525w, /wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png?resize=300%2C200 300w" sizes="(max-width: 525px) 100vw, 525px" data-recalc-dims="1" />](/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png)
 
 **Cały projekt jest dostępny do pobrania na <a href="https://github.com/RamzesBlog/ServicesSample" target="_blank">GitHub</a>.**

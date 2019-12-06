@@ -163,7 +163,7 @@ _clickCommand = new DelegateCommand(Click, CanExecuteClick);
 
 To już chyba wszystko. Po uruchomieniu powinnyśmy zobaczyć coś takiego:
 
-[<img class="alignnone wp-image-67 size-full" src="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_1.png?resize=1056%2C350" alt="" width="1056" height="350" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_1.png?w=1056 1056w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_1.png?resize=300%2C99 300w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_1.png?resize=1024%2C339 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_1.png)
+[<img class="alignnone wp-image-67 size-full" src="/wp-content/uploads/2014/10/DelegateCommand_1.png?resize=1056%2C350" alt="" width="1056" height="350" srcset="/wp-content/uploads/2014/10/DelegateCommand_1.png?w=1056 1056w, /wp-content/uploads/2014/10/DelegateCommand_1.png?resize=300%2C99 300w, /wp-content/uploads/2014/10/DelegateCommand_1.png?resize=1024%2C339 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](/wp-content/uploads/2014/10/DelegateCommand_1.png)
 
 (Przycisk aktywny po prawej i nieaktywny po lewej)
 
@@ -173,7 +173,7 @@ Jednak o powiązaniach między kontrolkami opowiem <a href="http://www.karalus
 Warto jeszcze wspomnieć o tym, kiedy tak naprawdę wywoływane jest CanExecute.  
 Nie bez powodu w metodzie "CanExecuteClick()" dodałem linijkę logującą.
 
-[<img class="aligncenter wp-image-72 size-full" src="https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=556%2C287" alt="" width="556" height="287" srcset="https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_2.png?w=556 556w, https://i0.wp.com/www.karalus.eu/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=300%2C154 300w" sizes="(max-width: 556px) 100vw, 556px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png)
+[<img class="aligncenter wp-image-72 size-full" src="https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=556%2C287" alt="" width="556" height="287" srcset="/wp-content/uploads/2014/10/DelegateCommand_2.png?w=556 556w, /wp-content/uploads/2014/10/DelegateCommand_2.png?resize=300%2C154 300w" sizes="(max-width: 556px) 100vw, 556px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png)
 
  
 

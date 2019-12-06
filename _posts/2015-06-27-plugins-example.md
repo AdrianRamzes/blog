@@ -295,7 +295,7 @@ public class LineTool : IPlugin
 
 Budujemy naszą wtyczkę i dodajemy wygenerowany plik "**LineToolPlugin.dll**" do folderu **Plugins**
 
-[<img class="alignnone size-full wp-image-313" src="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png?resize=308%2C351" alt="LineToolsPluin-dll-content" width="308" height="351" srcset="https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png?w=308 308w, https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png?resize=263%2C300 263w" sizes="(max-width: 308px) 100vw, 308px" data-recalc-dims="1" />](https://i1.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample1.png)
+[<img class="alignnone size-full wp-image-313" src="/wp-content/uploads/2015/06/PluginsExample1.png?resize=308%2C351" alt="LineToolsPluin-dll-content" width="308" height="351" srcset="/wp-content/uploads/2015/06/PluginsExample1.png?w=308 308w, /wp-content/uploads/2015/06/PluginsExample1.png?resize=263%2C300 263w" sizes="(max-width: 308px) 100vw, 308px" data-recalc-dims="1" />](/wp-content/uploads/2015/06/PluginsExample1.png)
 
 Ważne jest aby wybrać opcję "**Copy always**"
 
