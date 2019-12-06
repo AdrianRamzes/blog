@@ -7,7 +7,7 @@ layout: revision
 guid: http://www.karalus.eu/2017/03/571-revision-v1/
 permalink: /2017/03/571-revision-v1/
 ---
-Mała aktualizacja do mojego wcześniejszego [wpisu o porządku w skrzynce odbiorczej](http://www.karalus.eu/2015/09/porzadek-w-skrzynce-odbiorczej-lifehack/).  
+Mała aktualizacja do mojego wcześniejszego [wpisu o porządku w skrzynce odbiorczej](/2015/09/porzadek-w-skrzynce-odbiorczej-lifehack/).  
 Absolutnie każdy klient poczty, lokalny czy webowy, ma możliwość oznaczenia wiadomości gwiazdką czy czymkolwiek innym.  
 Ewolucja poprzedniego pomysłu polega na tym, aby olać foldery "Zadania" i "Bieżące". Zamiast tego można używać wcześniej wspomnianych gwiazdek. W przypadku Gmail, oraz wielu innych dostawców, mamy już pre-utworzony folder Archiwum lub jego odpowiednik (w Gmail jest to folder "Wszystkie"). Dlatego możemy pozbyć się nawet trzeciego folderu - "Archiwum".  
 Obecnie robię tak:

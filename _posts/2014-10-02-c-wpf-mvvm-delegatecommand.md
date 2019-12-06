@@ -23,9 +23,9 @@ Jest on bardzo prosty i składa się jedynie z trzech elementów:
 
 DelegateCommand to klasa implementująca interfejs ICommand, która ułatwia nam pracę z komendami i poprawia wygląd kodu.
 
-Implementacja klasy DelegateCommand, którą używam najczęściej w swoich projektach, zapożyczyłem z <a href="http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c" target="_blank">tego szablonu</a> i znajdziecie ją w moim wcześniejszym <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisie</a>. (Jest jeszcze RelayCommand z <a href="https://mvvmlight.codeplex.com/" target="_blank">MVVM Light</a> i DelegateCommand z <a href="http://www.nuget.org/packages/Prism.Mvvm" target="_blank">Prism.MVVM</a> )
+Implementacja klasy DelegateCommand, którą używam najczęściej w swoich projektach, zapożyczyłem z <a href="http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c" target="_blank">tego szablonu</a> i znajdziecie ją w moim wcześniejszym <a href="/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisie</a>. (Jest jeszcze RelayCommand z <a href="https://mvvmlight.codeplex.com/" target="_blank">MVVM Light</a> i DelegateCommand z <a href="http://www.nuget.org/packages/Prism.Mvvm" target="_blank">Prism.MVVM</a> )
 
-Przejdźmy do konkretów. (Szablon projektu MVVM, na którym bazuje, opisałem <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wcześniej</a>)  
+Przejdźmy do konkretów. (Szablon projektu MVVM, na którym bazuje, opisałem <a href="/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wcześniej</a>)  
 Niech nasz program ma jeden przycisk, jeden checkBox i pole, w którym wyświetlać będziemy komunikaty.  
 Przycisk będzie powodował wyświetlenie jakiejś wiadomości w TextBlock'u, a dostępność przycisku będzie zależna od tego czy CheckBox jest zaznaczony czy nie.
 
@@ -168,12 +168,12 @@ To już chyba wszystko. Po uruchomieniu powinnyśmy zobaczyć coś takiego:
 (Przycisk aktywny po prawej i nieaktywny po lewej)
 
 Oczywiście to czy przycisk jest aktywny czy nie, można powiązać z CheckBox'em tylko na poziomie widoku i używając do tego jedynie XAML'a.  
-Jednak o powiązaniach między kontrolkami opowiem <a href="http://www.karalus.eu/Blog/2014/10/c-wpf-mvvm-binding-to-element/" target="_blank">innym razem</a>.
+Jednak o powiązaniach między kontrolkami opowiem <a href="/2014/10/c-wpf-mvvm-binding-to-element/" target="_blank">innym razem</a>.
 
 Warto jeszcze wspomnieć o tym, kiedy tak naprawdę wywoływane jest CanExecute.  
 Nie bez powodu w metodzie "CanExecuteClick()" dodałem linijkę logującą.
 
-[<img class="aligncenter wp-image-72 size-full" src="https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=556%2C287" alt="" width="556" height="287" srcset="/wp-content/uploads/2014/10/DelegateCommand_2.png?w=556 556w, /wp-content/uploads/2014/10/DelegateCommand_2.png?resize=300%2C154 300w" sizes="(max-width: 556px) 100vw, 556px" data-recalc-dims="1" />](https://i0.wp.com/www.karalus.eu/Blog/wp-content/uploads/2014/10/DelegateCommand_2.png)
+[<img class="aligncenter wp-image-72 size-full" src="/wp-content/uploads/2014/10/DelegateCommand_2.png?resize=556%2C287" alt="" width="556" height="287" srcset="/wp-content/uploads/2014/10/DelegateCommand_2.png?w=556 556w, /wp-content/uploads/2014/10/DelegateCommand_2.png?resize=300%2C154 300w" sizes="(max-width: 556px) 100vw, 556px" data-recalc-dims="1" />](/wp-content/uploads/2014/10/DelegateCommand_2.png)
 
  
 

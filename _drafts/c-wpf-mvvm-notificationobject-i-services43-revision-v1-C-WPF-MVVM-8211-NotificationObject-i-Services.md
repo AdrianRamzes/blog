@@ -12,7 +12,7 @@ Service to nic innego jak klasa, która ma wykonywać pewne operacje na rzecz ap
 Z racji tego, że jestem zwolennikiem nauki przez praktykę, zaprezentuje bardzo proste i intuicyjne zastosowanie serwisów.  
 <!--more-->
 
-Po pierwsze, tworzymy nowy projekt o strukturze takiej jaką opisywałem w moim wcześniejszym <a href="http://www.karalus.eu/Blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisie</a>.
+Po pierwsze, tworzymy nowy projekt o strukturze takiej jaką opisywałem w moim wcześniejszym <a href="/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisie</a>.
 
 Gdy mamy już odtworzoną strukturę projektu oraz dodaną klasę pomocniczą NotificationObject, możemy przystąpić do tworzenia "servisu".
 

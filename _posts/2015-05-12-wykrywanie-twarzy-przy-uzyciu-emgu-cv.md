@@ -10,7 +10,7 @@ image: /wp-content/uploads/2015/05/blog_facedetection.png
 categories:
   - Programowanie
 ---
-W oparciu o aplikację, którą przedstawiałem w poprzednim <a href="http://www.karalus.eu/2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/" target="_blank">wpisie</a>, zademonstruję jak napisać aplikację wykrywającą twarz przy pomocy biblioteki Emgu CV.  
+W oparciu o aplikację, którą przedstawiałem w poprzednim <a href="/2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/" target="_blank">wpisie</a>, zademonstruję jak napisać aplikację wykrywającą twarz przy pomocy biblioteki Emgu CV.  
 <!--more-->
 
   

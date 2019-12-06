@@ -116,7 +116,7 @@ Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictio
             }
 ```
 
-Całość możemy dodatkowo zrównoleglić przy pomocy <a href="http://www.karalus.eu/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
+Całość możemy dodatkowo zrównoleglić przy pomocy <a href="/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
 
 ```csharp
 Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictionary<int, double>>();
@@ -167,4 +167,4 @@ Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictio
 Należy pamiętać, że operację na słowniku należy zamknąć w sekcji krytycznej.  
 U mnie obliczenia zajmują jakieś 10 sek. (Intel i7-4702MQ) ale to jest tylko dla 100 pierwszych użytkowników. Użytkowników jest ponad milion, co sprawia, że jeśli chciałbym policzyć współczynnik Jaccarda dla wszystkich zajęłoby to ponad 27h.
 
-Warto zauważyć, że każdy użytkownik ma tylko niewielu bliskich sąsiadów (czyli użytkowników o podobnym guście muzycznym). W praktyce, zazwyczaj chodzi nam o krótką listę najbardziej podobnych użytkowników (powiedzmy 100 najbliższych sąsiadów), oznacza to, że większość czasu jest marnowana. Przydałby się mechanizm, który dokona wstępnego odsiania użytkowników niepodobnych. Z pomocą przychodzi tutaj technika zwana <a href="http://www.karalus.eu/2016/03/minhash/" target="_blank">MinHash</a> oraz algorytm <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank">LSH</a>. O tym opowiem w moim następnym wpisie.
+Warto zauważyć, że każdy użytkownik ma tylko niewielu bliskich sąsiadów (czyli użytkowników o podobnym guście muzycznym). W praktyce, zazwyczaj chodzi nam o krótką listę najbardziej podobnych użytkowników (powiedzmy 100 najbliższych sąsiadów), oznacza to, że większość czasu jest marnowana. Przydałby się mechanizm, który dokona wstępnego odsiania użytkowników niepodobnych. Z pomocą przychodzi tutaj technika zwana <a href="/2016/03/minhash/" target="_blank">MinHash</a> oraz algorytm <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank">LSH</a>. O tym opowiem w moim następnym wpisie.

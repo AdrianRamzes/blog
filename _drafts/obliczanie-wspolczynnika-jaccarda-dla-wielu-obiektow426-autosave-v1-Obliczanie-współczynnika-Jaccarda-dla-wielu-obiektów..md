@@ -108,7 +108,7 @@ Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictio
             }
 ```
 
-Całość możemy dodatkowo zrównoleglić przy pomocy <a href="http://www.karalus.eu/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
+Całość możemy dodatkowo zrównoleglić przy pomocy <a href="/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
 
 ```csharp
 Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictionary<int, double>>();

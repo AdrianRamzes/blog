@@ -11,7 +11,7 @@ Załóżmy, że musimy porównać ze sobą wiele dokumentów o dużym rozmiarze.
 Pomijając matematyczne teorie, należy zapamiętać, że: **prawdopodobieństwo konfliktu wygenerowanych hash'y jest równe współczynnikowi podobieństwa Jaccarda**. Jeśli chcemy oszacować podobieństwo dwóch dokumentów zazwyczaj używa się 100-200 różnych funkcji hashujących.
 
 Czas na implementację.  
-Będę kontynuować przykład z mojego <a href="http://www.karalus.eu/2016/02/obliczanie-wspolczynnika-jaccarda-dla-wielu-obiektow/" target="_blank">wcześniejszego wpisu</a>.
+Będę kontynuować przykład z mojego <a href="/2016/02/obliczanie-wspolczynnika-jaccarda-dla-wielu-obiektow/" target="_blank">wcześniejszego wpisu</a>.
 
 Funkcja generująca hash ma postać następującą:
 

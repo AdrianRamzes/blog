@@ -15,13 +15,13 @@ O serwisie Audioteka.pl słyszałem już dawno, jednak faktycznie zapoznałem si
 Oto pełna lista z 2017 roku (w kolejności w jakiej je przeczytałem).
 
 1. Elon Musk – Biografia twórcy PayPala, Tesli, SpaceX  
-Recenzja pojawiła się na <a href="http://www.karalus.eu/2017/01/elon-musk-biografia-tworcy-paypala-tesli-spacex/" target="_blank" rel="noopener">moim blogu 29.01.2017</a>.
+Recenzja pojawiła się na <a href="/2017/01/elon-musk-biografia-tworcy-paypala-tesli-spacex/" target="_blank" rel="noopener">moim blogu 29.01.2017</a>.
 
 2. Kosmiczny poradnik życia na Ziemi  
-Recenzja pojawiła się na <a href="http://www.karalus.eu/2017/07/kosmiczny-poradnik-zycia-na-ziemi/" target="_blank" rel="noopener">moim blogu 22.07.2017</a>.
+Recenzja pojawiła się na <a href="/2017/07/kosmiczny-poradnik-zycia-na-ziemi/" target="_blank" rel="noopener">moim blogu 22.07.2017</a>.
 
 3. Opowieści o pilocie Pirxie  
-Recenzja pojawiła się na <a href="http://www.karalus.eu/2017/08/opowiesci-o-pilocie-pirxie/" target="_blank" rel="noopener">moim blogu 23.08.2017</a>.
+Recenzja pojawiła się na <a href="/2017/08/opowiesci-o-pilocie-pirxie/" target="_blank" rel="noopener">moim blogu 23.08.2017</a>.
 
 4. Solaris  
 [<img class="alignleft wp-image-640 size-thumbnail" src="/wp-content/uploads/2017/09/solaris.png?resize=150%2C150" alt="" width="150" height="150" srcset="/wp-content/uploads/2017/09/solaris.png?resize=150%2C150 150w, /wp-content/uploads/2017/09/solaris.png?resize=298%2C300 298w, /wp-content/uploads/2017/09/solaris.png?resize=250%2C250 250w, /wp-content/uploads/2017/09/solaris.png?resize=174%2C174 174w, /wp-content/uploads/2017/09/solaris.png?w=320 320w" sizes="(max-width: 150px) 100vw, 150px" data-recalc-dims="1" />](/wp-content/uploads/2017/09/solaris.png)Świetna superprodukcja. Momentami troszkę nudna - głównie za sprawą wyczerpujących opisów "oceanu" znajdującego się na tytułowej planecie Solaris. Od początku do końca autor utrzymuje klimat tajemnicy. Główny bohater, przylatuje na stację badawczą i próbuje zrozumieć wydarzenia jakie miały tam miejsce.
