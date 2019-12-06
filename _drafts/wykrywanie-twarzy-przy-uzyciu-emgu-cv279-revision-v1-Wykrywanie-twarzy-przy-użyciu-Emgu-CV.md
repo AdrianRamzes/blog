@@ -133,7 +133,7 @@ Cały kod jak zawsze dostępny na <a href="https://github.com/RamzesBlog/FaceDet
 
 Efekt na zdjęciu:
 
-[<img class="alignnone size-full wp-image-282" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/05/blog_facedetection.png?resize=657%2C437" alt="blog_facedetection" width="657" height="437" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/05/blog_facedetection.png?w=657 657w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/05/blog_facedetection.png?resize=300%2C200 300w" sizes="(max-width: 657px) 100vw, 657px" data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/05/blog_facedetection.png)
+[<img class="alignnone size-full wp-image-282" src="/wp-content/uploads/2015/05/blog_facedetection.png?resize=657%2C437" alt="blog_facedetection" width="657" height="437" srcset="/wp-content/uploads/2015/05/blog_facedetection.png?w=657 657w, /wp-content/uploads/2015/05/blog_facedetection.png?resize=300%2C200 300w" sizes="(max-width: 657px) 100vw, 657px" data-recalc-dims="1" />](/wp-content/uploads/2015/05/blog_facedetection.png)
 
 oraz filmie:
 

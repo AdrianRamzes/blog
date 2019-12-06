@@ -6,61 +6,6 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=678
 permalink: /2018/02/rozszerzenia-chrome-pomodoro-timer/
-wp-syntax-cache-content:
-  - |
-    a:1:{i:1;s:3616:"
-    <div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="javascript" style="font-family:monospace;"><span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">"manifest_version"</span><span style="color: #339933;">:</span> <span style="color: #CC0000;">2</span><span style="color: #339933;">,</span>
-     
-    <span style="color: #3366CC;">"name"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"Timer"</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">"description"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"This is a simple pomodoro timer."</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">"version"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"0.1"</span><span style="color: #339933;">,</span>
-     
-    <span style="color: #3366CC;">"browser_action"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">"default_icon"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"pomodoro_x128.png"</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">"default_popup"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"pomodoro-timer.html"</span>
-    <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
-     
-    <span style="color: #3366CC;">"icons"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">"128"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"pomodoro_x128.png"</span>
-    <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
-     
-    <span style="color: #3366CC;">"permissions"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#91;</span>
-    <span style="color: #3366CC;">"background"</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">"storage"</span><span style="color: #339933;">,</span>
-    <span style="color: #3366CC;">"notifications"</span>
-    <span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span>
-     
-    <span style="color: #3366CC;">"background"</span><span style="color: #339933;">:</span> <span style="color: #009900;">&#123;</span>
-    <span style="color: #3366CC;">"page"</span><span style="color: #339933;">:</span> <span style="color: #3366CC;">"background.html"</span>
-    <span style="color: #009900;">&#125;</span>
-    <span style="color: #009900;">&#125;</span>```</td></tr></table><p class="theCode" style="display:none;">{
-    "manifest_version": 2,
-    
-    "name": "Timer",
-    "description": "This is a simple pomodoro timer.",
-    "version": "0.1",
-    
-    "browser_action": {
-    "default_icon": "pomodoro_x128.png",
-    "default_popup": "pomodoro-timer.html"
-    },
-    
-    "icons": {
-    "128": "pomodoro_x128.png"
-    },
-    
-    "permissions": [
-    "background",
-    "storage",
-    "notifications"
-    ],
-    
-    "background": {
-    "page": "background.html"
-    }
-    }</p></div>
-    ";}
 image: /wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png
 categories:
   - Programowanie
@@ -73,7 +18,8 @@ Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. 
 
 Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik _manifest.json_, w którym znajdują się podstawowe informacje o rozszerzeniu, takie jak: nazwa, opis, wersja oraz deklaracja uprawnień, jakie są potrzebne, aby rozszerzenie działało. 
 
-<pre lang="javascript">{
+```javascript
+{
   "manifest_version": 2,
 
   "name": "Timer",
@@ -106,7 +52,7 @@ Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkow
 
   * _backgroud_ - działanie w tle, 
   * _storage_ - dostęp do zapisywania i odczytywania danych, 
-  * _notifications_ - wysyłanie powiadomień. </p> 
+  * _notifications_ - wysyłanie powiadomień.
 
 ## Popup
 

@@ -288,7 +288,7 @@ Budujemy naszą wtyczkę i dodajemy wygenerowany plik "**LineToolPlugin.dll**" d
 
 Ważne jest aby wybrać opcję "**Copy always**"
 
-[<img class="alignnone size-full wp-image-314" src="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png?resize=447%2C219" alt="PluginsExample-copyAlways" width="447" height="219" srcset="https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png?w=447 447w, https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png?resize=300%2C147 300w" sizes="(max-width: 447px) 100vw, 447px" data-recalc-dims="1" />](https://i2.wp.com/www.karalus.eu/wp-content/uploads/2015/06/PluginsExample2.png)
+[<img class="alignnone size-full wp-image-314" src="/wp-content/uploads/2015/06/PluginsExample2.png?resize=447%2C219" alt="PluginsExample-copyAlways" width="447" height="219" srcset="/wp-content/uploads/2015/06/PluginsExample2.png?w=447 447w, /wp-content/uploads/2015/06/PluginsExample2.png?resize=300%2C147 300w" sizes="(max-width: 447px) 100vw, 447px" data-recalc-dims="1" />](/wp-content/uploads/2015/06/PluginsExample2.png)
 
  
 

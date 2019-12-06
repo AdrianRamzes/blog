@@ -15,7 +15,8 @@ Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. 
 
 Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik _manifest.json_, w którym znajdują się podstawowe informacje o rozszerzeniu, takie jak: nazwa, opis, wersja oraz deklaracja uprawnień, jakie są potrzebne, aby rozszerzenie działało. 
 
-<pre lang="javascript">{
+```javascript
+{
   "manifest_version": 2,
 
   "name": "Timer",

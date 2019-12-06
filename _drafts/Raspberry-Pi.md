@@ -14,5 +14,7 @@ Skonfigurowanie wszystkiego od zera, wraz z montażem cyfrowego termometru zaję
 
   1. Instalacja raspbiana:  
     Nic prostszego. Ściągamy obraz systemu Raspbian ze strony <a href="https://www.raspberrypi.org/downloads/raspbian/" target="_blank">raspberrypi.org</a>. Wrzucamy go na kartę microSD i ładujemy do naszego PI.  
-    Po odpaleniu systemu podłączamy się do sieci (Raspberry Pi 3 ma wbudowany moduł) i przeprowadzamy aktualizację.</p> <pre class="brush: bash; title: ; notranslate" title="">sudo apt-get update
+    Po odpaleniu systemu podłączamy się do sieci (Raspberry Pi 3 ma wbudowany moduł) i przeprowadzamy aktualizację.
+```bash
+    sudo apt-get update
 ```
