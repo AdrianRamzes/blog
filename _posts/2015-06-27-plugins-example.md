@@ -6,7 +6,7 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=306
 permalink: /2015/06/plugins-example/
-image: /wp-content/uploads/2015/06/PluginsExample3.png
+image: /blog/wp-content/uploads/2015/06/PluginsExample3.png
 categories:
   - Programowanie
 tags:
@@ -295,11 +295,11 @@ public class LineTool : IPlugin
 
 Budujemy naszą wtyczkę i dodajemy wygenerowany plik "**LineToolPlugin.dll**" do folderu **Plugins**
 
-[<img class="alignnone size-full wp-image-313" src="/wp-content/uploads/2015/06/PluginsExample1.png?resize=308%2C351" alt="LineToolsPluin-dll-content" width="308" height="351" srcset="/wp-content/uploads/2015/06/PluginsExample1.png?w=308 308w, /wp-content/uploads/2015/06/PluginsExample1.png?resize=263%2C300 263w" sizes="(max-width: 308px) 100vw, 308px" data-recalc-dims="1" />](/wp-content/uploads/2015/06/PluginsExample1.png)
+[<img class="alignnone size-full wp-image-313" src="/blog/wp-content/uploads/2015/06/PluginsExample1.png?resize=308%2C351" alt="LineToolsPluin-dll-content" width="308" height="351" srcset="/blog/wp-content/uploads/2015/06/PluginsExample1.png?w=308 308w, /blog/wp-content/uploads/2015/06/PluginsExample1.png?resize=263%2C300 263w" sizes="(max-width: 308px) 100vw, 308px" data-recalc-dims="1" />](/blog/wp-content/uploads/2015/06/PluginsExample1.png)
 
 Ważne jest aby wybrać opcję "**Copy always**"
 
-[<img class="alignnone size-full wp-image-314" src="/wp-content/uploads/2015/06/PluginsExample2.png?resize=447%2C219" alt="PluginsExample-copyAlways" width="447" height="219" srcset="/wp-content/uploads/2015/06/PluginsExample2.png?w=447 447w, /wp-content/uploads/2015/06/PluginsExample2.png?resize=300%2C147 300w" sizes="(max-width: 447px) 100vw, 447px" data-recalc-dims="1" />](/wp-content/uploads/2015/06/PluginsExample2.png)
+[<img class="alignnone size-full wp-image-314" src="/blog/wp-content/uploads/2015/06/PluginsExample2.png?resize=447%2C219" alt="PluginsExample-copyAlways" width="447" height="219" srcset="/blog/wp-content/uploads/2015/06/PluginsExample2.png?w=447 447w, /blog/wp-content/uploads/2015/06/PluginsExample2.png?resize=300%2C147 300w" sizes="(max-width: 447px) 100vw, 447px" data-recalc-dims="1" />](/blog/wp-content/uploads/2015/06/PluginsExample2.png)
 
  
 

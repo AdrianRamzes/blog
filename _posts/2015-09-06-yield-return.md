@@ -6,7 +6,7 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=357
 permalink: /2015/09/yield-return/
-image: /wp-content/uploads/2015/09/yieldreturn-250x202.png
+image: /blog/wp-content/uploads/2015/09/yieldreturn-250x202.png
 categories:
   - Programowanie
 tags:

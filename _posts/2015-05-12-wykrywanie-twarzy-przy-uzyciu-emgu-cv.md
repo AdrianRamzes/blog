@@ -6,11 +6,11 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=279
 permalink: /2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/
-image: /wp-content/uploads/2015/05/blog_facedetection.png
+image: /blog/wp-content/uploads/2015/05/blog_facedetection.png
 categories:
   - Programowanie
 ---
-W oparciu o aplikację, którą przedstawiałem w poprzednim <a href="/2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/" target="_blank">wpisie</a>, zademonstruję jak napisać aplikację wykrywającą twarz przy pomocy biblioteki Emgu CV.  
+W oparciu o aplikację, którą przedstawiałem w poprzednim <a href="/blog/2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/" target="_blank">wpisie</a>, zademonstruję jak napisać aplikację wykrywającą twarz przy pomocy biblioteki Emgu CV.  
 <!--more-->
 
   
@@ -136,7 +136,7 @@ Cały kod jak zawsze dostępny na <a href="https://github.com/AdrianRamzes/FaceD
 
 Efekt na zdjęciu:
 
-[<img class="alignnone size-full wp-image-282" src="/wp-content/uploads/2015/05/blog_facedetection.png?resize=657%2C437" alt="blog_facedetection" width="657" height="437" srcset="/wp-content/uploads/2015/05/blog_facedetection.png?w=657 657w, /wp-content/uploads/2015/05/blog_facedetection.png?resize=300%2C200 300w" sizes="(max-width: 657px) 100vw, 657px" data-recalc-dims="1" />](/wp-content/uploads/2015/05/blog_facedetection.png)
+[<img class="alignnone size-full wp-image-282" src="/blog/wp-content/uploads/2015/05/blog_facedetection.png?resize=657%2C437" alt="blog_facedetection" width="657" height="437" srcset="/blog/wp-content/uploads/2015/05/blog_facedetection.png?w=657 657w, /blog/wp-content/uploads/2015/05/blog_facedetection.png?resize=300%2C200 300w" sizes="(max-width: 657px) 100vw, 657px" data-recalc-dims="1" />](/blog/wp-content/uploads/2015/05/blog_facedetection.png)
 
 oraz filmie:
 

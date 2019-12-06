@@ -53,7 +53,7 @@ Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkow
 
 ## Popup
 
-<img src="/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=553%2C288" alt="" width="553" height="288" class="alignnone size-full wp-image-752" srcset="/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?w=553 553w, /wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=300%2C156 300w" sizes="(max-width: 553px) 100vw, 553px" data-recalc-dims="1" /> 
+<img src="/blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=553%2C288" alt="" width="553" height="288" class="alignnone size-full wp-image-752" srcset="/blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?w=553 553w, /blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=300%2C156 300w" sizes="(max-width: 553px) 100vw, 553px" data-recalc-dims="1" /> 
 
 Popup czyli główne okienko rozszerzenia pokazujące się po kliknięciu ikony. <a target="_blank" href="https://github.com/AdrianRamzes/pomodoro-timer/blob/master/pomodoro-timer.html">(pomodoro-timer.html)</a>  
 Tutaj dołączamy pliki javascript.`<script src="js/pomodoro-timer.js"></script>` 

@@ -6,7 +6,7 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=417
 permalink: /2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/
-image: /wp-content/uploads/2016/01/2016-01-08-17_45_35-ParallelForExample-Microsoft-Visual-Studio-250x129.png
+image: /blog/wp-content/uploads/2016/01/2016-01-08-17_45_35-ParallelForExample-Microsoft-Visual-Studio-250x129.png
 categories:
   - Programowanie
 tags:

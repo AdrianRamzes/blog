@@ -12,17 +12,17 @@ DelegateCommand jest klasą dostarczaną wraz z pakietem NuGet Prism v5.0
 
 <!--more-->
 
-Działa identycznie jak ta, którą przedstawiałem w moim wcześniejszym <a href="/2014/10/c-wpf-mvvm-delegatecommand/" target="_blank">wpisie</a>. Jedyną różnicą jest wykonywanie metody "CanExecute".  
+Działa identycznie jak ta, którą przedstawiałem w moim wcześniejszym <a href="/blog/2014/10/c-wpf-mvvm-delegatecommand/" target="_blank">wpisie</a>. Jedyną różnicą jest wykonywanie metody "CanExecute".  
 Tutaj to programista jest odpowiedzialny za poinformowanie widoku o możliwości zmiany wartości zwracanej przez CanEecute.
 
 Poprzednio udowadniałem, że CanExecute wykonuje się praktycznie w "losowych" momentach i to całkiem często. Ostrzegałem też, przed wsadzaniem do tej metody ciężkich obliczeń.  
 Jeśli jednak z jakiegoś egzotycznego powodu Twoja metoda CanExecute musi wykonywać takie operacje lub jeśli po prostu zależy Ci na całkowitej kontroli swojego kodu. To użyj klasy DelegateCommand z pakietu Prism. Jak to zrobić?
 
-(Projekt przygotowany do pracy we wzorcu MVVM zgodnie z moim wcześniejszym <a href="/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisem</a>)
+(Projekt przygotowany do pracy we wzorcu MVVM zgodnie z moim wcześniejszym <a href="/blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/" target="_blank">wpisem</a>)
 
 Dodaj do swojego projektu NuGet pakiet Prism (aktualna wersja na 18.10.2014 to 5.0).
 
-[<img class="alignnone wp-image-90 size-full" src="/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?resize=900%2C600" alt="" width="900" height="600" srcset="/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?w=900 900w, /wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?resize=300%2C200 300w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" />](/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png)
+[<img class="alignnone wp-image-90 size-full" src="/blog/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?resize=900%2C600" alt="" width="900" height="600" srcset="/blog/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?w=900 900w, /blog/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png?resize=300%2C200 300w" sizes="(max-width: 900px) 100vw, 900px" data-recalc-dims="1" />](/blog/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png)
 
  
 
@@ -131,7 +131,7 @@ Po stronie widoku:
 
 Podsumowując. Prism dostarcza nam już gotowej implementacji klasy DelegateCommand. W tej implementacji metoda CanExecute jest wykonywana tylko na żądanie programisty oraz bezpośrednio przed metodą Execute.
 
-[<img class="alignnone size-full wp-image-92" src="/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png?resize=701%2C315" alt="2014-10-16 19_09_28-PrismDelegateCommand (Running) - Microsoft Visual Studio" width="701" height="315" srcset="/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png?w=701 701w, /wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png?resize=300%2C134 300w" sizes="(max-width: 701px) 100vw, 701px" data-recalc-dims="1" />](/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png)(Jak widać: CanExecute jest wykonywane tylko gdy zmienia się wartość wprowadzana przez użytkownika)
+[<img class="alignnone size-full wp-image-92" src="/blog/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png?resize=701%2C315" alt="2014-10-16 19_09_28-PrismDelegateCommand (Running) - Microsoft Visual Studio" width="701" height="315" srcset="/blog/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png?w=701 701w, /blog/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png?resize=300%2C134 300w" sizes="(max-width: 701px) 100vw, 701px" data-recalc-dims="1" />](/blog/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png)(Jak widać: CanExecute jest wykonywane tylko gdy zmienia się wartość wprowadzana przez użytkownika)
 
 Powoduje to większą kontrole nad kodem oraz zwiększa wydajność (jeśli CanExecute jest zasobożerne). Łatwo natomiast może dojść do sytuacji, w której aktywność przycisku nie będzie odzwierciedlać faktycznej wartości zwracanej przez CanExecute, ponieważ programista zapomni (o co nie łatwo) jawnie wywołać RaiseCanExecuteChanged.
 

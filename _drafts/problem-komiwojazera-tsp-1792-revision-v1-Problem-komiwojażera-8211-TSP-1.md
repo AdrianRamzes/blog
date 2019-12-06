@@ -29,7 +29,7 @@ To podejście jest bardzo szybkie, jednak zazwyczaj nie daje ono optymalnego wyn
 
 ## Implementacja oraz testy
 
-Dane wejściowe programu znajdują się w pliku <a href="/wp-content/uploads/2018/03/kroA100.txt" rel="noopener" target="_blank">kroA100</a>, który zawiera 100 losowych punktów w postaci `{id} {x} {y}`. Program na starcie wczytuje dane do dwóch kolekcji:
+Dane wejściowe programu znajdują się w pliku <a href="/blog/wp-content/uploads/2018/03/kroA100.txt" rel="noopener" target="_blank">kroA100</a>, który zawiera 100 losowych punktów w postaci `{id} {x} {y}`. Program na starcie wczytuje dane do dwóch kolekcji:
 
 ```csharp
 static Dictionary<int, Vertex> vertices;
@@ -76,4 +76,4 @@ Najlepszy wynik uzyskany przy pomocy powyżej zaimplementowanego algorytmu NN to
 Jest to zaskakująco dobrze, biorąc pod uwagę, że najlepszy znaleziony wynik dla kroA100 wynosi <a href="http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html" rel="noopener" target="_blank">21282</a>.  
 Poniżej wizualizacja kilku tras wyznaczonym przez powyższy NN. 
 
-<img src="/wp-content/uploads/2018/03/tsp_nn_solutions.gif" alt="TSP - NN - rozwiązania " data-recalc-dims="1" />
+<img src="/blog/wp-content/uploads/2018/03/tsp_nn_solutions.gif" alt="TSP - NN - rozwiązania " data-recalc-dims="1" />

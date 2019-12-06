@@ -302,4 +302,4 @@ To chyba wszystko. Cały działający kod, jak zawsze, dostępny na <a href="htt
 
  
 
-[<img class="alignnone size-full wp-image-272" src="/wp-content/uploads/2015/04/blog_webcamService.png?resize=588%2C342" alt="blog_webcamService" width="588" height="342" srcset="/wp-content/uploads/2015/04/blog_webcamService.png?w=588 588w, /wp-content/uploads/2015/04/blog_webcamService.png?resize=300%2C174 300w" sizes="(max-width: 588px) 100vw, 588px" data-recalc-dims="1" />](/wp-content/uploads/2015/04/blog_webcamService.png)
+[<img class="alignnone size-full wp-image-272" src="/blog/wp-content/uploads/2015/04/blog_webcamService.png?resize=588%2C342" alt="blog_webcamService" width="588" height="342" srcset="/blog/wp-content/uploads/2015/04/blog_webcamService.png?w=588 588w, /blog/wp-content/uploads/2015/04/blog_webcamService.png?resize=300%2C174 300w" sizes="(max-width: 588px) 100vw, 588px" data-recalc-dims="1" />](/blog/wp-content/uploads/2015/04/blog_webcamService.png)

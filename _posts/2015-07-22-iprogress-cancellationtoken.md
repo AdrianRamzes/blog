@@ -6,7 +6,7 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=326
 permalink: /2015/07/iprogress-cancellationtoken/
-image: /wp-content/uploads/2015/07/IprogressDemo-250x184.png
+image: /blog/wp-content/uploads/2015/07/IprogressDemo-250x184.png
 categories:
   - Programowanie
 tags:

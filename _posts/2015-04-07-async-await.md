@@ -6,7 +6,7 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/Blog/?p=164
 permalink: /2015/04/async-await/
-image: /wp-content/uploads/2015/03/20150326_214952.jpg
+image: /blog/wp-content/uploads/2015/03/20150326_214952.jpg
 categories:
   - Programowanie
 ---
@@ -53,11 +53,11 @@ Od tego momentu "czekamy" na zakończenie zadania.
 
 Schemat: (pionowe linie reprezentują wykonywany w czasie kod)
 
-[<img class="alignnone size-full wp-image-166" src="/wp-content/uploads/2015/03/20150326_214952.jpg?resize=3264%2C2448" alt="20150326_214952" width="3264" height="2448" srcset="/wp-content/uploads/2015/03/20150326_214952.jpg?w=3264 3264w, /wp-content/uploads/2015/03/20150326_214952.jpg?resize=300%2C225 300w, /wp-content/uploads/2015/03/20150326_214952.jpg?resize=1024%2C768 1024w, /wp-content/uploads/2015/03/20150326_214952.jpg?w=2000 2000w, /wp-content/uploads/2015/03/20150326_214952.jpg?w=3000 3000w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](/wp-content/uploads/2015/03/20150326_214952.jpg)
+[<img class="alignnone size-full wp-image-166" src="/blog/wp-content/uploads/2015/03/20150326_214952.jpg?resize=3264%2C2448" alt="20150326_214952" width="3264" height="2448" srcset="/blog/wp-content/uploads/2015/03/20150326_214952.jpg?w=3264 3264w, /blog/wp-content/uploads/2015/03/20150326_214952.jpg?resize=300%2C225 300w, /blog/wp-content/uploads/2015/03/20150326_214952.jpg?resize=1024%2C768 1024w, /blog/wp-content/uploads/2015/03/20150326_214952.jpg?w=2000 2000w, /blog/wp-content/uploads/2015/03/20150326_214952.jpg?w=3000 3000w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />](/blog/wp-content/uploads/2015/03/20150326_214952.jpg)
 
 Najlepiej pokazać to na prostym przykładzie aplikacji z paskiem postępu.
 
-<img class="alignnone size-medium wp-image-165" src="/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86" alt="2015-03-31 17_28_12-MainWindow" width="300" height="86" srcset="/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86 300w, /wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?w=656 656w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /> 
+<img class="alignnone size-medium wp-image-165" src="/blog/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86" alt="2015-03-31 17_28_12-MainWindow" width="300" height="86" srcset="/blog/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?resize=300%2C86 300w, /blog/wp-content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png?w=656 656w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /> 
 
 Co zyskujemy?  
 - Większa intuicyjność kodu w przypadku pracy z interfejsem użytkownika,  

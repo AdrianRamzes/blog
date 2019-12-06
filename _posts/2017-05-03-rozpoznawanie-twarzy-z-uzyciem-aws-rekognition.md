@@ -6,7 +6,7 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=591
 permalink: /2017/05/rozpoznawanie-twarzy-z-uzyciem-aws-rekognition/
-image: /wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png
+image: /blog/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png
 categories:
   - Programowanie
 tags:
@@ -23,7 +23,7 @@ W grudniu 2016 roku Amazon zapowiedział, że AWS zostanie wzbogacony o nową us
 
 Takim oto demo można pobawić się u Google'a:
 
-[<img class="size-full wp-image-601 aligncenter" src="/wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png?resize=709%2C439" alt="" width="709" height="439" srcset="/wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png?w=709 709w, /wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png?resize=300%2C186 300w" sizes="(max-width: 709px) 100vw, 709px" data-recalc-dims="1" />](/wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png)
+[<img class="size-full wp-image-601 aligncenter" src="/blog/wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png?resize=709%2C439" alt="" width="709" height="439" srcset="/blog/wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png?w=709 709w, /blog/wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png?resize=300%2C186 300w" sizes="(max-width: 709px) 100vw, 709px" data-recalc-dims="1" />](/blog/wp-content/uploads/2017/05/chrome_2017-05-03_13-49-35.png)
 
  
 
@@ -33,12 +33,12 @@ Jak zacząć pracę z AWS Rekognition?
 Po pierwsze musimy mieć <a href="http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html" target="_blank" rel="noopener noreferrer">konto AWS</a> i utworzonego użytkownika z dostępem do usługi AWS Rekognition.  
 Instrukcje, krok po kroku znajdziecie w <a href="http://docs.aws.amazon.com/rekognition/latest/dg/setting-up.html" target="_blank" rel="noopener noreferrer">dokumentacji AWSa</a>. Dla utworzonego użytkownika generujemy AWSAccessKeyId oraz AWSSecretAccessKey. O tym jak korzystać z AccessKeyId oraz SecretAccessKey można przeczytać [tutaj](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html). Generalnie, są trzy sposoby - ja używam "Credentials File", jednak nie ma to większego znaczenia. Najważniejsze to pamiętać o tym, by przypadkiem nikomu nie udostępniać tych danych, ponieważ może to nas kosztować wiele tysięcy $ ;). Po GitHubie, krążą boty, które szukają kluczy AWS'owych commitowanych przez nieostrożnych programistów.
 
-  1. Tworzymy nowy projekt WPF! (w tym przykładzie będę opierał się sporo na projekcie z mojego <a href="/2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/" target="_blank" rel="noopener noreferrer">poprzedniego wpisu</a>)
-  2. Do projektu, przy użyciu nuget package manager'a dodajemy najnowszą wersję AWSSDK.Rekognition (3.3.x)[<img class="size-full wp-image-593 aligncenter" src="/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?resize=808%2C194" alt="" width="808" height="194" srcset="/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?w=808 808w, /wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?resize=300%2C72 300w, /wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?resize=768%2C184 768w" sizes="(max-width: 808px) 100vw, 808px" data-recalc-dims="1" />](/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png) 
+  1. Tworzymy nowy projekt WPF! (w tym przykładzie będę opierał się sporo na projekcie z mojego <a href="/blog/2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/" target="_blank" rel="noopener noreferrer">poprzedniego wpisu</a>)
+  2. Do projektu, przy użyciu nuget package manager'a dodajemy najnowszą wersję AWSSDK.Rekognition (3.3.x)[<img class="size-full wp-image-593 aligncenter" src="/blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?resize=808%2C194" alt="" width="808" height="194" srcset="/blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?w=808 808w, /blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?resize=300%2C72 300w, /blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png?resize=768%2C184 768w" sizes="(max-width: 808px) 100vw, 808px" data-recalc-dims="1" />](/blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-48-37.png) 
     oraz EmguCV (3.1.x.x)
     
-    [<img class="size-full wp-image-594 aligncenter" src="/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?resize=844%2C206" alt="" width="844" height="206" srcset="/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?w=844 844w, /wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?resize=300%2C73 300w, /wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?resize=768%2C187 768w" sizes="(max-width: 844px) 100vw, 844px" data-recalc-dims="1" />  
-](/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png) </li> 
+    [<img class="size-full wp-image-594 aligncenter" src="/blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?resize=844%2C206" alt="" width="844" height="206" srcset="/blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?w=844 844w, /blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?resize=300%2C73 300w, /blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png?resize=768%2C187 768w" sizes="(max-width: 844px) 100vw, 844px" data-recalc-dims="1" />  
+](/blog/wp-content/uploads/2017/05/devenv_2017-05-02_13-46-50.png) </li> 
     
       * Zgodnie z wybraną strategią używania kluczy, edytujemy plik App.config. W moim przypadku jest to podanie ścieżki do pliku "credentials"
       * Korzystanie z AWSSDK.Rekognition jest banalnie proste: ```csharp
@@ -74,6 +74,6 @@ public class RekognitionService
         
         Demo, które napisałem umożliwia zrobienie zdjęcia przy pomocy kamerki internetowej oraz wyświetlenie szczegółów dot. wykrytej na zdjęciu twarzy.
         
-        [<img class="size-full wp-image-600 aligncenter" src="/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=1036%2C593" alt="" width="1036" height="593" srcset="/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?w=1036 1036w, /wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=300%2C172 300w, /wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=768%2C440 768w, /wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=1024%2C586 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />  
-](/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png)  
+        [<img class="size-full wp-image-600 aligncenter" src="/blog/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=1036%2C593" alt="" width="1036" height="593" srcset="/blog/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?w=1036 1036w, /blog/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=300%2C172 300w, /blog/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=768%2C440 768w, /blog/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png?resize=1024%2C586 1024w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" />  
+](/blog/wp-content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png)  
         Cały kod dostępny na <a href="https://github.com/AdrianRamzes/AWSRekognitionDemo" target="_blank" rel="noopener noreferrer">GitHub</a>.</li> </ol>

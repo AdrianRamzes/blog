@@ -6,7 +6,7 @@ author: Adrian Karalus
 layout: post
 guid: http://www.karalus.eu/?p=426
 permalink: /2016/02/obliczanie-wspolczynnika-jaccarda-dla-wielu-obiektow/
-image: /wp-content/uploads/2016/02/7017OS_09_03-250x142.jpg
+image: /blog/wp-content/uploads/2016/02/7017OS_09_03-250x142.jpg
 categories:
   - Programowanie
 tags:
@@ -16,7 +16,7 @@ tags:
   - programowanie
 ---
 **Problem:**  
-Mamy <a href="/wp-content/uploads/2016/02/facts.7z" target="_blank">dane z serwisu muzycznego</a> - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
+Mamy <a href="/blog/wp-content/uploads/2016/02/facts.7z" target="_blank">dane z serwisu muzycznego</a> - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
 Chcemy się dowiedzieć, którzy użytkownicy mają podobny gust muzyczny. Dla każdego użytkownika chcemy dostać listę jego najbliższych sąsiadów.  
 Do miary podobieństwa użyjemy <a href="https://en.wikipedia.org/wiki/Jaccard_index" target="_blank">współczynnika Jaccarda</a>.  
 Wpisów jest ponad 27 mln. (plik tekstowy ma ponad 500 MB), użyte algorytmy i struktury danych mają więc ogromny wpływ na czas obliczeń.
@@ -116,7 +116,7 @@ Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictio
             }
 ```
 
-Całość możemy dodatkowo zrównoleglić przy pomocy <a href="/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
+Całość możemy dodatkowo zrównoleglić przy pomocy <a href="/blog/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
 
 ```csharp
 Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictionary<int, double>>();
@@ -167,4 +167,4 @@ Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictio
 Należy pamiętać, że operację na słowniku należy zamknąć w sekcji krytycznej.  
 U mnie obliczenia zajmują jakieś 10 sek. (Intel i7-4702MQ) ale to jest tylko dla 100 pierwszych użytkowników. Użytkowników jest ponad milion, co sprawia, że jeśli chciałbym policzyć współczynnik Jaccarda dla wszystkich zajęłoby to ponad 27h.
 
-Warto zauważyć, że każdy użytkownik ma tylko niewielu bliskich sąsiadów (czyli użytkowników o podobnym guście muzycznym). W praktyce, zazwyczaj chodzi nam o krótką listę najbardziej podobnych użytkowników (powiedzmy 100 najbliższych sąsiadów), oznacza to, że większość czasu jest marnowana. Przydałby się mechanizm, który dokona wstępnego odsiania użytkowników niepodobnych. Z pomocą przychodzi tutaj technika zwana <a href="/2016/03/minhash/" target="_blank">MinHash</a> oraz algorytm <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank">LSH</a>. O tym opowiem w moim następnym wpisie.
+Warto zauważyć, że każdy użytkownik ma tylko niewielu bliskich sąsiadów (czyli użytkowników o podobnym guście muzycznym). W praktyce, zazwyczaj chodzi nam o krótką listę najbardziej podobnych użytkowników (powiedzmy 100 najbliższych sąsiadów), oznacza to, że większość czasu jest marnowana. Przydałby się mechanizm, który dokona wstępnego odsiania użytkowników niepodobnych. Z pomocą przychodzi tutaj technika zwana <a href="/blog/2016/03/minhash/" target="_blank">MinHash</a> oraz algorytm <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank">LSH</a>. O tym opowiem w moim następnym wpisie.

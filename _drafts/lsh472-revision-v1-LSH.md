@@ -7,7 +7,7 @@ layout: revision
 guid: http://www.karalus.eu/2016/03/472-revision-v1/
 permalink: /2016/03/472-revision-v1/
 ---
-Kontynuując poprzedni <a href="/2016/03/minhash/" target="_blank">wpis</a>, Wiemy już, że dokumenty mogą być reprezentowane przez sygnatury, które umożliwiają obliczenie odległości Jaccarda pomiędzy dowolną parą.  
+Kontynuując poprzedni <a href="/blog/2016/03/minhash/" target="_blank">wpis</a>, Wiemy już, że dokumenty mogą być reprezentowane przez sygnatury, które umożliwiają obliczenie odległości Jaccarda pomiędzy dowolną parą.  
 Nadal jednak pozostaje pewien problem. Jeśli chcemy znaleźć podobne do siebie dokumenty, to musimy porównać każdy z każdym, co w przypadku dużych zbiorów danych jest niewykonalne w sensownym czasie. Większość czasu będzie zmarnowana na obliczanie podobieństwa pomiędzy dokumentami, które prawie w ogóle nie są do siebie podobne (a przynajmniej poniżej tego co nas interesuje).  
 Idea LSH polega na tym, żeby iterować po całej kolekcji tylko raz i "wrzucać" każdy dokument do odpowiedniego koszyka z założeniem, że podobne elementy powinny trafić do tego samego koszyka. Wtedy, po skończeniu, w każdym koszyku powinny znaleźć się tylko elementy, które są do siebie podobne.  
 Za przydział do odpowiedniego koszyka mogłaby odpowiadać cała sygnatura dokumentu, jednak w celu zwiększenia prawdopodobieństwa, że podobne dokumenty zostaną kandydatami, tworzy się (zazwyczaj ok. 20) pasm (ang. "bands"). Dzięki temu sygnatury nie muszą zgadzać się w całości, aby dwa dokumenty zostały uznane za podobne.
@@ -75,4 +75,4 @@ Jeśli posiadamy dużą kolekcję dokumentów i chcemy w tej kolekcji znaleźć 
 **MinHash** pozwala na zmniejszenie rozmiaru przechowywanych dokumentów z zachowaniem możliwości porównania odległości pomiędzy dokumentami.  
 **LSH** pozwala na obejście problemu porównywania każdego dokumentu z każdym, Przejście po kolekcji trwa wolniej ale za to robimy to tylko raz i pozbywamy się złożoności N^2.
 
-<a href="/wp-content/uploads/2016/03/Program.zip" target="_blank">Program.cs</a>
+<a href="/blog/wp-content/uploads/2016/03/Program.zip" target="_blank">Program.cs</a>

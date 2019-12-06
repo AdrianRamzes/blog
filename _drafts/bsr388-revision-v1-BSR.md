@@ -7,8 +7,8 @@ layout: revision
 guid: http://www.karalus.eu/2015/10/388-revision-v1/
 permalink: /2015/10/388-revision-v1/
 ---
-[Example_VS2015](/wp-content/uploads/2015/10/BankWcfSoapExample.zip)
+[Example_VS2015](/blog/wp-content/uploads/2015/10/BankWcfSoapExample.zip)
 
-[Prezentacja.pdf](/wp-content/uploads/2015/10/WCF-Soap.pdf)
+[Prezentacja.pdf](/blog/wp-content/uploads/2015/10/WCF-Soap.pdf)
 
 [GitHub](https://github.com/AdrianRamzes/WcfSoapServiceExample)
