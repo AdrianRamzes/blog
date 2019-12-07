@@ -1,10 +1,8 @@
 ---
-id: 553
 title: 'Elon Musk - Biografia twórcy PayPala, Tesli, SpaceX'
 date: 2017-01-29T22:44:59+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=553
 permalink: /2017/01/elon-musk-biografia-tworcy-paypala-tesli-spacex/
 image: /blog/wp-content/uploads/2017/01/IMG_2197-250x250.jpg
 categories:

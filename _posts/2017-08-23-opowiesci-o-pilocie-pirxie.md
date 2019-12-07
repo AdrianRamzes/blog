@@ -1,10 +1,8 @@
 ---
-id: 631
 title: Opowieści o pilocie Pirxie
 date: 2017-08-23T23:53:09+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=631
 permalink: /2017/08/opowiesci-o-pilocie-pirxie/
 image: /blog/wp-content/uploads/2017/08/opowiesci_o_pilocie_pirxie.jpg
 categories:

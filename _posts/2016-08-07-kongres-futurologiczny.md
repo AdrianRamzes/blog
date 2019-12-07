@@ -1,10 +1,8 @@
 ---
-id: 538
 title: Kongres Futurologiczny
 date: 2016-08-07T14:01:15+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=538
 permalink: /2016/08/kongres-futurologiczny/
 image: /blog/wp-content/uploads/2016/07/13699404_1073851772662429_1490767586_o-250x250.jpg
 categories:

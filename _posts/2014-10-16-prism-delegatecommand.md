@@ -1,10 +1,8 @@
 ---
-id: 89
 title: 'MVVM - PRISM DelegateCommand'
 date: 2014-10-16T19:22:26+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=89
 permalink: /2014/10/prism-delegatecommand/
 image: /blog/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png
 categories:

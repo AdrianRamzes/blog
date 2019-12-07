@@ -1,10 +1,8 @@
 ---
-id: 123
 title: FullBatteryAlarm
 date: 2014-12-23T14:34:46+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=123
 permalink: /2014/12/fullbatteryalarm/
 image: /blog/wp-content/uploads/2014/12/FullBatteryAlarmScreen.png
 categories:

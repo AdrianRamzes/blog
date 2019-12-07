@@ -1,10 +1,8 @@
 ---
-id: 792
 title: 'Problem komiwojażera - TSP #1'
 date: 2018-03-05T02:34:47+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=792
 permalink: /2018/03/problem-komiwojazera-tsp-1/
 image: /blog/wp-content/uploads/2018/03/tsp_nn_solutions.gif
 categories:

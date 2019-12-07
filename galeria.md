@@ -1,10 +1,8 @@
 ---
-id: 207
 title: Galeria
 date: 2015-04-14T10:12:45+00:00
-author: admin
+author: Adrian Karalus
 layout: page
-guid: http://www.karalus.eu/?page_id=207
 ---
 <!-- index.php -->
 

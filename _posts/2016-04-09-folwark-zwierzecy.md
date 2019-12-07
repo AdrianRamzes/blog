@@ -1,10 +1,8 @@
 ---
-id: 501
 title: Folwark Zwierzęcy
 date: 2016-04-09T19:03:01+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=501
 permalink: /2016/04/folwark-zwierzecy/
 image: /blog/wp-content/uploads/2016/04/20160325_210335-e1460218685922-250x250.jpg
 categories:

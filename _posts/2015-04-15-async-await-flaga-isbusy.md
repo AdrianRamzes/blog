@@ -1,10 +1,8 @@
 ---
-id: 228
 title: 'Async Await - flaga isBusy'
 date: 2015-04-15T12:34:53+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=228
 permalink: /2015/04/async-await-flaga-isbusy/
 categories:
   - Programowanie

@@ -1,10 +1,8 @@
 ---
-id: 15
 title: 'C# WPF MVVM - nowy projekt (Project Template)'
 date: 2014-08-23T19:33:40+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=15
 permalink: /2014/08/c-wpf-mvvm-nowy-projekt-project-template/
 image: /blog/wp-content/uploads/2014/08/2014-08-23-19_21_47-MvvmTemplate-Microsoft-Visual-Studio.png
 categories:

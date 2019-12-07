@@ -1,10 +1,8 @@
 ---
-id: 103
 title: QuickLogger
 date: 2014-10-28T21:20:18+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=103
 permalink: /2014/10/quicklogger/
 image: /blog/wp-content/uploads/2014/10/2014-10-28-21_18_55-Logger.png
 categories:

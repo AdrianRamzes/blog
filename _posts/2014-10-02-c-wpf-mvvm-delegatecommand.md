@@ -1,10 +1,8 @@
 ---
-id: 65
 title: 'C# WPF MVVM - DelegateCommand'
 date: 2014-10-02T21:42:38+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=65
 permalink: /2014/10/c-wpf-mvvm-delegatecommand/
 image: /blog/wp-content/uploads/2014/10/DelegateCommand_2.png
 categories:

@@ -1,10 +1,8 @@
 ---
-id: 426
 title: Obliczanie współczynnika Jaccarda dla wielu obiektów.
 date: 2016-02-11T00:26:55+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=426
 permalink: /2016/02/obliczanie-wspolczynnika-jaccarda-dla-wielu-obiektow/
 image: /blog/wp-content/uploads/2016/02/7017OS_09_03-250x142.jpg
 categories:

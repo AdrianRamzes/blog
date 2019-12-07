@@ -1,10 +1,8 @@
 ---
-id: 318
 title: 'Mechanizm wtyczek w języku C# (Plugins)'
 date: 2015-06-27T00:38:39+00:00
 author: Adrian Karalus
 layout: revision
-guid: http://www.karalus.eu/2015/06/306-revision-v1/
 permalink: /2015/06/306-revision-v1/
 ---
 W dzisiejszym wpisie przedstawię wam jak stworzyć prosty mechanizm wtyczek w języku C#.

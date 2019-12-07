@@ -1,10 +1,8 @@
 ---
-id: 678
 title: 'Rozszerzenia Chrome: Pomodoro Timer'
 date: 2018-02-11T16:59:47+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=678
 permalink: /2018/02/rozszerzenia-chrome-pomodoro-timer/
 image: /blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png
 categories:

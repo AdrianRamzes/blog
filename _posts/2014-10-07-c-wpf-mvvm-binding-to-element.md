@@ -1,10 +1,8 @@
 ---
-id: 79
 title: 'C# WPF MVVM – Binding to element'
 date: 2014-10-07T19:14:49+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=79
 permalink: /2014/10/c-wpf-mvvm-binding-to-element/
 image: /blog/wp-content/uploads/2014/10/ElementBinding_icon.png
 categories:

@@ -1,10 +1,8 @@
 ---
-id: 371
 title: 'Porządek w skrzynce odbiorczej - lifehack'
 date: 2015-09-22T12:54:52+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=371
 permalink: /2015/09/porzadek-w-skrzynce-odbiorczej-lifehack/
 image: /blog/wp-content/uploads/2015/09/Inbox-101-250x250.jpg
 categories:

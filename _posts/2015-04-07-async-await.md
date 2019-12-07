@@ -1,10 +1,8 @@
 ---
-id: 164
 title: Async Await
 date: 2015-04-07T15:25:05+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=164
 permalink: /2015/04/async-await/
 image: /blog/wp-content/uploads/2015/03/20150326_214952.jpg
 categories:

@@ -1,10 +1,8 @@
 ---
-id: 43
 title: 'C# WPF MVVM - NotificationObject i Services'
 date: 2014-09-17T23:01:53+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/Blog/?p=43
 permalink: /2014/09/c-wpf-mvvm-notificationobject-i-services/
 image: /blog/wp-content/uploads/2014/09/2014-09-17-22_31_00-ServicesSample-Microsoft-Visual-Studio.png
 categories:

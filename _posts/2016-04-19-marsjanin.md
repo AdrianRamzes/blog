@@ -1,10 +1,8 @@
 ---
-id: 512
 title: Marsjanin
 date: 2016-04-19T00:00:51+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=512
 permalink: /2016/04/marsjanin/
 image: /blog/wp-content/uploads/2016/04/20160418_012458-e1461011999821-250x250.jpg
 categories:

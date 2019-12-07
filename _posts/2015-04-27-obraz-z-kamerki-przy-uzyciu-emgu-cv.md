@@ -1,10 +1,8 @@
 ---
-id: 233
 title: Obraz z kamerki przy użyciu Emgu CV
 date: 2015-04-27T11:22:39+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=233
 permalink: /2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/
 image: /blog/wp-content/uploads/2015/04/blog_webcamService.png
 categories:

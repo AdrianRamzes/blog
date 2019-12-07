@@ -1,10 +1,8 @@
 ---
-id: 622
 title: Kosmiczny poradnik życia na Ziemi
 date: 2017-07-22T01:00:41+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=622
 permalink: /2017/07/kosmiczny-poradnik-zycia-na-ziemi/
 image: /blog/wp-content/uploads/2017/07/IMG_3143-e1500677939844.jpg
 categories:

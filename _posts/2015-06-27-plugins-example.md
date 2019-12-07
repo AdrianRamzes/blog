@@ -1,10 +1,8 @@
 ---
-id: 306
 title: 'Mechanizm wtyczek w języku C# (Plugins)'
 date: 2015-06-27T00:38:43+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=306
 permalink: /2015/06/plugins-example/
 image: /blog/wp-content/uploads/2015/06/PluginsExample3.png
 categories:

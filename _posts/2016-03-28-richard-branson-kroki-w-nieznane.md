@@ -1,10 +1,8 @@
 ---
-id: 482
 title: 'Richard Branson: Kroki w nieznane'
 date: 2016-03-28T23:29:55+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=482
 permalink: /2016/03/richard-branson-kroki-w-nieznane/
 image: /blog/wp-content/uploads/2016/03/20160325_210357-e1459200568934-250x250.jpg
 categories:

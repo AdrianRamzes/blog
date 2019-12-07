@@ -1,10 +1,8 @@
 ---
-id: 279
 title: Wykrywanie twarzy przy użyciu Emgu CV
 date: 2015-05-12T17:14:18+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=279
 permalink: /2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/
 image: /blog/wp-content/uploads/2015/05/blog_facedetection.png
 categories:

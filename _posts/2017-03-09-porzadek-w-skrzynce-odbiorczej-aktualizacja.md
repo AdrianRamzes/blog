@@ -1,10 +1,8 @@
 ---
-id: 571
 title: 'Porządek w skrzynce odbiorczej - aktualizacja.'
 date: 2017-03-09T00:08:43+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=571
 permalink: /2017/03/porzadek-w-skrzynce-odbiorczej-aktualizacja/
 image: /blog/wp-content/uploads/2017/03/ApplicationFrameHost_2017-03-08_18-44-36-—-kopia.png
 categories:

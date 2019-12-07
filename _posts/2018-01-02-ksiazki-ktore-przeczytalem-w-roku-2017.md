@@ -1,10 +1,8 @@
 ---
-id: 653
 title: Książki, które przeczytałem w roku 2017
 date: 2018-01-02T01:35:58+00:00
 author: Adrian Karalus
 layout: post
-guid: http://www.karalus.eu/?p=653
 permalink: /2018/01/ksiazki-ktore-przeczytalem-w-roku-2017/
 image: /blog/wp-content/uploads/2018/01/chrome_2018-01-02_01-27-16.png
 categories:
