@@ -79,4 +79,4 @@ Oraz przycisk, za pomocą którego wywoływać będziemy komendę "AddNewPersonC
 
 I to w zasadzie wszystko, jeśli chodzi o używanie ObservableCollection. Deklaracja kolekcji i powiązanie z nią widoku. Reszta dzieje się "automagicznie" 😉
 
-Cały program jak zawsze dostępny na <a href="https://github.com/AdrianRamzes/ObservableCollectionExample" target="_blank">GitHub </a>😉
+Cały program jak zawsze dostępny na [GitHub ](https://github.com/AdrianRamzes/ObservableCollectionExample)😉

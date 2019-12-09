@@ -47,7 +47,7 @@ Parallel.For(start, stop, (i, loopState) =>
             });
 ```
 
-Do przerwania obliczeń, mamy do wyboru, <a href="http://stackoverflow.com/questions/8818203/what-is-difference-between-loopstate-break-loopstate-stop-and-cancellationt" target="_blank">aż dwie metody - każda ma inne działanie</a>.
+Do przerwania obliczeń, mamy do wyboru, [aż dwie metody - każda ma inne działanie](http://stackoverflow.com/questions/8818203/what-is-difference-between-loopstate-break-loopstate-stop-and-cancellationt).
 
 Dzięki metodzie _Parallel.ForEach_ możliwe jest, zrównoleglenie działań na obiektach kolekcji.
 

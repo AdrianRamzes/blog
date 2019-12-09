@@ -20,7 +20,7 @@ tags:
   - poczta
   - zadania
 ---
-Jakiś rok temu, postanowiłem zrobić porządek w mojej skrzynce pocztowej. Przy okazji tego sprzątania zastosowałem jeden z Lifehack'ów, o którym przeczytałem w serwisie <a href="http://lifehacker.com/182318/empty-your-inbox-with-the-trusted-trio" target="_blank">Lifehacker.org</a>.  
+Jakiś rok temu, postanowiłem zrobić porządek w mojej skrzynce pocztowej. Przy okazji tego sprzątania zastosowałem jeden z Lifehack'ów, o którym przeczytałem w serwisie [Lifehacker.org](http://lifehacker.com/182318/empty-your-inbox-with-the-trusted-trio).  
 <!--more-->
 
 Pomysł jest prosty. Wystarczy utworzyć dodatkowe trzy foldery: Archiwum, Bieżące, Zadania.  

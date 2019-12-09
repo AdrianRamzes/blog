@@ -39,8 +39,8 @@ Podsumowując. Ta książka musiała być genialna i szokująca w 1976 roku. Dzi
 Szokująca? Jeśli wiesz jak działa ewolucja, czym jest gen, dna i proces crossing-over, ta książka nie będzie Cię niczym szokować.  
 Co najwyżej, może lekko dziwić próba połączenia behawiorystki z genetyką, ponieważ uznaje się te dwa działy biologii za odległe.
 
-Jeszcze krótki komentarz co do samego <a href="https://pl.wikipedia.org/wiki/Richard_Dawkins" target="_blank">Richarda Dawkinsa</a>.  
+Jeszcze krótki komentarz co do samego [Richarda Dawkinsa](https://pl.wikipedia.org/wiki/Richard_Dawkins).  
 Przede wszystkim jest to wybitny zoolog, ewolucjonista, profesor na Uniwersytecie Oksfordzkim.  
 Dopiero w drugiej kolejność powinien być kojarzony ze swoją fundacją i działalnością na rzecz ateistów.
 
-Często słychać głosy: "Richard Dawkins,? A! To ten od ateistów". To za sprawą filmików na YouTubie, które robią furorę dzięki jego ciętym ripostom i ostrym języku. To samo dotyczy <a href="https://pl.wikipedia.org/wiki/Stephen_Hawking" target="_blank">Stephena Hawkinga</a>, (to ten geniusz na wózku inwalidzkim), wszyscy go kojarzą, większość wie jak wygląda, a tylko niewiele osób wie czego <a href="https://pl.wikipedia.org/wiki/Promieniowanie_Hawkinga" target="_blank">dokonał</a>.
+Często słychać głosy: "Richard Dawkins,? A! To ten od ateistów". To za sprawą filmików na YouTubie, które robią furorę dzięki jego ciętym ripostom i ostrym języku. To samo dotyczy [Stephena Hawkinga](https://pl.wikipedia.org/wiki/Stephen_Hawking), (to ten geniusz na wózku inwalidzkim), wszyscy go kojarzą, większość wie jak wygląda, a tylko niewiele osób wie czego [dokonał](https://pl.wikipedia.org/wiki/Promieniowanie_Hawkinga).

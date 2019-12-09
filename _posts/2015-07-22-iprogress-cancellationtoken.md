@@ -78,18 +78,18 @@ Wystarczy sprawdzić stan flagi **IsCancellationRequested**.
 
 ```csharp
 private Task DoSomeWorkAsync(CancellationToken cancellationToken)
+{
+    return Task.Run(() =>
+    {
+        for (int i = 0; i < int.MaxValue; i++)
         {
-            return Task.Run(() =>
+            if (cancellationToken.IsCancellationRequested)
             {
-                for (int i = 0; i < int.MaxValue; i++)
-                {
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        break;
-                    }
-                }
-            });
+                break;
+            }
         }
+    });
+}
 ```
 
 wywołanie metody w tym przypadku wygląda tak:
@@ -106,4 +106,4 @@ oraz żądanie przerwania:
 cts.Cancel();
 ```
 
-Cały działający kod z przykładem (pomimo tego, że ma on tylko 55 linii) jak zawsze dostępny na <a href="https://github.com/AdrianRamzes/IPorgressConsoleDemo" target="_blank"><strong>GitHub</strong> </a>😉
+**Cały działający kod z przykładem (pomimo tego, że ma on tylko 55 linii) jak zawsze dostępny na [GitHub](https://github.com/AdrianRamzes/IPorgressConsoleDemo)😉**

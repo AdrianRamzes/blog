@@ -14,16 +14,16 @@ tags:
   - programowanie
 ---
 **Problem:**  
-Mamy <a href="/blog/wp-content/uploads/2016/02/facts.7z" target="_blank">dane z serwisu muzycznego</a> - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
+Mamy [dane z serwisu muzycznego](/blog/wp-content/uploads/2016/02/facts.7z) - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
 Chcemy się dowiedzieć, którzy użytkownicy mają podobny gust muzyczny. Dla każdego użytkownika chcemy dostać listę jego najbliższych sąsiadów.  
-Do miary podobieństwa użyjemy <a href="https://en.wikipedia.org/wiki/Jaccard_index" target="_blank">współczynnika Jaccarda</a>.  
+Do miary podobieństwa użyjemy [współczynnika Jaccarda](https://en.wikipedia.org/wiki/Jaccard_index).  
 Wpisów jest ponad 27 mln. (plik tekstowy ma ponad 500 MB), użyte algorytmy i struktury danych mają więc ogromny wpływ na czas obliczeń.
 
 **Rozwiązanie:  
 **  
 **1. Wczytanie danych.**
 
-**a)** najszybszą metodą wczytywania danych z pliku (wg. autora <a href="http://cc.davelozinski.com/c-sharp/fastest-way-to-read-text-files" target="_blank">tego wpisu</a>), jest wczytywanie linijka po linijce. Przeprowadzone przeze mnie testy również potwierdzają wyniki tego eksperymentu.
+**a)** najszybszą metodą wczytywania danych z pliku (wg. autora [tego wpisu](http://cc.davelozinski.com/c-sharp/fastest-way-to-read-text-files)), jest wczytywanie linijka po linijce. Przeprowadzone przeze mnie testy również potwierdzają wyniki tego eksperymentu.
 
 **b)** do przechowywanie danych proponuję użyć słownika Dictionary<int, HashSet<int>>. Kluczem będzie IdUżytkownika, a wartością zbiór pisenek. Dlaczego HashSet? Ponieważ, nie interesuje nas ile razy użytkownik odtworzył daną piosenkę, a jedynie czy w ogóle ją odtworzył. HashSet ma jeszcze jedną niewątpliwą zaletę: przy dużej ilości elementów, czas operacji Contains jest stały. Oczywiście wiąże się to z większą zajętością pamięci fizycznej. Moja maszyna ma 16GB RAM, więc w tym przypadku nie mam co się martwić o OutOfMemoryException.
 
@@ -114,7 +114,7 @@ Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictio
             }
 ```
 
-Całość możemy dodatkowo zrównoleglić przy pomocy <a href="/blog/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/" target="_blank">Parallel.ForEach</a>.
+Całość możemy dodatkowo zrównoleglić przy pomocy [Parallel.ForEach](/blog/2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/).
 
 ```csharp
 Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictionary<int, double>>();
@@ -165,4 +165,4 @@ Dictionary<int, Dictionary<int, double>> similarity = new Dictionary<int, Dictio
 Należy pamiętać, że operację na słowniku należy zamknąć w sekcji krytycznej.  
 U mnie obliczenia zajmują jakieś 10 sek. (Intel i7-4702MQ) ale to jest tylko dla 100 pierwszych użytkowników. Użytkowników jest ponad milion, co sprawia, że jeśli chciałbym policzyć współczynnik Jaccarda dla wszystkich zajęłoby to ponad 27h.
 
-Warto zauważyć, że każdy użytkownik ma tylko niewielu bliskich sąsiadów (czyli użytkowników o podobnym guście muzycznym). W praktyce, zazwyczaj chodzi nam o krótką listę najbardziej podobnych użytkowników (powiedzmy 100 najbliższych sąsiadów), oznacza to, że większość czasu jest marnowana. Przydałby się mechanizm, który dokona wstępnego odsiania użytkowników niepodobnych. Z pomocą przychodzi tutaj technika zwana <a href="/blog/2016/03/minhash/" target="_blank">MinHash</a> oraz algorytm <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank">LSH</a>. O tym opowiem w moim następnym wpisie.
+Warto zauważyć, że każdy użytkownik ma tylko niewielu bliskich sąsiadów (czyli użytkowników o podobnym guście muzycznym). W praktyce, zazwyczaj chodzi nam o krótką listę najbardziej podobnych użytkowników (powiedzmy 100 najbliższych sąsiadów), oznacza to, że większość czasu jest marnowana. Przydałby się mechanizm, który dokona wstępnego odsiania użytkowników niepodobnych. Z pomocą przychodzi tutaj technika zwana [LSH](/blog/2016/03/minhash/" target="_blank">MinHash</a> oraz algorytm <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing). O tym opowiem w moim następnym wpisie.

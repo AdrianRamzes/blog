@@ -7,17 +7,19 @@ permalink: /2014/08/c-wpf-mvvm-nowy-projekt-project-template/
 image: /blog/wp-content/uploads/2014/08/2014-08-23-19_21_47-MvvmTemplate-Microsoft-Visual-Studio.png
 categories:
   - Programowanie
+tags:
+  - 'c#'
+  - mvvm
+  - wpf
 --- 
 Większość wzorców projektowych, wymaga od programisty większego nakładu pracy, niż bezsensowne klepanie kodu "na szybko". W zamian za czytelny kod i strukturę, musimy się czasami nieźle nagłówkować. Jednak czas poświęcony nad utrzymaniem projektu w zgodzie ze wzorcem, zwraca się z nawiązką.  
 MVVM nie jest tutaj wyjątkiem. Postaram się opisać go dokładniej (wraz z przykładami), przy okazji moich następnych wpisów. Dziś chcę opisać, jak  mvvm wygląda w moim wykonaniu oraz od czego zaczynam gdy tworzę nowy projekt.
 
 A więc, od początku:
 
-<!--more-->
-
 1. Tworzymy nowy projekt C#/WPF  😉  
 Jego struktura jest dość uboga:  
-[<img class="alignnone wp-image-16 size-full" src="/blog/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?resize=354%2C221" alt="" width="354" height="221" srcset="/blog/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?w=354 354w, /blog/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png?resize=300%2C187 300w" sizes="(max-width: 354px) 100vw, 354px" data-recalc-dims="1" />](/blog/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png)
+![](/blog/wp-content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png)
 
 2. Do projektu dodajemy katalogi:  
 Models, Views, ViewModels oraz Services, Converters i Helpers.  
@@ -118,21 +120,14 @@ namespace ClipboardAssistant.ViewModels
 5. Pliki MainWindow.xaml i MainWindow.xaml.cs przenosimy do folderu "Views".
 
 6. Jeszcze tylko podmieniamy ścieżkę do widoku, uruchamianego podczas startu aplikacji.  
-z
-
-```csharp
-StartupUri="MainWindow.xaml"```
-
+Z
+`StartupUri="MainWindow.xaml"`
 na
-
-```csharp
-StartupUri="Views\MainWindow.xaml"```
-
- 
+`StartupUri="Views\MainWindow.xaml"`
 
 Całość powinna wyglądać tak:
 
-[<img class="alignnone wp-image-29 size-full" src="/blog/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png?resize=355%2C444" alt="" width="355" height="444" srcset="/blog/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png?w=355 355w, /blog/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png?resize=239%2C300 239w" sizes="(max-width: 355px) 100vw, 355px" data-recalc-dims="1" />](/blog/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png)
+![](/blog/wp-content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png)
 
 To wszystko co trzeba zrobić. Jeśli posiadasz Visual Studio 2012 możesz dodać do niego rozszerzenie [WPF MVVM project template](http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c). Powyższe klasy DelegateCommand i NotificationObject pochodzą właśnie z tego rozszerzenia. W następnych wpisach dokładnie opiszę do czego się ich używa 😉  
 **Cały projekt jest dostępny na [GitHub](https://github.com/AdrianRamzes/MvvmTemplate).**

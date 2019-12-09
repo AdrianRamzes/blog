@@ -17,7 +17,7 @@ tags:
   - times
 ---
 W języku C# możliwe jest rozszerzanie typów o własne metody.  
-Dużo ciekawych (ale i beznadziejnie bezużytecznych) przykładów znajdziecie na <a href="http://extensionmethod.net/csharp/" target="_blank">tej</a> stronie.
+Dużo ciekawych (ale i beznadziejnie bezużytecznych) przykładów znajdziecie na [tej](http://extensionmethod.net/csharp/) stronie.
 
 <!--more-->
 
@@ -95,4 +95,4 @@ i przykład ze stringiem:
 
  
 
-Jak zawsze kod do tego wpisu został opublikowany na <a href="https://github.com/AdrianRamzes/ExtensionMethods" target="_blank">GitHub </a>😉
+Jak zawsze kod do tego wpisu został opublikowany na [GitHub ](https://github.com/AdrianRamzes/ExtensionMethods)😉

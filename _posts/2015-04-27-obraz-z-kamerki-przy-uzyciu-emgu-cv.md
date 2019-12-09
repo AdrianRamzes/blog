@@ -11,7 +11,7 @@ categories:
 W tym wpisie zaprezentuję prosty przykład aplikacji używającej kamerki internetowej z użyciem biblioteki Emgu CV (wrapper Open CV).  
 <!--more-->Jednocześnie pokażę bardzo praktyczne zastosowanie "serwisów" we wzorcu MVVM.
 
-Aby w ogóle rozpocząć pracę z kamerką należy ściągnąć i zainstalować bibliotekę EmguCV, można to zrobić przy pomocy NuGet packages manager (co w moim przypadku nie zadziałało - wiesza się przy ściąganiu i za chiny nie chce iść dalej,)  lub ze strony <a href="http://www.emgu.com/wiki/index.php/Main_Page" target="_blank">emgu</a>.
+Aby w ogóle rozpocząć pracę z kamerką należy ściągnąć i zainstalować bibliotekę EmguCV, można to zrobić przy pomocy NuGet packages manager (co w moim przypadku nie zadziałało - wiesza się przy ściąganiu i za chiny nie chce iść dalej,)  lub ze strony [emgu](http://www.emgu.com/wiki/index.php/Main_Page).
 
 Jeśli skorzystałeś/łaś z NuGet'a to wszystkie pliki dll i odpowiednie referencje dodały się same. Natomiast w przypadku zwykłej instalacji, należy przejść do folderu zawierającegu (domyślnie C:\Emgu\), następnie do folderu bin. Skopiować wszystkie pliki *.dll dla odpowiedniej wersji (x86 lub x64) i przenieść do naszego projektu np. do folderu lib. Pamiętaj, żeby nadać im opcję "copy to output directory".
 
@@ -268,7 +268,7 @@ bool _isRunning = false;
 Mała adnotacja co do zgodności ze wzorcem. Oczywiście, żeby być w 100% zgodnym ze wzorcem musiałbym we ViewModel wystawić properties "IsRunning" i od stanu tej zmiennej uzależniać widok. Jednak w tym przypadku, zrobiłem to celowo aby pokazać, że czasami ścisłe trzymanie się wzorca jest pozbawione sensu i kompletnie nadmiarowe. Łatwiej, prościej i czytelniej będzie, gdy tekst przycisku będzie ustawiany po prostu w C-B.
 
 UWAGA!  
-Kontrolka Image przyjmuję jako źródło obiekt typu ImageSource, a więc potrzebna jest nam jeszcze konwersja typów z Bitmap -> ImageSource. Oto implementacja tego konwertera (nie ukrywam, że znaleziona w internecie prawdopodobnie na <a href="http://stackoverflow.com" target="_blank">StackOverflow</a>)
+Kontrolka Image przyjmuję jako źródło obiekt typu ImageSource, a więc potrzebna jest nam jeszcze konwersja typów z Bitmap -> ImageSource. Oto implementacja tego konwertera (nie ukrywam, że znaleziona w internecie prawdopodobnie na [StackOverflow](http://stackoverflow.com))
 
 **BitmapToImageSourceConverter**
 
@@ -299,7 +299,7 @@ public class BitmapToImageSourceConverter : IValueConverter
     }
 ```
 
-To chyba wszystko. Cały działający kod, jak zawsze, dostępny na <a href="https://github.com/AdrianRamzes/EmguWebCamExample" target="_blank">GitHub</a>! 😉
+To chyba wszystko. Cały działający kod, jak zawsze, dostępny na [GitHub](https://github.com/AdrianRamzes/EmguWebCamExample)! 😉
 
  
 

@@ -48,7 +48,7 @@ Jak prowadzić dziennik pracy?
 Tutaj z pomocą przychodzi chyba już cała rodzina programów "QuickLogger", tę nazwę nosi już cała masa aplikacji, a ich wspólną cechą jest maksymalna prostota i łatwość obsługi.  
 Sam napisałem taką aplikację, którą możecie ściągnąć tutaj: [QuickLogger](/blog/wp-content/uploads/2016/04/QuickLogger.zip). <del>[QuickLogger (wersja z 2014)](/blog/wp-content/uploads/2014/10/QuickLogger.zip)</del>
 
-Cały kod tego programu jest dostępny na <a href="https://github.com/AdrianRamzes/QuickLogger" target="_blank">GitHub</a>.
+Cały kod tego programu jest dostępny na [GitHub](https://github.com/AdrianRamzes/QuickLogger).
 
 Program jest bardzo prosty ale mimo to powiem parę słów na temat jego obsługi.
 

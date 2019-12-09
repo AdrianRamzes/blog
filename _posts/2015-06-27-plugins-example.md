@@ -185,7 +185,7 @@ private void pluginMenuItem_Click(object sender, RoutedEventArgs e)
 
 To tyle jeśli chodzi o obsługę wtyczek w naszej aplikacji. Jedyne co musimy teraz zrobić to napisać plugin i sprawdzić czy całość działa 😉
 
-(W projekcie na <a href="https://github.com/AdrianRamzes/PluginsExample" target="_blank">GITHUB </a>są napisane 3 pluginy, jednak w tym wpisie opiszę tylko jeden z nich).
+(W projekcie na [GITHUB ](https://github.com/AdrianRamzes/PluginsExample)są napisane 3 pluginy, jednak w tym wpisie opiszę tylko jeden z nich).
 
 Tworzymy nowy projekt "**Class Library**" w naszej solucji.  
 Naszą wtyczką będzie narzędzie do rysowania linii więc projekt nazwałem "**LineToolPlugin**".  
@@ -305,7 +305,7 @@ Pliki "*.pdb" to tzw. symbole, przydają się przy debugowaniu ale o tym przy ok
 
  
 
-Całość jak zawsze dostępna na <a href="https://github.com/AdrianRamzes/PluginsExample" target="_blank">GitHub </a>🙂
+Całość jak zawsze dostępna na [GitHub ](https://github.com/AdrianRamzes/PluginsExample)🙂
 
  
 
