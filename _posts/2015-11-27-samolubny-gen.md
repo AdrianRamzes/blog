@@ -1,5 +1,5 @@
 ---
-title: '"Samolubny Gen"'
+title: Samolubny Gen
 date: 2015-11-27T14:46:29+00:00
 author: Adrian Karalus
 layout: post
@@ -17,9 +17,9 @@ tags:
   - samolubny
   - selfish
 ---
-Nie wiem co myśleć o tej książce. Może moje oczekiwania były zbyt duże. Mogę ją określić jednym słowem "nudna".
+Nie wiem co myśleć o tej książce. Może moje oczekiwania były zbyt duże. Mogę ją określić jednym słowem **nudna**.
 
-Po złapaniu głównego przesłania tej książki, które moim zdaniem mogło by brzmieć "geny determinują nasze zachowania, nawet te altruistyczne", staje się ona po prostu nudna. Nie chce by zrozumiano mnie źle, **książka jest dobra**, ale dałoby się to wszystko zmieścić na 150 stronach, a nie prawie 500.
+Po złapaniu głównego przesłania tej książki, które moim zdaniem mogło by brzmieć *geny determinują nasze zachowania, nawet te altruistyczne*, staje się ona po prostu nudna. Nie chce by zrozumiano mnie źle, **książka jest dobra**, ale dałoby się to wszystko zmieścić na 150 stronach, a nie prawie 500.
 
 Książka wydana była po raz pierwszy  w roku 1976. Dlatego rozumiem, że autor musiał bardzo się rozpisać, aby wytłumaczyć swóje dość rewolucyjne poglądy.  
 Dziś znaczna większość społeczeństwa wie czym jest ewolucja. Z tego powodu teorie zawarte w tej książce nie brzmią już tak rewolucyjnie jak kiedyś. Podczas czytania, cały czas czuć silne starania autora do udowodnienia swoich racji. Zapewne Richard Dawkins wiedział, że książka będzie bardzo krytykowana (co do tego się nie pomylił) więc zapobiegawczo podawał wiele przykładów i rozpisywał się aby mieć pewność, że zostanie dobrze zrozumiany.  
@@ -43,4 +43,4 @@ Jeszcze krótki komentarz co do samego [Richarda Dawkinsa](https://pl.wikipedia.
 Przede wszystkim jest to wybitny zoolog, ewolucjonista, profesor na Uniwersytecie Oksfordzkim.  
 Dopiero w drugiej kolejność powinien być kojarzony ze swoją fundacją i działalnością na rzecz ateistów.
 
-Często słychać głosy: "Richard Dawkins,? A! To ten od ateistów". To za sprawą filmików na YouTubie, które robią furorę dzięki jego ciętym ripostom i ostrym języku. To samo dotyczy [Stephena Hawkinga](https://pl.wikipedia.org/wiki/Stephen_Hawking), (to ten geniusz na wózku inwalidzkim), wszyscy go kojarzą, większość wie jak wygląda, a tylko niewiele osób wie czego [dokonał](https://pl.wikipedia.org/wiki/Promieniowanie_Hawkinga).
+Często słychać głosy: *"Richard Dawkins,? A! To ten od ateistów"*. To za sprawą filmików na YouTubie, które robią furorę dzięki jego ciętym ripostom i ostrym języku. To samo dotyczy [Stephena Hawkinga](https://pl.wikipedia.org/wiki/Stephen_Hawking), (to ten geniusz na wózku inwalidzkim), wszyscy go kojarzą, większość wie jak wygląda, a tylko niewiele osób wie czego [dokonał](https://pl.wikipedia.org/wiki/Promieniowanie_Hawkinga).

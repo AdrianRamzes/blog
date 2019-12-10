@@ -17,28 +17,23 @@ tags:
   - task
   - wielowątkowość
 ---
-<p style="padding-left: 60px;">
-  Pisząc aplikację wielowątkowe często istnieje potrzeba raportowania aktualnego postępu lub przerwania obliczeń "z zewnątrz".<br /> Klasa <strong>BackgroundWorker</strong> dostarcza do tego gotowe metody. Jednak jak to zrobić gdy pracujemy z klasą <strong>Task</strong>?
-</p>
 
-<!--more-->
+  Pisząc aplikację wielowątkowe często istnieje potrzeba raportowania aktualnego postępu lub przerwania obliczeń "z zewnątrz".  
+  Klasa **BackgroundWorker** dostarcza do tego gotowe metody. Jednak jak to zrobić gdy pracujemy z klasą **Task**?
 
-### 
-
- 
 
 ### 1) Raportowanie:
 
  
 
-Jednym z możliwych sposobów, rozwiązania tego problemu, jest użycie obiektów implementujących interface **IProgress<T>**.  
-Metoda, która ma wykonywać się asynchronicznie, jako parametr powinna przyjmować obiekty typu IProgress<T>:
+Jednym z możliwych sposobów, rozwiązania tego problemu, jest użycie obiektów implementujących interface `IProgress<T>`.  
+Metoda, która ma wykonywać się asynchronicznie, jako parametr powinna przyjmować obiekty typu `IProgress<T>`:
 
 ```csharp
 Task DoSomeWorkAsync(IProgress<int> progress)
 ```
 
-Obiekt ten zawiera metodę Report(T), która jako parametr przyjmuje typ generyczny w tym przypadku będzie to int.  
+Obiekt ten zawiera metodę `Report(T)`, która jako parametr przyjmuje typ generyczny w tym przypadku będzie to int.  
 Wywołanie tych obliczeń wygląda w następujący sposób:
 
 ```csharp

@@ -10,11 +10,11 @@ categories:
 ---
 Nigdy wcześniej nie pisałem rozszerzeń do Chrome, ale chciałem spróbować. Wiedziałem wcześniej jedynie, że to nie jest zbyt trudne, tutaj cytat mojego kolegi: "Nie wiem jak robi się rozszerzenia do chrome, ale daję to moim studentom na pierwszym roku i jakoś dają radę, więc, to nie może być trudne". I rzeczywiście nie jest. Rozszerzenie do przeglądarki to nic innego jak HTML+CSS+JS. 
 
-<span>"Jeśli umiesz podstawy frontend, to umiesz też chrome extension."</span>
+***Jeśli umiesz w podstawy frontend, to umiesz też w chrome extension.***
 
 ## manifest.json
 
-Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik _manifest.json_, w którym znajdują się podstawowe informacje o rozszerzeniu, takie jak: nazwa, opis, wersja oraz deklaracja uprawnień, jakie są potrzebne, aby rozszerzenie działało. 
+Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik *manifest.json*, w którym znajdują się podstawowe informacje o rozszerzeniu, takie jak: nazwa, opis, wersja oraz deklaracja uprawnień, jakie są potrzebne, aby rozszerzenie działało. 
 
 ```javascript
 {
@@ -45,18 +45,18 @@ Zaczynamy od stworzenia zwykłego projektu html/js/css. Następnie dodajemy plik
 }
 ```
 
-Najważniejsze jest pole _default_popup_, które mówi przeglądarce - jaki widok ma się wyświetlić po kliknięciu na ikonę rozszerzenia.  
+Najważniejsze jest pole *default_popup*, które mówi przeglądarce - jaki widok ma się wyświetlić po kliknięciu na ikonę rozszerzenia.  
 Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkowej strony - background, która będzie żyć tak długo jak długo działa przeglądarka, bez względu na to czy rozszerzenie jest widoczne. W tym celu należy podać wartość parametru _background.page_. W manifeście znajdują się również inne informacje o aplikacji takie jak: nazwa rozszerzenia, opis, ikona, wersja oraz wykorzystywane uprawnienia. W tym przypadku są to: 
 
-  * _backgroud_ - działanie w tle, 
-  * _storage_ - dostęp do zapisywania i odczytywania danych, 
-  * _notifications_ - wysyłanie powiadomień.
+ - *backgroud* - działanie w tle, 
+ - *storage* - dostęp do zapisywania i odczytywania danych, 
+ - *notifications* - wysyłanie powiadomień.
 
 ## Popup
 
-<img src="/blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=553%2C288" alt="" width="553" height="288" class="alignnone size-full wp-image-752" srcset="/blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?w=553 553w, /blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png?resize=300%2C156 300w" sizes="(max-width: 553px) 100vw, 553px" data-recalc-dims="1" /> 
+![](/blog/wp-content/uploads/2018/02/chrome_2018-01-10_01-25-39.png)
 
-Popup czyli główne okienko rozszerzenia pokazujące się po kliknięciu ikony. <a target="_blank" href="https://github.com/AdrianRamzes/pomodoro-timer/blob/master/pomodoro-timer.html">(pomodoro-timer.html)</a>  
+Popup czyli główne okienko rozszerzenia pokazujące się po kliknięciu ikony. [(pomodoro-timer.html)](https://github.com/AdrianRamzes/pomodoro-timer/blob/master/pomodoro-timer.html)  
 Tutaj dołączamy pliki javascript.`<script src="js/pomodoro-timer.js"></script>` 
 
 Skrypt okna `pomodoro-timer.js`, zawiera obsługę kliknięć - sterowanie timerem oraz wyświetla aktualną wartość zegara. 
@@ -68,7 +68,7 @@ Timer będzie działać w tle, dlatego potrzebne jest utworzenie strony oraz skr
 
 ## Testowanie
 
-Rozszerzenia nie trzeba umieszczać w sklepie, aby dodać je do przeglądarki. W celu przetestowania rozszerzenia należy przejść na stronę rozszerzeń (wpisując w pasek adresu "chrome://extensions/") oraz zaznaczyć opcję "Tryb programisty". Wtedy pojawi się przycisk umożliwiający wczytanie rozszerzenia w postaci spakowanego pliku .zip. 
+Rozszerzenia nie trzeba umieszczać w sklepie, aby dodać je do przeglądarki. W celu przetestowania rozszerzenia należy przejść na stronę rozszerzeń (wpisując w pasek adresu "chrome://extensions/") oraz zaznaczyć opcję *Tryb programisty*. Wtedy pojawi się przycisk umożliwiający wczytanie rozszerzenia w postaci spakowanego pliku .zip. 
 
-Zapraszam do pobrania mojego <a target="_blank" href="https://chrome.google.com/webstore/detail/timer/pakimokpohbojafpbgknlohgoepnelki?utm_source=chrome-ntp-icon">rozszerzenia</a>.  
-Kod, który posłużył mi do jego napisania jest w całości dostępny na <a target="_blank" href="https://github.com/AdrianRamzes/pomodoro-timer">GitHub</a>.
+Zapraszam do pobrania mojego [rozszerzenia](https://chrome.google.com/webstore/detail/timer/pakimokpohbojafpbgknlohgoepnelki?utm_source=chrome-ntp-icon).  
+Kod, który posłużył mi do jego napisania jest w całości dostępny na [GitHub](https://github.com/AdrianRamzes/pomodoro-timer).

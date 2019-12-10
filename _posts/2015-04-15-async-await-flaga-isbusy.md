@@ -13,8 +13,6 @@ tags:
   - isbusy
 ---
 Załóżmy, że nasze asynchroniczne zadanie odpalane jest na jakiś event, np. kliknięcie przycisku.  
-<!--more-->
-
   
 Co jeśli zadanie jest dość wyczerpujące, a na dodatek nie powinno być wywoływane więcej niż raz w krótkim czasie? (przez zniecierpliwionego użytkownika, który klika po kilka razy w ten sam przycisk bo myśli, że to pomoże).
 
@@ -27,23 +25,23 @@ Rozwiązanie jest banalne.
 
 ```csharp
 private bool isBusy = false;
-        private async void sthAsync(object sender, EventArgs e)
-        {
-            if (!isBusy)
-            {
-                isBusy = true;
-                await someTaskAsync();
-                isBusy = false;
-            }
-        }
+private async void sthAsync(object sender, EventArgs e)
+{
+    if (!isBusy)
+    {
+        isBusy = true;
+        await someTaskAsync();
+        isBusy = false;
+    }
+}
 
-        private Task someTaskAsync()
-        {
-            return Task.Run(() =>
-            {
-                Thread.Sleep(2 * 1000);// 1000ms = 1s
-            });
-        }
+private Task someTaskAsync()
+{
+    return Task.Run(() =>
+    {
+        Thread.Sleep(2 * 1000);// 1000ms = 1s
+    });
+}
 ```
 
 To czy metoda asynchroniczna będzie wywołana uzależniamy od wartości flagi isBusy.  

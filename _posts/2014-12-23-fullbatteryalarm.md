@@ -10,8 +10,6 @@ categories:
 ---
 Napisałem niedawno bardzo malutki program, który ostrzeże właścicieli laptopów przed przeładowywaniem baterii.
 
-<!--more-->
-
 Ciekawy artykuł o tej tematyce znalazłem [tutaj](http://batteryuniversity.com/learn/article/how_to_prolong_lithium_based_batteries). Zawiera on mnóstwo informacji i odnośników.  
 W czasach gdy wszystko jest mobilne i na baterii, warto dowiedzieć się jak to działa 😉
 

@@ -9,7 +9,6 @@ categories:
   - Książki
 ---
 O czym jest ta książka? Richard Feynman opowiada, różne ciekawe i mniej ciekawe anegdotki ze swojego życia.  
-<!--more-->
 
 Mimo, że czasami przynudzał to w ogólności książka bardzo ciekawa. Czytałem ją głównie w pociągach i tramwajach, więc gdy czasami wybuchałem śmiechem podczas lektury to ludzie dziwnie się na mnie patrzyli. Taka jest właśnie ta książka. Przeplata tematy bardzo poważne z błyskotliwym humorem.
 

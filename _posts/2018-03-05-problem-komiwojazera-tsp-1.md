@@ -79,4 +79,4 @@ Najlepszy wynik uzyskany przy pomocy powyżej zaimplementowanego algorytmu NN to
 Jest to zaskakująco dobrze, biorąc pod uwagę, że najlepszy znaleziony wynik dla kroA100 wynosi [21282](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html" rel="noopener).  
 Poniżej wizualizacja kilku tras wyznaczonym przez powyższy NN. 
 
-<img src="/blog/wp-content/uploads/2018/03/tsp_nn_solutions.gif" alt="TSP - NN - rozwiązania " data-recalc-dims="1" />
+![](/blog/wp-content/uploads/2018/03/tsp_nn_solutions.gif)

@@ -20,42 +20,42 @@ Oczywiście, zrównoleglenia można użyć tylko w przypadku gdy kolejne kroki 
 
 Te założenia w praktyce dość mocno ograniczają nam ilość przypadków, w których można zastosować zrónoleglenie. Jednak, są to problemy ogólnie z przetwarzaniem równoległym i nie będę się tutaj na ten temat rozpisywać.
 
-Jednym z najprostszych sposobów zrównoleglenia obliczeń wykonywanych w pętli - jest skorzystanie z dobrodziejstw klasy _Parallel_, a dokładniej metod _For_ i _ForEach_.
+Jednym z najprostszych sposobów zrównoleglenia obliczeń wykonywanych w pętli - jest skorzystanie z dobrodziejstw klasy *Parallel*, a dokładniej metod **For** i **ForEach**.
 
 ```csharp
 var start = 0;
-            var stop = 100;
+var stop = 100;
 
-            Parallel.For(start, stop, (i) =>
-            {
-                //Do something with: i
-            });
+Parallel.For(start, stop, (i) =>
+{
+    //Do something with: i
+});
 ```
 
 Chyba nie da się prościej.  
-Funkcja przyjmowana przez metodę _For_ (w tym przypadku wyrażenie lambda z jednym parametrem), może przyjmować dwa parametry.  
-Drugim jest obiekty typy _ParallelLoopState_, który może posłużyć do komunikacji pomiędzy iteracjami, oraz do przerwania wykonywania pętli.
+Funkcja przyjmowana przez metodę *For* (w tym przypadku wyrażenie lambda z jednym parametrem), może przyjmować dwa parametry.  
+Drugim jest obiekty typy **ParallelLoopState**, który może posłużyć do komunikacji pomiędzy iteracjami, oraz do przerwania wykonywania pętli.
 
 ```csharp
 Parallel.For(start, stop, (i, loopState) =>
-            {
-                Console.WriteLine(i + " " + Thread.CurrentThread.ManagedThreadId);
+{
+    Console.WriteLine(i + " " + Thread.CurrentThread.ManagedThreadId);
 
-                if (i.Equals(10))
-                    loopState.Stop(); //or loopState.Break();
+    if (i.Equals(10))
+        loopState.Stop(); //or loopState.Break();
 
-            });
+});
 ```
 
 Do przerwania obliczeń, mamy do wyboru, [aż dwie metody - każda ma inne działanie](http://stackoverflow.com/questions/8818203/what-is-difference-between-loopstate-break-loopstate-stop-and-cancellationt).
 
-Dzięki metodzie _Parallel.ForEach_ możliwe jest, zrównoleglenie działań na obiektach kolekcji.
+Dzięki metodzie `Parallel.ForEach` możliwe jest, zrównoleglenie działań na obiektach kolekcji.
 
 ```csharp
 Parallel.ForEach(new List<int>() { 0, 1, 2, 3 }, (i) =>
-             {
-                 Console.WriteLine(i);
-             });
+{
+    Console.WriteLine(i);
+});
 ```
 
-Jedną z największych, moim zdaniem, zalet używania _Parallel.For_ oraz _Parallel.ForEach_ jest taki, że liczba użytych wątków jest dobrana tak, aby maksymalnie wykorzystać sprzęt na jakim działa program, a tym samym zmaksymalizować zysk czasowy. Wszystko to dzieje się automagicznie 😉
+Jedną z największych, moim zdaniem, zalet używania `Parallel.For` oraz `Parallel.ForEach` jest taki, że liczba użytych wątków jest dobrana tak, aby maksymalnie wykorzystać sprzęt na jakim działa program, a tym samym zmaksymalizować zysk czasowy. Wszystko to dzieje się automagicznie 😉
