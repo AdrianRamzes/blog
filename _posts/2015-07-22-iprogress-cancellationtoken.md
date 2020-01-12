@@ -4,7 +4,7 @@ date: 2015-07-22T21:25:48+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/07/iprogress-cancellationtoken/
-image: /blog/wp-content/uploads/2015/07/IprogressDemo-250x184.png
+image: /blog/assets/content/uploads/2015/07/IprogressDemo-250x184.png
 categories:
   - Programowanie
 tags:

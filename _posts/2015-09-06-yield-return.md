@@ -4,7 +4,7 @@ date: 2015-09-06T21:22:27+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/09/yield-return/
-image: /blog/wp-content/uploads/2015/09/yieldreturn-250x202.png
+image: /blog/assets/content/uploads/2015/09/yieldreturn-250x202.png
 categories:
   - Programowanie
 tags:

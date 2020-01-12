@@ -4,7 +4,7 @@ date: 2014-10-02T21:42:38+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/10/c-wpf-mvvm-delegatecommand/
-image: /blog/wp-content/uploads/2014/10/DelegateCommand_2.png
+image: /blog/assets/content/uploads/2014/10/DelegateCommand_2.png
 categories:
   - Programowanie
 tags:
@@ -165,7 +165,7 @@ _clickCommand = new DelegateCommand(Click, CanExecuteClick);
 
 To już chyba wszystko. Po uruchomieniu powinnyśmy zobaczyć coś takiego:
 
-![](/blog/wp-content/uploads/2014/10/DelegateCommand_1.png)
+![](/blog/assets/content/uploads/2014/10/DelegateCommand_1.png)
 
 (Przycisk aktywny po prawej i nieaktywny po lewej)
 
@@ -175,7 +175,7 @@ Jednak o powiązaniach między kontrolkami opowiem [innym razem](/blog/2014/10
 Warto jeszcze wspomnieć o tym, kiedy tak naprawdę wywoływane jest CanExecute.  
 Nie bez powodu w metodzie "CanExecuteClick()" dodałem linijkę logującą.
 
-![](/blog/wp-content/uploads/2014/10/DelegateCommand_2.png)
+![](/blog/assets/content/uploads/2014/10/DelegateCommand_2.png)
 
 
 Jest ona wykonywana przy **każdej** drobnej interakcji widoku z użytkownikiem. Najlepiej założyć, że jest po prostu wykonywana bardzo często i w losowych momentach. Nie należy zatem wkładać tam potężnej logiki. O tym jak zwiększyć kontrolę nad wzywaniem metody CanExecute opowiem przy okazji kolejnych wpisów.

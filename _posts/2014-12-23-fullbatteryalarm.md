@@ -4,7 +4,7 @@ date: 2014-12-23T14:34:46+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/12/fullbatteryalarm/
-image: /blog/wp-content/uploads/2014/12/FullBatteryAlarmScreen.png
+image: /blog/assets/content/uploads/2014/12/FullBatteryAlarmScreen.png
 categories:
   - Inne
 ---
@@ -15,7 +15,7 @@ W czasach gdy wszystko jest mobilne i na baterii, warto dowiedzieć się jak to 
 
 Wracając do mojej aplikacji:
 
-[DOWNLOAD](/blog/wp-content/uploads/2014/12/FullBatteryAlarm.zip)
+[DOWNLOAD](/blog/assets/content/uploads/2014/12/FullBatteryAlarm.zip)
 
 Po uruchomieniu, chowa się on w systemowym tray.
 

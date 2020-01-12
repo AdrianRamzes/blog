@@ -4,7 +4,7 @@ date: 2014-09-17T23:01:53+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/09/c-wpf-mvvm-notificationobject-i-services/
-image: /blog/wp-content/uploads/2014/09/2014-09-17-22_31_00-ServicesSample-Microsoft-Visual-Studio.png
+image: /blog/assets/content/uploads/2014/09/2014-09-17-22_31_00-ServicesSample-Microsoft-Visual-Studio.png
 categories:
   - Programowanie
 tags:
@@ -300,6 +300,6 @@ Koniec :-).
 
 Po uruchomieniu powinniśmy zobaczyć zmieniający się co sekundę (lub inny ustawiony odcinek czasu) tekst.
 
-![](/blog/wp-content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png)
+![](/blog/assets/content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png)
 
 **Cały projekt jest dostępny do pobrania na [GitHub](https://github.com/AdrianRamzes/ServicesSample)**

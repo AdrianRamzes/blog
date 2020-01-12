@@ -4,7 +4,7 @@ date: 2016-02-11T00:26:55+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2016/02/obliczanie-wspolczynnika-jaccarda-dla-wielu-obiektow/
-image: /blog/wp-content/uploads/2016/02/7017OS_09_03-250x142.jpg
+image: /blog/assets/content/uploads/2016/02/7017OS_09_03-250x142.jpg
 categories:
   - Programowanie
 tags:
@@ -14,7 +14,7 @@ tags:
   - programowanie
 ---
 **Problem:**  
-Mamy [dane z serwisu muzycznego](/blog/wp-content/uploads/2016/02/facts.7z) - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
+Mamy [dane z serwisu muzycznego](/blog/assets/content/uploads/2016/02/facts.7z) - log odsłuchanych utworów, postaci: IdUtworu, IdUżytkownika, Data odtworzenia.  
 Chcemy się dowiedzieć, którzy użytkownicy mają podobny gust muzyczny. Dla każdego użytkownika chcemy dostać listę jego najbliższych sąsiadów.  
 Do miary podobieństwa użyjemy [współczynnika Jaccarda](https://en.wikipedia.org/wiki/Jaccard_index).  
 Wpisów jest ponad 27 mln. (plik tekstowy ma ponad 500 MB), użyte algorytmy i struktury danych mają więc ogromny wpływ na czas obliczeń.

@@ -4,7 +4,7 @@ date: 2018-03-05T02:34:47+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2018/03/problem-komiwojazera-tsp-1/
-image: /blog/wp-content/uploads/2018/03/tsp_nn_solutions.gif
+image: /blog/assets/content/uploads/2018/03/tsp_nn_solutions.gif
 categories:
   - Programowanie
 tags:
@@ -32,7 +32,7 @@ To podejście jest bardzo szybkie, jednak zazwyczaj nie daje ono optymalnego wyn
 
 ## Implementacja oraz testy
 
-Dane wejściowe programu znajdują się w pliku [kroA100](/blog/wp-content/uploads/2018/03/kroA100.txt" rel="noopener), który zawiera 100 losowych punktów w postaci `{id} {x} {y}`. Program na starcie wczytuje dane do dwóch kolekcji:
+Dane wejściowe programu znajdują się w pliku [kroA100](/blog/assets/content/uploads/2018/03/kroA100.txt" rel="noopener), który zawiera 100 losowych punktów w postaci `{id} {x} {y}`. Program na starcie wczytuje dane do dwóch kolekcji:
 
 ```csharp
 static Dictionary<int, Vertex> vertices;
@@ -79,4 +79,4 @@ Najlepszy wynik uzyskany przy pomocy powyżej zaimplementowanego algorytmu NN to
 Jest to zaskakująco dobrze, biorąc pod uwagę, że najlepszy znaleziony wynik dla kroA100 wynosi [21282](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/STSP.html" rel="noopener).  
 Poniżej wizualizacja kilku tras wyznaczonym przez powyższy NN. 
 
-![](/blog/wp-content/uploads/2018/03/tsp_nn_solutions.gif)
+![](/blog/assets/content/uploads/2018/03/tsp_nn_solutions.gif)

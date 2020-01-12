@@ -4,7 +4,7 @@ date: 2014-11-25T15:03:24+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/11/observablecollection/
-image: /blog/wp-content/uploads/2014/11/2014-11-25-14_58_37-MainWindow.png
+image: /blog/assets/content/uploads/2014/11/2014-11-25-14_58_37-MainWindow.png
 categories:
   - Programowanie
 tags:

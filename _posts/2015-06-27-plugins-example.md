@@ -4,7 +4,7 @@ date: 2015-06-27T00:38:43+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/06/plugins-example/
-image: /blog/wp-content/uploads/2015/06/PluginsExample3.png
+image: /blog/assets/content/uploads/2015/06/PluginsExample3.png
 categories:
   - Programowanie
 tags:
@@ -292,11 +292,11 @@ public class LineTool : IPlugin
 
 Budujemy naszą wtyczkę i dodajemy wygenerowany plik "**LineToolPlugin.dll**" do folderu **Plugins**
 
-![](/blog/wp-content/uploads/2015/06/PluginsExample1.png)
+![](/blog/assets/content/uploads/2015/06/PluginsExample1.png)
 
 Ważne jest aby wybrać opcję **Copy always**
 
-![](/blog/wp-content/uploads/2015/06/PluginsExample2.png)
+![](/blog/assets/content/uploads/2015/06/PluginsExample2.png)
 
  
 

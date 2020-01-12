@@ -4,7 +4,7 @@ date: 2014-10-16T19:22:26+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/10/prism-delegatecommand/
-image: /blog/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png
+image: /blog/assets/content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png
 categories:
   - Programowanie
 ---
@@ -21,7 +21,7 @@ Jeśli jednak z jakiegoś egzotycznego powodu Twoja metoda CanExecute musi wykon
 
 Dodaj do swojego projektu NuGet pakiet Prism (aktualna wersja na 18.10.2014 to 5.0).
 
-![](/blog/wp-content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png)
+![](/blog/assets/content/uploads/2014/10/2014-10-15-20_50_09-PrismDelegateCommand-Manage-NuGet-Packages.png)
 
  
 
@@ -130,7 +130,7 @@ Po stronie widoku:
 
 Podsumowując. Prism dostarcza nam już gotowej implementacji klasy DelegateCommand. W tej implementacji metoda CanExecute jest wykonywana tylko na żądanie programisty oraz bezpośrednio przed metodą Execute.
 
-![](/blog/wp-content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png)(Jak widać: CanExecute jest wykonywane tylko gdy zmienia się wartość wprowadzana przez użytkownika)
+![](/blog/assets/content/uploads/2014/10/2014-10-16-19_09_28-PrismDelegateCommand-Running-Microsoft-Visual-Studio.png)(Jak widać: CanExecute jest wykonywane tylko gdy zmienia się wartość wprowadzana przez użytkownika)
 
 Powoduje to większą kontrole nad kodem oraz zwiększa wydajność (jeśli CanExecute jest zasobożerne). Łatwo natomiast może dojść do sytuacji, w której aktywność przycisku nie będzie odzwierciedlać faktycznej wartości zwracanej przez CanExecute, ponieważ programista zapomni (o co nie łatwo) jawnie wywołać RaiseCanExecuteChanged.
 

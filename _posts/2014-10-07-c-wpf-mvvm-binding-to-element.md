@@ -4,7 +4,7 @@ date: 2014-10-07T19:14:49+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/10/c-wpf-mvvm-binding-to-element/
-image: /blog/wp-content/uploads/2014/10/ElementBinding_icon.png
+image: /blog/assets/content/uploads/2014/10/ElementBinding_icon.png
 categories:
   - Programowanie
 ---
@@ -73,7 +73,7 @@ Oto cała zawartość głównego kontenera:
 
 Efekt powinien być taki:
 
-![](/blog/wp-content/uploads/2014/10/ElementBinding.png)
+![](/blog/assets/content/uploads/2014/10/ElementBinding.png)
 
 I to chyba wszystko. Jak widać nie trzeba zawsze stosować wzorca MVVM i [CanExecute](/blog/2014/10/c-wpf-mvvm-delegatecommand/). Czasami jest to strzelanie z armaty do muchy. Dlatego powstały powiązania, aby załatwić sprawę prostych zależności.
 

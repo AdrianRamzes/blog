@@ -4,7 +4,7 @@ date: 2015-04-26T13:26:10+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/04/pan-raczy-zartowac-panie-feynman/
-image: /blog/wp-content/uploads/2015/04/20150425_150152.jpg
+image: /blog/assets/content/uploads/2015/04/20150425_150152.jpg
 categories:
   - Książki
 ---

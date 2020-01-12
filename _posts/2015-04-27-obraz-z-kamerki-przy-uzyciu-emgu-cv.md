@@ -4,7 +4,7 @@ date: 2015-04-27T11:22:39+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/
-image: /blog/wp-content/uploads/2015/04/blog_webcamService.png
+image: /blog/assets/content/uploads/2015/04/blog_webcamService.png
 categories:
   - Programowanie
 ---
@@ -304,4 +304,4 @@ To chyba wszystko. Cały działający kod, jak zawsze, dostępny na [GitHub](htt
 
  
 
-![](/blog/wp-content/uploads/2015/04/blog_webcamService.png)
+![](/blog/assets/content/uploads/2015/04/blog_webcamService.png)

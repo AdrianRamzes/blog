@@ -4,7 +4,7 @@ date: 2014-10-28T21:20:18+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/10/quicklogger/
-image: /blog/wp-content/uploads/2014/10/2014-10-28-21_18_55-Logger.png
+image: /blog/assets/content/uploads/2014/10/2014-10-28-21_18_55-Logger.png
 categories:
   - Inne
 ---
@@ -45,7 +45,7 @@ Zrobienie ważnego zadania od samego rana, wprawi Cię od razu w dobry nastrój 
 Pozwoli Ci to lepiej kontrolować czas i wyciągać wnioski nt. tego co w pracy absorbuje Cię najbardziej.  
 Jak prowadzić dziennik pracy?  
 Tutaj z pomocą przychodzi chyba już cała rodzina programów *QuickLogger*, tę nazwę nosi już cała masa aplikacji, a ich wspólną cechą jest maksymalna prostota i łatwość obsługi.  
-Sam napisałem taką aplikację, którą możecie ściągnąć tutaj: [QuickLogger](/blog/wp-content/uploads/2016/04/QuickLogger.zip). ~~[QuickLogger (wersja z 2014)](/blog/wp-content/uploads/2014/10/QuickLogger.zip)~~
+Sam napisałem taką aplikację, którą możecie ściągnąć tutaj: [QuickLogger](/blog/assets/content/uploads/2016/04/QuickLogger.zip). ~~[QuickLogger (wersja z 2014)](/blog/assets/content/uploads/2014/10/QuickLogger.zip)~~
 
 Cały kod tego programu jest dostępny na [GitHub](https://github.com/AdrianRamzes/QuickLogger).
 

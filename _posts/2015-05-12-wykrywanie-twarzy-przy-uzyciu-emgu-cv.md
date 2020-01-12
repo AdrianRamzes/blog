@@ -4,7 +4,7 @@ date: 2015-05-12T17:14:18+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/
-image: /blog/wp-content/uploads/2015/05/blog_facedetection.png
+image: /blog/assets/content/uploads/2015/05/blog_facedetection.png
 categories:
   - Programowanie
 ---
@@ -134,7 +134,7 @@ Cały kod jak zawsze dostępny na [GITHUB ](https://github.com/AdrianRamzes/Face
 
 Efekt na zdjęciu:
 
-![](/blog/wp-content/uploads/2015/05/blog_facedetection.png)
+![](/blog/assets/content/uploads/2015/05/blog_facedetection.png)
 
 oraz filmie:
 

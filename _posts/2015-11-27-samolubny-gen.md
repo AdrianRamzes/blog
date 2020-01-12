@@ -4,7 +4,7 @@ date: 2015-11-27T14:46:29+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/11/samolubny-gen/
-image: /blog/wp-content/uploads/2015/11/20151127_135038-e1448628936110-250x250.jpg
+image: /blog/assets/content/uploads/2015/11/20151127_135038-e1448628936110-250x250.jpg
 categories:
   - Książki
 tags:
