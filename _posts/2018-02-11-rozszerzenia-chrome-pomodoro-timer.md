@@ -4,7 +4,7 @@ date: 2018-02-11T16:59:47+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2018/02/rozszerzenia-chrome-pomodoro-timer/
-image: /blog/assets/content/uploads/2018/02/chrome_2018-01-10_01-25-39.png
+image: /assets/content/uploads/2018/02/chrome_2018-01-10_01-25-39.png
 categories:
   - Programowanie
 ---
@@ -54,7 +54,7 @@ Mój Timer, będzie działał w tle, więc potrzebne jest zdefiniowanie dodatkow
 
 ## Popup
 
-![](/blog/assets/content/uploads/2018/02/chrome_2018-01-10_01-25-39.png)
+![](/assets/content/uploads/2018/02/chrome_2018-01-10_01-25-39.png)
 
 Popup czyli główne okienko rozszerzenia pokazujące się po kliknięciu ikony. [(pomodoro-timer.html)](https://github.com/AdrianRamzes/pomodoro-timer/blob/master/pomodoro-timer.html)  
 Tutaj dołączamy pliki javascript.`<script src="js/pomodoro-timer.js"></script>` 

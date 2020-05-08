@@ -4,7 +4,7 @@ date: 2017-01-29T22:44:59+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2017/01/elon-musk-biografia-tworcy-paypala-tesli-spacex/
-image: /blog/assets/content/uploads/2017/01/IMG_2197-250x250.jpg
+image: /assets/content/uploads/2017/01/IMG_2197-250x250.jpg
 categories:
   - Książki
 tags:
@@ -19,7 +19,7 @@ tags:
   - tesla
 ---
 Świetnie zrobiona biografia. Czuć, że autor (Ashlee Vance) poświęcił dużo czasu na przegotowanie tej książki, zebranie tak dużej ilości wywiadów, opowieści, listów, artykułów i emaili w jedną całość musiało być czasochłonne. W książce autor opisuje nie tylko karierę ale całe życie Muska (a nawet okres przed jego narodzinami, sięgając do historii rodziny), zaczynając od okresu dzieciństwa i dorastania w RPA, aż do czasu, w którym pisana jest książka. Całość przeplatają wypowiedzi członków rodziny, znajomych oraz obecnych i byłych pracowników. Poznamy historię PayPala, Tesli, SpaceX, SolarCity oraz kulisy pobocznych projektów Elona takich jak kosmiczny internet czy HyperLoop.  
-Autor starał się być bezstronny i nie oceniać postaci, jednak miejscami delikatnie czuć próby tłumaczenia go z dziwnych, aspołecznych zachowań. Krótko mówiąc: polecam tę lekturę, jest ona wzorem tego jak powinna być pisana biografia. ![](/blog/assets/content/uploads/2017/01/IMG_2197.jpg)  
+Autor starał się być bezstronny i nie oceniać postaci, jednak miejscami delikatnie czuć próby tłumaczenia go z dziwnych, aspołecznych zachowań. Krótko mówiąc: polecam tę lekturę, jest ona wzorem tego jak powinna być pisana biografia. ![](/assets/content/uploads/2017/01/IMG_2197.jpg)  
 O samym Elonie Musku słów kilka.  
 Elon jest kimś w rodzaju gwiazdy rocka wśród nerdów na całym świecie. Sam z zapartym tchem śledzę kolejne dokonania SpaceX oraz z ciekawością patrzę na rozwój Tesli. Podobnie jak Elon jestem ogromnym fanem Sci-Fi, podzielam jego wizję świata - potrzebę uczynienia ludzi gatunkiem międzyplanetarnym. Uważam, że jest to [kwestia przetrwania naszego gatunku](https://www.youtube.com/watch?v=2W0QkV-Noy0). Auta elektryczne już dawno powinny stanowić większość aut jeżdżących po drogach.  
 Jako dzieci marzyliśmy o podboju kosmosu, świcie z Gwiezdnych Wojen, albo chociaż latającym samochodzie, a dostaliśmy snapchata.  

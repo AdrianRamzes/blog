@@ -4,7 +4,7 @@ date: 2015-09-22T12:54:52+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/09/porzadek-w-skrzynce-odbiorczej-lifehack/
-image: /blog/assets/content/uploads/2015/09/Inbox-101-250x250.jpg
+image: /assets/content/uploads/2015/09/Inbox-101-250x250.jpg
 categories:
   - Inne
 tags:
@@ -23,7 +23,7 @@ tags:
 Jakiś rok temu, postanowiłem zrobić porządek w mojej skrzynce pocztowej. Przy okazji tego sprzątania zastosowałem jeden z Lifehack'ów, o którym przeczytałem w serwisie [Lifehacker.org](http://lifehacker.com/182318/empty-your-inbox-with-the-trusted-trio).  
 
 Pomysł jest prosty. Wystarczy utworzyć dodatkowe trzy foldery: Archiwum, Bieżące, Zadania.  
-![](/blog/assets/content/uploads/2015/09/email_folders.png)
+![](/assets/content/uploads/2015/09/email_folders.png)
 
 Następnie należy trzymać się tych zasad:
 
@@ -34,9 +34,9 @@ Następnie należy trzymać się tych zasad:
   * Cała reszta + Zakończone zadania(z folderu "Zadania") i zakończone sprawy (folder "Bieżące") trafia do **Archiwum**
 
 Większość dobrych klientów poczty ma już wstępnie utworzoną strukturę folderów mniej lub bardziej pasujących do powyższego opisu. Użytkownicy poczty Gmail, mają dodatkowo narzędzie: **Oznaczone gwiazdką**. Gwiazdki mogą być bardzo przydatne i stanowić alternatywę dla folderów. Posługiwanie się gwiazdkami może być wygodniejsze, gdyż nie trzeba zaglądać do powyższych folderów, od razu widać, ile mamy zadań, ile niezakończonych spraw, a ile nieprzeczytanej poczty.  
-![](/blog/assets/content/uploads/2015/09/emial_stars.png) Ustawienia -> Ogólne -> Gwiazdki:
+![](/assets/content/uploads/2015/09/emial_stars.png) Ustawienia -> Ogólne -> Gwiazdki:
 
-![](/blog/assets/content/uploads/2015/09/gmail-gwiazdki.png)
+![](/assets/content/uploads/2015/09/gmail-gwiazdki.png)
 
    
 Odkąd stosuję się do powyższych zasad, moja skrzynka pocztowa jest przez większość czasu pusta. Każdy nowy email OD RAZU trafia do jednej z kategorii.

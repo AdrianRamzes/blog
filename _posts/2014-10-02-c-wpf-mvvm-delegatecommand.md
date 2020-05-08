@@ -4,7 +4,7 @@ date: 2014-10-02T21:42:38+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/10/c-wpf-mvvm-delegatecommand/
-image: /blog/assets/content/uploads/2014/10/DelegateCommand_2.png
+image: /assets/content/uploads/2014/10/DelegateCommand_2.png
 categories:
   - Programowanie
 tags:
@@ -25,9 +25,9 @@ Jest on bardzo prosty i składa się jedynie z trzech elementów:
 
 DelegateCommand to klasa implementująca interfejs ICommand, która ułatwia nam pracę z komendami i poprawia wygląd kodu.
 
-Implementacja klasy DelegateCommand, którą używam najczęściej w swoich projektach, zapożyczyłem z [tego szablonu](http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c) i znajdziecie ją w moim wcześniejszym [wpisie](/blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template) (Jest jeszcze RelayCommand z [MVVM Light](https://mvvmlight.codeplex.com/) i DelegateCommand z [Prism.MVVM](http://www.nuget.org/packages/Prism.Mvvm))
+Implementacja klasy DelegateCommand, którą używam najczęściej w swoich projektach, zapożyczyłem z [tego szablonu](http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c) i znajdziecie ją w moim wcześniejszym [wpisie](/2014/08/c-wpf-mvvm-nowy-projekt-project-template) (Jest jeszcze RelayCommand z [MVVM Light](https://mvvmlight.codeplex.com/) i DelegateCommand z [Prism.MVVM](http://www.nuget.org/packages/Prism.Mvvm))
 
-Przejdźmy do konkretów. (Szablon projektu MVVM, na którym bazuje, opisałem [wcześniej](/blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/))  
+Przejdźmy do konkretów. (Szablon projektu MVVM, na którym bazuje, opisałem [wcześniej](/2014/08/c-wpf-mvvm-nowy-projekt-project-template/))  
 Niech nasz program ma jeden przycisk, jeden checkBox i pole, w którym wyświetlać będziemy komunikaty.  
 Przycisk będzie powodował wyświetlenie jakiejś wiadomości w TextBlock'u, a dostępność przycisku będzie zależna od tego czy CheckBox jest zaznaczony czy nie.
 
@@ -165,17 +165,17 @@ _clickCommand = new DelegateCommand(Click, CanExecuteClick);
 
 To już chyba wszystko. Po uruchomieniu powinnyśmy zobaczyć coś takiego:
 
-![](/blog/assets/content/uploads/2014/10/DelegateCommand_1.png)
+![](/assets/content/uploads/2014/10/DelegateCommand_1.png)
 
 (Przycisk aktywny po prawej i nieaktywny po lewej)
 
 Oczywiście to czy przycisk jest aktywny czy nie, można powiązać z CheckBox'em tylko na poziomie widoku i używając do tego jedynie XAML'a.  
-Jednak o powiązaniach między kontrolkami opowiem [innym razem](/blog/2014/10/c-wpf-mvvm-binding-to-element/).
+Jednak o powiązaniach między kontrolkami opowiem [innym razem](/2014/10/c-wpf-mvvm-binding-to-element/).
 
 Warto jeszcze wspomnieć o tym, kiedy tak naprawdę wywoływane jest CanExecute.  
 Nie bez powodu w metodzie "CanExecuteClick()" dodałem linijkę logującą.
 
-![](/blog/assets/content/uploads/2014/10/DelegateCommand_2.png)
+![](/assets/content/uploads/2014/10/DelegateCommand_2.png)
 
 
 Jest ona wykonywana przy **każdej** drobnej interakcji widoku z użytkownikiem. Najlepiej założyć, że jest po prostu wykonywana bardzo często i w losowych momentach. Nie należy zatem wkładać tam potężnej logiki. O tym jak zwiększyć kontrolę nad wzywaniem metody CanExecute opowiem przy okazji kolejnych wpisów.

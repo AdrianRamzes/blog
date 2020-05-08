@@ -4,7 +4,7 @@ date: 2017-05-03T21:08:10+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2017/05/rozpoznawanie-twarzy-z-uzyciem-aws-rekognition/
-image: /blog/assets/content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png
+image: /assets/content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png
 categories:
   - Programowanie
 tags:
@@ -21,7 +21,7 @@ W grudniu 2016 roku Amazon zapowiedział, że AWS zostanie wzbogacony o nową us
 
 Takim oto demo można pobawić się u Google'a:
 
-![](/blog/assets/content/uploads/2017/05/chrome_2017-05-03_13-49-35.png)
+![](/assets/content/uploads/2017/05/chrome_2017-05-03_13-49-35.png)
 
 Trudno nie być pod wrażeniem, skoro została rozpoznana nawet rasa psa 😉
 
@@ -29,12 +29,12 @@ Jak zacząć pracę z AWS Rekognition?
 Po pierwsze musimy mieć [konto AWS](http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/AboutAWSAccounts.html) i utworzonego użytkownika z dostępem do usługi AWS Rekognition.  
 Instrukcje, krok po kroku znajdziecie w [dokumentacji AWSa](http://docs.aws.amazon.com/rekognition/latest/dg/setting-up.html). Dla utworzonego użytkownika generujemy AWSAccessKeyId oraz AWSSecretAccessKey. O tym jak korzystać z AccessKeyId oraz SecretAccessKey można przeczytać [tutaj](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html). Generalnie, są trzy sposoby - ja używam "Credentials File", jednak nie ma to większego znaczenia. Najważniejsze to pamiętać o tym, by przypadkiem nikomu nie udostępniać tych danych, ponieważ może to nas kosztować wiele tysięcy $ ;). Po GitHubie, krążą boty, które szukają kluczy AWS'owych commitowanych przez nieostrożnych programistów.
 
-  1. Tworzymy nowy projekt WPF! (w tym przykładzie będę opierał się sporo na projekcie z mojego [poprzedniego wpisu](/blog/2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/))
-  2. Do projektu, przy użyciu nuget package manager'a dodajemy najnowszą wersję AWSSDK.Rekognition (3.3.x)![](/blog/assets/content/uploads/2017/05/devenv_2017-05-02_13-48-37.png) 
+  1. Tworzymy nowy projekt WPF! (w tym przykładzie będę opierał się sporo na projekcie z mojego [poprzedniego wpisu](/2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/))
+  2. Do projektu, przy użyciu nuget package manager'a dodajemy najnowszą wersję AWSSDK.Rekognition (3.3.x)![](/assets/content/uploads/2017/05/devenv_2017-05-02_13-48-37.png) 
 
 oraz EmguCV (3.1.x.x)
 
-![](/blog/assets/content/uploads/2017/05/devenv_2017-05-02_13-46-50.png)
+![](/assets/content/uploads/2017/05/devenv_2017-05-02_13-46-50.png)
     
 * Zgodnie z wybraną strategią używania kluczy, edytujemy plik App.config. W moim przypadku jest to podanie ścieżki do pliku "credentials"
 * Korzystanie z AWSSDK.Rekognition jest banalnie proste:
@@ -72,6 +72,6 @@ W odpowiedzi na żądanie dostajemy już zdeserializowany obiekt - DetectFaceRes
         
 Demo, które napisałem umożliwia zrobienie zdjęcia przy pomocy kamerki internetowej oraz wyświetlenie szczegółów dot. wykrytej na zdjęciu twarzy.
         
-![](/blog/assets/content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png)
+![](/assets/content/uploads/2017/05/AWSRekognitionDemo_2017-05-02_14-32-14.png)
 
 Cały kod dostępny na [GitHub](https://github.com/AdrianRamzes/AWSRekognitionDemo).

@@ -4,7 +4,7 @@ date: 2014-09-17T23:01:53+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/09/c-wpf-mvvm-notificationobject-i-services/
-image: /blog/assets/content/uploads/2014/09/2014-09-17-22_31_00-ServicesSample-Microsoft-Visual-Studio.png
+image: /assets/content/uploads/2014/09/2014-09-17-22_31_00-ServicesSample-Microsoft-Visual-Studio.png
 categories:
   - Programowanie
 tags:
@@ -18,7 +18,7 @@ Service to nic innego jak klasa, która ma wykonywać pewne operacje na rzecz ap
 
 Z racji tego, że jestem zwolennikiem nauki przez praktykę, zaprezentuje bardzo proste i intuicyjne zastosowanie serwisów.  
 
-Po pierwsze, tworzymy nowy projekt o strukturze takiej jaką opisywałem w moim wcześniejszym [wpisie](/blog/2014/08/c-wpf-mvvm-nowy-projekt-project-template/).
+Po pierwsze, tworzymy nowy projekt o strukturze takiej jaką opisywałem w moim wcześniejszym [wpisie](/2014/08/c-wpf-mvvm-nowy-projekt-project-template/).
 
 Gdy mamy już odtworzoną strukturę projektu oraz dodaną klasę pomocniczą NotificationObject, możemy przystąpić do tworzenia **servisu**.
 
@@ -300,6 +300,6 @@ Koniec :-).
 
 Po uruchomieniu powinniśmy zobaczyć zmieniający się co sekundę (lub inny ustawiony odcinek czasu) tekst.
 
-![](/blog/assets/content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png)
+![](/assets/content/uploads/2014/09/2014-09-17-22_52_38-MainWindow.png)
 
 **Cały projekt jest dostępny do pobrania na [GitHub](https://github.com/AdrianRamzes/ServicesSample)**

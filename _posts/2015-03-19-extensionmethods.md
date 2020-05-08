@@ -4,7 +4,7 @@ date: 2015-03-19T17:14:57+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/03/extensionmethods/
-image: /blog/assets/content/uploads/2015/03/2015-03-19-17_08_12-ExtensionMethods-Microsoft-Visual-Studio.png
+image: /assets/content/uploads/2015/03/2015-03-19-17_08_12-ExtensionMethods-Microsoft-Visual-Studio.png
 categories:
   - Programowanie
 tags:

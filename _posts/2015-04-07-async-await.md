@@ -4,7 +4,7 @@ date: 2015-04-07T15:25:05+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/04/async-await/
-image: /blog/assets/content/uploads/2015/03/20150326_214952.jpg
+image: /assets/content/uploads/2015/03/20150326_214952.jpg
 categories:
   - Programowanie
 ---
@@ -50,11 +50,11 @@ Od tego momentu "czekamy" na zakończenie zadania.
 
 Schemat: (pionowe linie reprezentują wykonywany w czasie kod)
 
-![](/blog/assets/content/uploads/2015/03/20150326_214952.jpg)
+![](/assets/content/uploads/2015/03/20150326_214952.jpg)
 
 Najlepiej pokazać to na prostym przykładzie aplikacji z paskiem postępu.
 
-![](/blog/assets/content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png)
+![](/assets/content/uploads/2015/03/2015-03-31-17_28_12-MainWindow.png)
 
 Co zyskujemy?  
 - Większa intuicyjność kodu w przypadku pracy z interfejsem użytkownika,  

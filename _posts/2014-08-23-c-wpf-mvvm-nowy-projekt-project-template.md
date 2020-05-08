@@ -4,7 +4,7 @@ date: 2014-08-23T19:33:40+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2014/08/c-wpf-mvvm-nowy-projekt-project-template/
-image: /blog/assets/content/uploads/2014/08/2014-08-23-19_21_47-MvvmTemplate-Microsoft-Visual-Studio.png
+image: /assets/content/uploads/2014/08/2014-08-23-19_21_47-MvvmTemplate-Microsoft-Visual-Studio.png
 categories:
   - Programowanie
 tags:
@@ -19,7 +19,7 @@ A więc, od początku:
 
 1. Tworzymy nowy projekt C#/WPF  😉  
 Jego struktura jest dość uboga:  
-![](/blog/assets/content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png)
+![](/assets/content/uploads/2014/08/2014-08-23-17_38_16-WpfApplication1-Microsoft-Visual-Studio.png)
 
 2. Do projektu dodajemy katalogi:  
 Models, Views, ViewModels oraz Services, Converters i Helpers.  
@@ -127,7 +127,7 @@ na
 
 Całość powinna wyglądać tak:
 
-![](/blog/assets/content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png)
+![](/assets/content/uploads/2014/08/2014-08-23-19_18_26-MvvmTemplate-Microsoft-Visual-Studio.png)
 
 To wszystko co trzeba zrobić. Jeśli posiadasz Visual Studio 2012 możesz dodać do niego rozszerzenie [WPF MVVM project template](http://visualstudiogallery.msdn.microsoft.com/970005b8-ee15-4295-9960-375e6ea1276c). Powyższe klasy DelegateCommand i NotificationObject pochodzą właśnie z tego rozszerzenia. W następnych wpisach dokładnie opiszę do czego się ich używa 😉  
 **Cały projekt jest dostępny na [GitHub](https://github.com/AdrianRamzes/MvvmTemplate).**

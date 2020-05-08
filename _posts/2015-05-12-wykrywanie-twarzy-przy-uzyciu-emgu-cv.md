@@ -4,11 +4,11 @@ date: 2015-05-12T17:14:18+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2015/05/wykrywanie-twarzy-przy-uzyciu-emgu-cv/
-image: /blog/assets/content/uploads/2015/05/blog_facedetection.png
+image: /assets/content/uploads/2015/05/blog_facedetection.png
 categories:
   - Programowanie
 ---
-W oparciu o aplikację, którą przedstawiałem w poprzednim [wpisie](/blog/2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/), zademonstruję jak napisać aplikację wykrywającą twarz przy pomocy biblioteki Emgu CV.  
+W oparciu o aplikację, którą przedstawiałem w poprzednim [wpisie](/2015/04/obraz-z-kamerki-przy-uzyciu-emgu-cv/), zademonstruję jak napisać aplikację wykrywającą twarz przy pomocy biblioteki Emgu CV.  
 
   
 Cały kod bezpośrednio związany z wykrywaniem twarzy można znaleźć w przykładach dostarczonych wraz z biblioteką.
@@ -134,7 +134,7 @@ Cały kod jak zawsze dostępny na [GITHUB ](https://github.com/AdrianRamzes/Face
 
 Efekt na zdjęciu:
 
-![](/blog/assets/content/uploads/2015/05/blog_facedetection.png)
+![](/assets/content/uploads/2015/05/blog_facedetection.png)
 
 oraz filmie:
 

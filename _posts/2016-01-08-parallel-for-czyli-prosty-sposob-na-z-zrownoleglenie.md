@@ -4,7 +4,7 @@ date: 2016-01-08T18:59:23+00:00
 author: Adrian Karalus
 layout: post
 permalink: /2016/01/parallel-for-czyli-prosty-sposob-na-z-zrownoleglenie/
-image: /blog/assets/content/uploads/2016/01/2016-01-08-17_45_35-ParallelForExample-Microsoft-Visual-Studio-250x129.png
+image: /assets/content/uploads/2016/01/2016-01-08-17_45_35-ParallelForExample-Microsoft-Visual-Studio-250x129.png
 categories:
   - Programowanie
 tags:
