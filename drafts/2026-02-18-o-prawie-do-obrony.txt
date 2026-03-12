@@ -80,11 +80,14 @@
     4.3. W sytuacji bezpośredniego zagrożenia życia lub zdrowia ofiara ma prawo do zakończenia napaści wszelkimi dostępnymi metodami. Nie ma żadnej alternatywy.
         4.3.1. Wszelkimi dostępnymi metodami oznacza, że również ofiara może też używać narzędzi.
     4.4. Pomoc ofierze napaści, może przyjść za późno.
+    4.5. Intencją ofiary jest zaprzestanie ataku.
+        4.5.1. Ofiara nie jest zainteresowana krzywdzeniem napastnika - priorytetem jest powrót do stana bezpieczeństwa.
 
 5. Narzędzia skutecznej obrony.
     5.1. Istnijeą fizyczne różnice pomiędzy ludźmi. (Czy to pasuje bardziej do 3. Natura Człowieka)
         5.1.1. Niektórzy są słabsi, wolniejsi mniej wytrzymali - z przyczyn od nich niezależnych.
     5.2. Narzędzia są morlanie obojętne - o charakterze defensywnym/ofensywnyn w danym momencie decyduje intencja użytkownika.
+    5.3. Idealne narzędzie obrony to takie które jest: 1) Skuteczne 2) Bezpieczne 3) Przenośne
     x. Ad impossibilia nemo obligatur - prawo nie może wymagać rzeczy niemożliwych. ?
 
 6. Przestępca nie przestrzega prawa.
@@ -95,6 +98,8 @@
 TODO: Główne zarzuty jaki tutaj widzę, to że 1) Wypadki 2) Eskalacja (nrmalnie by się pobili a teraz strzelają) 3) Pociągnięcie za spust jest łatwiejsze niż np. udeszenie kogoś - trigger może kusić.
 
 TODO: nie wiem co z odpornością populacyjną - czy uda mi się to jakoś tutaj zmieścić - może to nie miec sensu... zobaczymy gdzie doprowadzą mnie wznioski z powyższych.
+
+TODO: Na mocy 2.1 mogę te grupy nazwać. I donosić się do tych pojęc, żeby co chwila nie pisać "zdrowa psychicznie osoba" "każdy zdrowo myślący", zastąpić "Ofiara", "Napastnik" albo coś takiego.
 
 TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO JEST WNIOZEK A NIE AKSJOMAT!
     3.1. Najbezpieczniej jest w więzieniu
