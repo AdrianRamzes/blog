@@ -89,9 +89,12 @@
 
 6. Przestępca nie przestrzega prawa.
     6.1. Ograniczenia prawne bez egzekwowania dotykają tylko w ludzi praworządnych.
-        6.1.1. Zakaz posiadania narzędzi skutecznej obrony 
+        6.1.1. Zakaz posiadania skutecznych narzędzi obrony rozbraja wyłącznie potencjalne ofiary.
 
-7. 
+7. Wypadki. Muszę tutaj zaadresować te problemy
+TODO: Główne zarzuty jaki tutaj widzę, to że 1) Wypadki 2) Eskalacja (nrmalnie by się pobili a teraz strzelają) 3) Pociągnięcie za spust jest łatwiejsze niż np. udeszenie kogoś - trigger może kusić.
+
+TODO: nie wiem co z odpornością populacyjną - czy uda mi się to jakoś tutaj zmieścić - może to nie miec sensu... zobaczymy gdzie doprowadzą mnie wznioski z powyższych.
 
 TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO JEST WNIOZEK A NIE AKSJOMAT!
     3.1. Najbezpieczniej jest w więzieniu
