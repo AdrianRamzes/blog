@@ -177,3 +177,50 @@ TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO 
         3.2.2. W przszłości ten stan może się zmienić.
 
     3.3. Nawet gdyby można było zamknąć się ...
+
+// ==== Iteracja 3 ====
+
+
+1. Prawo do życia.
+    1.1. Podstawowym prawem naturalnym jest prawo do życia. Każdy racjonalny podmiot uznaje istnienie za stan preferowalny względem nieistnienia.
+        1.1.1. Z powyższego wynika, że każda norma prawdna obligująca człowieka do zaniechania ochrony własnego życia - będzie nieskuteczna.
+        1.1.2. Prawo do życia bezpośrednio implikuje prawo do skutecznej samoobrony. Ograniczanie prawa do skutecznej obrony jest de facto naruszeniem prawa do życia.
+            1.1.2.1. Istnieją sytuacje, w których ochrona jednego życia odbywa się kosztem drugiego.
+
+
+2. Nie wszyscy ludzie są dobrzy.
+    2.1. Ludzi można podzielić na dwie abstrakcyjne kategorie: 1) tych którzy dokonają w przyszłości zamachu na ludzkie życie lub zdrowie i 2) tych którzy nigdy tego nie zrobią.
+        2.1.1. To czy człowiek dokona w przyszłości w przyszłości zamachu na innego człowieka zależy od wielu czynników.
+            2.1.1.1. Czynniki wypływające na to czy człowiek będzie używał przemocy można podzielić na zewnętrzne i wewnętrzne.
+            2.1.1.2. Zewenętrzne to np. Wychowanie, traumy, wzorce, sytuacja ekonomiczna, sytuacje silnego stresu, środki odurzające.
+            2.1.1.3. Wewnętrzene to np. Choroba psychiczna, charakter, geny.
+    2.2. Proporcje pomiędzy tymi grupami nie są stałe i zależą od czasów, miejsca i kultury
+    2.3. Jednoznaczne i bezbłędne przypisanie ludzi do tych kategorii jest niemożliwe.
+        2.3.1. Próby przypisania kogokolwiek do jednej z kategorii są równoznaczne z próbami przewidywania przyszłości z dokładnością do każdej przyszłej decyzji pojedynczego człowieka.
+
+3. Człowiek jest istotą społeczną.
+    3.1. W pierwszej połowie XXI. wielku przetrwanie gatunku nadal wymaga fizycznej współpracy pomiędzy ludźmi.
+    3.2. Kontakt z innymi ludźmi jest kluczowy dla zdrowia psychinczego i dobrego samopoczucia.
+
+4. Bezpośredni zamach na życie lub zdrowie.
+    4.1. To napastnik decyduje kiedy, gdzie i jak zaatkuje. Napastnik może przestać atakować.
+    4.2. Ofiara znajduje się w sytuacji przymusowej - nie wybiera czasu, miejsca ani skali zagrożenia.
+    4.3. Ofiara nie może mieć pewności co do planów napastnika. Nie wie jak bardzo napastnik chce skrzywdzić.
+    4.4. W sytuacji bezpośredniego zagrożenia życia lub zdrowia ofiara ma prawo do zakończenia napaści wszelkimi dostępnymi metodami. Nie ma żadnej alternatywy.
+        4.4.1. Wszelkimi dostępnymi metodami oznacza, że również ofiara może też używać narzędzi.
+    4.5. Pomoc ofierze napaści, może przyjść za późno.
+    4.6. Intencją ofiary jest zaprzestanie ataku.
+        4.6.1. Jedynym celem ofiary jest natychmiastowe przerwanie ataku u powrót do stanu bezpieczeństwa.
+        4.6.1. Ofiara nie jest zainteresowana krzywdzeniem napastnika - priorytetem jest powrót do stana bezpieczeństwa.
+
+5. Narzędzia skutecznej obrony.
+    5.1. Istnijeą fizyczne różnice pomiędzy ludźmi. (Czy to pasuje bardziej do 3. Natura Człowieka)
+        5.1.1. Niektórzy są słabsi, wolniejsi mniej wytrzymali - z przyczyn od nich niezależnych.
+    5.2. Bez skutecznych narzędzi obrony, prawo słabszego do życia traci sens. // TODO: Podoba mi się koncept ale wording jest tragiczny.
+    5.2. Narzędzia są morlanie obojętne - o charakterze defensywnym/ofensywnyn w danym momencie decyduje intencja użytkownika.
+    5.3. Idealne narzędzie obrony to takie które jest: 1) Skuteczne 2) Bezpieczne 3) Przenośne
+    x. Ad impossibilia nemo obligatur - prawo nie może wymagać rzeczy niemożliwych. ?
+
+6. Przestępca nie przestrzega prawa.
+    6.1. Ograniczenia prawne bez egzekwowania dotykają tylko w ludzi praworządnych.
+        6.1.1. Zakaz posiadania skutecznych narzędzi obrony rozbraja wyłącznie potencjalne ofiary.
