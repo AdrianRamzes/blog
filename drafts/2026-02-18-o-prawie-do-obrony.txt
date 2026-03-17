@@ -182,8 +182,8 @@ TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO 
 
 
 1. Prawo do życia.
-    1.1. Podstawowym prawem naturalnym jest prawo do życia. Każdy racjonalny podmiot uznaje istnienie za stan preferowalny względem nieistnienia.
-        1.1.1. Z powyższego wynika, że każda norma prawdna obligująca człowieka do zaniechania ochrony własnego życia - będzie nieskuteczna.
+    1.1. Podstawowym prawem naturalnym jest prawo do życia. Każdy zdrowy i racjonalny podmiot uznaje istnienie za stan preferowalny względem nieistnienia.
+        1.1.1. Każda norma prawna obligująca człowieka do zaniechania ochrony własnego życia będzie nieskuteczna.
         1.1.2. Prawo do życia bezpośrednio implikuje prawo do skutecznej samoobrony. Ograniczanie prawa do skutecznej obrony jest de facto naruszeniem prawa do życia.
             1.1.2.1. Istnieją sytuacje, w których ochrona jednego życia odbywa się kosztem drugiego.
 
@@ -216,11 +216,12 @@ TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO 
 5. Narzędzia skutecznej obrony.
     5.1. Istnijeą fizyczne różnice pomiędzy ludźmi. (Czy to pasuje bardziej do 3. Natura Człowieka)
         5.1.1. Niektórzy są słabsi, wolniejsi mniej wytrzymali - z przyczyn od nich niezależnych.
-    5.2. Bez skutecznych narzędzi obrony, prawo słabszego do życia traci sens. // TODO: Podoba mi się koncept ale wording jest tragiczny.
+        5.1.2. [1.1.2, 5.1.1]: Prawo do skutecznej obrony wymaga w praktyce dostępu do narzędzi, które niwelują biologiczne dysproporcje siły.
+    5.2. Bez narzędzi, prawo słabszego do obrony istnieje tylko teoretycznie. // TODO: Podoba mi się koncept ale wording może być lepszy.
     5.2. Narzędzia są morlanie obojętne - o charakterze defensywnym/ofensywnyn w danym momencie decyduje intencja użytkownika.
     5.3. Idealne narzędzie obrony to takie które jest: 1) Skuteczne 2) Bezpieczne 3) Przenośne
     x. Ad impossibilia nemo obligatur - prawo nie może wymagać rzeczy niemożliwych. ?
 
 6. Przestępca nie przestrzega prawa.
-    6.1. Ograniczenia prawne bez egzekwowania dotykają tylko w ludzi praworządnych.
+    6.1. Ograniczenia prawne bez możliwości ich egzekwowania dotykają tylko ludzi praworządnych.
         6.1.1. Zakaz posiadania skutecznych narzędzi obrony rozbraja wyłącznie potencjalne ofiary.
