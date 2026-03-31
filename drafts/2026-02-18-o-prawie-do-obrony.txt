@@ -210,15 +210,19 @@ TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO 
     4.5. Pomoc ofierze napaści, może przyjść za późno.
     4.6. Intencją ofiary jest zaprzestanie ataku.
         4.6.1. Jedynym celem ofiary jest natychmiastowe przerwanie ataku u powrót do stanu bezpieczeństwa.
-        4.6.1. Ofiara nie jest zainteresowana krzywdzeniem napastnika - priorytetem jest powrót do stana bezpieczeństwa.
+        4.6.2. Ofiara nie jest zainteresowana krzywdzeniem napastnika - priorytetem jest powrót do stana bezpieczeństwa.
 
 5. Narzędzia skutecznej obrony.
     5.1. Narzędzia są morlanie obojętne - o charakterze defensywnym/ofensywnyn w danym momencie decyduje intencja użytkownika.
+        5.1.2. Bez umiejętności obsługi - narzędzie przestaje być przedłużeniem jego intencji.
     5.2. Istnijeą fizyczne różnice pomiędzy ludźmi. (Czy to pasuje bardziej do 3. Natura Człowieka)
         5.2.1. Niektórzy są słabsi, wolniejsi mniej wytrzymali - z przyczyn od nich niezależnych.
         5.2.2. [1.1.2, 5.1.1]: Prawo do skutecznej obrony wymaga w praktyce dostępu do narzędzi, które niwelują biologiczne dysproporcje siły.
     5.3. Bez narzędzi, prawo słabszego do obrony istnieje tylko teoretycznie. // TODO: Podoba mi się koncept ale wording może być lepszy.
-    5.4. Idealne narzędzie obrony to takie które jest: 1) Skuteczne 2) Bezpieczne 3) Przenośne
+    5.4. Idealne narzędzie obrony to takie które jest: 1) Skuteczne 2) Bezpieczne 3) Dostępne
+        5.4.1. Skuteczne [1.1.2.]
+        5.4.2. Bezpieczne [4.6.2.]
+        5.4.3. Dostępne [5.1.2.]
     x. Ad impossibilia nemo obligatur - prawo nie może wymagać rzeczy niemożliwych. ?
 
 6. Przestępca nie przestrzega prawa.
