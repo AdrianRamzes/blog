@@ -202,7 +202,7 @@ TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO 
     3.2. Kontakt z innymi ludźmi jest kluczowy dla zdrowia psychinczego i dobrego samopoczucia.
 
 4. Bezpośredni zamach na życie lub zdrowie. [2, 3]
-    4.1. To napastnik decyduje kiedy, gdzie i jak zaatkuje.
+    4.1. To napastnik decyduje kiedy, gdzie i jak zaatkuje. // TODO: Aaadresuj: eskalacja i działanie w afekcie
     4.2. Ofiara znajduje się w sytuacji przymusowej - nie wybiera czasu, miejsca ani skali zagrożenia.
     4.3. Ofiara nie może mieć pewności co do planów napastnika. Nie wie jak bardzo napastnik chce skrzywdzić.
     4.4. W sytuacji bezpośredniego zagrożenia życia lub zdrowia ofiara ma prawo do zakończenia napaści wszelkimi dostępnymi metodami. Nie ma żadnej alternatywy.
@@ -228,3 +228,4 @@ TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO 
 6. Przestępca nie przestrzega prawa.
     6.1. Ograniczenia prawne bez możliwości ich egzekwowania dotykają tylko ludzi praworządnych.
         6.1.1. Zakaz posiadania skutecznych narzędzi obrony rozbraja wyłącznie potencjalne ofiary.
+        // TODO: Zaadresuj: zakazy posiadania narzędzi uderzają również w napastników, ponieważ drastycznie zmniejszają ogólną dostępność (podaż) tych przedmiotów w społeczeństwie. Zablokowanie legalnego rynku winduje ceny na czarnym rynku, co sprawia, że pospolitego przestępcy po prostu nie stać na skuteczną, przemycaną broń. Zakaz faktycznie redukuje uzbrojenie po stronie "złych aktorów".
