@@ -188,14 +188,14 @@ TODO 3. Wolność nie jest bezpieczna. (nie lubię tego stiwerdzenia tutaj.) TO 
             1.1.2.1. Istnieją sytuacje, w których ochrona jednego życia odbywa się kosztem drugiego.
 
 2. Nie wszyscy ludzie są dobrzy.
-    2.1. Ludzi można podzielić na dwie abstrakcyjne kategorie: 1) tych którzy dokonają w przyszłości zamachu na ludzkie życie lub zdrowie i 2) tych którzy nigdy tego nie zrobią.
+    2.1. Istnieją przyszli agresorzy - ludzie, którzy dokonają w przyszłości zamachu na ludzkie życie lub zdrowie
         2.1.1. To czy człowiek dokona w przyszłości w przyszłości zamachu na innego człowieka zależy od wielu czynników.
             2.1.1.1. Czynniki wypływające na to czy człowiek będzie używał przemocy można podzielić na zewnętrzne i wewnętrzne.
                 2.1.1.1.1. Zewenętrzne to np. Wychowanie, traumy, wzorce, sytuacja ekonomiczna, sytuacje silnego stresu, środki odurzające.
                 2.1.1.1.2. Wewnętrzene to np. Choroba psychiczna, charakter, geny.
-    2.2. [2.1.1.1.1] Proporcje pomiędzy tymi grupami nie są stałe i zależą od czasów, miejsca i kultury
-    2.3. Jednoznaczne i bezbłędne przypisanie ludzi do tych kategorii jest niemożliwe.
-        2.3.1. Próby przypisania kogokolwiek do jednej z kategorii są równoznaczne z próbami przewidywania przyszłości z dokładnością do każdej przyszłej decyzji pojedynczego człowieka.
+    2.2. [2.1.1.1.1] Proporcja agresorów do reszty społeczeństwa nie jest stała i zależy od czasów, miejsca i kultury
+    2.3. Jednoznaczne i bezbłędne zaklasyfikowanie człowieka jako przyszłego agresora jest niemożliwe.
+        2.3.1. Próba takiej klasyfikacji jest równoznaczna z próbą przewidywania przyszłości z dokładnością do każdej przyszłej decyzji pojedynczego człowieka.
 
 3. Człowiek jest istotą społeczną.
     3.1. W pierwszej połowie XXI. wielku przetrwanie gatunku nadal wymaga fizycznej współpracy pomiędzy ludźmi.
