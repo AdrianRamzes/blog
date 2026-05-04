@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Monte Carlo // Price Paths</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --panel: #11151a;
+    --ink: #e8e6df;
+    --dim: #6f7680;
+    --grid: #1c2128;
+    --accent: #ffd166;
+    --good: #4ade80;
+    --bad: #f87171;
+    --line: rgba(255, 209, 102, 0.06);
+    --btn-text: #1a1500;
+    --asset-bg: rgba(0, 0, 0, 0.2);
+  }
+
+- { box-sizing: border-box; }
+
+html, body {
+margin: 0;
+padding: 0;
+background: var(–bg);
+color: var(–ink);
+font-family: “JetBrains Mono”, “Menlo”, “Consolas”, monospace;
+min-height: 100vh;
+}
+
+body {
+background-image:
+radial-gradient(circle at 20% 10%, rgba(255, 209, 102, 0.06), transparent 40%),
+radial-gradient(circle at 80% 90%, rgba(74, 222, 128, 0.05), transparent 45%);
+padding: 28px;
+}
+
+header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+border-bottom: 1px dashed var(–grid);
+padding-bottom: 12px;
+margin-bottom: 24px;
+}
+
+h1 {
+margin: 0;
+font-size: 22px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+font-weight: 500;
+}
+h1 span { color: var(–accent); }
+
+.tag {
+font-size: 11px;
+color: var(–dim);
+letter-spacing: 0.15em;
+text-transform: uppercase;
+}
+.tag .blink {
+color: var(–good);
+animation: blink 1.2s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0.2; } }
+
+.layout {
+display: grid;
+grid-template-columns: 372px 1fr;
+gap: 16px;
+}
+
+.panel {
+background: var(–panel);
+border: 1px solid var(–grid);
+padding: 20px;
+}
+
+.panel h2 {
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–dim);
+margin: 0 0 14px 0;
+font-weight: 500;
+border-bottom: 1px solid var(–grid);
+padding-bottom: 8px;
+}
+.panel h2:not(:first-child) { margin-top: 22px; }
+
+.field {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 10px;
+font-size: 12px;
+}
+.field label {
+color: var(–dim);
+letter-spacing: 0.05em;
+}
+.field input {
+width: 90px;
+background: var(–bg);
+border: 1px solid var(–grid);
+color: var(–ink);
+padding: 6px 8px;
+font-family: inherit;
+font-size: 12px;
+text-align: right;
+outline: none;
+}
+.field input:focus { border-color: var(–accent); }
+
+.row { display: flex; gap: 8px; }
+.row input { width: 100%; }
+
+button {
+width: 100%;
+background: var(–accent);
+color: var(–btn-text);
+border: none;
+padding: 12px;
+font-family: inherit;
+font-size: 12px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+cursor: pointer;
+margin-top: 14px;
+font-weight: 700;
+transition: transform 0.05s;
+}
+button:active { transform: translateY(1px); }
+button:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+button.ghost {
+background: transparent;
+color: var(–ink);
+border: 1px solid var(–grid);
+}
+
+.progress-wrap {
+margin-top: 10px;
+}
+.progress-bar {
+height: 4px;
+background: var(–grid);
+overflow: hidden;
+position: relative;
+}
+.progress-fill {
+height: 100%;
+width: 0%;
+background: var(–accent);
+transition: width 0.05s linear;
+}
+.progress-label {
+margin-top: 6px;
+font-size: 10px;
+color: var(–dim);
+letter-spacing: 0.15em;
+text-transform: uppercase;
+}
+
+.state-badge {
+align-self: center;
+font-size: 10px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 4px 10px;
+margin-right: 12px;
+animation: pulse 1.6s ease-in-out infinite;
+}
+.state-badge.dirty {
+color: var(–accent);
+border: 1px solid rgba(255, 209, 102, 0.4);
+background: rgba(255, 209, 102, 0.08);
+}
+.state-badge.clean {
+color: var(–good);
+border: 1px solid rgba(74, 222, 128, 0.35);
+background: rgba(74, 222, 128, 0.06);
+animation: none;
+opacity: 0.85;
+}
+@keyframes pulse {
+0%, 100% { opacity: 0.55; }
+50% { opacity: 1; }
+}
+
+.asset {
+border: 1px solid var(–grid);
+padding: 10px;
+margin-bottom: 8px;
+background: var(–asset-bg);
+}
+.asset .top {
+display: flex;
+gap: 6px;
+margin-bottom: 6px;
+align-items: stretch;
+}
+.asset .top input {
+flex: 1;
+min-width: 0;
+background: var(–bg);
+border: 1px solid var(–grid);
+color: var(–accent);
+padding: 5px 7px;
+font-family: inherit;
+font-size: 12px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+outline: none;
+}
+.asset .top input:focus { border-color: var(–accent); }
+.asset .remove {
+background: transparent;
+border: 1px solid var(–grid);
+color: var(–dim);
+width: 28px;
+height: 28px;
+cursor: pointer;
+font-family: inherit;
+padding: 0;
+margin: 0;
+font-size: 14px;
+}
+.asset .remove:hover { color: var(–bad); border-color: var(–bad); }
+
+.type-toggle {
+display: flex;
+border: 1px solid var(–grid);
+height: 28px;
+}
+.type-toggle button {
+background: transparent;
+color: var(–dim);
+border: none;
+min-width: 30px;
+padding: 0 6px;
+height: 26px;
+cursor: pointer;
+font-family: inherit;
+font-size: 13px;
+margin: 0;
+letter-spacing: 0;
+text-transform: none;
+white-space: nowrap;
+}
+.type-toggle button.on {
+background: var(–accent);
+color: var(–btn-text);
+font-weight: 700;
+}
+.type-toggle button:hover:not(.on) { color: var(–ink); }
+.asset .params {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 6px;
+}
+.asset .params label {
+font-size: 10px;
+color: var(–dim);
+letter-spacing: 0.1em;
+text-transform: uppercase;
+display: block;
+margin-bottom: 3px;
+}
+.asset .params input {
+width: 100%;
+background: var(–bg);
+border: 1px solid var(–grid);
+color: var(–ink);
+padding: 5px 7px;
+font-family: inherit;
+font-size: 12px;
+text-align: right;
+outline: none;
+}
+.asset .params input:focus { border-color: var(–accent); }
+
+.chart-wrap {
+background: var(–panel);
+border: 1px solid var(–grid);
+padding: 20px;
+position: relative;
+}
+.chart-progress {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+background: var(–grid);
+overflow: hidden;
+}
+.chart-progress-fill {
+height: 100%;
+width: 0%;
+background: var(–accent);
+transition: width 0.05s linear;
+}
+
+.chart-header {
+display: flex;
+gap: 18px;
+font-size: 11px;
+color: var(–dim);
+letter-spacing: 0.1em;
+text-transform: uppercase;
+margin-bottom: 12px;
+}
+.chart-header .stat strong {
+display: block;
+color: var(–ink);
+font-size: 16px;
+margin-top: 2px;
+letter-spacing: 0.05em;
+}
+.chart-header .stat strong.up { color: var(–good); }
+.chart-header .stat strong.down { color: var(–bad); }
+
+canvas {
+display: block;
+width: 100%;
+height: 480px;
+}
+
+.axis-controls {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 14px;
+margin-top: 14px;
+padding-top: 14px;
+border-top: 1px solid var(–grid);
+font-size: 11px;
+color: var(–dim);
+}
+.axis-controls .group { display: flex; flex-direction: column; gap: 6px; }
+.axis-controls label {
+letter-spacing: 0.15em;
+text-transform: uppercase;
+}
+
+.footer {
+color: var(–dim);
+font-size: 10px;
+margin-top: 16px;
+letter-spacing: 0.1em;
+}
+
+.hover-tooltip {
+position: absolute;
+pointer-events: none;
+background: var(–panel);
+border: 1px solid var(–grid);
+padding: 8px 10px;
+font-size: 11px;
+font-family: inherit;
+color: var(–ink);
+z-index: 10;
+min-width: 140px;
+box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+line-height: 1.5;
+}
+.hover-tooltip .ht-title {
+font-size: 9px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–dim);
+margin-bottom: 4px;
+padding-bottom: 3px;
+border-bottom: 1px solid var(–grid);
+}
+.hover-tooltip .ht-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 14px;
+}
+.hover-tooltip .ht-row .lbl {
+color: var(–dim);
+font-size: 10px;
+letter-spacing: 0.05em;
+}
+.hover-tooltip .ht-row .val {
+font-variant-numeric: tabular-nums;
+}
+.hover-tooltip .ht-row.median { color: var(–accent); font-weight: 600; }
+.hover-tooltip .ht-row.p95 { color: var(–good); }
+.hover-tooltip .ht-row.p5 { color: var(–bad); }
+
+.asset-charts {
+margin-top: 24px;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+gap: 16px;
+}
+.asset-chart {
+background: var(–panel);
+border: 1px solid var(–grid);
+padding: 14px;
+position: relative;
+}
+.asset-chart .title {
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–accent);
+margin-bottom: 4px;
+}
+.asset-chart .meta {
+font-size: 10px;
+color: var(–dim);
+letter-spacing: 0.1em;
+margin-bottom: 8px;
+}
+.asset-chart canvas {
+display: block;
+width: 100%;
+height: 180px;
+}
+
+@media (max-width: 820px) {
+body { padding: 16px 12px; }
+header {
+flex-wrap: wrap;
+gap: 12px;
+}
+h1 { font-size: 16px; }
+.layout {
+grid-template-columns: 1fr;
+gap: 16px;
+}
+.panel { padding: 14px; }
+/* stack asset params vertically on narrow screens */
+.asset .params {
+grid-template-columns: 1fr;
+gap: 8px;
+}
+/* hide empty filler cells used for grid alignment in DCA layout */
+.asset .params > div:empty {
+display: none;
+}
+/* override the ‘span 2’ on fixed-asset monthly field */
+.asset .params > div[style*=“span 2”] {
+grid-column: auto !important;
+}
+.asset-charts {
+grid-template-columns: 1fr;
+gap: 12px;
+}
+.chart-header {
+flex-wrap: wrap;
+gap: 10px;
+font-size: 10px;
+}
+canvas { height: 360px; }
+.asset-chart canvas { height: 160px; }
+.theme-picker {
+flex: 1;
+min-width: 0;
+}
+}
+/* ============== TEMPORARY THEME PICKER (remove later) ============== */
+.theme-picker {
+background: var(–panel);
+color: var(–ink);
+border: 1px solid var(–grid);
+padding: 6px 10px;
+font-family: inherit;
+font-size: 11px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+cursor: pointer;
+outline: none;
+}
+.theme-picker:focus { border-color: var(–accent); }
+
+/* 1. Terminal (default — also explicit so reload works) */
+body[data-theme=“terminal”] {
+–bg: #0b0d10;
+–panel: #11151a;
+–ink: #e8e6df;
+–dim: #6f7680;
+–grid: #1c2128;
+–accent: #ffd166;
+–good: #4ade80;
+–bad: #f87171;
+}
+/* 2. Bloomberg Orange */
+body[data-theme=“bloomberg”] {
+–bg: #000000;
+–panel: #0a0a0a;
+–ink: #ff9933;
+–dim: #806040;
+–grid: #1f1810;
+–accent: #ff6600;
+–good: #00d4ff;
+–bad: #ff3344;
+}
+/* 3. Solarized Dark */
+body[data-theme=“solarized”] {
+–bg: #002b36;
+–panel: #073642;
+–ink: #93a1a1;
+–dim: #586e75;
+–grid: #0d4451;
+–accent: #b58900;
+–good: #859900;
+–bad: #dc322f;
+}
+/* 4. Nord */
+body[data-theme=“nord”] {
+–bg: #2e3440;
+–panel: #3b4252;
+–ink: #eceff4;
+–dim: #6c7a96;
+–grid: #434c5e;
+–accent: #88c0d0;
+–good: #a3be8c;
+–bad: #bf616a;
+}
+/* 5. Cyberpunk */
+body[data-theme=“cyberpunk”] {
+–bg: #0d0221;
+–panel: #1a0b2e;
+–ink: #f5d4ff;
+–dim: #6b4c80;
+–grid: #2a154a;
+–accent: #ff2bd6;
+–good: #00f0ff;
+–bad: #ff5577;
+}
+/* 6. Monochrome */
+body[data-theme=“mono”] {
+–bg: #111111;
+–panel: #1a1a1a;
+–ink: #f5f5f5;
+–dim: #777777;
+–grid: #2a2a2a;
+–accent: #ffffff;
+–good: #cccccc;
+–bad: #888888;
+}
+/* 7. Forest */
+body[data-theme=“forest”] {
+–bg: #0e1a13;
+–panel: #15251c;
+–ink: #e8dcc4;
+–dim: #6a7d6f;
+–grid: #1f3326;
+–accent: #d4a574;
+–good: #7cb342;
+–bad: #c75450;
+}
+/* 10. Dracula */
+body[data-theme=“dracula”] {
+–bg: #282a36;
+–panel: #343746;
+–ink: #f8f8f2;
+–dim: #6272a4;
+–grid: #44475a;
+–accent: #f1fa8c;
+–good: #50fa7b;
+–bad: #ff5555;
+}
+
+/* ============== LIGHT THEMES ============== */
+/* L1. Newspaper */
+body[data-theme=“newspaper”] {
+–bg: #f4ecd8;
+–panel: #fbf5e3;
+–ink: #1a1a1a;
+–dim: #8a8170;
+–grid: #d8cfb8;
+–accent: #b32d2d;
+–good: #2e7d32;
+–bad: #b32d2d;
+–btn-text: #fbf5e3;
+–asset-bg: rgba(0, 0, 0, 0.03);
+background-image:
+radial-gradient(circle at 20% 10%, rgba(179, 45, 45, 0.04), transparent 40%),
+radial-gradient(circle at 80% 90%, rgba(46, 125, 50, 0.04), transparent 45%);
+}
+/* L2. Plain Paper */
+body[data-theme=“paper”] {
+–bg: #ffffff;
+–panel: #fafafa;
+–ink: #1a1a1a;
+–dim: #888888;
+–grid: #e4e4e4;
+–accent: #2563eb;
+–good: #16a34a;
+–bad: #dc2626;
+–btn-text: #ffffff;
+–asset-bg: rgba(0, 0, 0, 0.02);
+}
+/* L3. Solarized Light */
+body[data-theme=“solarized-light”] {
+–bg: #fdf6e3;
+–panel: #eee8d5;
+–ink: #073642;
+–dim: #93a1a1;
+–grid: #d8cfb8;
+–accent: #b58900;
+–good: #859900;
+–bad: #dc322f;
+–btn-text: #fdf6e3;
+–asset-bg: rgba(7, 54, 66, 0.03);
+}
+/* L4. GitHub Light */
+body[data-theme=“github”] {
+–bg: #ffffff;
+–panel: #f6f8fa;
+–ink: #24292f;
+–dim: #6e7781;
+–grid: #d0d7de;
+–accent: #0969da;
+–good: #1a7f37;
+–bad: #cf222e;
+–btn-text: #ffffff;
+–asset-bg: rgba(0, 0, 0, 0.02);
+}
+/* L5. Linen */
+body[data-theme=“linen”] {
+–bg: #faf6f0;
+–panel: #f1ebe0;
+–ink: #3a2f25;
+–dim: #9a8a78;
+–grid: #e0d6c5;
+–accent: #c2410c;
+–good: #65a30d;
+–bad: #b91c1c;
+–btn-text: #faf6f0;
+–asset-bg: rgba(58, 47, 37, 0.03);
+}
+/* L6. Ledger Green */
+body[data-theme=“ledger”] {
+–bg: #e8efe2;
+–panel: #f2f7ed;
+–ink: #1a2e1a;
+–dim: #7a8a76;
+–grid: #c8d4c0;
+–accent: #2d5a2d;
+–good: #3a7c3a;
+–bad: #b91c1c;
+–btn-text: #f2f7ed;
+–asset-bg: rgba(26, 46, 26, 0.03);
+}
+/* L7. Porcelain Blue */
+body[data-theme=“porcelain”] {
+–bg: #eef4f8;
+–panel: #f8fbfd;
+–ink: #1e3a52;
+–dim: #7a93a8;
+–grid: #d0dde8;
+–accent: #1e6091;
+–good: #2d8659;
+–bad: #c0392b;
+–btn-text: #f8fbfd;
+–asset-bg: rgba(30, 58, 82, 0.03);
+}
+/* L8. Sand */
+body[data-theme=“sand”] {
+–bg: #f5e6c8;
+–panel: #faf0d7;
+–ink: #3d2f15;
+–dim: #a89570;
+–grid: #e0cfa5;
+–accent: #8b4513;
+–good: #6b8e23;
+–bad: #a0392f;
+–btn-text: #faf0d7;
+–asset-bg: rgba(61, 47, 21, 0.04);
+}
+/* L9. Lavender */
+body[data-theme=“lavender”] {
+–bg: #f4f0fa;
+–panel: #faf6ff;
+–ink: #2d1b4e;
+–dim: #9388b3;
+–grid: #ddd0ee;
+–accent: #7c3aed;
+–good: #059669;
+–bad: #dc2626;
+–btn-text: #faf6ff;
+–asset-bg: rgba(45, 27, 78, 0.03);
+}
+/* L10. Mint */
+body[data-theme=“mint”] {
+–bg: #ecf7f1;
+–panel: #f5fbf7;
+–ink: #103530;
+–dim: #6f9388;
+–grid: #c8e0d4;
+–accent: #0d7c66;
+–good: #16a34a;
+–bad: #be123c;
+–btn-text: #f5fbf7;
+–asset-bg: rgba(16, 53, 48, 0.03);
+}
+/* L11. Nordic Light */
+body[data-theme=“nordic-light”] {
+–bg: #eceff4;
+–panel: #f5f7fa;
+–ink: #2e3440;
+–dim: #7b8398;
+–grid: #d8dee9;
+–accent: #5e81ac;
+–good: #a3be8c;
+–bad: #bf616a;
+–btn-text: #f5f7fa;
+–asset-bg: rgba(46, 52, 64, 0.03);
+}
+
+/* ============== DARK · APP-INSPIRED ============== */
+/* D11. Robinhood — black with bright money green */
+body[data-theme=“robinhood”] {
+–bg: #000000;
+–panel: #0f0f0f;
+–ink: #ffffff;
+–dim: #6b6b6b;
+–grid: #1a1a1a;
+–accent: #00c805;
+–good: #00c805;
+–bad: #ff5000;
+–btn-text: #000000;
+}
+/* D12. TradingView — slate with cyan-blue */
+body[data-theme=“tradingview”] {
+–bg: #131722;
+–panel: #1e222d;
+–ink: #d1d4dc;
+–dim: #787b86;
+–grid: #2a2e39;
+–accent: #2962ff;
+–good: #26a69a;
+–bad: #ef5350;
+–btn-text: #ffffff;
+}
+/* D13. Spotify — near-black with brand green */
+body[data-theme=“spotify”] {
+–bg: #121212;
+–panel: #181818;
+–ink: #ffffff;
+–dim: #b3b3b3;
+–grid: #282828;
+–accent: #1db954;
+–good: #1ed760;
+–bad: #e22134;
+–btn-text: #000000;
+}
+/* D14. Discord — blurple on charcoal */
+body[data-theme=“discord”] {
+–bg: #313338;
+–panel: #2b2d31;
+–ink: #f2f3f5;
+–dim: #949ba4;
+–grid: #3f4147;
+–accent: #5865f2;
+–good: #23a55a;
+–bad: #f23f43;
+–btn-text: #ffffff;
+}
+/* D15. X (Twitter) — pure black, white text, blue accent */
+body[data-theme=“x”] {
+–bg: #000000;
+–panel: #16181c;
+–ink: #e7e9ea;
+–dim: #71767b;
+–grid: #2f3336;
+–accent: #1d9bf0;
+–good: #00ba7c;
+–bad: #f4212e;
+–btn-text: #ffffff;
+}
+/* D16. Linear — deep indigo black, soft purple */
+body[data-theme=“linear”] {
+–bg: #08090a;
+–panel: #16171a;
+–ink: #f7f8f8;
+–dim: #8a8f98;
+–grid: #23252a;
+–accent: #7c5cff;
+–good: #4cb782;
+–bad: #eb5757;
+–btn-text: #ffffff;
+}
+/* D17. Slack — aubergine with yellow accent */
+body[data-theme=“slack”] {
+–bg: #1a1d29;
+–panel: #19171d;
+–ink: #d1d2d3;
+–dim: #868686;
+–grid: #2c2f3e;
+–accent: #ecb22e;
+–good: #2eb67d;
+–bad: #e01e5a;
+–btn-text: #19171d;
+}
+/* D18. Vercel — pure black, monochrome chic */
+body[data-theme=“vercel”] {
+–bg: #000000;
+–panel: #0a0a0a;
+–ink: #ededed;
+–dim: #888888;
+–grid: #1f1f1f;
+–accent: #ffffff;
+–good: #0070f3;
+–bad: #ee0000;
+–btn-text: #000000;
+}
+/* D19. Terminal Classic — old-school green-on-black */
+body[data-theme=“terminal-classic”] {
+–bg: #000000;
+–panel: #050505;
+–ink: #00ff41;
+–dim: #008f11;
+–grid: #002200;
+–accent: #00ff41;
+–good: #39ff14;
+–bad: #ff0040;
+–btn-text: #000000;
+}
+/* D20. Stripe Dark — deep night with electric indigo */
+body[data-theme=“stripe-dark”] {
+–bg: #0a2540;
+–panel: #0e2e4f;
+–ink: #ffffff;
+–dim: #8898aa;
+–grid: #1a3a5c;
+–accent: #635bff;
+–good: #3ecf8e;
+–bad: #ed5f74;
+–btn-text: #ffffff;
+}
+
+/* ============== LIGHT · APP-INSPIRED ============== */
+/* L12. Coinbase — white with cobalt blue */
+body[data-theme=“coinbase”] {
+–bg: #ffffff;
+–panel: #f7f9fc;
+–ink: #0a0b0d;
+–dim: #5b616e;
+–grid: #e3e7ed;
+–accent: #0052ff;
+–good: #05b169;
+–bad: #cf202f;
+–btn-text: #ffffff;
+–asset-bg: rgba(0, 82, 255, 0.02);
+}
+/* L13. Gmail — white with red accent */
+body[data-theme=“gmail”] {
+–bg: #ffffff;
+–panel: #f6f8fc;
+–ink: #202124;
+–dim: #5f6368;
+–grid: #e8eaed;
+–accent: #d93025;
+–good: #1e8e3e;
+–bad: #d93025;
+–btn-text: #ffffff;
+–asset-bg: rgba(0, 0, 0, 0.02);
+}
+/* L14. Notion — warm cream with black */
+body[data-theme=“notion”] {
+–bg: #ffffff;
+–panel: #f7f6f3;
+–ink: #37352f;
+–dim: #9b9a97;
+–grid: #e9e7e1;
+–accent: #2383e2;
+–good: #448361;
+–bad: #e03e3e;
+–btn-text: #ffffff;
+–asset-bg: rgba(55, 53, 47, 0.025);
+}
+/* L15. Stripe — soft white with brand indigo */
+body[data-theme=“stripe”] {
+–bg: #ffffff;
+–panel: #f6f9fc;
+–ink: #1a1f36;
+–dim: #697386;
+–grid: #e3e8ee;
+–accent: #635bff;
+–good: #3ecf8e;
+–bad: #df1b41;
+–btn-text: #ffffff;
+–asset-bg: rgba(99, 91, 255, 0.025);
+}
+/* L16. Facebook — bright white with brand blue */
+body[data-theme=“facebook”] {
+–bg: #f0f2f5;
+–panel: #ffffff;
+–ink: #050505;
+–dim: #65676b;
+–grid: #ced0d4;
+–accent: #1877f2;
+–good: #42b72a;
+–bad: #e41e3f;
+–btn-text: #ffffff;
+–asset-bg: rgba(0, 0, 0, 0.02);
+}
+/* L17. Google Sheets — white with sheets green */
+body[data-theme=“sheets”] {
+–bg: #ffffff;
+–panel: #f8f9fa;
+–ink: #202124;
+–dim: #5f6368;
+–grid: #dadce0;
+–accent: #0f9d58;
+–good: #1e8e3e;
+–bad: #d93025;
+–btn-text: #ffffff;
+–asset-bg: rgba(15, 157, 88, 0.025);
+}
+/* L18. Stack Overflow — light with signature orange */
+body[data-theme=“stackoverflow”] {
+–bg: #ffffff;
+–panel: #f8f9f9;
+–ink: #232629;
+–dim: #6a737c;
+–grid: #dde1e4;
+–accent: #f48024;
+–good: #5eba7d;
+–bad: #d1383d;
+–btn-text: #ffffff;
+–asset-bg: rgba(244, 128, 36, 0.03);
+}
+/* L19. Airbnb — white with rausch pink-red */
+body[data-theme=“airbnb”] {
+–bg: #ffffff;
+–panel: #f7f7f7;
+–ink: #222222;
+–dim: #717171;
+–grid: #ebebeb;
+–accent: #ff385c;
+–good: #008a05;
+–bad: #c13515;
+–btn-text: #ffffff;
+–asset-bg: rgba(0, 0, 0, 0.02);
+}
+/* L20. Medium — cream serif with deep green */
+body[data-theme=“medium”] {
+–bg: #ffffff;
+–panel: #fafafa;
+–ink: #242424;
+–dim: #757575;
+–grid: #e6e6e6;
+–accent: #1a8917;
+–good: #1a8917;
+–bad: #c94a4a;
+–btn-text: #ffffff;
+–asset-bg: rgba(0, 0, 0, 0.02);
+}
+/* L21. Apple Notes — paper white with system orange/yellow */
+body[data-theme=“apple”] {
+–bg: #fffef7;
+–panel: #ffffff;
+–ink: #1d1d1f;
+–dim: #86868b;
+–grid: #e5e5e7;
+–accent: #ff9f0a;
+–good: #34c759;
+–bad: #ff3b30;
+–btn-text: #1d1d1f;
+–asset-bg: rgba(255, 159, 10, 0.04);
+}
+
+/* ============== INFORMATIVE · readability-first ============== */
+/* I1. Diagram — light, FT/Economist-style data viz */
+body[data-theme=“diagram”] {
+–bg: #fbfaf6;
+–panel: #ffffff;
+–ink: #1a1a1a;
+–dim: #5a5a5a;
+–grid: #d4d2cc;
+–accent: #1f4ea1;
+–good: #00875a;
+–bad: #c8102e;
+–btn-text: #ffffff;
+–asset-bg: rgba(31, 78, 161, 0.03);
+}
+/* I2. Briefing — dark, high-contrast analytical */
+body[data-theme=“briefing”] {
+–bg: #1a1f2b;
+–panel: #232a39;
+–ink: #f5f7fa;
+–dim: #94a3b8;
+–grid: #2e3849;
+–accent: #fbbf24;
+–good: #34d399;
+–bad: #f87171;
+–btn-text: #1a1f2b;
+}
+/* 9. Synthwave */
+body[data-theme=“synthwave”] {
+–bg: #0a0e27;
+–panel: #141a3a;
+–ink: #ffd6ff;
+–dim: #6c70a8;
+–grid: #1f264d;
+–accent: #ff71ce;
+–good: #05ffa1;
+–bad: #ff3366;
+}
+/* 10. Mocha */
+body[data-theme=“mocha”] {
+–bg: #1c1410;
+–panel: #2a1f18;
+–ink: #e8d5b7;
+–dim: #8a7560;
+–grid: #382a20;
+–accent: #d4a373;
+–good: #94a26d;
+–bad: #c97064;
+}
+/* ===================== END THEME PICKER ===================== */
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1>Monte<span>·</span>Carlo <span>//</span> Price Paths</h1>
+  <div style="display: flex; align-items: center; gap: 16px;">
+    <select id="themePicker" class="theme-picker" title="Temporary theme picker">
+      <optgroup label="Dark">
+        <option value="terminal">D1 · Trading Terminal</option>
+        <option value="bloomberg">D2 · Bloomberg Orange</option>
+        <option value="solarized">D3 · Solarized Dark</option>
+        <option value="nord">D4 · Nord</option>
+        <option value="cyberpunk">D5 · Cyberpunk</option>
+        <option value="mono">D6 · Monochrome</option>
+        <option value="forest">D7 · Forest</option>
+        <option value="synthwave">D8 · Synthwave</option>
+        <option value="mocha">D9 · Mocha</option>
+        <option value="dracula">D10 · Dracula</option>
+      </optgroup>
+      <optgroup label="Dark · App-inspired">
+        <option value="robinhood">D11 · Robinhood</option>
+        <option value="tradingview">D12 · TradingView</option>
+        <option value="spotify">D13 · Spotify</option>
+        <option value="discord">D14 · Discord</option>
+        <option value="x">D15 · X (Twitter)</option>
+        <option value="linear">D16 · Linear</option>
+        <option value="slack">D17 · Slack</option>
+        <option value="vercel">D18 · Vercel</option>
+        <option value="terminal-classic">D19 · Terminal Classic</option>
+        <option value="stripe-dark">D20 · Stripe Dark</option>
+      </optgroup>
+      <optgroup label="Light">
+        <option value="newspaper">L1 · Newspaper</option>
+        <option value="paper">L2 · Plain Paper</option>
+        <option value="solarized-light">L3 · Solarized Light</option>
+        <option value="github">L4 · GitHub Light</option>
+        <option value="linen">L5 · Linen</option>
+        <option value="ledger">L6 · Ledger Green</option>
+        <option value="porcelain">L7 · Porcelain Blue</option>
+        <option value="sand">L8 · Sand</option>
+        <option value="lavender">L9 · Lavender</option>
+        <option value="mint">L10 · Mint</option>
+        <option value="nordic-light">L11 · Nordic Light</option>
+      </optgroup>
+      <optgroup label="Light · App-inspired">
+        <option value="coinbase">L12 · Coinbase</option>
+        <option value="gmail">L13 · Gmail</option>
+        <option value="notion">L14 · Notion</option>
+        <option value="stripe">L15 · Stripe</option>
+        <option value="facebook">L16 · Facebook</option>
+        <option value="sheets">L17 · Google Sheets</option>
+        <option value="stackoverflow">L18 · Stack Overflow</option>
+        <option value="airbnb">L19 · Airbnb</option>
+        <option value="medium">L20 · Medium</option>
+        <option value="apple">L21 · Apple Notes</option>
+      </optgroup>
+      <optgroup label="Informative · readability-first">
+        <option value="diagram">I1 · Diagram (light)</option>
+        <option value="briefing">I2 · Briefing (dark)</option>
+      </optgroup>
+    </select>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="panel">
+    <h2>Simulation</h2>
+    <div class="field">
+      <label>Months</label>
+      <input id="days" type="number" value="60" step="1" />
+    </div>
+    <div class="field">
+      <label>Simulations</label>
+      <input id="paths" type="number" value="200" step="1" />
+    </div>
+
+```
+<h2>Assets</h2>
+<div id="assetList"></div>
+<button class="ghost" id="addAssetBtn">+ Add asset</button>
+
+<button id="runBtn">▶ Run simulation</button>
+<div id="progressWrap" class="progress-wrap" style="display: none;">
+  <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+  <div id="progressLabel" class="progress-label">running…</div>
+</div>
+```
+
+  </aside>
+
+  <section class="chart-wrap">
+    <div id="chartProgress" class="chart-progress" style="display: none;">
+      <div id="chartProgressFill" class="chart-progress-fill"></div>
+    </div>
+    <div class="chart-header">
+      <div class="stat" style="flex: 1;">
+        portfolio<strong id="portfolioName" style="font-size: 13px; letter-spacing: 0.1em;">—</strong>
+      </div>
+      <div id="dirtyBadge" class="state-badge" style="display: none;"></div>
+      <div class="stat">final mean<strong id="statMean">—</strong></div>
+      <div class="stat">median<strong id="statMedian">—</strong></div>
+      <div class="stat">5th pct<strong id="statP5" class="down">—</strong></div>
+      <div class="stat">95th pct<strong id="statP95" class="up">—</strong></div>
+      <div class="stat">sims<strong id="statN">—</strong></div>
+    </div>
+    <canvas id="chart"></canvas>
+    <div id="chartTooltip" class="hover-tooltip" style="display: none;"></div>
+    <div class="footer">geometric brownian motion · dS = μS dt + σS dW</div>
+  </section>
+
+</div>
+
+<div id="assetCharts" class="asset-charts"></div>
+
+<script>
+(() => {
+  const canvas = document.getElementById('chart');
+  const ctx = canvas.getContext('2d');
+
+  // inputs
+  const $ = id => document.getElementById(id);
+  const inputs = {
+    days: $('days'),
+    paths: $('paths'),
+  };
+
+  const STORAGE_KEY = 'montecarlo:state:v1';
+
+  const defaultAssets = [
+    { name: 'SP500', value: 100, type: 'stochastic', growth: 8,  vol: 18 },
+    { name: 'VTI',   value: 100, type: 'stochastic', growth: 9,  vol: 19 },
+    { name: 'BTC',   value: 100, type: 'stochastic', growth: 30, vol: 70 },
+  ];
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) { return null; }
+  }
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        assets,
+        days: +inputs.days.value,
+        paths: +inputs.paths.value,
+      }));
+    } catch (e) {}
+  }
+
+  const stored = loadState();
+  // asset list state — each: { name, value, type ('stochastic'|'fixed'|'dca'), growth, vol, monthly? }
+  let assets = (stored && Array.isArray(stored.assets) && stored.assets.length)
+    ? stored.assets
+    : defaultAssets.slice();
+
+  if (stored) {
+    if (typeof stored.days === 'number') inputs.days.value = stored.days;
+    if (typeof stored.paths === 'number') inputs.paths.value = stored.paths;
+  }
+
+  function renderAssets() {
+    const list = $('assetList');
+    list.innerHTML = '';
+    assets.forEach((a, idx) => {
+      const row = document.createElement('div');
+      row.className = 'asset';
+      const isFixed = a.type === 'fixed';
+      const isDCA = a.type === 'dca';
+      row.innerHTML = `
+        <div class="top">
+          <input type="text" data-k="name" value="${a.name}" placeholder="TICKER" />
+          <div class="type-toggle" data-idx="${idx}">
+            <button data-type="stochastic" class="${a.type === 'stochastic' ? 'on' : ''}" title="Stochastic (GBM)">~</button>
+            <button data-type="dca" class="${isDCA ? 'on' : ''}" title="DCA: stochastic + monthly top-up">$~</button>
+            <button data-type="fixed" class="${isFixed ? 'on' : ''}" title="Fixed monthly change">=</button>
+          </div>
+          <button class="remove" title="Remove">×</button>
+        </div>
+        <div class="params">
+          ${isFixed ? `
+            <div>
+              <label>Start value</label>
+              <input type="number" data-k="value" value="${a.value}" step="1" />
+            </div>
+            <div style="grid-column: span 2;">
+              <label>Monthly change (+/−)</label>
+              <input type="number" data-k="monthly" value="${a.monthly ?? 0}" step="1" />
+            </div>
+          ` : isDCA ? `
+            <div>
+              <label>Start value</label>
+              <input type="number" data-k="value" value="${a.value}" step="1" />
+            </div>
+            <div>
+              <label>Monthly top-up</label>
+              <input type="number" data-k="monthly" value="${a.monthly ?? 0}" step="1" />
+            </div>
+            <div></div>
+            <div>
+              <label>Growth μ %</label>
+              <input type="number" data-k="growth" value="${a.growth}" step="0.5" />
+            </div>
+            <div>
+              <label>Volatility σ %</label>
+              <input type="number" data-k="vol" value="${a.vol}" step="0.5" />
+            </div>
+            <div></div>
+          ` : `
+            <div>
+              <label>Start value</label>
+              <input type="number" data-k="value" value="${a.value}" step="1" />
+            </div>
+            <div>
+              <label>Growth μ %</label>
+              <input type="number" data-k="growth" value="${a.growth}" step="0.5" />
+            </div>
+            <div>
+              <label>Volatility σ %</label>
+              <input type="number" data-k="vol" value="${a.vol}" step="0.5" />
+            </div>
+          `}
+        </div>
+      `;
+      row.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('input', () => {
+          const k = inp.dataset.k;
+          assets[idx][k] = k === 'name' ? inp.value : +inp.value;
+          markDirty();
+        });
+      });
+      row.querySelectorAll('.type-toggle button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          assets[idx].type = btn.dataset.type;
+          if ((assets[idx].type === 'fixed' || assets[idx].type === 'dca') && assets[idx].monthly == null) {
+            assets[idx].monthly = 0;
+          }
+          renderAssets();
+          markDirty();
+        });
+      });
+      row.querySelector('.remove').addEventListener('click', () => {
+        assets.splice(idx, 1);
+        renderAssets();
+        markDirty();
+      });
+      list.appendChild(row);
+    });
+  }
+  renderAssets();
+
+  $('addAssetBtn').addEventListener('click', () => {
+    assets.push({ name: `ASSET${assets.length + 1}`, value: 100, type: 'stochastic', growth: 8, vol: 20, monthly: 0 });
+    renderAssets();
+    markDirty();
+  });
+
+  // top-level inputs (days, sims) also dirty the sim
+  ['days', 'paths'].forEach(k => {
+    inputs[k].addEventListener('input', markDirty);
+  });
+
+  let simulation = null; // { totals: [[..]], days, percentiles, stats }
+  let viewMinX = 0, viewMaxX = 60;
+  let viewMinY = 0, viewMaxY = 200;
+
+  // Box-Muller for normal samples
+  function randn() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random();
+    while (v === 0) v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  function getThemeColors() {
+    const cs = getComputedStyle(document.body);
+    return {
+      bg:     cs.getPropertyValue('--bg').trim() || '#0b0d10',
+      panel:  cs.getPropertyValue('--panel').trim() || '#11151a',
+      ink:    cs.getPropertyValue('--ink').trim() || '#e8e6df',
+      dim:    cs.getPropertyValue('--dim').trim() || '#6f7680',
+      grid:   cs.getPropertyValue('--grid').trim() || '#1c2128',
+      accent: cs.getPropertyValue('--accent').trim() || '#ffd166',
+      good:   cs.getPropertyValue('--good').trim() || '#4ade80',
+      bad:    cs.getPropertyValue('--bad').trim() || '#f87171',
+    };
+  }
+
+  // helper: convert hex like "#ffd166" to rgba string with alpha
+  function withAlpha(hex, a) {
+    const h = hex.replace('#', '');
+    const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const r = parseInt(full.slice(0, 2), 16);
+    const g = parseInt(full.slice(2, 4), 16);
+    const b = parseInt(full.slice(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+  }
+
+  let currentRunId = 0;
+  let isDirty = true; // start dirty so first load prompts a run
+  let hasRunOnce = false;
+
+  function markDirty() {
+    isDirty = true;
+    saveState();
+    updateDirtyUI();
+  }
+  function markClean() {
+    isDirty = false;
+    hasRunOnce = true;
+    updateDirtyUI();
+  }
+  function updateDirtyUI() {
+    const badge = $('dirtyBadge');
+    const btn = $('runBtn');
+    if (!hasRunOnce) {
+      btn.textContent = '▶ Run simulation';
+      btn.classList.remove('muted');
+      badge.style.display = 'none';
+      return;
+    }
+    if (isDirty) {
+      btn.textContent = '▶ Run · pending changes';
+      btn.classList.remove('ghost');
+      badge.style.display = '';
+      badge.className = 'state-badge dirty';
+      badge.textContent = '● pending changes';
+    } else {
+      btn.textContent = 'Re-run simulation';
+      btn.classList.add('ghost');
+      badge.style.display = '';
+      badge.className = 'state-badge clean';
+      badge.textContent = '✓ in sync';
+    }
+  }
+
+  async function runSim() {
+    const myRun = ++currentRunId;
+    const days = Math.max(1, Math.floor(+inputs.days.value));
+    const N = Math.max(1, Math.floor(+inputs.paths.value));
+    const dt = 1 / 12;
+
+    if (assets.length === 0) {
+      simulation = null;
+      draw();
+      markClean();
+      return;
+    }
+
+    const portfolioStart = assets.reduce((sum, a) => sum + (+a.value || 0), 0);
+
+    // UI: disable button, show progress (sidebar + chart-top mirror)
+    const runBtn = $('runBtn');
+    const progWrap = $('progressWrap');
+    const progFill = $('progressFill');
+    const progLabel = $('progressLabel');
+    const chartProg = $('chartProgress');
+    const chartProgFill = $('chartProgressFill');
+    runBtn.disabled = true;
+    progWrap.style.display = '';
+    progFill.style.width = '0%';
+    progLabel.textContent = 'running…';
+    chartProg.style.display = '';
+    chartProgFill.style.width = '0%';
+
+    // Total work: each Monte Carlo path = 1 unit, plus percentile-extraction
+    // work (one unit per timestep) for each asset and one for the portfolio.
+    // This way the bar reflects real progress including the between-asset
+    // percentile pass and the final aggregation pass.
+    const pathWork = N * assets.length;
+    const percentileWork = (days + 1) * (assets.length + 1); // per-asset + portfolio
+    const totalWork = pathWork + percentileWork;
+    const updateEvery = Math.max(1, Math.ceil(totalWork / 120));
+    let workDone = 0;
+    let sinceUpdate = 0;
+    const yieldFn = () => new Promise(r => setTimeout(r, 0));
+
+    const tickProgress = async (msg) => {
+      const pct = (workDone / totalWork) * 100;
+      const pctStr = pct.toFixed(1) + '%';
+      progFill.style.width = pctStr;
+      chartProgFill.style.width = pctStr;
+      if (msg) progLabel.textContent = msg;
+      await yieldFn();
+    };
+    // call after every path; only yields when threshold reached
+    const maybeTick = async () => {
+      sinceUpdate++;
+      if (sinceUpdate >= updateEvery) {
+        sinceUpdate = 0;
+        await tickProgress();
+        if (myRun !== currentRunId) return false;
+      }
+      return true;
+    };
+
+    // Compute percentile series across time for a given collection of paths.
+    // Yields every ~16 timesteps so the progress bar stays smooth even on
+    // the per-asset and portfolio aggregation passes.
+    const reuseCol = new Array(N);
+    async function computePercentiles(paths) {
+      const out = qs.map(() => new Float64Array(days + 1));
+      const yieldEvery = 16;
+      for (let t = 0; t <= days; t++) {
+        for (let i = 0; i < N; i++) reuseCol[i] = paths[i][t];
+        reuseCol.sort((x, y) => x - y);
+        for (let qi = 0; qi < qs.length; qi++) {
+          out[qi][t] = reuseCol[Math.min(N - 1, Math.floor(qs[qi] * N))];
+        }
+        workDone++;
+        if (((t + 1) % yieldEvery) === 0) {
+          await tickProgress();
+          if (myRun !== currentRunId) return null;
+        }
+      }
+      return out;
+    }
+
+    // simulate each asset, accumulate total per (sim, t)
+    const totals = [];
+    for (let i = 0; i < N; i++) totals.push(new Float64Array(days + 1));
+
+    const qs = [0.05, 0.30, 0.50, 0.70, 0.95];
+    const assetSims = []; // { name, start, percentiles: { series } }
+
+    for (let aIdx = 0; aIdx < assets.length; aIdx++) {
+      if (myRun !== currentRunId) return; // preempted
+      const a = assets[aIdx];
+      const S0 = +a.value || 0;
+      const mu = a.growth / 100;
+      const isFixed = a.type === 'fixed';
+      const isDCA = a.type === 'dca';
+
+      const assetPaths = [];
+      progLabel.textContent = `simulating ${a.name || 'asset ' + (aIdx + 1)}…`;
+
+      if (isFixed) {
+        // deterministic linear: add `monthly` per step
+        const monthly = +a.monthly || 0;
+        const path = new Float64Array(days + 1);
+        path[0] = S0;
+        for (let t = 1; t <= days; t++) {
+          path[t] = S0 + monthly * t;
+        }
+        for (let i = 0; i < N; i++) {
+          totals[i][0] += path[0];
+          for (let t = 1; t <= days; t++) totals[i][t] += path[t];
+          assetPaths.push(path);
+          workDone++;
+          if (!await maybeTick()) return;
+        }
+      } else if (isDCA) {
+        const monthly = +a.monthly || 0;
+        const sigma = a.vol / 100;
+        const drift = (mu - 0.5 * sigma * sigma) * dt;
+        const diff = sigma * Math.sqrt(dt);
+        for (let i = 0; i < N; i++) {
+          const path = new Float64Array(days + 1);
+          path[0] = S0;
+          totals[i][0] += S0;
+          let s = S0;
+          for (let t = 1; t <= days; t++) {
+            s = s * Math.exp(drift + diff * randn()) + monthly;
+            path[t] = s;
+            totals[i][t] += s;
+          }
+          assetPaths.push(path);
+          workDone++;
+          if (!await maybeTick()) return;
+        }
+      } else {
+        const sigma = a.vol / 100;
+        const drift = (mu - 0.5 * sigma * sigma) * dt;
+        const diff = sigma * Math.sqrt(dt);
+        for (let i = 0; i < N; i++) {
+          const path = new Float64Array(days + 1);
+          path[0] = S0;
+          totals[i][0] += S0;
+          let s = S0;
+          for (let t = 1; t <= days; t++) {
+            s = s * Math.exp(drift + diff * randn());
+            path[t] = s;
+            totals[i][t] += s;
+          }
+          assetPaths.push(path);
+          workDone++;
+          if (!await maybeTick()) return;
+        }
+      }
+
+      // per-asset percentile series (yields internally)
+      const aSeries = await computePercentiles(assetPaths);
+      if (aSeries === null) return;
+      assetSims.push({ name: a.name, start: S0, type: a.type, percentiles: { series: aSeries } });
+    }
+
+    if (myRun !== currentRunId) return;
+    progLabel.textContent = 'aggregating…';
+
+    // final-value stats
+    const finals = totals.map(p => p[days]).sort((a, b) => a - b);
+    const pct = q => finals[Math.min(finals.length - 1, Math.floor(q * finals.length))];
+    const mean = finals.reduce((a, b) => a + b, 0) / finals.length;
+
+    // percentile series across time (portfolio total, yields internally)
+    const series = await computePercentiles(totals);
+    if (series === null) return;
+
+    simulation = {
+      totals,
+      days,
+      finals,
+      portfolioStart,
+      assetSims,
+      percentiles: { qs, series },
+      stats: { mean, median: pct(0.5), p5: pct(0.05), p95: pct(0.95) },
+    };
+
+    autoFit();
+    updateStats();
+    draw();
+
+    // UI: re-enable, hide progress
+    runBtn.disabled = false;
+    progWrap.style.display = 'none';
+    chartProg.style.display = 'none';
+    markClean();
+  }
+
+  function autoFit() {
+    if (!simulation) return;
+    const { series } = simulation.percentiles;
+    let lo = Infinity, hi = -Infinity;
+    // bounds from 5th and 95th percentile series
+    const p5 = series[0], p95 = series[4];
+    for (let t = 0; t < p5.length; t++) {
+      if (p5[t] < lo) lo = p5[t];
+      if (p95[t] > hi) hi = p95[t];
+    }
+    const pad = (hi - lo) * 0.08 || 1;
+    viewMinY = lo - pad;
+    viewMaxY = hi + pad;
+    viewMinX = 0;
+    viewMaxX = simulation.days;
+  }
+
+  function updateStats() {
+    if (!simulation) return;
+    const s = simulation.stats;
+    const start = simulation.portfolioStart;
+    const fmt = v => v.toFixed(2);
+    const cls = v => v >= start ? 'up' : 'down';
+
+    const meanEl = $('statMean');
+    meanEl.textContent = fmt(s.mean);
+    meanEl.className = cls(s.mean);
+
+    const medEl = $('statMedian');
+    medEl.textContent = fmt(s.median);
+    medEl.className = cls(s.median);
+
+    $('statP5').textContent = fmt(s.p5);
+    $('statP95').textContent = fmt(s.p95);
+    $('statN').textContent = simulation.totals.length;
+
+    const portfolioEl = $('portfolioName');
+    if (portfolioEl) {
+      portfolioEl.textContent = assets.map(a => a.name).join(' + ') || '—';
+    }
+  }
+
+  // ----- drawing -----
+  function resizeCanvasFor(cv, c) {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = cv.getBoundingClientRect();
+    cv.width = rect.width * dpr;
+    cv.height = rect.height * dpr;
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return rect;
+  }
+
+  // Generic percentile-chart renderer.
+  // opts: { series: [p5, p30, p50, p70, p95], days, start, minY, maxY,
+  //         compact: bool, title?: string }
+  // Generate "nice" tick positions for an axis range, snapping to 1/2/5×10ⁿ steps.
+  function niceTicks(min, max, targetCount) {
+    const range = max - min;
+    if (range <= 0 || !isFinite(range)) return [min, max];
+    const rough = range / targetCount;
+    const pow = Math.pow(10, Math.floor(Math.log10(rough)));
+    const norm = rough / pow; // 1..10
+    let step;
+    if (norm < 1.5) step = 1 * pow;
+    else if (norm < 3) step = 2 * pow;
+    else if (norm < 7) step = 5 * pow;
+    else step = 10 * pow;
+    const first = Math.ceil(min / step) * step;
+    const ticks = [];
+    for (let v = first; v <= max + step * 0.0001; v += step) {
+      // round to step's precision to avoid float drift like 99.99999
+      ticks.push(Math.round(v / step) * step);
+    }
+    return ticks;
+  }
+
+  function formatTick(v) {
+    const abs = Math.abs(v);
+    if (abs >= 10000) return Math.round(v).toLocaleString('en-US');
+    if (abs >= 100) return Math.round(v).toString();
+    if (abs >= 10) return v.toFixed(0);
+    if (abs >= 1) return v.toFixed(1);
+    return v.toFixed(2);
+  }
+
+  function drawPercentileChart(cv, c, opts) {
+    const rect = resizeCanvasFor(cv, c);
+    const W = rect.width, H = rect.height;
+    const T = getThemeColors();
+
+    c.fillStyle = T.bg;
+    c.fillRect(0, 0, W, H);
+
+    const compact = !!opts.compact;
+    const padL = compact ? 44 : 60;
+    const padR = compact ? 10 : 18;
+    const padT = compact ? 10 : 16;
+    const padB = compact ? 22 : 30;
+    const plotW = W - padL - padR;
+    const plotH = H - padT - padB;
+
+    const minX = 0, maxX = opts.days;
+    const { minY, maxY } = opts;
+    if (!isFinite(minY) || !isFinite(maxY) || maxY <= minY) return;
+
+    const xToPx = x => padL + ((x - minX) / (maxX - minX)) * plotW;
+    const yToPx = y => padT + (1 - (y - minY) / (maxY - minY)) * plotH;
+
+    // grid
+    c.strokeStyle = T.grid;
+    c.lineWidth = 1;
+    c.font = (compact ? '9px' : '10px') + ' JetBrains Mono, Menlo, monospace';
+    c.fillStyle = T.dim;
+
+    const yTickTarget = compact ? 4 : 6;
+    const yTickValues = niceTicks(minY, maxY, yTickTarget);
+    for (const y of yTickValues) {
+      const py = yToPx(y);
+      c.beginPath();
+      c.moveTo(padL, py);
+      c.lineTo(W - padR, py);
+      c.stroke();
+      c.fillText(formatTick(y), 4, py + 3);
+    }
+
+    const xTicks = compact ? 4 : 8;
+    for (let i = 0; i <= xTicks; i++) {
+      const x = minX + (i / xTicks) * (maxX - minX);
+      const px = xToPx(x);
+      c.beginPath();
+      c.moveTo(px, padT);
+      c.lineTo(px, H - padB);
+      c.stroke();
+      c.fillText(x.toFixed(0), px - 8, H - padB + 12);
+    }
+
+    // start line
+    if (opts.start >= minY && opts.start <= maxY) {
+      c.strokeStyle = withAlpha(T.ink, 0.25);
+      c.setLineDash([4, 4]);
+      c.beginPath();
+      c.moveTo(padL, yToPx(opts.start));
+      c.lineTo(W - padR, yToPx(opts.start));
+      c.stroke();
+      c.setLineDash([]);
+    }
+
+    // clip
+    c.save();
+    c.beginPath();
+    c.rect(padL, padT, plotW, plotH);
+    c.clip();
+
+    const series = opts.series;
+    const days = opts.days;
+    const xs = [];
+    for (let t = 0; t <= days; t++) xs.push(xToPx(t));
+
+    const fillBand = (lower, upper, color) => {
+      c.fillStyle = color;
+      c.beginPath();
+      c.moveTo(xs[0], yToPx(upper[0]));
+      for (let t = 1; t <= days; t++) c.lineTo(xs[t], yToPx(upper[t]));
+      for (let t = days; t >= 0; t--) c.lineTo(xs[t], yToPx(lower[t]));
+      c.closePath();
+      c.fill();
+    };
+    fillBand(series[0], series[4], withAlpha(T.accent, 0.08));
+    fillBand(series[1], series[3], withAlpha(T.accent, 0.18));
+
+    const drawLine = (data, color, width, dash) => {
+      c.strokeStyle = color;
+      c.lineWidth = width;
+      c.setLineDash(dash || []);
+      c.beginPath();
+      c.moveTo(xs[0], yToPx(data[0]));
+      for (let t = 1; t <= days; t++) c.lineTo(xs[t], yToPx(data[t]));
+      c.stroke();
+      c.setLineDash([]);
+    };
+    drawLine(series[0], withAlpha(T.bad, 0.7), 1, [4, 4]);
+    drawLine(series[4], withAlpha(T.good, 0.7), 1, [4, 4]);
+    drawLine(series[1], withAlpha(T.ink, 0.45), compact ? 1 : 1.2);
+    drawLine(series[3], withAlpha(T.ink, 0.45), compact ? 1 : 1.2);
+    drawLine(series[2], T.accent, compact ? 1.5 : 2);
+
+    // legend (only on main chart)
+    if (!compact) {
+      c.font = '10px JetBrains Mono, Menlo, monospace';
+      c.textAlign = 'left';
+      const labels = [
+        { txt: '95th', val: series[4][days], color: withAlpha(T.good, 0.9) },
+        { txt: '70th', val: series[3][days], color: withAlpha(T.ink, 0.7) },
+        { txt: '50th', val: series[2][days], color: T.accent },
+        { txt: '30th', val: series[1][days], color: withAlpha(T.ink, 0.7) },
+        { txt: '5th',  val: series[0][days], color: withAlpha(T.bad, 0.9) },
+      ];
+      labels.forEach(l => {
+        const py = yToPx(l.val);
+        if (py < padT || py > H - padB) return;
+        c.fillStyle = l.color;
+        c.fillText(`${l.txt} · ${formatTick(l.val)}`, W - padR - 78, py - 3);
+      });
+      c.textAlign = 'start';
+    }
+
+    c.restore();
+
+    c.strokeStyle = T.grid;
+    c.strokeRect(padL, padT, plotW, plotH);
+
+    return {
+      W, H, padL, padR, padT, padB, plotW, plotH,
+      days, series: opts.series, start: opts.start,
+      minY, maxY, theme: T,
+      xToPx, yToPx,
+    };
+  }
+
+  // compute auto-fit Y bounds for a series set
+  function fitBounds(series) {
+    let lo = Infinity, hi = -Infinity;
+    const p5 = series[0], p95 = series[4];
+    for (let t = 0; t < p5.length; t++) {
+      if (p5[t] < lo) lo = p5[t];
+      if (p95[t] > hi) hi = p95[t];
+    }
+    const pad = (hi - lo) * 0.08 || 1;
+    return { minY: lo - pad, maxY: hi + pad };
+  }
+
+  // Cache last-rendered chart opts per canvas, so hover handlers can
+  // re-render on mousemove without recomputing data.
+  const chartCache = new WeakMap(); // canvas -> { ctx, opts, geom }
+
+  function renderChart(cv, c, opts) {
+    const geom = drawPercentileChart(cv, c, opts);
+    chartCache.set(cv, { ctx: c, opts, geom });
+    return geom;
+  }
+
+  // Draw the hover crosshair + percentile dots overlay onto an already-rendered chart.
+  function drawHoverOverlay(cv, c, geom, dayIdx) {
+    const T = geom.theme;
+    const x = geom.xToPx(dayIdx);
+    const { padT, padB, plotH, series, days } = geom;
+    if (dayIdx < 0 || dayIdx > days) return;
+
+    // crosshair
+    c.save();
+    c.beginPath();
+    c.rect(geom.padL, geom.padT, geom.plotW, geom.plotH);
+    c.clip();
+
+    c.strokeStyle = withAlpha(T.ink, 0.35);
+    c.lineWidth = 1;
+    c.setLineDash([3, 3]);
+    c.beginPath();
+    c.moveTo(x, padT);
+    c.lineTo(x, geom.H - padB);
+    c.stroke();
+    c.setLineDash([]);
+
+    // dots on each percentile
+    const dotColors = [
+      withAlpha(T.bad, 1),    // 5th
+      withAlpha(T.ink, 0.7),  // 30th
+      T.accent,               // 50th
+      withAlpha(T.ink, 0.7),  // 70th
+      withAlpha(T.good, 1),   // 95th
+    ];
+    for (let qi = 0; qi < 5; qi++) {
+      const py = geom.yToPx(series[qi][dayIdx]);
+      // outer halo
+      c.fillStyle = T.bg;
+      c.beginPath();
+      c.arc(x, py, 4.5, 0, Math.PI * 2);
+      c.fill();
+      // dot
+      c.fillStyle = dotColors[qi];
+      c.beginPath();
+      c.arc(x, py, 3, 0, Math.PI * 2);
+      c.fill();
+    }
+    c.restore();
+  }
+
+  // Wire hover behavior to a canvas + tooltip element.
+  // The chart must have been rendered via renderChart() at least once.
+  function attachHover(cv, tooltipEl, opts) {
+    const compact = !!(opts && opts.compact);
+
+    let frame = null;
+    const handleMove = (e) => {
+      // suppress hover during simulation runs (avoids laggy redraws + stale chart state)
+      if ($('runBtn').disabled) {
+        if (tooltipEl.style.display !== 'none') handleLeave();
+        return;
+      }
+      const cache = chartCache.get(cv);
+      if (!cache) return;
+      const rect = cv.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const { geom, ctx, opts: chartOpts } = cache;
+      // bail if outside plot area
+      if (mx < geom.padL || mx > geom.W - geom.padR ||
+          my < geom.padT || my > geom.H - geom.padB) {
+        handleLeave();
+        return;
+      }
+      // map mouse X to nearest day index
+      const dayFloat = (mx - geom.padL) / geom.plotW * geom.days;
+      const dayIdx = Math.max(0, Math.min(geom.days, Math.round(dayFloat)));
+
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        // redraw chart fresh, then overlay
+        const g = drawPercentileChart(cv, ctx, chartOpts);
+        chartCache.set(cv, { ctx, opts: chartOpts, geom: g });
+        drawHoverOverlay(cv, ctx, g, dayIdx);
+        positionTooltip(tooltipEl, g, dayIdx, mx, compact);
+      });
+    };
+    const handleLeave = () => {
+      const cache = chartCache.get(cv);
+      if (!cache) return;
+      if (frame) cancelAnimationFrame(frame);
+      // redraw clean
+      const g = drawPercentileChart(cv, cache.ctx, cache.opts);
+      chartCache.set(cv, { ctx: cache.ctx, opts: cache.opts, geom: g });
+      tooltipEl.style.display = 'none';
+    };
+
+    cv.addEventListener('mousemove', handleMove);
+    cv.addEventListener('mouseleave', handleLeave);
+    cv.style.cursor = 'crosshair';
+  }
+
+  function positionTooltip(el, geom, dayIdx, mouseX, compact) {
+    const { series, start } = geom;
+    const fmt = v => formatTick(v);
+    const median = series[2][dayIdx];
+    const pctChange = start ? ((median - start) / start * 100) : 0;
+    const sign = pctChange >= 0 ? '+' : '';
+    el.innerHTML = `
+      <div class="ht-title">month ${dayIdx}</div>
+      <div class="ht-row p95"><span class="lbl">95th</span><span class="val">${fmt(series[4][dayIdx])}</span></div>
+      <div class="ht-row"><span class="lbl">70th</span><span class="val">${fmt(series[3][dayIdx])}</span></div>
+      <div class="ht-row median"><span class="lbl">50th · median</span><span class="val">${fmt(median)}</span></div>
+      <div class="ht-row"><span class="lbl">30th</span><span class="val">${fmt(series[1][dayIdx])}</span></div>
+      <div class="ht-row p5"><span class="lbl">5th</span><span class="val">${fmt(series[0][dayIdx])}</span></div>
+      ${start ? `<div class="ht-row" style="margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--grid);"><span class="lbl">median Δ</span><span class="val">${sign}${pctChange.toFixed(1)}%</span></div>` : ''}
+    `;
+    el.style.display = 'block';
+
+    // smart positioning: prefer right of crosshair, flip left if it would overflow
+    const parentRect = el.offsetParent.getBoundingClientRect();
+    const elW = el.offsetWidth;
+    const elH = el.offsetHeight;
+    const canvasRect = el.previousElementSibling
+      ? el.previousElementSibling.getBoundingClientRect()
+      : el.parentElement.getBoundingClientRect();
+    const canvasLeftInParent = canvasRect.left - parentRect.left;
+    const canvasTopInParent = canvasRect.top - parentRect.top;
+
+    // crosshair X relative to canvas, then to parent
+    let left = canvasLeftInParent + mouseX + 14;
+    if (left + elW > parentRect.width - 8) {
+      left = canvasLeftInParent + mouseX - elW - 14;
+    }
+    // vertical: anchor near top of plot, but not above
+    let top = canvasTopInParent + Math.max(geom.padT, geom.padT + 4);
+    if (top + elH > parentRect.height - 8) {
+      top = parentRect.height - elH - 8;
+    }
+    el.style.left = left + 'px';
+    el.style.top = top + 'px';
+  }
+
+  function draw() {
+    // main chart
+    const W = canvas.getBoundingClientRect().width;
+    const H = canvas.getBoundingClientRect().height;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    if (!simulation) {
+      const T = getThemeColors();
+      ctx.fillStyle = T.bg;
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = T.dim;
+      ctx.font = '12px JetBrains Mono, monospace';
+      ctx.fillText('▶  press Run to simulate', W / 2 - 90, H / 2);
+      // also clear asset charts area
+      $('assetCharts').innerHTML = '';
+      return;
+    }
+
+    renderChart(canvas, ctx, {
+      series: simulation.percentiles.series,
+      days: simulation.days,
+      start: simulation.portfolioStart,
+      minY: viewMinY,
+      maxY: viewMaxY,
+      compact: false,
+    });
+    // attach hover once
+    if (!canvas.dataset.hoverAttached) {
+      attachHover(canvas, $('chartTooltip'), { compact: false });
+      canvas.dataset.hoverAttached = '1';
+    }
+
+    // per-asset charts
+    renderAssetCharts();
+  }
+
+  function renderAssetCharts() {
+    const host = $('assetCharts');
+    host.innerHTML = '';
+    if (!simulation) return;
+
+    simulation.assetSims.forEach((a, idx) => {
+      const card = document.createElement('div');
+      card.className = 'asset-chart';
+      const fitted = fitBounds(a.percentiles.series);
+      const median = a.percentiles.series[2];
+      const finalMedian = median[median.length - 1];
+      const pctChange = ((finalMedian - a.start) / a.start * 100);
+      const typeLabel = a.type === 'fixed' ? 'fixed' : a.type === 'dca' ? 'dca' : 'stochastic';
+      card.innerHTML = `
+        <div class="title">${a.name || 'asset ' + (idx + 1)} <span style="color: var(--dim); font-size: 9px; letter-spacing: 0.1em;">· ${typeLabel}</span></div>
+        <div class="meta">start ${a.start.toFixed(0)} · median ${finalMedian.toFixed(1)} (${pctChange >= 0 ? '+' : ''}${pctChange.toFixed(1)}%)</div>
+        <canvas></canvas>
+        <div class="hover-tooltip" style="display: none;"></div>
+      `;
+      host.appendChild(card);
+      const cv = card.querySelector('canvas');
+      const tip = card.querySelector('.hover-tooltip');
+      const c = cv.getContext('2d');
+      renderChart(cv, c, {
+        series: a.percentiles.series,
+        days: simulation.days,
+        start: a.start,
+        minY: fitted.minY,
+        maxY: fitted.maxY,
+        compact: true,
+      });
+      attachHover(cv, tip, { compact: true });
+    });
+  }
+
+  // ----- interactions -----
+
+  $('runBtn').addEventListener('click', runSim);
+
+  window.addEventListener('resize', draw);
+
+  // ============== TEMPORARY THEME PICKER (remove later) ==============
+  const THEME_KEY = 'montecarlo:theme';
+  const themePicker = $('themePicker');
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'terminal';
+  document.body.dataset.theme = savedTheme;
+  themePicker.value = savedTheme;
+  themePicker.addEventListener('change', () => {
+    document.body.dataset.theme = themePicker.value;
+    localStorage.setItem(THEME_KEY, themePicker.value);
+    // canvas reads CSS vars at draw time, so re-draw to pick up new colors
+    draw();
+  });
+  // ===================================================================
+
+  // initial run
+  updateDirtyUI();
+  runSim();
+})();
+</script>
+
+</body>
+</html>
