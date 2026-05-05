@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Monte Carlo // Price Paths</title>
 <style>
   :root {
@@ -2014,7 +2015,7 @@
   // ============== TEMPORARY THEME PICKER (remove later) ==============
   const THEME_KEY = 'montecarlo:theme';
   const themePicker = $('themePicker');
-  const savedTheme = localStorage.getItem(THEME_KEY) || 'terminal';
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'briefing';
   document.body.dataset.theme = savedTheme;
   themePicker.value = savedTheme;
   themePicker.addEventListener('change', () => {
