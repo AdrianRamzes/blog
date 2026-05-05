@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -19,1012 +18,1011 @@
     --asset-bg: rgba(0, 0, 0, 0.2);
   }
 
-- { box-sizing: border-box; }
+  * { box-sizing: border-box; }
 
-html, body {
-margin: 0;
-padding: 0;
-background: var(–bg);
-color: var(–ink);
-font-family: “JetBrains Mono”, “Menlo”, “Consolas”, monospace;
-min-height: 100vh;
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "JetBrains Mono", "Menlo", "Consolas", monospace;
+    min-height: 100vh;
+  }
 
-body {
-background-image:
-radial-gradient(circle at 20% 10%, rgba(255, 209, 102, 0.06), transparent 40%),
-radial-gradient(circle at 80% 90%, rgba(74, 222, 128, 0.05), transparent 45%);
-padding: 28px;
-}
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255, 209, 102, 0.06), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(74, 222, 128, 0.05), transparent 45%);
+    padding: 28px;
+  }
 
-header {
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-border-bottom: 1px dashed var(–grid);
-padding-bottom: 12px;
-margin-bottom: 24px;
-}
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px dashed var(--grid);
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+  }
 
-h1 {
-margin: 0;
-font-size: 22px;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-font-weight: 500;
-}
-h1 span { color: var(–accent); }
+  h1 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  h1 span { color: var(--accent); }
 
-.tag {
-font-size: 11px;
-color: var(–dim);
-letter-spacing: 0.15em;
-text-transform: uppercase;
-}
-.tag .blink {
-color: var(–good);
-animation: blink 1.2s steps(2) infinite;
-}
-@keyframes blink { 50% { opacity: 0.2; } }
+  .tag {
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .tag .blink {
+    color: var(--good);
+    animation: blink 1.2s steps(2) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.2; } }
 
-.layout {
-display: grid;
-grid-template-columns: 372px 1fr;
-gap: 16px;
-}
+  .layout {
+    display: grid;
+    grid-template-columns: 372px 1fr;
+    gap: 16px;
+  }
 
-.panel {
-background: var(–panel);
-border: 1px solid var(–grid);
-padding: 20px;
-}
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--grid);
+    padding: 20px;
+  }
 
-.panel h2 {
-font-size: 11px;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(–dim);
-margin: 0 0 14px 0;
-font-weight: 500;
-border-bottom: 1px solid var(–grid);
-padding-bottom: 8px;
-}
-.panel h2:not(:first-child) { margin-top: 22px; }
+  .panel h2 {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin: 0 0 14px 0;
+    font-weight: 500;
+    border-bottom: 1px solid var(--grid);
+    padding-bottom: 8px;
+  }
+  .panel h2:not(:first-child) { margin-top: 22px; }
 
-.field {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 10px;
-font-size: 12px;
-}
-.field label {
-color: var(–dim);
-letter-spacing: 0.05em;
-}
-.field input {
-width: 90px;
-background: var(–bg);
-border: 1px solid var(–grid);
-color: var(–ink);
-padding: 6px 8px;
-font-family: inherit;
-font-size: 12px;
-text-align: right;
-outline: none;
-}
-.field input:focus { border-color: var(–accent); }
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  .field label {
+    color: var(--dim);
+    letter-spacing: 0.05em;
+  }
+  .field input {
+    width: 90px;
+    background: var(--bg);
+    border: 1px solid var(--grid);
+    color: var(--ink);
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 12px;
+    text-align: right;
+    outline: none;
+  }
+  .field input:focus { border-color: var(--accent); }
 
-.row { display: flex; gap: 8px; }
-.row input { width: 100%; }
+  .row { display: flex; gap: 8px; }
+  .row input { width: 100%; }
 
-button {
-width: 100%;
-background: var(–accent);
-color: var(–btn-text);
-border: none;
-padding: 12px;
-font-family: inherit;
-font-size: 12px;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-cursor: pointer;
-margin-top: 14px;
-font-weight: 700;
-transition: transform 0.05s;
-}
-button:active { transform: translateY(1px); }
-button:disabled {
-opacity: 0.5;
-cursor: not-allowed;
-}
-button.ghost {
-background: transparent;
-color: var(–ink);
-border: 1px solid var(–grid);
-}
+  button {
+    width: 100%;
+    background: var(--accent);
+    color: var(--btn-text);
+    border: none;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 14px;
+    font-weight: 700;
+    transition: transform 0.05s;
+  }
+  button:active { transform: translateY(1px); }
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  button.ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--grid);
+  }
 
-.progress-wrap {
-margin-top: 10px;
-}
-.progress-bar {
-height: 4px;
-background: var(–grid);
-overflow: hidden;
-position: relative;
-}
-.progress-fill {
-height: 100%;
-width: 0%;
-background: var(–accent);
-transition: width 0.05s linear;
-}
-.progress-label {
-margin-top: 6px;
-font-size: 10px;
-color: var(–dim);
-letter-spacing: 0.15em;
-text-transform: uppercase;
-}
+  .progress-wrap {
+    margin-top: 10px;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--grid);
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.05s linear;
+  }
+  .progress-label {
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
 
-.state-badge {
-align-self: center;
-font-size: 10px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-padding: 4px 10px;
-margin-right: 12px;
-animation: pulse 1.6s ease-in-out infinite;
-}
-.state-badge.dirty {
-color: var(–accent);
-border: 1px solid rgba(255, 209, 102, 0.4);
-background: rgba(255, 209, 102, 0.08);
-}
-.state-badge.clean {
-color: var(–good);
-border: 1px solid rgba(74, 222, 128, 0.35);
-background: rgba(74, 222, 128, 0.06);
-animation: none;
-opacity: 0.85;
-}
-@keyframes pulse {
-0%, 100% { opacity: 0.55; }
-50% { opacity: 1; }
-}
+  .state-badge {
+    align-self: center;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-right: 12px;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  .state-badge.dirty {
+    color: var(--accent);
+    border: 1px solid rgba(255, 209, 102, 0.4);
+    background: rgba(255, 209, 102, 0.08);
+  }
+  .state-badge.clean {
+    color: var(--good);
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    background: rgba(74, 222, 128, 0.06);
+    animation: none;
+    opacity: 0.85;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
 
-.asset {
-border: 1px solid var(–grid);
-padding: 10px;
-margin-bottom: 8px;
-background: var(–asset-bg);
-}
-.asset .top {
-display: flex;
-gap: 6px;
-margin-bottom: 6px;
-align-items: stretch;
-}
-.asset .top input {
-flex: 1;
-min-width: 0;
-background: var(–bg);
-border: 1px solid var(–grid);
-color: var(–accent);
-padding: 5px 7px;
-font-family: inherit;
-font-size: 12px;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-outline: none;
-}
-.asset .top input:focus { border-color: var(–accent); }
-.asset .remove {
-background: transparent;
-border: 1px solid var(–grid);
-color: var(–dim);
-width: 28px;
-height: 28px;
-cursor: pointer;
-font-family: inherit;
-padding: 0;
-margin: 0;
-font-size: 14px;
-}
-.asset .remove:hover { color: var(–bad); border-color: var(–bad); }
+  .asset {
+    border: 1px solid var(--grid);
+    padding: 10px;
+    margin-bottom: 8px;
+    background: var(--asset-bg);
+  }
+  .asset .top {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+    align-items: stretch;
+  }
+  .asset .top input {
+    flex: 1;
+    min-width: 0;
+    background: var(--bg);
+    border: 1px solid var(--grid);
+    color: var(--accent);
+    padding: 5px 7px;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    outline: none;
+  }
+  .asset .top input:focus { border-color: var(--accent); }
+  .asset .remove {
+    background: transparent;
+    border: 1px solid var(--grid);
+    color: var(--dim);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+  .asset .remove:hover { color: var(--bad); border-color: var(--bad); }
 
-.type-toggle {
-display: flex;
-border: 1px solid var(–grid);
-height: 28px;
-}
-.type-toggle button {
-background: transparent;
-color: var(–dim);
-border: none;
-min-width: 30px;
-padding: 0 6px;
-height: 26px;
-cursor: pointer;
-font-family: inherit;
-font-size: 13px;
-margin: 0;
-letter-spacing: 0;
-text-transform: none;
-white-space: nowrap;
-}
-.type-toggle button.on {
-background: var(–accent);
-color: var(–btn-text);
-font-weight: 700;
-}
-.type-toggle button:hover:not(.on) { color: var(–ink); }
-.asset .params {
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-gap: 6px;
-}
-.asset .params label {
-font-size: 10px;
-color: var(–dim);
-letter-spacing: 0.1em;
-text-transform: uppercase;
-display: block;
-margin-bottom: 3px;
-}
-.asset .params input {
-width: 100%;
-background: var(–bg);
-border: 1px solid var(–grid);
-color: var(–ink);
-padding: 5px 7px;
-font-family: inherit;
-font-size: 12px;
-text-align: right;
-outline: none;
-}
-.asset .params input:focus { border-color: var(–accent); }
+  .type-toggle {
+    display: flex;
+    border: 1px solid var(--grid);
+    height: 28px;
+  }
+  .type-toggle button {
+    background: transparent;
+    color: var(--dim);
+    border: none;
+    min-width: 30px;
+    padding: 0 6px;
+    height: 26px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    margin: 0;
+    letter-spacing: 0;
+    text-transform: none;
+    white-space: nowrap;
+  }
+  .type-toggle button.on {
+    background: var(--accent);
+    color: var(--btn-text);
+    font-weight: 700;
+  }
+  .type-toggle button:hover:not(.on) { color: var(--ink); }
+  .asset .params {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .asset .params label {
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .asset .params input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--grid);
+    color: var(--ink);
+    padding: 5px 7px;
+    font-family: inherit;
+    font-size: 12px;
+    text-align: right;
+    outline: none;
+  }
+  .asset .params input:focus { border-color: var(--accent); }
 
-.chart-wrap {
-background: var(–panel);
-border: 1px solid var(–grid);
-padding: 20px;
-position: relative;
-}
-.chart-progress {
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-height: 3px;
-background: var(–grid);
-overflow: hidden;
-}
-.chart-progress-fill {
-height: 100%;
-width: 0%;
-background: var(–accent);
-transition: width 0.05s linear;
-}
+  .chart-wrap {
+    background: var(--panel);
+    border: 1px solid var(--grid);
+    padding: 20px;
+    position: relative;
+  }
+  .chart-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grid);
+    overflow: hidden;
+  }
+  .chart-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.05s linear;
+  }
 
-.chart-header {
-display: flex;
-gap: 18px;
-font-size: 11px;
-color: var(–dim);
-letter-spacing: 0.1em;
-text-transform: uppercase;
-margin-bottom: 12px;
-}
-.chart-header .stat strong {
-display: block;
-color: var(–ink);
-font-size: 16px;
-margin-top: 2px;
-letter-spacing: 0.05em;
-}
-.chart-header .stat strong.up { color: var(–good); }
-.chart-header .stat strong.down { color: var(–bad); }
+  .chart-header {
+    display: flex;
+    gap: 18px;
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .chart-header .stat strong {
+    display: block;
+    color: var(--ink);
+    font-size: 16px;
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+  .chart-header .stat strong.up { color: var(--good); }
+  .chart-header .stat strong.down { color: var(--bad); }
 
-canvas {
-display: block;
-width: 100%;
-height: 480px;
-}
+  canvas {
+    display: block;
+    width: 100%;
+    height: 480px;
+  }
 
-.axis-controls {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 14px;
-margin-top: 14px;
-padding-top: 14px;
-border-top: 1px solid var(–grid);
-font-size: 11px;
-color: var(–dim);
-}
-.axis-controls .group { display: flex; flex-direction: column; gap: 6px; }
-.axis-controls label {
-letter-spacing: 0.15em;
-text-transform: uppercase;
-}
+  .axis-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--grid);
+    font-size: 11px;
+    color: var(--dim);
+  }
+  .axis-controls .group { display: flex; flex-direction: column; gap: 6px; }
+  .axis-controls label {
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
 
-.footer {
-color: var(–dim);
-font-size: 10px;
-margin-top: 16px;
-letter-spacing: 0.1em;
-}
+  .footer {
+    color: var(--dim);
+    font-size: 10px;
+    margin-top: 16px;
+    letter-spacing: 0.1em;
+  }
 
-.hover-tooltip {
-position: absolute;
-pointer-events: none;
-background: var(–panel);
-border: 1px solid var(–grid);
-padding: 8px 10px;
-font-size: 11px;
-font-family: inherit;
-color: var(–ink);
-z-index: 10;
-min-width: 140px;
-box-shadow: 0 4px 16px rgba(0,0,0,0.35);
-line-height: 1.5;
-}
-.hover-tooltip .ht-title {
-font-size: 9px;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(–dim);
-margin-bottom: 4px;
-padding-bottom: 3px;
-border-bottom: 1px solid var(–grid);
-}
-.hover-tooltip .ht-row {
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 14px;
-}
-.hover-tooltip .ht-row .lbl {
-color: var(–dim);
-font-size: 10px;
-letter-spacing: 0.05em;
-}
-.hover-tooltip .ht-row .val {
-font-variant-numeric: tabular-nums;
-}
-.hover-tooltip .ht-row.median { color: var(–accent); font-weight: 600; }
-.hover-tooltip .ht-row.p95 { color: var(–good); }
-.hover-tooltip .ht-row.p5 { color: var(–bad); }
+  .hover-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--panel);
+    border: 1px solid var(--grid);
+    padding: 8px 10px;
+    font-size: 11px;
+    font-family: inherit;
+    color: var(--ink);
+    z-index: 10;
+    min-width: 140px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    line-height: 1.5;
+  }
+  .hover-tooltip .ht-title {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 4px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--grid);
+  }
+  .hover-tooltip .ht-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+  .hover-tooltip .ht-row .lbl {
+    color: var(--dim);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+  .hover-tooltip .ht-row .val {
+    font-variant-numeric: tabular-nums;
+  }
+  .hover-tooltip .ht-row.median { color: var(--accent); font-weight: 600; }
+  .hover-tooltip .ht-row.p95 { color: var(--good); }
+  .hover-tooltip .ht-row.p5 { color: var(--bad); }
 
-.asset-charts {
-margin-top: 24px;
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-gap: 16px;
-}
-.asset-chart {
-background: var(–panel);
-border: 1px solid var(–grid);
-padding: 14px;
-position: relative;
-}
-.asset-chart .title {
-font-size: 11px;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(–accent);
-margin-bottom: 4px;
-}
-.asset-chart .meta {
-font-size: 10px;
-color: var(–dim);
-letter-spacing: 0.1em;
-margin-bottom: 8px;
-}
-.asset-chart canvas {
-display: block;
-width: 100%;
-height: 180px;
-}
+  .asset-charts {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .asset-chart {
+    background: var(--panel);
+    border: 1px solid var(--grid);
+    padding: 14px;
+    position: relative;
+  }
+  .asset-chart .title {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .asset-chart .meta {
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .asset-chart canvas {
+    display: block;
+    width: 100%;
+    height: 180px;
+  }
 
-@media (max-width: 820px) {
-body { padding: 16px 12px; }
-header {
-flex-wrap: wrap;
-gap: 12px;
-}
-h1 { font-size: 16px; }
-.layout {
-grid-template-columns: 1fr;
-gap: 16px;
-}
-.panel { padding: 14px; }
-/* stack asset params vertically on narrow screens */
-.asset .params {
-grid-template-columns: 1fr;
-gap: 8px;
-}
-/* hide empty filler cells used for grid alignment in DCA layout */
-.asset .params > div:empty {
-display: none;
-}
-/* override the ‘span 2’ on fixed-asset monthly field */
-.asset .params > div[style*=“span 2”] {
-grid-column: auto !important;
-}
-.asset-charts {
-grid-template-columns: 1fr;
-gap: 12px;
-}
-.chart-header {
-flex-wrap: wrap;
-gap: 10px;
-font-size: 10px;
-}
-canvas { height: 360px; }
-.asset-chart canvas { height: 160px; }
-.theme-picker {
-flex: 1;
-min-width: 0;
-}
-}
-/* ============== TEMPORARY THEME PICKER (remove later) ============== */
-.theme-picker {
-background: var(–panel);
-color: var(–ink);
-border: 1px solid var(–grid);
-padding: 6px 10px;
-font-family: inherit;
-font-size: 11px;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-cursor: pointer;
-outline: none;
-}
-.theme-picker:focus { border-color: var(–accent); }
+  @media (max-width: 820px) {
+    body { padding: 16px 12px; }
+    header {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    h1 { font-size: 16px; }
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .panel { padding: 14px; }
+    /* stack asset params vertically on narrow screens */
+    .asset .params {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    /* hide empty filler cells used for grid alignment in DCA layout */
+    .asset .params > div:empty {
+      display: none;
+    }
+    /* override the 'span 2' on fixed-asset monthly field */
+    .asset .params > div[style*="span 2"] {
+      grid-column: auto !important;
+    }
+    .asset-charts {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .chart-header {
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 10px;
+    }
+    canvas { height: 360px; }
+    .asset-chart canvas { height: 160px; }
+    .theme-picker {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+  /* ============== TEMPORARY THEME PICKER (remove later) ============== */
+  .theme-picker {
+    background: var(--panel);
+    color: var(--ink);
+    border: 1px solid var(--grid);
+    padding: 6px 10px;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+  }
+  .theme-picker:focus { border-color: var(--accent); }
 
-/* 1. Terminal (default — also explicit so reload works) */
-body[data-theme=“terminal”] {
-–bg: #0b0d10;
-–panel: #11151a;
-–ink: #e8e6df;
-–dim: #6f7680;
-–grid: #1c2128;
-–accent: #ffd166;
-–good: #4ade80;
-–bad: #f87171;
-}
-/* 2. Bloomberg Orange */
-body[data-theme=“bloomberg”] {
-–bg: #000000;
-–panel: #0a0a0a;
-–ink: #ff9933;
-–dim: #806040;
-–grid: #1f1810;
-–accent: #ff6600;
-–good: #00d4ff;
-–bad: #ff3344;
-}
-/* 3. Solarized Dark */
-body[data-theme=“solarized”] {
-–bg: #002b36;
-–panel: #073642;
-–ink: #93a1a1;
-–dim: #586e75;
-–grid: #0d4451;
-–accent: #b58900;
-–good: #859900;
-–bad: #dc322f;
-}
-/* 4. Nord */
-body[data-theme=“nord”] {
-–bg: #2e3440;
-–panel: #3b4252;
-–ink: #eceff4;
-–dim: #6c7a96;
-–grid: #434c5e;
-–accent: #88c0d0;
-–good: #a3be8c;
-–bad: #bf616a;
-}
-/* 5. Cyberpunk */
-body[data-theme=“cyberpunk”] {
-–bg: #0d0221;
-–panel: #1a0b2e;
-–ink: #f5d4ff;
-–dim: #6b4c80;
-–grid: #2a154a;
-–accent: #ff2bd6;
-–good: #00f0ff;
-–bad: #ff5577;
-}
-/* 6. Monochrome */
-body[data-theme=“mono”] {
-–bg: #111111;
-–panel: #1a1a1a;
-–ink: #f5f5f5;
-–dim: #777777;
-–grid: #2a2a2a;
-–accent: #ffffff;
-–good: #cccccc;
-–bad: #888888;
-}
-/* 7. Forest */
-body[data-theme=“forest”] {
-–bg: #0e1a13;
-–panel: #15251c;
-–ink: #e8dcc4;
-–dim: #6a7d6f;
-–grid: #1f3326;
-–accent: #d4a574;
-–good: #7cb342;
-–bad: #c75450;
-}
-/* 10. Dracula */
-body[data-theme=“dracula”] {
-–bg: #282a36;
-–panel: #343746;
-–ink: #f8f8f2;
-–dim: #6272a4;
-–grid: #44475a;
-–accent: #f1fa8c;
-–good: #50fa7b;
-–bad: #ff5555;
-}
+  /* 1. Terminal (default — also explicit so reload works) */
+  body[data-theme="terminal"] {
+    --bg: #0b0d10;
+    --panel: #11151a;
+    --ink: #e8e6df;
+    --dim: #6f7680;
+    --grid: #1c2128;
+    --accent: #ffd166;
+    --good: #4ade80;
+    --bad: #f87171;
+  }
+  /* 2. Bloomberg Orange */
+  body[data-theme="bloomberg"] {
+    --bg: #000000;
+    --panel: #0a0a0a;
+    --ink: #ff9933;
+    --dim: #806040;
+    --grid: #1f1810;
+    --accent: #ff6600;
+    --good: #00d4ff;
+    --bad: #ff3344;
+  }
+  /* 3. Solarized Dark */
+  body[data-theme="solarized"] {
+    --bg: #002b36;
+    --panel: #073642;
+    --ink: #93a1a1;
+    --dim: #586e75;
+    --grid: #0d4451;
+    --accent: #b58900;
+    --good: #859900;
+    --bad: #dc322f;
+  }
+  /* 4. Nord */
+  body[data-theme="nord"] {
+    --bg: #2e3440;
+    --panel: #3b4252;
+    --ink: #eceff4;
+    --dim: #6c7a96;
+    --grid: #434c5e;
+    --accent: #88c0d0;
+    --good: #a3be8c;
+    --bad: #bf616a;
+  }
+  /* 5. Cyberpunk */
+  body[data-theme="cyberpunk"] {
+    --bg: #0d0221;
+    --panel: #1a0b2e;
+    --ink: #f5d4ff;
+    --dim: #6b4c80;
+    --grid: #2a154a;
+    --accent: #ff2bd6;
+    --good: #00f0ff;
+    --bad: #ff5577;
+  }
+  /* 6. Monochrome */
+  body[data-theme="mono"] {
+    --bg: #111111;
+    --panel: #1a1a1a;
+    --ink: #f5f5f5;
+    --dim: #777777;
+    --grid: #2a2a2a;
+    --accent: #ffffff;
+    --good: #cccccc;
+    --bad: #888888;
+  }
+  /* 7. Forest */
+  body[data-theme="forest"] {
+    --bg: #0e1a13;
+    --panel: #15251c;
+    --ink: #e8dcc4;
+    --dim: #6a7d6f;
+    --grid: #1f3326;
+    --accent: #d4a574;
+    --good: #7cb342;
+    --bad: #c75450;
+  }
+  /* 10. Dracula */
+  body[data-theme="dracula"] {
+    --bg: #282a36;
+    --panel: #343746;
+    --ink: #f8f8f2;
+    --dim: #6272a4;
+    --grid: #44475a;
+    --accent: #f1fa8c;
+    --good: #50fa7b;
+    --bad: #ff5555;
+  }
 
-/* ============== LIGHT THEMES ============== */
-/* L1. Newspaper */
-body[data-theme=“newspaper”] {
-–bg: #f4ecd8;
-–panel: #fbf5e3;
-–ink: #1a1a1a;
-–dim: #8a8170;
-–grid: #d8cfb8;
-–accent: #b32d2d;
-–good: #2e7d32;
-–bad: #b32d2d;
-–btn-text: #fbf5e3;
-–asset-bg: rgba(0, 0, 0, 0.03);
-background-image:
-radial-gradient(circle at 20% 10%, rgba(179, 45, 45, 0.04), transparent 40%),
-radial-gradient(circle at 80% 90%, rgba(46, 125, 50, 0.04), transparent 45%);
-}
-/* L2. Plain Paper */
-body[data-theme=“paper”] {
-–bg: #ffffff;
-–panel: #fafafa;
-–ink: #1a1a1a;
-–dim: #888888;
-–grid: #e4e4e4;
-–accent: #2563eb;
-–good: #16a34a;
-–bad: #dc2626;
-–btn-text: #ffffff;
-–asset-bg: rgba(0, 0, 0, 0.02);
-}
-/* L3. Solarized Light */
-body[data-theme=“solarized-light”] {
-–bg: #fdf6e3;
-–panel: #eee8d5;
-–ink: #073642;
-–dim: #93a1a1;
-–grid: #d8cfb8;
-–accent: #b58900;
-–good: #859900;
-–bad: #dc322f;
-–btn-text: #fdf6e3;
-–asset-bg: rgba(7, 54, 66, 0.03);
-}
-/* L4. GitHub Light */
-body[data-theme=“github”] {
-–bg: #ffffff;
-–panel: #f6f8fa;
-–ink: #24292f;
-–dim: #6e7781;
-–grid: #d0d7de;
-–accent: #0969da;
-–good: #1a7f37;
-–bad: #cf222e;
-–btn-text: #ffffff;
-–asset-bg: rgba(0, 0, 0, 0.02);
-}
-/* L5. Linen */
-body[data-theme=“linen”] {
-–bg: #faf6f0;
-–panel: #f1ebe0;
-–ink: #3a2f25;
-–dim: #9a8a78;
-–grid: #e0d6c5;
-–accent: #c2410c;
-–good: #65a30d;
-–bad: #b91c1c;
-–btn-text: #faf6f0;
-–asset-bg: rgba(58, 47, 37, 0.03);
-}
-/* L6. Ledger Green */
-body[data-theme=“ledger”] {
-–bg: #e8efe2;
-–panel: #f2f7ed;
-–ink: #1a2e1a;
-–dim: #7a8a76;
-–grid: #c8d4c0;
-–accent: #2d5a2d;
-–good: #3a7c3a;
-–bad: #b91c1c;
-–btn-text: #f2f7ed;
-–asset-bg: rgba(26, 46, 26, 0.03);
-}
-/* L7. Porcelain Blue */
-body[data-theme=“porcelain”] {
-–bg: #eef4f8;
-–panel: #f8fbfd;
-–ink: #1e3a52;
-–dim: #7a93a8;
-–grid: #d0dde8;
-–accent: #1e6091;
-–good: #2d8659;
-–bad: #c0392b;
-–btn-text: #f8fbfd;
-–asset-bg: rgba(30, 58, 82, 0.03);
-}
-/* L8. Sand */
-body[data-theme=“sand”] {
-–bg: #f5e6c8;
-–panel: #faf0d7;
-–ink: #3d2f15;
-–dim: #a89570;
-–grid: #e0cfa5;
-–accent: #8b4513;
-–good: #6b8e23;
-–bad: #a0392f;
-–btn-text: #faf0d7;
-–asset-bg: rgba(61, 47, 21, 0.04);
-}
-/* L9. Lavender */
-body[data-theme=“lavender”] {
-–bg: #f4f0fa;
-–panel: #faf6ff;
-–ink: #2d1b4e;
-–dim: #9388b3;
-–grid: #ddd0ee;
-–accent: #7c3aed;
-–good: #059669;
-–bad: #dc2626;
-–btn-text: #faf6ff;
-–asset-bg: rgba(45, 27, 78, 0.03);
-}
-/* L10. Mint */
-body[data-theme=“mint”] {
-–bg: #ecf7f1;
-–panel: #f5fbf7;
-–ink: #103530;
-–dim: #6f9388;
-–grid: #c8e0d4;
-–accent: #0d7c66;
-–good: #16a34a;
-–bad: #be123c;
-–btn-text: #f5fbf7;
-–asset-bg: rgba(16, 53, 48, 0.03);
-}
-/* L11. Nordic Light */
-body[data-theme=“nordic-light”] {
-–bg: #eceff4;
-–panel: #f5f7fa;
-–ink: #2e3440;
-–dim: #7b8398;
-–grid: #d8dee9;
-–accent: #5e81ac;
-–good: #a3be8c;
-–bad: #bf616a;
-–btn-text: #f5f7fa;
-–asset-bg: rgba(46, 52, 64, 0.03);
-}
+  /* ============== LIGHT THEMES ============== */
+  /* L1. Newspaper */
+  body[data-theme="newspaper"] {
+    --bg: #f4ecd8;
+    --panel: #fbf5e3;
+    --ink: #1a1a1a;
+    --dim: #8a8170;
+    --grid: #d8cfb8;
+    --accent: #b32d2d;
+    --good: #2e7d32;
+    --bad: #b32d2d;
+    --btn-text: #fbf5e3;
+    --asset-bg: rgba(0, 0, 0, 0.03);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(179, 45, 45, 0.04), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(46, 125, 50, 0.04), transparent 45%);
+  }
+  /* L2. Plain Paper */
+  body[data-theme="paper"] {
+    --bg: #ffffff;
+    --panel: #fafafa;
+    --ink: #1a1a1a;
+    --dim: #888888;
+    --grid: #e4e4e4;
+    --accent: #2563eb;
+    --good: #16a34a;
+    --bad: #dc2626;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(0, 0, 0, 0.02);
+  }
+  /* L3. Solarized Light */
+  body[data-theme="solarized-light"] {
+    --bg: #fdf6e3;
+    --panel: #eee8d5;
+    --ink: #073642;
+    --dim: #93a1a1;
+    --grid: #d8cfb8;
+    --accent: #b58900;
+    --good: #859900;
+    --bad: #dc322f;
+    --btn-text: #fdf6e3;
+    --asset-bg: rgba(7, 54, 66, 0.03);
+  }
+  /* L4. GitHub Light */
+  body[data-theme="github"] {
+    --bg: #ffffff;
+    --panel: #f6f8fa;
+    --ink: #24292f;
+    --dim: #6e7781;
+    --grid: #d0d7de;
+    --accent: #0969da;
+    --good: #1a7f37;
+    --bad: #cf222e;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(0, 0, 0, 0.02);
+  }
+  /* L5. Linen */
+  body[data-theme="linen"] {
+    --bg: #faf6f0;
+    --panel: #f1ebe0;
+    --ink: #3a2f25;
+    --dim: #9a8a78;
+    --grid: #e0d6c5;
+    --accent: #c2410c;
+    --good: #65a30d;
+    --bad: #b91c1c;
+    --btn-text: #faf6f0;
+    --asset-bg: rgba(58, 47, 37, 0.03);
+  }
+  /* L6. Ledger Green */
+  body[data-theme="ledger"] {
+    --bg: #e8efe2;
+    --panel: #f2f7ed;
+    --ink: #1a2e1a;
+    --dim: #7a8a76;
+    --grid: #c8d4c0;
+    --accent: #2d5a2d;
+    --good: #3a7c3a;
+    --bad: #b91c1c;
+    --btn-text: #f2f7ed;
+    --asset-bg: rgba(26, 46, 26, 0.03);
+  }
+  /* L7. Porcelain Blue */
+  body[data-theme="porcelain"] {
+    --bg: #eef4f8;
+    --panel: #f8fbfd;
+    --ink: #1e3a52;
+    --dim: #7a93a8;
+    --grid: #d0dde8;
+    --accent: #1e6091;
+    --good: #2d8659;
+    --bad: #c0392b;
+    --btn-text: #f8fbfd;
+    --asset-bg: rgba(30, 58, 82, 0.03);
+  }
+  /* L8. Sand */
+  body[data-theme="sand"] {
+    --bg: #f5e6c8;
+    --panel: #faf0d7;
+    --ink: #3d2f15;
+    --dim: #a89570;
+    --grid: #e0cfa5;
+    --accent: #8b4513;
+    --good: #6b8e23;
+    --bad: #a0392f;
+    --btn-text: #faf0d7;
+    --asset-bg: rgba(61, 47, 21, 0.04);
+  }
+  /* L9. Lavender */
+  body[data-theme="lavender"] {
+    --bg: #f4f0fa;
+    --panel: #faf6ff;
+    --ink: #2d1b4e;
+    --dim: #9388b3;
+    --grid: #ddd0ee;
+    --accent: #7c3aed;
+    --good: #059669;
+    --bad: #dc2626;
+    --btn-text: #faf6ff;
+    --asset-bg: rgba(45, 27, 78, 0.03);
+  }
+  /* L10. Mint */
+  body[data-theme="mint"] {
+    --bg: #ecf7f1;
+    --panel: #f5fbf7;
+    --ink: #103530;
+    --dim: #6f9388;
+    --grid: #c8e0d4;
+    --accent: #0d7c66;
+    --good: #16a34a;
+    --bad: #be123c;
+    --btn-text: #f5fbf7;
+    --asset-bg: rgba(16, 53, 48, 0.03);
+  }
+  /* L11. Nordic Light */
+  body[data-theme="nordic-light"] {
+    --bg: #eceff4;
+    --panel: #f5f7fa;
+    --ink: #2e3440;
+    --dim: #7b8398;
+    --grid: #d8dee9;
+    --accent: #5e81ac;
+    --good: #a3be8c;
+    --bad: #bf616a;
+    --btn-text: #f5f7fa;
+    --asset-bg: rgba(46, 52, 64, 0.03);
+  }
 
-/* ============== DARK · APP-INSPIRED ============== */
-/* D11. Robinhood — black with bright money green */
-body[data-theme=“robinhood”] {
-–bg: #000000;
-–panel: #0f0f0f;
-–ink: #ffffff;
-–dim: #6b6b6b;
-–grid: #1a1a1a;
-–accent: #00c805;
-–good: #00c805;
-–bad: #ff5000;
-–btn-text: #000000;
-}
-/* D12. TradingView — slate with cyan-blue */
-body[data-theme=“tradingview”] {
-–bg: #131722;
-–panel: #1e222d;
-–ink: #d1d4dc;
-–dim: #787b86;
-–grid: #2a2e39;
-–accent: #2962ff;
-–good: #26a69a;
-–bad: #ef5350;
-–btn-text: #ffffff;
-}
-/* D13. Spotify — near-black with brand green */
-body[data-theme=“spotify”] {
-–bg: #121212;
-–panel: #181818;
-–ink: #ffffff;
-–dim: #b3b3b3;
-–grid: #282828;
-–accent: #1db954;
-–good: #1ed760;
-–bad: #e22134;
-–btn-text: #000000;
-}
-/* D14. Discord — blurple on charcoal */
-body[data-theme=“discord”] {
-–bg: #313338;
-–panel: #2b2d31;
-–ink: #f2f3f5;
-–dim: #949ba4;
-–grid: #3f4147;
-–accent: #5865f2;
-–good: #23a55a;
-–bad: #f23f43;
-–btn-text: #ffffff;
-}
-/* D15. X (Twitter) — pure black, white text, blue accent */
-body[data-theme=“x”] {
-–bg: #000000;
-–panel: #16181c;
-–ink: #e7e9ea;
-–dim: #71767b;
-–grid: #2f3336;
-–accent: #1d9bf0;
-–good: #00ba7c;
-–bad: #f4212e;
-–btn-text: #ffffff;
-}
-/* D16. Linear — deep indigo black, soft purple */
-body[data-theme=“linear”] {
-–bg: #08090a;
-–panel: #16171a;
-–ink: #f7f8f8;
-–dim: #8a8f98;
-–grid: #23252a;
-–accent: #7c5cff;
-–good: #4cb782;
-–bad: #eb5757;
-–btn-text: #ffffff;
-}
-/* D17. Slack — aubergine with yellow accent */
-body[data-theme=“slack”] {
-–bg: #1a1d29;
-–panel: #19171d;
-–ink: #d1d2d3;
-–dim: #868686;
-–grid: #2c2f3e;
-–accent: #ecb22e;
-–good: #2eb67d;
-–bad: #e01e5a;
-–btn-text: #19171d;
-}
-/* D18. Vercel — pure black, monochrome chic */
-body[data-theme=“vercel”] {
-–bg: #000000;
-–panel: #0a0a0a;
-–ink: #ededed;
-–dim: #888888;
-–grid: #1f1f1f;
-–accent: #ffffff;
-–good: #0070f3;
-–bad: #ee0000;
-–btn-text: #000000;
-}
-/* D19. Terminal Classic — old-school green-on-black */
-body[data-theme=“terminal-classic”] {
-–bg: #000000;
-–panel: #050505;
-–ink: #00ff41;
-–dim: #008f11;
-–grid: #002200;
-–accent: #00ff41;
-–good: #39ff14;
-–bad: #ff0040;
-–btn-text: #000000;
-}
-/* D20. Stripe Dark — deep night with electric indigo */
-body[data-theme=“stripe-dark”] {
-–bg: #0a2540;
-–panel: #0e2e4f;
-–ink: #ffffff;
-–dim: #8898aa;
-–grid: #1a3a5c;
-–accent: #635bff;
-–good: #3ecf8e;
-–bad: #ed5f74;
-–btn-text: #ffffff;
-}
+  /* ============== DARK · APP-INSPIRED ============== */
+  /* D11. Robinhood — black with bright money green */
+  body[data-theme="robinhood"] {
+    --bg: #000000;
+    --panel: #0f0f0f;
+    --ink: #ffffff;
+    --dim: #6b6b6b;
+    --grid: #1a1a1a;
+    --accent: #00c805;
+    --good: #00c805;
+    --bad: #ff5000;
+    --btn-text: #000000;
+  }
+  /* D12. TradingView — slate with cyan-blue */
+  body[data-theme="tradingview"] {
+    --bg: #131722;
+    --panel: #1e222d;
+    --ink: #d1d4dc;
+    --dim: #787b86;
+    --grid: #2a2e39;
+    --accent: #2962ff;
+    --good: #26a69a;
+    --bad: #ef5350;
+    --btn-text: #ffffff;
+  }
+  /* D13. Spotify — near-black with brand green */
+  body[data-theme="spotify"] {
+    --bg: #121212;
+    --panel: #181818;
+    --ink: #ffffff;
+    --dim: #b3b3b3;
+    --grid: #282828;
+    --accent: #1db954;
+    --good: #1ed760;
+    --bad: #e22134;
+    --btn-text: #000000;
+  }
+  /* D14. Discord — blurple on charcoal */
+  body[data-theme="discord"] {
+    --bg: #313338;
+    --panel: #2b2d31;
+    --ink: #f2f3f5;
+    --dim: #949ba4;
+    --grid: #3f4147;
+    --accent: #5865f2;
+    --good: #23a55a;
+    --bad: #f23f43;
+    --btn-text: #ffffff;
+  }
+  /* D15. X (Twitter) — pure black, white text, blue accent */
+  body[data-theme="x"] {
+    --bg: #000000;
+    --panel: #16181c;
+    --ink: #e7e9ea;
+    --dim: #71767b;
+    --grid: #2f3336;
+    --accent: #1d9bf0;
+    --good: #00ba7c;
+    --bad: #f4212e;
+    --btn-text: #ffffff;
+  }
+  /* D16. Linear — deep indigo black, soft purple */
+  body[data-theme="linear"] {
+    --bg: #08090a;
+    --panel: #16171a;
+    --ink: #f7f8f8;
+    --dim: #8a8f98;
+    --grid: #23252a;
+    --accent: #7c5cff;
+    --good: #4cb782;
+    --bad: #eb5757;
+    --btn-text: #ffffff;
+  }
+  /* D17. Slack — aubergine with yellow accent */
+  body[data-theme="slack"] {
+    --bg: #1a1d29;
+    --panel: #19171d;
+    --ink: #d1d2d3;
+    --dim: #868686;
+    --grid: #2c2f3e;
+    --accent: #ecb22e;
+    --good: #2eb67d;
+    --bad: #e01e5a;
+    --btn-text: #19171d;
+  }
+  /* D18. Vercel — pure black, monochrome chic */
+  body[data-theme="vercel"] {
+    --bg: #000000;
+    --panel: #0a0a0a;
+    --ink: #ededed;
+    --dim: #888888;
+    --grid: #1f1f1f;
+    --accent: #ffffff;
+    --good: #0070f3;
+    --bad: #ee0000;
+    --btn-text: #000000;
+  }
+  /* D19. Terminal Classic — old-school green-on-black */
+  body[data-theme="terminal-classic"] {
+    --bg: #000000;
+    --panel: #050505;
+    --ink: #00ff41;
+    --dim: #008f11;
+    --grid: #002200;
+    --accent: #00ff41;
+    --good: #39ff14;
+    --bad: #ff0040;
+    --btn-text: #000000;
+  }
+  /* D20. Stripe Dark — deep night with electric indigo */
+  body[data-theme="stripe-dark"] {
+    --bg: #0a2540;
+    --panel: #0e2e4f;
+    --ink: #ffffff;
+    --dim: #8898aa;
+    --grid: #1a3a5c;
+    --accent: #635bff;
+    --good: #3ecf8e;
+    --bad: #ed5f74;
+    --btn-text: #ffffff;
+  }
 
-/* ============== LIGHT · APP-INSPIRED ============== */
-/* L12. Coinbase — white with cobalt blue */
-body[data-theme=“coinbase”] {
-–bg: #ffffff;
-–panel: #f7f9fc;
-–ink: #0a0b0d;
-–dim: #5b616e;
-–grid: #e3e7ed;
-–accent: #0052ff;
-–good: #05b169;
-–bad: #cf202f;
-–btn-text: #ffffff;
-–asset-bg: rgba(0, 82, 255, 0.02);
-}
-/* L13. Gmail — white with red accent */
-body[data-theme=“gmail”] {
-–bg: #ffffff;
-–panel: #f6f8fc;
-–ink: #202124;
-–dim: #5f6368;
-–grid: #e8eaed;
-–accent: #d93025;
-–good: #1e8e3e;
-–bad: #d93025;
-–btn-text: #ffffff;
-–asset-bg: rgba(0, 0, 0, 0.02);
-}
-/* L14. Notion — warm cream with black */
-body[data-theme=“notion”] {
-–bg: #ffffff;
-–panel: #f7f6f3;
-–ink: #37352f;
-–dim: #9b9a97;
-–grid: #e9e7e1;
-–accent: #2383e2;
-–good: #448361;
-–bad: #e03e3e;
-–btn-text: #ffffff;
-–asset-bg: rgba(55, 53, 47, 0.025);
-}
-/* L15. Stripe — soft white with brand indigo */
-body[data-theme=“stripe”] {
-–bg: #ffffff;
-–panel: #f6f9fc;
-–ink: #1a1f36;
-–dim: #697386;
-–grid: #e3e8ee;
-–accent: #635bff;
-–good: #3ecf8e;
-–bad: #df1b41;
-–btn-text: #ffffff;
-–asset-bg: rgba(99, 91, 255, 0.025);
-}
-/* L16. Facebook — bright white with brand blue */
-body[data-theme=“facebook”] {
-–bg: #f0f2f5;
-–panel: #ffffff;
-–ink: #050505;
-–dim: #65676b;
-–grid: #ced0d4;
-–accent: #1877f2;
-–good: #42b72a;
-–bad: #e41e3f;
-–btn-text: #ffffff;
-–asset-bg: rgba(0, 0, 0, 0.02);
-}
-/* L17. Google Sheets — white with sheets green */
-body[data-theme=“sheets”] {
-–bg: #ffffff;
-–panel: #f8f9fa;
-–ink: #202124;
-–dim: #5f6368;
-–grid: #dadce0;
-–accent: #0f9d58;
-–good: #1e8e3e;
-–bad: #d93025;
-–btn-text: #ffffff;
-–asset-bg: rgba(15, 157, 88, 0.025);
-}
-/* L18. Stack Overflow — light with signature orange */
-body[data-theme=“stackoverflow”] {
-–bg: #ffffff;
-–panel: #f8f9f9;
-–ink: #232629;
-–dim: #6a737c;
-–grid: #dde1e4;
-–accent: #f48024;
-–good: #5eba7d;
-–bad: #d1383d;
-–btn-text: #ffffff;
-–asset-bg: rgba(244, 128, 36, 0.03);
-}
-/* L19. Airbnb — white with rausch pink-red */
-body[data-theme=“airbnb”] {
-–bg: #ffffff;
-–panel: #f7f7f7;
-–ink: #222222;
-–dim: #717171;
-–grid: #ebebeb;
-–accent: #ff385c;
-–good: #008a05;
-–bad: #c13515;
-–btn-text: #ffffff;
-–asset-bg: rgba(0, 0, 0, 0.02);
-}
-/* L20. Medium — cream serif with deep green */
-body[data-theme=“medium”] {
-–bg: #ffffff;
-–panel: #fafafa;
-–ink: #242424;
-–dim: #757575;
-–grid: #e6e6e6;
-–accent: #1a8917;
-–good: #1a8917;
-–bad: #c94a4a;
-–btn-text: #ffffff;
-–asset-bg: rgba(0, 0, 0, 0.02);
-}
-/* L21. Apple Notes — paper white with system orange/yellow */
-body[data-theme=“apple”] {
-–bg: #fffef7;
-–panel: #ffffff;
-–ink: #1d1d1f;
-–dim: #86868b;
-–grid: #e5e5e7;
-–accent: #ff9f0a;
-–good: #34c759;
-–bad: #ff3b30;
-–btn-text: #1d1d1f;
-–asset-bg: rgba(255, 159, 10, 0.04);
-}
+  /* ============== LIGHT · APP-INSPIRED ============== */
+  /* L12. Coinbase — white with cobalt blue */
+  body[data-theme="coinbase"] {
+    --bg: #ffffff;
+    --panel: #f7f9fc;
+    --ink: #0a0b0d;
+    --dim: #5b616e;
+    --grid: #e3e7ed;
+    --accent: #0052ff;
+    --good: #05b169;
+    --bad: #cf202f;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(0, 82, 255, 0.02);
+  }
+  /* L13. Gmail — white with red accent */
+  body[data-theme="gmail"] {
+    --bg: #ffffff;
+    --panel: #f6f8fc;
+    --ink: #202124;
+    --dim: #5f6368;
+    --grid: #e8eaed;
+    --accent: #d93025;
+    --good: #1e8e3e;
+    --bad: #d93025;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(0, 0, 0, 0.02);
+  }
+  /* L14. Notion — warm cream with black */
+  body[data-theme="notion"] {
+    --bg: #ffffff;
+    --panel: #f7f6f3;
+    --ink: #37352f;
+    --dim: #9b9a97;
+    --grid: #e9e7e1;
+    --accent: #2383e2;
+    --good: #448361;
+    --bad: #e03e3e;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(55, 53, 47, 0.025);
+  }
+  /* L15. Stripe — soft white with brand indigo */
+  body[data-theme="stripe"] {
+    --bg: #ffffff;
+    --panel: #f6f9fc;
+    --ink: #1a1f36;
+    --dim: #697386;
+    --grid: #e3e8ee;
+    --accent: #635bff;
+    --good: #3ecf8e;
+    --bad: #df1b41;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(99, 91, 255, 0.025);
+  }
+  /* L16. Facebook — bright white with brand blue */
+  body[data-theme="facebook"] {
+    --bg: #f0f2f5;
+    --panel: #ffffff;
+    --ink: #050505;
+    --dim: #65676b;
+    --grid: #ced0d4;
+    --accent: #1877f2;
+    --good: #42b72a;
+    --bad: #e41e3f;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(0, 0, 0, 0.02);
+  }
+  /* L17. Google Sheets — white with sheets green */
+  body[data-theme="sheets"] {
+    --bg: #ffffff;
+    --panel: #f8f9fa;
+    --ink: #202124;
+    --dim: #5f6368;
+    --grid: #dadce0;
+    --accent: #0f9d58;
+    --good: #1e8e3e;
+    --bad: #d93025;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(15, 157, 88, 0.025);
+  }
+  /* L18. Stack Overflow — light with signature orange */
+  body[data-theme="stackoverflow"] {
+    --bg: #ffffff;
+    --panel: #f8f9f9;
+    --ink: #232629;
+    --dim: #6a737c;
+    --grid: #dde1e4;
+    --accent: #f48024;
+    --good: #5eba7d;
+    --bad: #d1383d;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(244, 128, 36, 0.03);
+  }
+  /* L19. Airbnb — white with rausch pink-red */
+  body[data-theme="airbnb"] {
+    --bg: #ffffff;
+    --panel: #f7f7f7;
+    --ink: #222222;
+    --dim: #717171;
+    --grid: #ebebeb;
+    --accent: #ff385c;
+    --good: #008a05;
+    --bad: #c13515;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(0, 0, 0, 0.02);
+  }
+  /* L20. Medium — cream serif with deep green */
+  body[data-theme="medium"] {
+    --bg: #ffffff;
+    --panel: #fafafa;
+    --ink: #242424;
+    --dim: #757575;
+    --grid: #e6e6e6;
+    --accent: #1a8917;
+    --good: #1a8917;
+    --bad: #c94a4a;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(0, 0, 0, 0.02);
+  }
+  /* L21. Apple Notes — paper white with system orange/yellow */
+  body[data-theme="apple"] {
+    --bg: #fffef7;
+    --panel: #ffffff;
+    --ink: #1d1d1f;
+    --dim: #86868b;
+    --grid: #e5e5e7;
+    --accent: #ff9f0a;
+    --good: #34c759;
+    --bad: #ff3b30;
+    --btn-text: #1d1d1f;
+    --asset-bg: rgba(255, 159, 10, 0.04);
+  }
 
-/* ============== INFORMATIVE · readability-first ============== */
-/* I1. Diagram — light, FT/Economist-style data viz */
-body[data-theme=“diagram”] {
-–bg: #fbfaf6;
-–panel: #ffffff;
-–ink: #1a1a1a;
-–dim: #5a5a5a;
-–grid: #d4d2cc;
-–accent: #1f4ea1;
-–good: #00875a;
-–bad: #c8102e;
-–btn-text: #ffffff;
-–asset-bg: rgba(31, 78, 161, 0.03);
-}
-/* I2. Briefing — dark, high-contrast analytical */
-body[data-theme=“briefing”] {
-–bg: #1a1f2b;
-–panel: #232a39;
-–ink: #f5f7fa;
-–dim: #94a3b8;
-–grid: #2e3849;
-–accent: #fbbf24;
-–good: #34d399;
-–bad: #f87171;
-–btn-text: #1a1f2b;
-}
-/* 9. Synthwave */
-body[data-theme=“synthwave”] {
-–bg: #0a0e27;
-–panel: #141a3a;
-–ink: #ffd6ff;
-–dim: #6c70a8;
-–grid: #1f264d;
-–accent: #ff71ce;
-–good: #05ffa1;
-–bad: #ff3366;
-}
-/* 10. Mocha */
-body[data-theme=“mocha”] {
-–bg: #1c1410;
-–panel: #2a1f18;
-–ink: #e8d5b7;
-–dim: #8a7560;
-–grid: #382a20;
-–accent: #d4a373;
-–good: #94a26d;
-–bad: #c97064;
-}
-/* ===================== END THEME PICKER ===================== */
+  /* ============== INFORMATIVE · readability-first ============== */
+  /* I1. Diagram — light, FT/Economist-style data viz */
+  body[data-theme="diagram"] {
+    --bg: #fbfaf6;
+    --panel: #ffffff;
+    --ink: #1a1a1a;
+    --dim: #5a5a5a;
+    --grid: #d4d2cc;
+    --accent: #1f4ea1;
+    --good: #00875a;
+    --bad: #c8102e;
+    --btn-text: #ffffff;
+    --asset-bg: rgba(31, 78, 161, 0.03);
+  }
+  /* I2. Briefing — dark, high-contrast analytical */
+  body[data-theme="briefing"] {
+    --bg: #1a1f2b;
+    --panel: #232a39;
+    --ink: #f5f7fa;
+    --dim: #94a3b8;
+    --grid: #2e3849;
+    --accent: #fbbf24;
+    --good: #34d399;
+    --bad: #f87171;
+    --btn-text: #1a1f2b;
+  }
+  /* 9. Synthwave */
+  body[data-theme="synthwave"] {
+    --bg: #0a0e27;
+    --panel: #141a3a;
+    --ink: #ffd6ff;
+    --dim: #6c70a8;
+    --grid: #1f264d;
+    --accent: #ff71ce;
+    --good: #05ffa1;
+    --bad: #ff3366;
+  }
+  /* 10. Mocha */
+  body[data-theme="mocha"] {
+    --bg: #1c1410;
+    --panel: #2a1f18;
+    --ink: #e8d5b7;
+    --dim: #8a7560;
+    --grid: #382a20;
+    --accent: #d4a373;
+    --good: #94a26d;
+    --bad: #c97064;
+  }
+  /* ===================== END THEME PICKER ===================== */
 </style>
-
 </head>
 <body>
 
@@ -1102,18 +1100,15 @@ body[data-theme=“mocha”] {
       <input id="paths" type="number" value="200" step="1" />
     </div>
 
-```
-<h2>Assets</h2>
-<div id="assetList"></div>
-<button class="ghost" id="addAssetBtn">+ Add asset</button>
+    <h2>Assets</h2>
+    <div id="assetList"></div>
+    <button class="ghost" id="addAssetBtn">+ Add asset</button>
 
-<button id="runBtn">▶ Run simulation</button>
-<div id="progressWrap" class="progress-wrap" style="display: none;">
-  <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-  <div id="progressLabel" class="progress-label">running…</div>
-</div>
-```
-
+    <button id="runBtn">▶ Run simulation</button>
+    <div id="progressWrap" class="progress-wrap" style="display: none;">
+      <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+      <div id="progressLabel" class="progress-label">running…</div>
+    </div>
   </aside>
 
   <section class="chart-wrap">
@@ -2035,6 +2030,5 @@ body[data-theme=“mocha”] {
   runSim();
 })();
 </script>
-
 </body>
 </html>
