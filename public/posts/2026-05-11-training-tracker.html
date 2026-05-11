@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a1a1a">
+<title>Training Tracker</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  :root {
+    --bg: #0e0e10;
+    --surface: #18181b;
+    --surface-2: #1a1a1d;
+    --border: #2a2a2e;
+    --border-strong: #3a3a3e;
+    --text: #f0f0f0;
+    --text-dim: #aaa;
+    --text-faint: #666;
+    --text-mute: #888;
+    --accent: #d4a017;
+    --accent-bg: #1f1a0d;
+    --green: #2c5f2d;
+    --green-dim: #4a9d4b;
+    --input-bg: #0e0e10;
+    --warmup-text: #ccc;
+    --rule-text: #c9c9c9;
+    --modal-backdrop: rgba(0,0,0,0.7);
+    --shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  [data-theme="light"] {
+    --bg: #f7f7f8;
+    --surface: #ffffff;
+    --surface-2: #f0f0f2;
+    --border: #e2e2e6;
+    --border-strong: #c8c8cc;
+    --text: #1a1a1a;
+    --text-dim: #555;
+    --text-faint: #888;
+    --text-mute: #666;
+    --accent: #b8860b;
+    --accent-bg: #fff8e1;
+    --green: #2c5f2d;
+    --green-dim: #2c5f2d;
+    --input-bg: #ffffff;
+    --warmup-text: #444;
+    --rule-text: #444;
+    --modal-backdrop: rgba(0,0,0,0.4);
+    --shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.2s, color 0.2s;
+  }
+  body { padding: 16px 14px 80px; max-width: 720px; margin: 0 auto; }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 16px;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+    padding-top: 8px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+    font-weight: 700;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .theme-toggle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+  }
+  .theme-toggle:hover {
+    border-color: var(--border-strong);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    background: var(--surface-2);
+    padding: 4px;
+    border-radius: 10px;
+  }
+  .tab {
+    flex: 1;
+    padding: 10px 6px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    color: var(--text-mute);
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+  }
+  .tab .tab-count {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.75;
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .tab.active { color: #fff; }
+  .tab[data-day="mon"].active { background: #2c5f2d; }
+  .tab[data-day="wed"].active { background: #8b5a2b; }
+  .tab[data-day="fri"].active { background: #1e4d8b; }
+  .tab.complete:not(.active) {
+    color: var(--green-dim);
+  }
+
+  .day-meta {
+    font-size: 12px;
+    color: var(--text-mute);
+    margin-bottom: 12px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .warmup-card {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--warmup-text);
+    margin-bottom: 14px;
+  }
+  .warmup-card strong { color: var(--accent); }
+
+  .exercise-card {
+    background: var(--surface);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .exercise-card.complete { border-color: var(--green); }
+  .exercise-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    cursor: pointer;
+    user-select: none;
+    gap: 10px;
+  }
+  .exercise-checkbox {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-faint);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: transparent;
+  }
+  .exercise-card.complete .exercise-checkbox {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .exercise-card.complete .exercise-checkbox::after {
+    content: '✓';
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  .exercise-info { flex: 1; min-width: 0; }
+  .exercise-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .exercise-card.complete .exercise-name {
+    text-decoration: line-through;
+    color: var(--text-mute);
+  }
+  .partial-badge {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    margin-left: 4px;
+  }
+  .exercise-note {
+    font-size: 11px;
+    color: var(--text-mute);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .exercise-target {
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .expand-arrow {
+    color: var(--text-faint);
+    font-size: 12px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .exercise-card.expanded .expand-arrow { transform: rotate(180deg); }
+
+  .sets-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease-out;
+    border-top: 1px solid transparent;
+  }
+  .exercise-card.expanded .sets-container {
+    max-height: 500px;
+    border-top-color: var(--border);
+  }
+  .sets-inner { padding: 10px 14px 14px; }
+  .set-row {
+    display: grid;
+    grid-template-columns: 28px 1fr 1fr 32px;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .set-label {
+    font-size: 12px;
+    color: var(--text-mute);
+    font-weight: 600;
+    text-align: center;
+  }
+  .set-input {
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    -moz-appearance: textfield;
+  }
+  .set-input::-webkit-outer-spin-button,
+  .set-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .set-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .set-input::placeholder { color: var(--text-faint); opacity: 0.6; }
+  .set-check {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1.5px solid var(--text-faint);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.15s;
+  }
+  .set-check.done {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .set-check.done::after {
+    content: '✓';
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .set-headers {
+    display: grid;
+    grid-template-columns: 28px 1fr 1fr 32px;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .optional-hint {
+    font-size: 10px;
+    color: var(--text-faint);
+    text-align: center;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .reset-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .reset-btn {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .reset-btn:hover {
+    border-color: #c0392b;
+    color: #c0392b;
+  }
+  .reset-hint {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 8px;
+  }
+
+  .last-week {
+    font-size: 10px;
+    color: var(--text-mute);
+    font-style: italic;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+
+  .golden-rule {
+    background: var(--accent-bg);
+    border-left: 3px solid var(--accent);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--rule-text);
+    margin-bottom: 14px;
+  }
+  .golden-rule strong { color: var(--accent); }
+
+  .toast {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: var(--shadow);
+    transition: bottom 0.3s ease-out, opacity 0.2s;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .toast.show {
+    bottom: 24px;
+    opacity: 1;
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--modal-backdrop);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 20px;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 360px;
+    width: 100%;
+    border: 1px solid var(--border);
+  }
+  .modal h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+  }
+  .modal p {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin: 0 0 20px;
+  }
+  .modal-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    font-size: 14px;
+  }
+  .btn-cancel {
+    background: var(--surface-2);
+    color: var(--text-dim);
+  }
+  .btn-confirm {
+    background: #8b2828;
+    color: #fff;
+  }
+
+  @media (max-width: 380px) {
+    .exercise-target { font-size: 13px; }
+    .exercise-name { font-size: 14px; }
+    .tab { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Training</h1>
+  <div class="header-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab" data-day="mon">
+    MON · PUSH
+    <span class="tab-count" id="count-mon">0/5</span>
+  </button>
+  <button class="tab" data-day="wed">
+    WED · PULL
+    <span class="tab-count" id="count-wed">0/5</span>
+  </button>
+  <button class="tab" data-day="fri">
+    FRI · UPPER
+    <span class="tab-count" id="count-fri">0/6</span>
+  </button>
+</div>
+
+<div class="day-meta" id="dayMeta"></div>
+
+<div class="warmup-card">
+  <strong>WARMUP:</strong> 5 min rower or dynamic stretches · 1-2 light warmup sets on first compound.
+</div>
+
+<div class="golden-rule">
+  <strong>RULES:</strong> 3-sec eccentric every rep · Top set = 1-2 reps in tank · +2.5 kg when all reps clean · Rest 2-3 min compounds, 60-90 sec accessories.
+</div>
+
+<div id="exerciseList"></div>
+
+<div class="reset-section">
+  <button class="reset-btn" id="resetBtn">Reset Week</button>
+  <div class="reset-hint">Clears all checkboxes. Last week's weights stay saved as reference.</div>
+</div>
+
+<div class="toast" id="toast">Saved</div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <h2>Reset week?</h2>
+    <p>This clears all checkboxes for Mon, Wed, and Fri. Your weights from this week become "last week" reference values. This cannot be undone.</p>
+    <div class="modal-buttons">
+      <button class="btn-cancel" id="modalCancel">Cancel</button>
+      <button class="btn-confirm" id="modalConfirm">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PROGRAM = {
+  mon: {
+    label: "MONDAY · PUSH",
+    sub: "Chest / Shoulders / Triceps",
+    exercises: [
+      { id: "bench",      name: "Bench Press",          note: "heavy, your strength",       sets: 4, reps: "5"  },
+      { id: "ohp",        name: "Overhead Press",       note: "strict, no leg drive",       sets: 3, reps: "6"  },
+      { id: "incdb",      name: "Incline DB Press",     note: "upper chest",                sets: 3, reps: "8"  },
+      { id: "dips",       name: "Dips / Close-grip",    note: "triceps + chest",            sets: 3, reps: "8"  },
+      { id: "facepull_m", name: "Face Pulls",           note: "posture insurance",          sets: 3, reps: "15" },
+    ]
+  },
+  wed: {
+    label: "WEDNESDAY · PULL",
+    sub: "Back / Posture / Abs",
+    exercises: [
+      { id: "dl",         name: "Deadlift",             note: "or RDL 3×6 if back tired",   sets: 3, reps: "5"  },
+      { id: "pullup",     name: "Pull-ups (weighted)",  note: "rest-pause OK",              sets: 4, reps: "5-8"},
+      { id: "row",        name: "Barbell Row",          note: "strict, chest up",           sets: 3, reps: "8"  },
+      { id: "facepull_w", name: "Face Pulls",           note: "again — posture matters",    sets: 3, reps: "15" },
+      { id: "leg_raise_w",name: "Hanging Leg Raises",   note: "abs",                        sets: 3, reps: "10" },
+    ]
+  },
+  fri: {
+    label: "FRIDAY · UPPER BIAS + POSTERIOR",
+    sub: "Arms / Chest / Hamstrings / Calves",
+    exercises: [
+      { id: "rdl",        name: "Romanian Deadlift",    note: "posture + hamstrings",       sets: 3, reps: "8"  },
+      { id: "wpu",        name: "Weighted Pull-ups",    note: "arms + back",                sets: 4, reps: "6"  },
+      { id: "incdb_f",    name: "Incline DB Press",     note: "upper chest",                sets: 4, reps: "8"  },
+      { id: "curl",       name: "Barbell Curl",         note: "strict, no swing",           sets: 3, reps: "10" },
+      { id: "calf",       name: "Standing Calf Raise",  note: "visible-in-shorts insurance",sets: 4, reps: "12" },
+      { id: "leg_raise_f",name: "Hanging Leg Raises",   note: "abs round 2",                sets: 3, reps: "12" },
+    ]
+  }
+};
+
+const STORAGE_KEY = "training_tracker_v1";
+const THEME_KEY = "training_tracker_theme";
+let state = loadState();
+let currentDay = "mon";
+
+function defaultState() {
+  const s = { current: {}, lastWeek: {} };
+  Object.keys(PROGRAM).forEach(day => {
+    s.current[day] = {};
+    s.lastWeek[day] = {};
+    PROGRAM[day].exercises.forEach(ex => {
+      s.current[day][ex.id] = {
+        sets: Array.from({length: ex.sets}, () => ({ weight: "", reps: "", done: false })),
+        expanded: false
+      };
+      s.lastWeek[day][ex.id] = { sets: [] };
+    });
+  });
+  return s;
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return defaultState();
+    const parsed = JSON.parse(raw);
+    const fresh = defaultState();
+    Object.keys(PROGRAM).forEach(day => {
+      PROGRAM[day].exercises.forEach(ex => {
+        if (!parsed.current?.[day]?.[ex.id]) {
+          parsed.current = parsed.current || {};
+          parsed.current[day] = parsed.current[day] || {};
+          parsed.current[day][ex.id] = fresh.current[day][ex.id];
+        }
+        if (!parsed.lastWeek?.[day]?.[ex.id]) {
+          parsed.lastWeek = parsed.lastWeek || {};
+          parsed.lastWeek[day] = parsed.lastWeek[day] || {};
+          parsed.lastWeek[day][ex.id] = fresh.lastWeek[day][ex.id];
+        }
+      });
+    });
+    return parsed;
+  } catch (e) {
+    return defaultState();
+  }
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch (e) { console.error("Save failed:", e); }
+}
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => t.classList.remove("show"), 1500);
+}
+
+function isExerciseComplete(day, exId) {
+  const ex = state.current[day][exId];
+  if (!ex) return false;
+  return ex.sets.every(s => s.done);
+}
+
+function formatLastWeek(day, exId) {
+  const lw = state.lastWeek[day]?.[exId];
+  if (!lw || !lw.sets || lw.sets.length === 0) return null;
+  const valid = lw.sets.filter(s => s.weight || s.reps);
+  if (valid.length === 0) return null;
+  const summary = valid.map(s => `${s.weight || "—"}×${s.reps || "—"}`).join(", ");
+  return `Last week: ${summary}`;
+}
+
+function renderDay() {
+  document.querySelectorAll(".tab").forEach(t => {
+    t.classList.toggle("active", t.dataset.day === currentDay);
+  });
+
+  const prog = PROGRAM[currentDay];
+  document.getElementById("dayMeta").textContent = `${prog.label} · ${prog.sub}`;
+
+  const container = document.getElementById("exerciseList");
+  container.innerHTML = "";
+
+  prog.exercises.forEach(ex => {
+    const exState = state.current[currentDay][ex.id];
+    const card = document.createElement("div");
+    card.className = "exercise-card";
+    if (isExerciseComplete(currentDay, ex.id)) card.classList.add("complete");
+    if (exState.expanded) card.classList.add("expanded");
+    card.dataset.exId = ex.id;
+
+    const doneCount = exState.sets.filter(s => s.done).length;
+    const totalCount = exState.sets.length;
+    const isPartial = doneCount > 0 && doneCount < totalCount;
+    const partialBadge = isPartial ? ` <span class="partial-badge">(${doneCount}/${totalCount})</span>` : "";
+
+    const header = document.createElement("div");
+    header.className = "exercise-header";
+    header.innerHTML = `
+      <div class="exercise-checkbox"></div>
+      <div class="exercise-info">
+        <div class="exercise-name">${ex.name}${partialBadge}</div>
+        <div class="exercise-note">${ex.note}</div>
+      </div>
+      <div class="exercise-target">${ex.sets}×${ex.reps}</div>
+      <div class="expand-arrow">▼</div>
+    `;
+    header.addEventListener("click", (e) => {
+      if (e.target.closest(".exercise-checkbox")) {
+        const allDone = exState.sets.every(s => s.done);
+        exState.sets.forEach(s => s.done = !allDone);
+        saveState();
+        renderDay();
+        return;
+      }
+      exState.expanded = !exState.expanded;
+      saveState();
+      renderDay();
+    });
+    card.appendChild(header);
+
+    const setsContainer = document.createElement("div");
+    setsContainer.className = "sets-container";
+    const inner = document.createElement("div");
+    inner.className = "sets-inner";
+
+    const lastWeekStr = formatLastWeek(currentDay, ex.id);
+    if (lastWeekStr) {
+      const lw = document.createElement("div");
+      lw.className = "last-week";
+      lw.textContent = lastWeekStr;
+      inner.appendChild(lw);
+    }
+
+    const hint = document.createElement("div");
+    hint.className = "optional-hint";
+    hint.textContent = "Weight & reps are optional — just check off sets if you prefer.";
+    inner.appendChild(hint);
+
+    const headers = document.createElement("div");
+    headers.className = "set-headers";
+    headers.innerHTML = `<div>SET</div><div>KG</div><div>REPS</div><div></div>`;
+    inner.appendChild(headers);
+
+    exState.sets.forEach((set, idx) => {
+      const row = document.createElement("div");
+      row.className = "set-row";
+      row.innerHTML = `
+        <div class="set-label">${idx + 1}</div>
+        <input type="number" inputmode="decimal" class="set-input" data-field="weight" data-idx="${idx}" placeholder="—" value="${set.weight}">
+        <input type="number" inputmode="numeric" class="set-input" data-field="reps" data-idx="${idx}" placeholder="${ex.reps}" value="${set.reps}">
+        <button class="set-check ${set.done ? 'done' : ''}" data-idx="${idx}" aria-label="Mark set done"></button>
+      `;
+      row.querySelectorAll(".set-input").forEach(input => {
+        input.addEventListener("input", (e) => {
+          const i = parseInt(e.target.dataset.idx);
+          const f = e.target.dataset.field;
+          exState.sets[i][f] = e.target.value;
+          saveState();
+        });
+      });
+      row.querySelector(".set-check").addEventListener("click", () => {
+        set.done = !set.done;
+        saveState();
+        renderDay();
+      });
+      inner.appendChild(row);
+    });
+
+    setsContainer.appendChild(inner);
+    card.appendChild(setsContainer);
+    container.appendChild(card);
+  });
+
+  updateTabCounts();
+}
+
+function updateTabCounts() {
+  Object.keys(PROGRAM).forEach(day => {
+    const exs = PROGRAM[day].exercises;
+    const done = exs.filter(ex => isExerciseComplete(day, ex.id)).length;
+    const el = document.getElementById(`count-${day}`);
+    if (el) el.textContent = `${done}/${exs.length}`;
+    const tab = document.querySelector(`.tab[data-day="${day}"]`);
+    if (tab) tab.classList.toggle("complete", done === exs.length && exs.length > 0);
+  });
+}
+
+function resetWeek() {
+  Object.keys(PROGRAM).forEach(day => {
+    PROGRAM[day].exercises.forEach(ex => {
+      const curr = state.current[day][ex.id];
+      const hasData = curr.sets.some(s => s.weight || s.reps);
+      if (hasData) {
+        state.lastWeek[day][ex.id] = {
+          sets: curr.sets.map(s => ({ weight: s.weight, reps: s.reps }))
+        };
+      }
+      state.current[day][ex.id] = {
+        sets: Array.from({length: ex.sets}, () => ({ weight: "", reps: "", done: false })),
+        expanded: false
+      };
+    });
+  });
+  saveState();
+  renderDay();
+  showToast("Week reset");
+}
+
+// === THEME ===
+function getInitialTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === "light" || saved === "dark") return saved;
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  document.getElementById("themeToggle").textContent = theme === "light" ? "Dark" : "Light";
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", theme === "light" ? "#f7f7f8" : "#0e0e10");
+}
+
+let currentTheme = getInitialTheme();
+applyTheme(currentTheme);
+
+document.getElementById("themeToggle").addEventListener("click", () => {
+  currentTheme = currentTheme === "light" ? "dark" : "light";
+  localStorage.setItem(THEME_KEY, currentTheme);
+  applyTheme(currentTheme);
+});
+
+// Follow system theme changes if user hasn't manually picked one
+window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", (e) => {
+  if (!localStorage.getItem(THEME_KEY)) {
+    currentTheme = e.matches ? "light" : "dark";
+    applyTheme(currentTheme);
+  }
+});
+
+// === TABS ===
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    currentDay = tab.dataset.day;
+    renderDay();
+  });
+});
+
+// === MODAL ===
+const modal = document.getElementById("modal");
+document.getElementById("resetBtn").addEventListener("click", () => modal.classList.add("show"));
+document.getElementById("modalCancel").addEventListener("click", () => modal.classList.remove("show"));
+document.getElementById("modalConfirm").addEventListener("click", () => {
+  modal.classList.remove("show");
+  resetWeek();
+});
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.remove("show");
+});
+
+// === DEFAULT TAB BASED ON WEEKDAY ===
+// Mon/Tue → mon · Wed/Thu → wed · Fri/Sat/Sun → fri
+function pickInitialDay() {
+  const d = new Date().getDay();
+  if (d === 1 || d === 2) return "mon";
+  if (d === 3 || d === 4) return "wed";
+  return "fri";
+}
+currentDay = pickInitialDay();
+renderDay();
+</script>
+
+</body>
+</html>
