@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Dziennik FIRE: Plan Finansowy i Obszary Wypłat</title>
+<style>
+  /* ---------- Page ---------- */
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #f6f6f4;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; position: relative; }
+  .chart-area { position: relative; }
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; margin: 10px 0 18px;
+  }
+  .chart-title {
+    flex: 1; text-align: center; font-weight: 800; font-size: 22px;
+    letter-spacing: 0.3px; margin: 0;
+  }
+  /* Language switcher — minimal, inline */
+  .lang-switch {
+    display: inline-flex;
+    background: #ffffff;
+    border: 1px solid #d8dad6;
+    border-radius: 999px;
+    padding: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    user-select: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .lang-switch button {
+    appearance: none; -webkit-appearance: none;
+    border: none; background: transparent;
+    padding: 6px 12px; border-radius: 999px;
+    font: inherit; color: #6b7268; cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .lang-switch button.active {
+    background: #1f3d24; color: #ffffff;
+  }
+  .lang-switch button:not(.active):hover {
+    color: #1a1a1a;
+  }
+  svg { display: block; margin: 0 auto; background: #ffffff; border-radius: 6px; }
+
+  /* ---------- Axis ---------- */
+  .axis-line, .tick-line { stroke: #333; stroke-width: 1; shape-rendering: crispEdges; }
+  .tick-text { font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+  .axis-label { font-size: 13px; font-weight: 700; fill: #1a1a1a; letter-spacing: 0.5px; }
+
+  /* ---------- Region labels ---------- */
+  .region-label { font-weight: 800; text-anchor: middle; pointer-events: none; fill: #1f3d24; }
+  .region-sub { font-size: 12px; fill: #1f3d24; text-anchor: middle; pointer-events: none; }
+  .barista-fire-text {
+    font-size: 14px; font-weight: 700; fill: #1a1a1a;
+    text-anchor: middle; pointer-events: none;
+  }
+  .barista-fire-text .small { font-size: 12px; font-weight: 400; fill: #444; }
+  .barista-red {
+    fill: #c8261d; font-weight: 800; font-size: 14px;
+    letter-spacing: 0.5px; pointer-events: none;
+  }
+  .praca-text {
+    font-weight: 800; font-size: 14px; letter-spacing: 1px;
+    fill: #1a1a1a; text-anchor: middle; pointer-events: none;
+  }
+  .vertical-text {
+    fill: #ffffff; font-weight: 800; font-size: 18px;
+    letter-spacing: 1px; text-anchor: middle; pointer-events: none;
+  }
+
+  /* ---------- Data ---------- */
+  .data-line {
+    fill: none; stroke: #15233f; stroke-width: 2.5;
+    stroke-linejoin: round; stroke-linecap: round;
+  }
+  .red-line { stroke: #c8261d; stroke-width: 3; fill: none; }
+  .dot {
+    fill: #1a3a8a; stroke: #15233f; stroke-width: 1.5;
+    cursor: pointer; transition: r 120ms ease;
+  }
+  .dot:hover { r: 7; }
+  .grid-dotted { stroke: #333; stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+
+  /* ---------- Tooltip ---------- */
+  .tooltip {
+    position: absolute; pointer-events: none;
+    background: rgba(20, 28, 45, 0.96); color: #fff;
+    padding: 10px 13px; border-radius: 8px;
+    font-size: 12.5px; line-height: 1.5;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 12px));
+    transition: opacity 120ms ease;
+    white-space: nowrap; z-index: 10;
+    left: 0; top: 0;
+  }
+  /* On mobile, the tooltip is pinned to the top-right corner of the
+     chart area instead of following the finger. This way the user can
+     freely swipe/scroll horizontally without the tooltip jumping around. */
+  .tooltip.pinned {
+    left: auto !important;
+    right: 12px;
+    top: 12px !important;
+    transform: none;
+  }
+  .tooltip.show { opacity: 1; }
+  .tooltip .row { display: flex; justify-content: space-between; gap: 14px; }
+  .tooltip .label { color: #9fb2cc; font-weight: 500; }
+  .tooltip .val { font-weight: 700; }
+  .tooltip .stage {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: #ffd06b; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; font-size: 11px;
+  }
+
+  .hover-guide {
+    stroke: #15233f; stroke-width: 1; stroke-dasharray: 3 3;
+    opacity: 0; pointer-events: none;
+  }
+  .hover-guide.show { opacity: 0.55; }
+
+  /* ---------- Boxes / callouts ---------- */
+  /* Unified style for all stage label boxes (LEAN, FIRE 240k, FAT, ULTRA panel) */
+  .label-box {
+    fill: rgba(255,255,255,0.92);
+    stroke: rgba(0,0,0,0.08);
+    stroke-width: 1;
+  }
+  .ultra-panel { fill: #2d5b3a; stroke: #244a30; }
+  .praca-box { fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.5; }
+  .arrow-line {
+    stroke: #1a1a1a; stroke-width: 1.8; fill: none; stroke-dasharray: 5 3;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <!-- Spacer keeps title centered when switch is on the right -->
+    <div style="width: 92px;"></div>
+    <h1 class="chart-title" id="chart-title">DZIENNIK FIRE: PLAN FINANSOWY I OBSZARY WYPŁAT</h1>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="pl" id="lang-pl">PL</button>
+      <button type="button" data-lang="en" id="lang-en">EN</button>
+    </div>
+  </div>
+  <div class="chart-area" id="chart-area">
+    <svg id="chart" width="1024" height="640" viewBox="0 0 1024 640"></svg>
+    <div class="tooltip" id="tooltip">
+      <div class="row"><span class="label" id="tt-label-x">Portfel:</span><span class="val" id="tt-x">—</span></div>
+      <div class="row"><span class="label" id="tt-label-y">Wypłata:</span><span class="val" id="tt-y">—</span></div>
+      <div class="stage" id="tt-stage">—</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   Pure vanilla JS / SVG manipulation. No libraries.
+
+   Key idea: instead of a linear x-axis (which made the 1%
+   FAT FIRE band dominate the chart), we use a SEGMENTED axis
+   where each tick step gets equal screen width. Values
+   between ticks are interpolated linearly within the segment.
+   ========================================================= */
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("chart");
+
+const W = 1024, H = 640;
+const margin = { top: 40, right: 30, bottom: 70, left: 90 };
+const innerW = W - margin.left - margin.right;
+const innerH = H - margin.top - margin.bottom;
+
+// ----- Segmented X axis -------------------------------------------------
+const xTicks = [
+  { value: 0,           label: "0"   },
+  { value: 4_000_000,   label: "4M"  },
+  { value: 8_000_000,   label: "8M"  },
+  { value: 24_000_000,  label: "24M" },
+  { value: 100_000_000, label: "100M"}
+];
+// Reserve ~12% of the inner width for the Ultra FAT FIRE bar on the right
+const ultraBarFraction = 0.12;
+const mainW = innerW * (1 - ultraBarFraction);
+
+xTicks.forEach((t, i) => {
+  t.px = (mainW / (xTicks.length - 1)) * i;
+});
+const ultraBarStart = mainW;
+const ultraBarEnd   = innerW;
+
+function xScale(v) {
+  if (v <= xTicks[0].value) return xTicks[0].px;
+  for (let i = 0; i < xTicks.length - 1; i++) {
+    const a = xTicks[i], b = xTicks[i + 1];
+    if (v <= b.value) {
+      const t = (v - a.value) / (b.value - a.value);
+      return a.px + t * (b.px - a.px);
+    }
+  }
+  // Past 100M: extrapolate into the Ultra bar area (for tooltip continuity)
+  const last = xTicks[xTicks.length - 1];
+  const t = Math.min(1, (v - last.value) / 15_000_000);
+  return ultraBarStart + t * (ultraBarEnd - ultraBarStart);
+}
+function xInvert(px) {
+  if (px <= xTicks[0].px) return xTicks[0].value;
+  for (let i = 0; i < xTicks.length - 1; i++) {
+    const a = xTicks[i], b = xTicks[i + 1];
+    if (px <= b.px) {
+      const t = (px - a.px) / (b.px - a.px);
+      return a.value + t * (b.value - a.value);
+    }
+  }
+  const last = xTicks[xTicks.length - 1];
+  const t = Math.min(1, (px - ultraBarStart) / (ultraBarEnd - ultraBarStart));
+  return last.value + t * 15_000_000;
+}
+
+// ----- Linear Y axis ----------------------------------------------------
+const yMax = 1_100_000;
+function yScale(v) { return innerH - (v / yMax) * innerH; }
+const yTicks = [
+  { value: 0,         label: "0"   },
+  { value: 120_000,   label: "120k"},
+  { value: 240_000,   label: "240k"},
+  { value: 1_000_000, label: "1M"  }
+];
+
+// ----- Stage definitions for tooltip ------------------------------------
+// `key` is used to look up the translated name in the i18n dictionary.
+const stages = [
+  { from: 0,           to: 4_000_000,   key: "stage.barista" },
+  { from: 4_000_000,   to: 8_000_000,   key: "stage.lean" },
+  { from: 8_000_000,   to: 24_000_000,  key: "stage.fire" },
+  { from: 24_000_000,  to: 100_000_000, key: "stage.fat" },
+  { from: 100_000_000, to: Infinity,    key: "stage.ultra" }
+];
+
+/* =========================================================
+   i18n: PL / EN translations + autodetect
+   ========================================================= */
+const I18N = {
+  pl: {
+    "page.title":      "Dziennik FIRE: Plan Finansowy i Obszary Wypłat",
+    "chart.title":     "DZIENNIK FIRE: PLAN FINANSOWY I OBSZARY WYPŁAT",
+    "axis.x":          "WARTOŚĆ PORTFELA (PLN)",
+    "axis.y":          "ROCZNA WYPŁATA (PLN)",
+    "praca":           "PRACA",
+    "barista.title":   "BARISTA FIRE",
+    "barista.sub":     "wspomaganie pracą",
+    "lean.title":      "LEAN FIRE",
+    "lean.sub":        "max 3% wypłaty",
+    "fire.title":      "FIRE",
+    "fire.sub":        "max 240k wypłaty",
+    "fat.title":       "FAT FIRE",
+    "fat.sub":         "max 1% wypłaty",
+    "ultra.title":     "ULTRA FAT FIRE",
+    "ultra.sub":       "max 1M wypłaty",
+    "tt.label.x":      "Portfel:",
+    "tt.label.y":      "Wypłata:",
+    "stage.barista":   "Barista FIRE — wspomaganie pracą",
+    "stage.lean":      "Lean FIRE — max 3% wypłaty",
+    "stage.fire":      "FIRE — max 240k wypłaty",
+    "stage.fat":       "Fat FIRE — max 1% wypłaty",
+    "stage.ultra":     "Ultra Fat FIRE — max 1M wypłaty"
+  },
+  en: {
+    "page.title":      "FIRE Journal: Financial Plan & Withdrawal Tiers",
+    "chart.title":     "FIRE JOURNAL: FINANCIAL PLAN & WITHDRAWAL TIERS",
+    "axis.x":          "PORTFOLIO VALUE (PLN)",
+    "axis.y":          "ANNUAL WITHDRAWAL (PLN)",
+    "praca":           "WORK",
+    "barista.title":   "BARISTA FIRE",
+    "barista.sub":     "supplemented by work",
+    "lean.title":      "LEAN FIRE",
+    "lean.sub":        "max 3% withdrawal",
+    "fire.title":      "FIRE",
+    "fire.sub":        "max 240k withdrawal",
+    "fat.title":       "FAT FIRE",
+    "fat.sub":         "max 1% withdrawal",
+    "ultra.title":     "ULTRA FAT FIRE",
+    "ultra.sub":       "max 1M withdrawal",
+    "tt.label.x":      "Portfolio:",
+    "tt.label.y":      "Withdrawal:",
+    "stage.barista":   "Barista FIRE — supplemented by work",
+    "stage.lean":      "Lean FIRE — max 3% withdrawal",
+    "stage.fire":      "FIRE — max 240k withdrawal",
+    "stage.fat":       "Fat FIRE — max 1% withdrawal",
+    "stage.ultra":     "Ultra Fat FIRE — max 1M withdrawal"
+  }
+};
+
+// Pick default language from the browser, falling back to EN.
+function detectLang() {
+  const langs = navigator.languages || [navigator.language || "en"];
+  for (const l of langs) {
+    if (l && l.toLowerCase().startsWith("pl")) return "pl";
+  }
+  return "en";
+}
+
+let currentLang = detectLang();
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key;
+}
+
+/* =========================================================
+   Tiny SVG helpers (no library needed)
+   ========================================================= */
+function el(tag, attrs = {}, parent = null) {
+  const node = document.createElementNS(SVG_NS, tag);
+  for (const k in attrs) node.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(node);
+  return node;
+}
+function text(parent, x, y, content, attrs = {}) {
+  const t = el("text", { x, y, ...attrs }, parent);
+  t.textContent = content;
+  return t;
+}
+// Translatable variant: looks up `key` in the i18n dictionary and tags the
+// element with data-i18n so applyTranslations() can update it later.
+function i18nText(parent, x, y, key, attrs = {}) {
+  const node = text(parent, x, y, t(key), attrs);
+  node.setAttribute("data-i18n", key);
+  return node;
+}
+
+const root = el("g", { transform: `translate(${margin.left},${margin.top})` }, svg);
+
+/* =========================================================
+   defs: hatch pattern + soft drop shadow
+   ========================================================= */
+const defs = el("defs", {}, svg);
+
+const pattern = el("pattern", {
+  id: "hatchRed", patternUnits: "userSpaceOnUse",
+  width: 8, height: 8, patternTransform: "rotate(45)"
+}, defs);
+el("rect", { width: 8, height: 8, fill: "rgba(220,60,50,0.08)" }, pattern);
+el("line", { x1: 0, y1: 0, x2: 0, y2: 8, stroke: "#d4423b", "stroke-width": 1.2 }, pattern);
+
+const filter = el("filter", {
+  id: "soft-shadow", x: "-20%", y: "-20%", width: "140%", height: "140%"
+}, defs);
+el("feGaussianBlur", { in: "SourceAlpha", stdDeviation: 2 }, filter);
+el("feOffset", { dx: 0, dy: 1, result: "off" }, filter);
+const merge = el("feMerge", {}, filter);
+el("feMergeNode", { in: "off" }, merge);
+el("feMergeNode", { in: "SourceGraphic" }, merge);
+
+/* =========================================================
+   Background bands (each stage gets ~equal screen width)
+   ========================================================= */
+
+// 1) Red hatched: x ∈ [0, 4M], y ∈ [0, 120k]
+el("path", {
+  d: `M ${xScale(0)},${yScale(0)}
+      L ${xScale(4_000_000)},${yScale(0)}
+      L ${xScale(4_000_000)},${yScale(120_000)}
+      L ${xScale(0)},${yScale(120_000)} Z`,
+  fill: "url(#hatchRed)"
+}, root);
+// Diagonal red dashed line inside the hatched area.
+// Narrative: smaller portfolio = MORE work income needed.
+// So the line goes from TOP-LEFT (high work income when portfolio=0)
+// down to BOTTOM-RIGHT (no extra work needed once portfolio reaches 4M).
+el("line", {
+  x1: xScale(0), y1: yScale(120_000),
+  x2: xScale(4_000_000), y2: yScale(0),
+  stroke: "#d4423b", "stroke-width": 1.8,
+  "stroke-dasharray": "5 4", opacity: 0.75
+}, root);
+
+// 2) Light green
+el("path", {
+  d: `M ${xScale(4_000_000)},${yScale(0)}
+      L ${xScale(4_000_000)},${yScale(120_000)}
+      L ${xScale(8_000_000)},${yScale(240_000)}
+      L ${xScale(8_000_000)},${yScale(0)} Z`,
+  fill: "#aed5a8"
+}, root);
+
+// 3) Medium green
+el("path", {
+  d: `M ${xScale(8_000_000)},${yScale(0)}
+      L ${xScale(8_000_000)},${yScale(240_000)}
+      L ${xScale(24_000_000)},${yScale(240_000)}
+      L ${xScale(24_000_000)},${yScale(0)} Z`,
+  fill: "#7fbd7c"
+}, root);
+
+// 4) Dark green
+el("path", {
+  d: `M ${xScale(24_000_000)},${yScale(0)}
+      L ${xScale(24_000_000)},${yScale(240_000)}
+      L ${xScale(100_000_000)},${yScale(1_000_000)}
+      L ${xScale(100_000_000)},${yScale(0)} Z`,
+  fill: "#3f7d4a"
+}, root);
+
+// 5) Ultra FAT FIRE bar
+el("rect", {
+  x: ultraBarStart, y: yScale(1_000_000),
+  width: ultraBarEnd - ultraBarStart,
+  height: yScale(0) - yScale(1_000_000),
+  fill: "#5a8a6a", opacity: 0.55
+}, root);
+
+const ultraPanelX = ultraBarStart + 10;
+const ultraPanelW = (ultraBarEnd - ultraBarStart) - 20;
+const ultraPanelY = yScale(820_000);
+const ultraPanelH = yScale(140_000) - yScale(820_000);
+el("rect", {
+  class: "ultra-panel",
+  x: ultraPanelX, y: ultraPanelY,
+  width: Math.max(ultraPanelW, 50), height: ultraPanelH,
+  rx: 6, ry: 6
+}, root);
+
+/* =========================================================
+   Axes
+   ========================================================= */
+el("line", { class: "axis-line", x1: 0, y1: innerH, x2: innerW, y2: innerH }, root);
+xTicks.forEach(t => {
+  el("line", { class: "tick-line", x1: t.px, y1: innerH, x2: t.px, y2: innerH + 6 }, root);
+  text(root, t.px, innerH + 22, t.label, { class: "tick-text", "text-anchor": "middle" });
+});
+
+el("line", { class: "axis-line", x1: 0, y1: 0, x2: 0, y2: innerH }, root);
+yTicks.forEach(t => {
+  el("line", { class: "tick-line", x1: -6, y1: yScale(t.value), x2: 0, y2: yScale(t.value) }, root);
+  text(root, -10, yScale(t.value) + 4, t.label, { class: "tick-text", "text-anchor": "end" });
+});
+
+i18nText(root, 0, 0, "axis.y", {
+  class: "axis-label", "text-anchor": "middle",
+  transform: `translate(-65, ${innerH / 2}) rotate(-90)`
+});
+i18nText(root, innerW / 2, innerH + 55, "axis.x", {
+  class: "axis-label", "text-anchor": "middle"
+});
+
+el("line", {
+  class: "grid-dotted",
+  x1: 0, x2: innerW,
+  y1: yScale(1_000_000), y2: yScale(1_000_000)
+}, root);
+
+/* =========================================================
+   Red Barista line at y=120k from 0 to 4M
+   ========================================================= */
+el("line", {
+  class: "red-line",
+  x1: xScale(0), x2: xScale(4_000_000),
+  y1: yScale(120_000), y2: yScale(120_000)
+}, root);
+
+/* =========================================================
+   Main dark line + dots
+   ========================================================= */
+const mainLineData = [
+  { x: 4_000_000,   y: 120_000 },
+  { x: 8_000_000,   y: 240_000 },
+  { x: 24_000_000,  y: 240_000 },
+  { x: 100_000_000, y: 1_000_000 },
+  { x: xInvert(ultraBarEnd), y: 1_000_000 }
+];
+const linePath = mainLineData
+  .map((d, i) => `${i === 0 ? "M" : "L"} ${xScale(d.x)},${yScale(d.y)}`)
+  .join(" ");
+el("path", { class: "data-line", d: linePath }, root);
+
+const dotPoints = [
+  { x: 4_000_000,   y: 120_000 },
+  { x: 8_000_000,   y: 240_000 },
+  { x: 24_000_000,  y: 240_000 },
+  { x: 100_000_000, y: 1_000_000 }
+];
+const dotEls = [];
+dotPoints.forEach(d => {
+  const c = el("circle", { class: "dot", cx: xScale(d.x), cy: yScale(d.y), r: 5 }, root);
+  c.__data = d;
+  dotEls.push(c);
+});
+
+/* =========================================================
+   Region labels & callouts
+   ========================================================= */
+
+/* =========================================================
+   Region labels & callouts — all unified to same box style
+   ========================================================= */
+
+// Helper: draws a unified rounded label box at (cx, cy) with given size.
+function drawLabelBox(cx, cy, w, h) {
+  el("rect", {
+    class: "label-box",
+    x: cx - w / 2, y: cy - h / 2, width: w, height: h,
+    rx: 6, ry: 6, filter: "url(#soft-shadow)"
+  }, root);
+}
+
+// --- BARISTA FIRE box (above the red column) -------------------------
+const baristaCx = (xScale(0) + xScale(4_000_000)) / 2;
+const baristaCy = yScale(420_000);
+drawLabelBox(baristaCx, baristaCy, 150, 64);
+i18nText(root, baristaCx, baristaCy - 8, "barista.title", { class: "region-label", "font-size": 16 });
+i18nText(root, baristaCx, baristaCy + 14, "barista.sub", { class: "region-sub" });
+
+// --- LEAN FIRE box (4M – 8M) -----------------------------------------
+const leanCx = (xScale(4_000_000) + xScale(8_000_000)) / 2;
+const leanCy = yScale(115_000);
+drawLabelBox(leanCx, leanCy, 150, 64);
+i18nText(root, leanCx, leanCy - 8, "lean.title", { class: "region-label", "font-size": 16 });
+i18nText(root, leanCx, leanCy + 14, "lean.sub", { class: "region-sub" });
+
+// --- FIRE box (8M – 24M) ---------------------------------------------
+const topCx = (xScale(8_000_000) + xScale(24_000_000)) / 2;
+const topCy = yScale(120_000);
+drawLabelBox(topCx, topCy, 150, 64);
+i18nText(root, topCx, topCy - 8, "fire.title", { class: "region-label", "font-size": 18 });
+i18nText(root, topCx, topCy + 14, "fire.sub", { class: "region-sub" });
+
+// --- FAT FIRE box (24M – 100M) ---------------------------------------
+const fatCx = (xScale(24_000_000) + xScale(100_000_000)) / 2;
+const fatCy = yScale(550_000);
+drawLabelBox(fatCx, fatCy, 150, 64);
+i18nText(root, fatCx, fatCy - 8, "fat.title", { class: "region-label", "font-size": 16 });
+i18nText(root, fatCx, fatCy + 14, "fat.sub", { class: "region-sub" });
+
+// --- ULTRA FAT FIRE — vertical text inside dark green panel ----------
+const ultraCx = ultraPanelX + Math.max(ultraPanelW, 50) / 2;
+const ultraCy = ultraPanelY + ultraPanelH / 2;
+i18nText(root, 0, 0, "ultra.title", {
+  class: "vertical-text",
+  "font-size": 16,
+  transform: `translate(${ultraCx - 8}, ${ultraCy}) rotate(-90)`
+});
+i18nText(root, 0, 0, "ultra.sub", {
+  class: "vertical-text",
+  "font-size": 11,
+  "font-weight": 500,
+  transform: `translate(${ultraCx + 10}, ${ultraCy}) rotate(-90)`
+});
+
+/* =========================================================
+   PRACA box + dashed arrow + steaming cup icon
+
+   Visual story: the PRACA box (with steaming coffee cup) sits at the
+   bottom-left, and a dashed arrow rises into the Barista zone to show
+   that paid work is still topping up the income at low portfolio values.
+   ========================================================= */
+
+// PRACA box — anchored below the x-axis baseline, lower-left of the chart
+const pracaCx = xScale(1_500_000);
+const pracaCy = yScale(45_000);
+const pracaG = el("g", {
+  transform: `translate(${pracaCx}, ${pracaCy}) rotate(-6)`
+}, root);
+el("rect", {
+  class: "praca-box",
+  x: -45, y: -16, width: 90, height: 32,
+  rx: 3, ry: 3,
+  filter: "url(#soft-shadow)"
+}, pracaG);
+i18nText(pracaG, 0, 5, "praca", { class: "praca-text" });
+
+// Steaming cup icon — sits just to the LEFT of the PRACA box, before the y-axis
+// (placed in negative x relative to the chart inner area, so it lives in the margin)
+const cupG = el("g", {
+  transform: `translate(${-45}, ${yScale(35_000)})`
+}, root);
+// Steam wisps
+["-6", "0", "6"].forEach(dx => {
+  el("path", {
+    d: `M ${dx} -22 q -3 -6 0 -12 q 3 -6 0 -12`,
+    fill: "none", stroke: "#1a1a1a",
+    "stroke-width": 1.5, "stroke-linecap": "round"
+  }, cupG);
+});
+el("ellipse", {
+  cx: 0, cy: -16, rx: 14, ry: 4,
+  fill: "#fff", stroke: "#1a1a1a", "stroke-width": 1.5
+}, cupG);
+el("path", {
+  d: "M -14 -16 Q -12 0 -8 4 L 8 4 Q 12 0 14 -16",
+  fill: "#fff", stroke: "#1a1a1a", "stroke-width": 1.5
+}, cupG);
+el("ellipse", { cx: 0, cy: -16, rx: 11, ry: 3, fill: "#7a4a2a" }, cupG);
+el("path", {
+  d: "M 14 -12 q 8 -2 8 4 q 0 6 -8 4",
+  fill: "none", stroke: "#1a1a1a", "stroke-width": 1.5
+}, cupG);
+
+// Dashed arrow from the PRACA box up into the Barista zone — REMOVED.
+// (Arrow + arrowhead deleted per request.)
+
+/* =========================================================
+   Hover & touch interactivity
+   The tooltip is positioned ABSOLUTELY inside .chart-area, so it
+   stays glued to the chart even when the user scrolls horizontally
+   (no more "floating" behind the finger on mobile).
+   ========================================================= */
+const tooltip = document.getElementById("tooltip");
+const chartArea = document.getElementById("chart-area");
+const ttX     = document.getElementById("tt-x");
+const ttY     = document.getElementById("tt-y");
+const ttStage = document.getElementById("tt-stage");
+
+const hoverGuide = el("line", { class: "hover-guide", y1: 0, y2: innerH }, root);
+
+function yOnCurve(v) {
+  if (v <= 0) return 0;
+  if (v <= 4_000_000)  return 120_000;
+  if (v <= 8_000_000) {
+    const t = (v - 4_000_000) / (8_000_000 - 4_000_000);
+    return 120_000 + t * (240_000 - 120_000);
+  }
+  if (v <= 24_000_000) return 240_000;
+  if (v <= 100_000_000) {
+    const t = (v - 24_000_000) / (100_000_000 - 24_000_000);
+    return 240_000 + t * (1_000_000 - 240_000);
+  }
+  return 1_000_000;
+}
+function findStage(v) {
+  for (const s of stages) if (v >= s.from && v < s.to) return t(s.key);
+  return t(stages[stages.length - 1].key);
+}
+function formatPLN(n) {
+  // Polish uses spaces as thousand separators, English uses commas.
+  const locale = currentLang === "pl" ? "pl-PL" : "en-US";
+  return Math.round(n).toLocaleString(locale).replace(/\u00A0/g, " ");
+}
+function shortFormat(n) {
+  if (n >= 1_000_000) {
+    const v = n / 1_000_000;
+    return (v % 1 === 0 ? v.toFixed(0) : v.toFixed(1)) + "M";
+  }
+  if (n >= 1000) {
+    const v = n / 1000;
+    return (v % 1 === 0 ? v.toFixed(0) : v.toFixed(1)) + "k";
+  }
+  return n.toFixed(0);
+}
+
+const overlay = el("rect", {
+  width: innerW, height: innerH,
+  fill: "transparent", style: "cursor: crosshair;"
+}, root);
+
+// Convert clientX/Y to coordinates relative to .chart-area (for tooltip)
+// AND to internal SVG coords (for the hover guide / xInvert).
+function getCoords(clientX, clientY) {
+  const svgRect  = svg.getBoundingClientRect();
+  const areaRect = chartArea.getBoundingClientRect();
+
+  // Tooltip position is relative to chartArea
+  const tooltipX = clientX - areaRect.left;
+  const tooltipY = clientY - areaRect.top;
+
+  // SVG-internal coords (account for viewBox scaling)
+  const scaleX = W / svgRect.width;
+  const scaleY = H / svgRect.height;
+  const localX = (clientX - svgRect.left) * scaleX - margin.left;
+  const localY = (clientY - svgRect.top)  * scaleY - margin.top;
+
+  return { tooltipX, tooltipY, localX, localY };
+}
+
+function updateTooltipFromPointer(clientX, clientY) {
+  const { tooltipX, tooltipY, localX } = getCoords(clientX, clientY);
+  const clampedPx = Math.max(0, Math.min(innerW, localX));
+  const xVal = xInvert(clampedPx);
+  const yVal = yOnCurve(xVal);
+
+  hoverGuide.setAttribute("x1", clampedPx);
+  hoverGuide.setAttribute("x2", clampedPx);
+  hoverGuide.classList.add("show");
+
+  ttX.textContent = `${formatPLN(xVal)} PLN (${shortFormat(xVal)})`;
+  ttY.textContent = `${formatPLN(yVal)} PLN (${shortFormat(yVal)})`;
+  ttStage.textContent = findStage(xVal);
+
+  tooltip.classList.remove("pinned"); // mouse-following mode
+  tooltip.style.left = tooltipX + "px";
+  tooltip.style.top  = tooltipY + "px";
+  tooltip.classList.add("show");
+}
+
+function hideTooltip() {
+  tooltip.classList.remove("show");
+  tooltip.classList.remove("pinned");
+  hoverGuide.classList.remove("show");
+}
+
+// --- Mouse (desktop) ---
+overlay.addEventListener("mousemove", (e) => updateTooltipFromPointer(e.clientX, e.clientY));
+overlay.addEventListener("mouseleave", hideTooltip);
+
+// --- Touch (mobile) ---
+// Different UX from desktop: instead of following the finger (which fights
+// with horizontal scrolling), the user TAPS a point on the chart and the
+// tooltip appears PINNED to the top-right corner of the chart area.
+// They can then freely swipe/scroll left-right to compare stages.
+//
+// We detect "tap" vs "swipe" by tracking touch movement: small movement
+// + short duration = tap (show tooltip for that x-coord), larger movement
+// = swipe/scroll (don't interfere, let the browser handle it).
+
+let touchStart = null;
+const TAP_MAX_MOVE = 10;   // px of movement still considered a tap
+const TAP_MAX_TIME = 500;  // ms
+
+chartArea.addEventListener("touchstart", (e) => {
+  if (e.touches.length !== 1) { touchStart = null; return; }
+  const t = e.touches[0];
+  touchStart = { x: t.clientX, y: t.clientY, time: Date.now() };
+}, { passive: true });
+
+chartArea.addEventListener("touchend", (e) => {
+  if (!touchStart) return;
+  const t = e.changedTouches[0];
+  const dx = Math.abs(t.clientX - touchStart.x);
+  const dy = Math.abs(t.clientY - touchStart.y);
+  const dt = Date.now() - touchStart.time;
+  touchStart = null;
+
+  // If the user actually swiped/scrolled, don't pop a tooltip.
+  if (dx > TAP_MAX_MOVE || dy > TAP_MAX_MOVE || dt > TAP_MAX_TIME) return;
+
+  // It's a tap: read the x-position and show pinned tooltip.
+  showPinnedTooltipAt(t.clientX, t.clientY);
+}, { passive: true });
+
+// Tap outside the chart hides the tooltip.
+document.addEventListener("touchstart", (e) => {
+  if (!chartArea.contains(e.target)) hideTooltip();
+}, { passive: true });
+
+function showPinnedTooltipAt(clientX, clientY) {
+  const { localX } = getCoords(clientX, clientY);
+  const clampedPx = Math.max(0, Math.min(innerW, localX));
+  const xVal = xInvert(clampedPx);
+  const yVal = yOnCurve(xVal);
+
+  hoverGuide.setAttribute("x1", clampedPx);
+  hoverGuide.setAttribute("x2", clampedPx);
+  hoverGuide.classList.add("show");
+
+  ttX.textContent = `${formatPLN(xVal)} PLN (${shortFormat(xVal)})`;
+  ttY.textContent = `${formatPLN(yVal)} PLN (${shortFormat(yVal)})`;
+  ttStage.textContent = findStage(xVal);
+
+  tooltip.classList.add("pinned"); // pin to top-right via CSS
+  tooltip.classList.add("show");
+}
+
+// --- Per-dot emphasis on hover (desktop) ---
+dotEls.forEach(c => {
+  c.addEventListener("mouseenter", (event) => {
+    c.setAttribute("r", 7);
+    const d = c.__data;
+    const { tooltipX, tooltipY } = getCoords(event.clientX, event.clientY);
+    ttX.textContent = `${formatPLN(d.x)} PLN (${shortFormat(d.x)})`;
+    ttY.textContent = `${formatPLN(d.y)} PLN (${shortFormat(d.y)})`;
+    ttStage.textContent = findStage(d.x);
+    tooltip.style.left = tooltipX + "px";
+    tooltip.style.top  = tooltipY + "px";
+    tooltip.classList.add("show");
+  });
+  c.addEventListener("mousemove", (event) => {
+    const { tooltipX, tooltipY } = getCoords(event.clientX, event.clientY);
+    tooltip.style.left = tooltipX + "px";
+    tooltip.style.top  = tooltipY + "px";
+  });
+  c.addEventListener("mouseleave", () => {
+    c.setAttribute("r", 5);
+    tooltip.classList.remove("show");
+  });
+});
+
+/* =========================================================
+   Language switcher: walks every [data-i18n] node and updates
+   its text content. Also updates the page <title>, <html lang>,
+   the chart <h1> title, the tooltip labels, and the active
+   button state. Number formatting in tooltips picks up the new
+   locale automatically because formatPLN reads currentLang.
+   ========================================================= */
+function applyTranslations() {
+  // Update the <html lang> attribute for accessibility / browser hints
+  document.documentElement.setAttribute("lang", currentLang);
+
+  // Document title
+  document.title = t("page.title");
+
+  // Chart H1 title
+  const titleEl = document.getElementById("chart-title");
+  if (titleEl) titleEl.textContent = t("chart.title");
+
+  // Tooltip static labels
+  const ttLx = document.getElementById("tt-label-x");
+  const ttLy = document.getElementById("tt-label-y");
+  if (ttLx) ttLx.textContent = t("tt.label.x");
+  if (ttLy) ttLy.textContent = t("tt.label.y");
+
+  // Every SVG text node tagged with data-i18n
+  document.querySelectorAll("[data-i18n]").forEach(node => {
+    const key = node.getAttribute("data-i18n");
+    node.textContent = t(key);
+  });
+
+  // Active state on the switch buttons
+  document.querySelectorAll(".lang-switch button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === currentLang);
+  });
+}
+
+// Wire up the buttons
+document.querySelectorAll(".lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    currentLang = btn.dataset.lang;
+    applyTranslations();
+  });
+});
+
+// Initial translation pass uses the auto-detected language.
+applyTranslations();
+</script>
+</body>
+</html>
