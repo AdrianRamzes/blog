@@ -487,6 +487,8 @@
 
 <div class="day-meta" id="dayMeta"></div>
 
+<div id="exerciseList"></div>
+
 <div class="warmup-card">
   <strong>WARMUP:</strong> 5 min rower or dynamic stretches · 1-2 light warmup sets on first compound.
 </div>
@@ -494,8 +496,6 @@
 <div class="golden-rule">
   <strong>RULES:</strong> 3-sec eccentric every rep · Top set = 1-2 reps in tank · +2.5 kg when all reps clean · Rest 2-3 min compounds, 60-90 sec accessories.
 </div>
-
-<div id="exerciseList"></div>
 
 <div class="reset-section">
   <button class="reset-btn" id="resetBtn">Reset Week</button>
@@ -682,17 +682,9 @@ function renderDay() {
     const inner = document.createElement("div");
     inner.className = "sets-inner";
 
-    const lastWeekStr = formatLastWeek(currentDay, ex.id);
-    if (lastWeekStr) {
-      const lw = document.createElement("div");
-      lw.className = "last-week";
-      lw.textContent = lastWeekStr;
-      inner.appendChild(lw);
-    }
-
     const hint = document.createElement("div");
     hint.className = "optional-hint";
-    hint.textContent = "Weight & reps are optional — just check off sets if you prefer.";
+    hint.textContent = "Weight & reps are optional. Faded values = last week.";
     inner.appendChild(hint);
 
     const headers = document.createElement("div");
@@ -701,19 +693,34 @@ function renderDay() {
     inner.appendChild(headers);
 
     exState.sets.forEach((set, idx) => {
+      const lwSet = state.lastWeek[currentDay]?.[ex.id]?.sets?.[idx];
+      const weightPlaceholder = (lwSet && lwSet.weight) ? lwSet.weight : "—";
+      const repsPlaceholder = (lwSet && lwSet.reps) ? lwSet.reps : ex.reps;
       const row = document.createElement("div");
       row.className = "set-row";
       row.innerHTML = `
         <div class="set-label">${idx + 1}</div>
-        <input type="number" inputmode="decimal" class="set-input" data-field="weight" data-idx="${idx}" placeholder="—" value="${set.weight}">
-        <input type="number" inputmode="numeric" class="set-input" data-field="reps" data-idx="${idx}" placeholder="${ex.reps}" value="${set.reps}">
+        <input type="text" inputmode="decimal" autocomplete="off" class="set-input" data-field="weight" data-idx="${idx}" placeholder="${weightPlaceholder}" value="${set.weight}">
+        <input type="text" inputmode="numeric" autocomplete="off" class="set-input" data-field="reps" data-idx="${idx}" placeholder="${repsPlaceholder}" value="${set.reps}">
         <button class="set-check ${set.done ? 'done' : ''}" data-idx="${idx}" aria-label="Mark set done"></button>
       `;
       row.querySelectorAll(".set-input").forEach(input => {
         input.addEventListener("input", (e) => {
           const i = parseInt(e.target.dataset.idx);
           const f = e.target.dataset.field;
-          exState.sets[i][f] = e.target.value;
+          let val = e.target.value;
+          if (f === "weight") {
+            // Allow digits, one dot or comma, normalize comma to dot
+            val = val.replace(/,/g, ".").replace(/[^0-9.]/g, "");
+            // Keep only the first dot
+            const parts = val.split(".");
+            if (parts.length > 2) val = parts[0] + "." + parts.slice(1).join("");
+          } else {
+            // Reps: digits only
+            val = val.replace(/[^0-9]/g, "");
+          }
+          e.target.value = val;
+          exState.sets[i][f] = val;
           saveState();
         });
       });
