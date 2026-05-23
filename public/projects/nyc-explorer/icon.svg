@@ -7,5 +7,5 @@
     <circle r="16" fill="white"/>
     <circle r="8" fill="#007AFF"/>
   </g>
-  <text x="256" y="120" text-anchor="middle" font-family="-apple-system,sans-serif" font-weight="800" font-size="38" fill="white" opacity="0.9">N</text>
+  <text x="256" y="126" text-anchor="middle" font-family="-apple-system,sans-serif" font-weight="800" font-size="58" fill="white" opacity="0.9">NYC</text>
 </svg>
