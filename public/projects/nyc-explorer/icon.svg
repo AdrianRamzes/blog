@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="110" fill="#007AFF"/>
+  <circle cx="256" cy="256" r="158" fill="none" stroke="white" stroke-width="10" opacity="0.25"/>
+  <g transform="translate(256,256)">
+    <polygon points="0,-120 14,-16 0,-32 -14,-16" fill="white"/>
+    <polygon points="0,120 14,16 0,32 -14,16" fill="white" opacity="0.35"/>
+    <circle r="16" fill="white"/>
+    <circle r="8" fill="#007AFF"/>
+  </g>
+  <text x="256" y="120" text-anchor="middle" font-family="-apple-system,sans-serif" font-weight="800" font-size="38" fill="white" opacity="0.9">N</text>
+</svg>

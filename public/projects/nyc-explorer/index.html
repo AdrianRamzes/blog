@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- PWA / iOS -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="NYC Explorer">
+  <meta name="theme-color" content="#007aff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a84ff" media="(prefers-color-scheme: dark)">
+
+  <title>NYC Explorer</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="filter-tabs">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="todo">To Do</button>
+        <button class="tab" data-filter="done">Done</button>
+      </div>
+      <div class="header-right">
+        <span class="progress-text" id="progressText">0 of 10 visited</span>
+        <button id="themeBtn" class="hbtn" title="Toggle theme" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Location permission banner -->
+  <div id="locBanner" class="loc-banner hidden">
+    <div class="banner-row">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor"/>
+        <circle cx="12" cy="9" r="2.5" fill="white" opacity="0.85"/>
+      </svg>
+      <span>Enable location for distances &amp; directions</span>
+      <button id="locBtn" class="banner-btn">Enable</button>
+    </div>
+  </div>
+
+  <!-- Location cards -->
+  <main id="list"></main>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
