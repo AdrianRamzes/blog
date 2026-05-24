@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "Old Town (Altstadt)",
+    "category": "Neighborhood",
+    "desc": "Medieval lanes, guild houses and fountains on the Limmat's right bank — the historic heart of Zurich",
+    "lat": 47.3714,
+    "lng": 8.5416,
+    "weatherSensitive": false
+  },
+  {
+    "id": 2,
+    "name": "Lake Zurich",
+    "category": "Park",
+    "desc": "Stroll the Seepromenade, swim at the Strandbad, or take a boat cruise across the gleaming alpine lake",
+    "lat": 47.3561,
+    "lng": 8.5457,
+    "weatherSensitive": true
+  },
+  {
+    "id": 3,
+    "name": "Grossmünster",
+    "category": "Landmark",
+    "desc": "Twin-towered Romanesque cathedral from the 12th century — climb the tower for panoramic city views",
+    "lat": 47.3699,
+    "lng": 8.5442,
+    "weatherSensitive": false
+  },
+  {
+    "id": 4,
+    "name": "Fraumünster",
+    "category": "Landmark",
+    "desc": "Gothic abbey church famous for its stunning Chagall stained-glass windows on the Limmat's west bank",
+    "lat": 47.3700,
+    "lng": 8.5408,
+    "weatherSensitive": false
+  },
+  {
+    "id": 5,
+    "name": "Uetliberg",
+    "category": "Park",
+    "desc": "Zurich's local mountain — take the S10 train up for sweeping Alps and lake panoramas",
+    "lat": 47.3495,
+    "lng": 8.4914,
+    "weatherSensitive": true
+  },
+  {
+    "id": 6,
+    "name": "Kunsthaus Zürich",
+    "category": "Museum",
+    "desc": "Switzerland's finest art museum — Monet, Picasso, Giacometti and a vast modern extension opened in 2021",
+    "lat": 47.3700,
+    "lng": 8.5487,
+    "weatherSensitive": false
+  },
+  {
+    "id": 7,
+    "name": "Swiss National Museum",
+    "category": "Museum",
+    "desc": "Swiss history and culture in a fairy-tale neo-Gothic castle next to the main station",
+    "lat": 47.3787,
+    "lng": 8.5394,
+    "weatherSensitive": false
+  },
+  {
+    "id": 8,
+    "name": "Bahnhofstrasse",
+    "category": "Neighborhood",
+    "desc": "One of the world's most exclusive shopping streets — 1.4 km from the main station to the lake",
+    "lat": 47.3769,
+    "lng": 8.5382,
+    "weatherSensitive": false
+  },
+  {
+    "id": 9,
+    "name": "Zurich Zoo",
+    "category": "Entertainment",
+    "desc": "World-class zoo set in forest above the city — home to Masoala rainforest hall and giant pandas",
+    "lat": 47.3847,
+    "lng": 8.5745,
+    "weatherSensitive": true
+  },
+  {
+    "id": 10,
+    "name": "Museum Rietberg",
+    "category": "Museum",
+    "desc": "Non-European art in a lakeside villa park — remarkable Asian, African and pre-Columbian collections",
+    "lat": 47.3567,
+    "lng": 8.5294,
+    "weatherSensitive": false
+  },
+  {
+    "id": 11,
+    "name": "Zurich West",
+    "category": "Neighborhood",
+    "desc": "Former industrial quarter reborn as Zurich's hipster hub — street food, clubs, the Viadukt arches market",
+    "lat": 47.3851,
+    "lng": 8.5168,
+    "weatherSensitive": false
+  }
+]

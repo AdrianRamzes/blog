@@ -1,0 +1,18 @@
+{
+  "name": "ZRH Explorer",
+  "short_name": "ZRH Explorer",
+  "description": "Track your Zurich bucket list — offline, with compass & directions",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1c1c1e",
+  "theme_color": "#FF0000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
