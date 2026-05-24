@@ -1,98 +1,7 @@
 /* ═══════════════════════════════════════════
-   DATA
+   DATA — loaded from locations.json
 ═══════════════════════════════════════════ */
-const LOCATIONS = [
-  {
-    id: 1,
-    name: 'Statue of Liberty',
-    category: 'Landmark',
-    desc: 'Neoclassical icon on Liberty Island — take the ferry for stunning harbor views',
-    lat: 40.6892,
-    lng: -74.0445,
-    weatherSensitive: true,
-  },
-  {
-    id: 2,
-    name: 'Central Park',
-    category: 'Park',
-    desc: '843 acres of paths, lakes and meadows in the heart of Manhattan',
-    lat: 40.7851,
-    lng: -73.9683,
-    weatherSensitive: true,
-  },
-  {
-    id: 3,
-    name: 'Times Square',
-    category: 'Entertainment',
-    desc: 'The crossroads of the world — neon billboards, Broadway, and endless energy',
-    lat: 40.7580,
-    lng: -73.9855,
-    weatherSensitive: false,
-  },
-  {
-    id: 4,
-    name: 'Empire State Building',
-    category: 'Landmark',
-    desc: 'Art Deco icon with a 86th-floor observatory and panoramic city views',
-    lat: 40.7484,
-    lng: -73.9967,
-    weatherSensitive: true,
-  },
-  {
-    id: 5,
-    name: 'Brooklyn Bridge',
-    category: 'Landmark',
-    desc: 'Walk the iconic 1883 suspension bridge for sweeping views of Lower Manhattan',
-    lat: 40.7061,
-    lng: -73.9969,
-    weatherSensitive: true,
-  },
-  {
-    id: 6,
-    name: 'The Met',
-    category: 'Museum',
-    desc: "One of the world's greatest museums — 5,000 years of art under one roof",
-    lat: 40.7794,
-    lng: -73.9632,
-    weatherSensitive: false,
-  },
-  {
-    id: 7,
-    name: 'One World Trade Center',
-    category: 'Landmark',
-    desc: "The Western Hemisphere's tallest building — 102-floor One World Observatory",
-    lat: 40.7127,
-    lng: -74.0134,
-    weatherSensitive: true,
-  },
-  {
-    id: 8,
-    name: 'The High Line',
-    category: 'Park',
-    desc: 'Elevated linear park on a historic freight rail line through Chelsea & Hudson Yards',
-    lat: 40.7480,
-    lng: -74.0048,
-    weatherSensitive: true,
-  },
-  {
-    id: 9,
-    name: 'Rockefeller Center',
-    category: 'Landmark',
-    desc: 'Art Deco complex with Top of the Rock observatory and the famous skating rink',
-    lat: 40.7587,
-    lng: -73.9787,
-    weatherSensitive: false,
-  },
-  {
-    id: 10,
-    name: 'Grand Central Terminal',
-    category: 'Landmark',
-    desc: "Magnificent Beaux-Arts terminal with a celestial ceiling mural — NYC's busiest station",
-    lat: 40.7527,
-    lng: -73.9772,
-    weatherSensitive: false,
-  },
-];
+let LOCATIONS = [];
 
 /* ═══════════════════════════════════════════
    STATE
@@ -486,7 +395,8 @@ function setupEvents() {
 /* ═══════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════ */
-function init() {
+async function init() {
+  LOCATIONS = await fetch('./locations.json').then(r => r.json());
   load();
   setThemeIcon();
   setupEvents();
