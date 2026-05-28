@@ -191,8 +191,8 @@ const xTicks = [
   { value: 24_000_000,  label: "24M" },
   { value: 100_000_000, label: "100M"}
 ];
-// Reserve ~12% of the inner width for the Ultra FAT FIRE bar on the right
-const ultraBarFraction = 0.12;
+// Reserve 20% of the inner width for the Ultra FAT FIRE bar — equal to each main section
+const ultraBarFraction = 0.20;
 const mainW = innerW * (1 - ultraBarFraction);
 
 xTicks.forEach((t, i) => {
@@ -229,15 +229,27 @@ function xInvert(px) {
   return last.value + t * 15_000_000;
 }
 
-// ----- Linear Y axis ----------------------------------------------------
-const yMax = 1_100_000;
-function yScale(v) { return innerH - (v / yMax) * innerH; }
+// ----- Segmented Y axis (same concept as X: each tick gets equal screen height) --------
 const yTicks = [
   { value: 0,         label: "0"   },
   { value: 120_000,   label: "120k"},
   { value: 240_000,   label: "240k"},
   { value: 1_000_000, label: "1M"  }
 ];
+yTicks.forEach((t, i) => {
+  t.py = innerH - (innerH / (yTicks.length - 1)) * i;
+});
+function yScale(v) {
+  if (v <= yTicks[0].value) return yTicks[0].py;
+  for (let i = 0; i < yTicks.length - 1; i++) {
+    const a = yTicks[i], b = yTicks[i + 1];
+    if (v <= b.value) {
+      const frac = (v - a.value) / (b.value - a.value);
+      return a.py + frac * (b.py - a.py);
+    }
+  }
+  return yTicks[yTicks.length - 1].py;
+}
 
 // ----- Stage definitions for tooltip ------------------------------------
 // `key` is used to look up the translated name in the i18n dictionary.
@@ -516,14 +528,14 @@ function drawLabelBox(cx, cy, w, h) {
 
 // --- BARISTA FIRE box (above the red column) -------------------------
 const baristaCx = (xScale(0) + xScale(4_000_000)) / 2;
-const baristaCy = yScale(420_000);
+const baristaCy = yScale(200_000);
 drawLabelBox(baristaCx, baristaCy, 150, 64);
 i18nText(root, baristaCx, baristaCy - 8, "barista.title", { class: "region-label", "font-size": 16 });
 i18nText(root, baristaCx, baristaCy + 14, "barista.sub", { class: "region-sub" });
 
 // --- LEAN FIRE box (4M – 8M) -----------------------------------------
 const leanCx = (xScale(4_000_000) + xScale(8_000_000)) / 2;
-const leanCy = yScale(115_000);
+const leanCy = yScale(60_000);
 drawLabelBox(leanCx, leanCy, 150, 64);
 i18nText(root, leanCx, leanCy - 8, "lean.title", { class: "region-label", "font-size": 16 });
 i18nText(root, leanCx, leanCy + 14, "lean.sub", { class: "region-sub" });
@@ -537,7 +549,7 @@ i18nText(root, topCx, topCy + 14, "fire.sub", { class: "region-sub" });
 
 // --- FAT FIRE box (24M – 100M) ---------------------------------------
 const fatCx = (xScale(24_000_000) + xScale(100_000_000)) / 2;
-const fatCy = yScale(550_000);
+const fatCy = yScale(400_000);
 drawLabelBox(fatCx, fatCy, 150, 64);
 i18nText(root, fatCx, fatCy - 8, "fat.title", { class: "region-label", "font-size": 16 });
 i18nText(root, fatCx, fatCy + 14, "fat.sub", { class: "region-sub" });
