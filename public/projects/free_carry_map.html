@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Free-Carry Map — average cost after selling</title>
+<style>
+  :root{
+    --ground:#EDF0F3;
+    --card:#FBFCFD;
+    --ink:#15202B;
+    --muted:#5A6B78;
+    --hair:#D2DAE1;
+    --red:#C2452D;
+    --gold:#F4ECD8;
+    --green:#0E5A37;
+    --seam:#F7E7B0;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Menlo", "Consolas", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    padding:18px 14px 40px;
+    line-height:1.45;
+  }
+  .wrap{max-width:640px;margin:0 auto}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 6px;
+  }
+  h1{
+    font-size:clamp(22px,6.2vw,30px);
+    line-height:1.1;
+    letter-spacing:-.01em;
+    margin:0 0 8px;
+    font-weight:680;
+  }
+  .lede{
+    font-size:14px;
+    color:#3a4a56;
+    margin:0 0 18px;
+    max-width:52ch;
+  }
+  .lede b{color:var(--ink);font-weight:600}
+  .card{
+    background:var(--card);
+    border:1px solid var(--hair);
+    border-radius:16px;
+    padding:14px 14px 16px;
+    box-shadow:0 1px 0 rgba(21,32,43,.03), 0 10px 30px -18px rgba(21,32,43,.35);
+  }
+  .plot-holder{position:relative;width:100%}
+  canvas{display:block;width:100%;touch-action:none;border-radius:6px}
+
+  /* max-gain control */
+  .controls{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin:0 2px 12px;
+  }
+  .ctrl-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .seg{
+    display:inline-flex;border:1px solid var(--hair);border-radius:9px;
+    overflow:hidden;background:#F2F5F8;
+  }
+  .seg button{
+    appearance:none;-webkit-appearance:none;border:0;background:transparent;cursor:pointer;
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    padding:6px 11px;border-left:1px solid var(--hair);
+    transition:background .12s,color .12s;
+  }
+  .seg button:first-child{border-left:0}
+  .seg button:hover{color:var(--ink)}
+  .seg button.on{background:var(--ink);color:#fff;font-weight:600}
+
+  /* legend */
+  .legend{margin:14px 2px 2px}
+  .legend-bar{
+    height:12px;border-radius:6px;border:1px solid var(--hair);
+    background:linear-gradient(90deg,var(--red) 0%, var(--gold) 33.3%, var(--green) 100%);
+  }
+  .legend-ticks{
+    display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:10.5px;color:var(--muted);
+    margin-top:5px;letter-spacing:.02em;
+  }
+  .legend-ticks .mid{color:#9a7b1e;font-weight:600}
+
+  /* readout */
+  .readout{
+    margin-top:16px;border-top:1px solid var(--hair);padding-top:14px;
+  }
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+  .stat{
+    background:#F2F5F8;border:1px solid var(--hair);border-radius:10px;
+    padding:9px 10px;
+  }
+  .stat .k{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:3px;
+  }
+  .stat .v{font-family:var(--mono);font-size:19px;font-weight:600;line-height:1}
+  .stat .v small{font-size:11px;font-weight:500;color:var(--muted);margin-left:2px}
+  .status{
+    display:flex;gap:10px;align-items:flex-start;
+    font-size:14px;
+  }
+  .dot{flex:0 0 auto;width:10px;height:10px;border-radius:50%;margin-top:5px;background:var(--muted)}
+  .status .txt b{font-weight:600}
+  .recovered{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px}
+  .hint{
+    font-family:var(--mono);font-size:11px;color:var(--muted);
+    margin:10px 2px 0;letter-spacing:.02em;
+  }
+  .formula{
+    font-family:var(--mono);font-size:12px;color:#3a4a56;
+    background:#F2F5F8;border:1px solid var(--hair);border-radius:8px;
+    padding:8px 10px;margin-top:14px;overflow-x:auto;white-space:nowrap;
+  }
+  .formula b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Free-carry map</p>
+  <h1>Selling down to a free position</h1>
+  <p class="lede">The average cost of the shares you <b>keep</b>, for any price gain and any amount you sell. The gold seam is break-even — your initial fully recovered, so the rest rides free.</p>
+
+  <div class="card">
+    <div class="controls">
+      <span class="ctrl-label">Max price gain</span>
+      <div class="seg" id="seg">
+        <button data-g="100" class="on">100%</button>
+        <button data-g="200">200%</button>
+        <button data-g="500">500%</button>
+        <button data-g="1000">1000%</button>
+      </div>
+    </div>
+    <div class="plot-holder">
+      <canvas id="cv"></canvas>
+    </div>
+
+    <div class="legend">
+      <div class="legend-bar"></div>
+      <div class="legend-ticks">
+        <span>1.0× &nbsp;full cost</span>
+        <span class="mid">0 &nbsp;free</span>
+        <span>−2.0× &nbsp;profit</span>
+      </div>
+    </div>
+
+    <div class="readout">
+      <div class="stats">
+        <div class="stat"><div class="k">Price gain</div><div class="v" id="rGain">100<small>%</small></div></div>
+        <div class="stat"><div class="k">You sell</div><div class="v" id="rSold">50<small>%</small></div></div>
+        <div class="stat"><div class="k">Avg cost left</div><div class="v" id="rCost">0.00<small>×</small></div></div>
+      </div>
+      <div class="status">
+        <span class="dot" id="rDot"></span>
+        <span class="txt" id="rStatus">Break-even. Your initial is fully recovered; everything you keep rides free.</span>
+      </div>
+      <div class="recovered" id="rRecover">Capital recovered: 100% of what you put in</div>
+      <p class="hint">Tap or drag anywhere on the chart to read off a point.</p>
+    </div>
+
+    <div class="formula">avg&nbsp;cost&nbsp;left&nbsp;=&nbsp;(1&nbsp;−&nbsp;<b>m</b>·<b>f</b>)&nbsp;/&nbsp;(1&nbsp;−&nbsp;<b>f</b>)&nbsp;&nbsp;·&nbsp;&nbsp;m&nbsp;=&nbsp;price&nbsp;multiple,&nbsp;f&nbsp;=&nbsp;fraction&nbsp;sold</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const cv = document.getElementById('cv');
+  const ctx = cv.getContext('2d');
+  const holder = cv.parentElement;
+
+  // ----- model ranges -----
+  let G_MAX = 100;         // max price gain in %  (default 100, adjustable)
+  const F_MAX = 1.0;       // fraction sold 0..1
+  const A_HI = 1.0, A_LO = -2.0; // colour clamp for average cost
+
+  // colours
+  const C_HI = [194,69,45];    // full cost
+  const C_ZERO = [244,236,216];// free
+  const C_LO = [14,90,55];     // deep profit
+
+  // layout (CSS px)
+  let mL=46, mR=14, mT=14, mB=46;
+  let W=0,H=0, plotX=0, plotY=0, plotW=0, plotH=0, dpr=1;
+
+  const base = document.createElement('canvas'); // pre-rendered everything except crosshair
+  const bctx = base.getContext('2d');
+  const heat = document.createElement('canvas');  // per-pixel heatmap
+  const hctx = heat.getContext('2d');
+
+  let cross = null; // {f, m}
+
+  // ---- helpers ----
+  const m_to_y = m => plotY + plotH * (1 - ((m-1)*100)/G_MAX);
+  const f_to_x = f => plotX + plotW * (f/F_MAX);
+  const avgCost = (m,f) => f>=0.999 ? -999 : (1 - m*f)/(1 - f);
+  const tickStep = () => G_MAX<=100 ? 25 : G_MAX<=200 ? 50 : G_MAX<=500 ? 100 : 200;
+
+  function mix(a,b,t){
+    return [Math.round(a[0]+(b[0]-a[0])*t),
+            Math.round(a[1]+(b[1]-a[1])*t),
+            Math.round(a[2]+(b[2]-a[2])*t)];
+  }
+  function colourFor(A){
+    if(A>A_HI)A=A_HI; if(A<A_LO)A=A_LO;
+    if(A>=0){ return mix(C_ZERO,C_HI, A/A_HI); }
+    return mix(C_ZERO,C_LO, A/A_LO);
+  }
+
+  function sizeAll(){
+    W = holder.clientWidth;
+    if(W < 360){ mL=40; mB=42; } else { mL=46; mB=46; }
+    plotW = W - mL - mR;
+    plotH = plotW;                 // square plot
+    H = plotH + mT + mB;
+    plotX = mL; plotY = mT;
+    dpr = Math.min(window.devicePixelRatio||1, 3);
+
+    cv.style.width = W+'px'; cv.style.height = H+'px';
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    base.width = cv.width; base.height = cv.height;
+    bctx.setTransform(dpr,0,0,dpr,0,0);
+
+    // heatmap raster, capped for performance, smoothing hides the upscale
+    const HR = Math.min(Math.round(plotW*dpr), 760);
+    const VR = Math.round(HR * (plotH/plotW));
+    heat.width = HR; heat.height = VR;
+
+    buildHeat(HR,VR);
+    buildBase();
+    render();
+  }
+
+  function buildHeat(HR,VR){
+    const img = hctx.createImageData(HR,VR);
+    const d = img.data;
+    for(let py=0; py<VR; py++){
+      const g = G_MAX * (1 - py/(VR-1));   // top = max gain
+      const m = 1 + g/100;
+      for(let px=0; px<HR; px++){
+        const f = F_MAX * px/(HR-1);
+        const A = f>=0.999 ? A_LO : (1 - m*f)/(1 - f);
+        const c = colourFor(A);
+        const i = (py*HR+px)*4;
+        d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
+      }
+    }
+    hctx.putImageData(img,0,0);
+  }
+
+  // draw an iso-cost curve f(m) = (1-c)/(m-c)
+  function isoPath(g2d, c){
+    g2d.beginPath();
+    let started=false;
+    for(let mm=1; mm<=1+G_MAX/100+0.0001; mm+=0.02){
+      const f = (1-c)/(mm-c);
+      if(f<0 || f>F_MAX) { started=false; continue; }
+      const x=f_to_x(f), y=m_to_y(mm);
+      if(!started){ g2d.moveTo(x,y); started=true; } else { g2d.lineTo(x,y); }
+    }
+  }
+
+  function buildBase(){
+    bctx.clearRect(0,0,W,H);
+
+    // heatmap into plot rect
+    bctx.imageSmoothingEnabled = true;
+    bctx.drawImage(heat, plotX, plotY, plotW, plotH);
+
+    // subtle gridlines + ticks
+    bctx.lineWidth = 1;
+    bctx.font = '11px '+getComputedStyle(document.body).getPropertyValue('--mono');
+    bctx.fillStyle = '#5A6B78';
+
+    // x ticks every 25%
+    for(let p=0;p<=100;p+=25){
+      const x = plotX + plotW*(p/100);
+      bctx.strokeStyle='rgba(21,32,43,.13)';
+      bctx.beginPath(); bctx.moveTo(x,plotY); bctx.lineTo(x,plotY+plotH); bctx.stroke();
+      bctx.strokeStyle='rgba(21,32,43,.45)';
+      bctx.beginPath(); bctx.moveTo(x,plotY+plotH); bctx.lineTo(x,plotY+plotH+4); bctx.stroke();
+      bctx.textAlign='center'; bctx.textBaseline='top';
+      bctx.fillText(p+'%', x, plotY+plotH+7);
+    }
+    // y ticks (adaptive step)
+    const ys = tickStep();
+    for(let g=0;g<=G_MAX+0.001;g+=ys){
+      const y = plotY + plotH*(1-g/G_MAX);
+      bctx.strokeStyle='rgba(21,32,43,.13)';
+      bctx.beginPath(); bctx.moveTo(plotX,y); bctx.lineTo(plotX+plotW,y); bctx.stroke();
+      bctx.strokeStyle='rgba(21,32,43,.45)';
+      bctx.beginPath(); bctx.moveTo(plotX-4,y); bctx.lineTo(plotX,y); bctx.stroke();
+      bctx.textAlign='right'; bctx.textBaseline='middle';
+      bctx.fillText(g+'%', plotX-7, y);
+    }
+
+    // frame
+    bctx.strokeStyle='rgba(21,32,43,.5)';
+    bctx.lineWidth=1;
+    bctx.strokeRect(plotX+.5, plotY+.5, plotW-1, plotH-1);
+
+    // axis titles
+    bctx.fillStyle='#15202B';
+    bctx.font='600 11px '+getComputedStyle(document.body).getPropertyValue('--mono');
+    bctx.textAlign='center'; bctx.textBaseline='alphabetic';
+    bctx.fillText('AMOUNT SOLD  →', plotX+plotW/2, plotY+plotH+mB-6);
+    bctx.save();
+    bctx.translate(13, plotY+plotH/2);
+    bctx.rotate(-Math.PI/2);
+    bctx.fillText('PRICE GAIN  →', 0, 0);
+    bctx.restore();
+
+    // faint guide contours
+    bctx.lineWidth=1;
+    bctx.strokeStyle='rgba(21,32,43,.28)';
+    [0.5,0.25,-0.5,-1].forEach(c=>{ isoPath(bctx,c); bctx.stroke(); });
+
+    // bold FREE seam (c = 0)  ->  f = 1/m
+    bctx.save();
+    bctx.lineWidth=3.4; bctx.strokeStyle='rgba(21,32,43,.55)';
+    isoPath(bctx,0); bctx.stroke();
+    bctx.lineWidth=2.2; bctx.strokeStyle=getComputedStyle(document.body).getPropertyValue('--seam');
+    isoPath(bctx,0); bctx.stroke();
+    bctx.restore();
+
+    drawZoneLabels();
+    drawSeamFlag();
+  }
+
+  function softText(g2d, text, x, y, col){
+    g2d.font='600 10px '+getComputedStyle(document.body).getPropertyValue('--mono');
+    g2d.textAlign='center'; g2d.textBaseline='middle';
+    g2d.lineWidth=3; g2d.strokeStyle='rgba(255,255,255,.65)';
+    g2d.strokeText(text,x,y);
+    g2d.fillStyle=col; g2d.fillText(text,x,y);
+  }
+  function drawZoneLabels(){
+    // STILL INVESTED — red band, placed low where it is widest
+    const mInv = 1 + (G_MAX*0.12)/100;
+    softText(bctx,'STILL INVESTED', f_to_x((1/mInv)*0.42), m_to_y(mInv), 'rgba(120,30,18,.85)');
+    // PROFIT LOCKED IN — green band, placed high where it is widest
+    const mPro = 1 + (G_MAX*0.85)/100;
+    softText(bctx,'PROFIT LOCKED IN', f_to_x((1/mPro + 1)/2), m_to_y(mPro), 'rgba(8,60,36,.9)');
+  }
+  function drawSeamFlag(){
+    const m = 1 + (G_MAX*0.4)/100, f = 1/m;   // sit on the seam, mid-height
+    const x=f_to_x(f), y=m_to_y(m);
+    bctx.font='700 10px '+getComputedStyle(document.body).getPropertyValue('--mono');
+    const label='FREE';
+    const tw=bctx.measureText(label).width;
+    const padX=6, w=tw+padX*2, h=17;
+    let bx=x+8, by=y-h-4;
+    if(bx+w>plotX+plotW) bx=x-w-8;
+    if(by<plotY+2) by=y+6;                      // flip below if near the top
+    bctx.fillStyle='#15202B';
+    roundRect(bctx,bx,by,w,h,5); bctx.fill();
+    bctx.fillStyle=getComputedStyle(document.body).getPropertyValue('--seam');
+    bctx.textAlign='left'; bctx.textBaseline='middle';
+    bctx.fillText(label,bx+padX,by+h/2+0.5);
+    // tick to the seam
+    bctx.strokeStyle='rgba(21,32,43,.55)'; bctx.lineWidth=1;
+    const ay = by>y ? by : by+h;
+    bctx.beginPath(); bctx.moveTo(bx<x?bx+w:bx, ay); bctx.lineTo(x,y); bctx.stroke();
+  }
+  function roundRect(g2d,x,y,w,h,r){
+    g2d.beginPath();
+    g2d.moveTo(x+r,y); g2d.arcTo(x+w,y,x+w,y+h,r);
+    g2d.arcTo(x+w,y+h,x,y+h,r); g2d.arcTo(x,y+h,x,y,r);
+    g2d.arcTo(x,y,x+w,y,r); g2d.closePath();
+  }
+
+  function render(){
+    ctx.clearRect(0,0,W,H);
+    ctx.drawImage(base,0,0,W,H);
+    if(cross){
+      const x=f_to_x(cross.f), y=m_to_y(cross.m);
+      ctx.save();
+      ctx.strokeStyle='rgba(21,32,43,.45)'; ctx.lineWidth=1; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(plotX,y); ctx.lineTo(x,y);
+      ctx.moveTo(x,plotY+plotH); ctx.lineTo(x,y); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(x,y,5.5,0,Math.PI*2);
+      ctx.fillStyle='#fff'; ctx.fill();
+      ctx.lineWidth=2; ctx.strokeStyle='#15202B'; ctx.stroke();
+      ctx.restore();
+      drawTooltip(x,y,computeVals(cross.m,cross.f));
+    }
+  }
+
+  function drawTooltip(x,y,v){
+    const mono = getComputedStyle(document.body).getPropertyValue('--mono');
+    const pad=9, lh=15;
+    const rows=[['Gain', v.g+'%'],['Sold', v.soldPct+'%'],['Avg cost', v.Adisp+'×'],['Recovered', v.rec+'%']];
+    ctx.font='11px '+mono;
+    const cw = ctx.measureText('0').width;       // monospace char width
+    const labelCol = cw*10;                       // label column width
+    let valMax=0; rows.forEach(r=>{ valMax=Math.max(valMax, ctx.measureText(r[1]).width); });
+    ctx.font='700 11px '+mono;
+    const headW = ctx.measureText(v.word).width + 16;
+    const boxW = Math.ceil(Math.max(labelCol+valMax, headW) + pad*2);
+    const boxH = pad*2 + lh*(rows.length+1) + 2;
+
+    let tx = x+14, ty = y - boxH - 8;
+    if(tx+boxW > W-4) tx = x-14-boxW;
+    if(tx < 4) tx = 4;
+    if(ty < 4) ty = y + 14;
+    if(ty+boxH > H-4) ty = H-4-boxH;
+
+    // connector dot -> box
+    ctx.strokeStyle='rgba(21,32,43,.35)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(x,y);
+    ctx.lineTo(tx < x ? tx+boxW : tx, ty < y ? ty+boxH : ty); ctx.stroke();
+
+    // box
+    ctx.save();
+    roundRect(ctx,tx,ty,boxW,boxH,8);
+    ctx.fillStyle='rgba(19,28,38,.94)'; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.16)'; ctx.lineWidth=1; ctx.stroke();
+
+    // header: swatch + status word
+    const hy = ty+pad+6;
+    ctx.fillStyle=v.wordCol;
+    ctx.beginPath(); ctx.arc(tx+pad+4, hy, 3.5, 0, Math.PI*2); ctx.fill();
+    ctx.font='700 11px '+mono; ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillText(v.word, tx+pad+14, hy);
+
+    // rows
+    ctx.font='11px '+mono;
+    rows.forEach((r,i)=>{
+      const ry = hy + lh*(i+1);
+      ctx.fillStyle='rgba(159,176,187,.95)'; ctx.fillText(r[0], tx+pad, ry);
+      ctx.fillStyle='#EAEFF3'; ctx.fillText(r[1], tx+pad+labelCol, ry);
+    });
+    ctx.restore();
+  }
+
+  // ---- readout ----
+  const rGain=document.getElementById('rGain'), rSold=document.getElementById('rSold'),
+        rCost=document.getElementById('rCost'), rStatus=document.getElementById('rStatus'),
+        rDot=document.getElementById('rDot'), rRecover=document.getElementById('rRecover');
+
+  function statusInfo(A){
+    if(A < -0.02) return ['PROFIT','#5FCB92','Beyond free — you have pulled out more than you put in. Everything you keep is pure profit.','#0E5A37'];
+    if(Math.abs(A) <= 0.02) return ['FREE','#F2D98A','Break-even. Your initial is fully recovered; everything you keep rides free.','#9a7b1e'];
+    if(A < 0.34) return ['ALMOST FREE','#E9C27A','Almost free — most of your initial is already back in your pocket.','#7e6f3a'];
+    if(A < 0.67) return ['DE-RISKED','#E8A06B','De-risked — a good chunk of your capital is off the table.','#9a5a2e'];
+    return ['INVESTED','#E88972','Still mostly invested at close to your original cost.','#C2452D'];
+  }
+  function computeVals(m,f){
+    const g = Math.round((m-1)*100);
+    const A = avgCost(m,f);
+    const Adisp = (A<=-99) ? '−∞' : (A>=0 ? A.toFixed(2) : '−'+Math.abs(A).toFixed(2));
+    const rec = Math.round(f*m*100);
+    const [word,wordCol,txt,col] = statusInfo(A);
+    return { g, soldPct:Math.round(f*100), A, Adisp, rec, word, wordCol, txt, col };
+  }
+  function update(){
+    const v = computeVals(cross ? cross.m : 2, cross ? cross.f : 0.5);
+    rGain.innerHTML = v.g+'<small>%</small>';
+    rSold.innerHTML = v.soldPct+'<small>%</small>';
+    rCost.innerHTML = v.Adisp+'<small>×</small>';
+    rStatus.innerHTML = v.txt;
+    rDot.style.background = v.col;
+    rRecover.textContent = 'Capital recovered: '+v.rec+'% of what you put in';
+  }
+
+  // ---- interaction ----
+  function pick(ev){
+    const r = cv.getBoundingClientRect();
+    const cx = (ev.touches?ev.touches[0].clientX:ev.clientX) - r.left;
+    const cy = (ev.touches?ev.touches[0].clientY:ev.clientY) - r.top;
+    let f = (cx - plotX)/plotW; f = Math.max(0, Math.min(F_MAX, f));
+    let frac = (cy - plotY)/plotH; frac = Math.max(0, Math.min(1, frac));
+    const g = G_MAX*(1-frac);
+    cross = { f, m: 1+g/100 };
+    update(); render();
+  }
+  let dragging=false;
+  cv.addEventListener('pointerdown', e=>{dragging=true; cv.setPointerCapture(e.pointerId); pick(e);});
+  cv.addEventListener('pointermove', e=>{ if(dragging) pick(e); });
+  cv.addEventListener('pointerup', ()=>{dragging=false;});
+  cv.addEventListener('pointercancel', ()=>{dragging=false;});
+
+  // ---- max-gain control ----
+  const seg = document.getElementById('seg');
+  seg.addEventListener('click', e=>{
+    const b = e.target.closest('button'); if(!b) return;
+    G_MAX = +b.dataset.g;
+    [...seg.children].forEach(c=>c.classList.toggle('on', c===b));
+    if(cross && cross.m > 1+G_MAX/100) cross.m = 1+G_MAX/100;  // keep the dot in view
+    buildHeat(heat.width, heat.height);
+    buildBase(); update(); render();
+  });
+
+  // init
+  window.addEventListener('resize', ()=>{ sizeAll(); });
+  if(window.ResizeObserver){ new ResizeObserver(()=>sizeAll()).observe(holder); }
+  sizeAll();
+  // seed the readout at the classic example (100% gain, sell 50%)
+  cross = { f:0.5, m:2 }; update(); render();
+})();
+</script>
+</body>
+</html>
