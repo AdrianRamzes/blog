@@ -55,9 +55,9 @@
   },
   {
     "id": 7,
-    "name": "One World Trade Center",
+    "name": "One World Observatory",
     "category": "Landmark",
-    "desc": "The Western Hemisphere's tallest building — 102-floor One World Observatory",
+    "desc": "Top-floor observatory of the Western Hemisphere's tallest building — 360° views from 1,250 ft",
     "lat": 40.7127,
     "lng": -74.0134,
     "weatherSensitive": true
@@ -96,6 +96,70 @@
     "desc": "Trendy waterfront district under the Manhattan Bridge with stunning skyline views",
     "lat": 40.7033,
     "lng": -73.9881,
+    "weatherSensitive": true
+  },
+  {
+    "id": 12,
+    "name": "9/11 Memorial & Museum",
+    "category": "Museum",
+    "desc": "Solemn twin reflecting pools mark the footprints of the Twin Towers — museum below tells the full story",
+    "lat": 40.7115,
+    "lng": -74.0134,
+    "weatherSensitive": true
+  },
+  {
+    "id": 13,
+    "name": "Freehand New York",
+    "category": "Hotel",
+    "desc": "Stylish 4-star hotel in the Flatiron District with a rooftop bar and vibrant common spaces",
+    "lat": 40.7432,
+    "lng": -73.9871,
+    "weatherSensitive": false,
+    "icon": "🏠"
+  },
+  {
+    "id": 14,
+    "name": "Wall Street",
+    "category": "Landmark",
+    "desc": "The historic heart of American finance — lined with neoclassical buildings and bronze bull sculptures",
+    "lat": 40.7069,
+    "lng": -74.0089,
+    "weatherSensitive": false
+  },
+  {
+    "id": 15,
+    "name": "New York Stock Exchange",
+    "category": "Landmark",
+    "desc": "The world's largest stock exchange, fronted by a grand Corinthian colonnade on Broad Street",
+    "lat": 40.7069,
+    "lng": -74.0113,
+    "weatherSensitive": false
+  },
+  {
+    "id": 16,
+    "name": "Chrysler Building",
+    "category": "Landmark",
+    "desc": "Art Deco masterpiece with a gleaming stainless steel crown — one of NYC's most beloved skyscrapers",
+    "lat": 40.7516,
+    "lng": -73.9755,
+    "weatherSensitive": true
+  },
+  {
+    "id": 17,
+    "name": "Madison Square Park",
+    "category": "Park",
+    "desc": "Leafy urban park at the Flatiron crossroads — great for people-watching and the original Shake Shack",
+    "lat": 40.7421,
+    "lng": -73.9876,
+    "weatherSensitive": true
+  },
+  {
+    "id": 18,
+    "name": "Flatiron Building",
+    "category": "Landmark",
+    "desc": "Iconic triangular 1902 skyscraper at the convergence of Broadway and Fifth Avenue",
+    "lat": 40.7411,
+    "lng": -73.9897,
     "weatherSensitive": true
   }
 ]

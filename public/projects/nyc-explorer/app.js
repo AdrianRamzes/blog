@@ -198,7 +198,7 @@ function makeCard(loc) {
   el.innerHTML = `
     <div class="card-body">
       <div class="card-top">
-        <h2 class="card-name">${loc.name}</h2>
+        <h2 class="card-name">${loc.icon ? `<span class="loc-icon">${loc.icon}</span> ` : ''}${loc.name}</h2>
         <button class="pin-btn" aria-label="Pin to top" title="Pin">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 3h12a1 1 0 011 1v16l-7-3.5L5 20V4a1 1 0 011-1z" class="pin-path" stroke-linejoin="round"/>
