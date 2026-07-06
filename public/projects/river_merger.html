@@ -410,13 +410,8 @@ function stepAll(){
 }
 
 // ---------- Rendering ----------
-function colorFor(w){
-  const t = Math.min(1, (w - 1) / 12);
-  const r = Math.round( 70 + t * 60);
-  const g = Math.round(130 + t * 90);
-  const b = Math.round(210 + t * 45);
-  return `rgb(${r},${g},${b})`;
-}
+const RIVER_COLOR = "rgb(95,170,235)";
+function colorFor(){ return RIVER_COLOR; }
 
 function draw(){
   const dpr = window.devicePixelRatio || 1;
