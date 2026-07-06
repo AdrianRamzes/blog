@@ -270,9 +270,18 @@ function reset(){
   dirty = true;
 }
 
+// true if water entering `river` eventually flows through `self`
+function feedsInto(river, self){
+  const visited = new Set();
+  while (river && !visited.has(river)) {
+    if (river === self) return true;
+    visited.add(river);
+    river = river.mergedInto ? river.mergedInto.river : null;
+  }
+  return false;
+}
+
 // Widen everything downstream of (river, index), following merge chains.
-// Merge chains can be cyclic (A merges into B, B later hits A's old trace),
-// so visit each river at most once.
 function widenDownstream(river, index, amount){
   const visited = new Set();
   while (river && !visited.has(river)) {
@@ -302,8 +311,12 @@ function stepWalker(id, probs){
 
     if (tx < 0 || tx >= cols) { tx = head.x; ty = head.y + 1; } // walls deflect down
 
-    // avoid re-entering our own trace (e.g. left then right)
-    if (ty < rows && gridRiver[ty * cols + tx] === id + 1) continue;
+    // avoid re-entering our own trace, or any trace that already drains
+    // into us — merging there would strand the flow in a loop
+    if (ty < rows) {
+      const occ = gridRiver[ty * cols + tx];
+      if (occ !== 0 && feedsInto(rivers[occ - 1], river)) continue;
+    }
 
     nx = tx; ny = ty;
     break;
@@ -319,9 +332,16 @@ function stepWalker(id, probs){
   const occupant = gridRiver[cellIdx];
 
   if (occupant !== 0 && occupant !== id + 1) {
+    const target = rivers[occupant - 1];
+    if (feedsInto(target, river)) {
+      // This trace already drains into us (forced-down fallback can land
+      // here) — cross over it without merging, or the flow would loop.
+      river.pts.push({x: nx, y: ny});
+      river.w.push(river.widthNow);
+      return;
+    }
     // Merge into an existing river: this walker is done, everything
     // downstream of the junction carries our flow from now on.
-    const target = rivers[occupant - 1];
     const tIndex = gridIndex[cellIdx];
     river.pts.push({x: nx, y: ny});      // connector segment for drawing only
     river.w.push(river.widthNow);        // (the cell keeps its original owner)
@@ -456,6 +476,9 @@ window.addEventListener("resize", () => {
 refreshLabels();
 reset();
 requestAnimationFrame(frame);
+
+// test hook: lets an automated check verify every merge chain reaches the bottom
+window.__debugState = () => ({ rivers, rows });
 </script>
 </body>
 </html>
