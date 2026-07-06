@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>River Merger Simulator</title>
+<style>
+  :root{
+    --bg:#0B1220;
+    --panel:#111A2C;
+    --hair:#22304A;
+    --ink:#E7EEF7;
+    --muted:#8CA0B8;
+    --accent:#5FB8FF;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Menlo", "Consolas", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    flex-direction:column;
+  }
+  header{
+    padding:14px 18px 10px;
+    border-bottom:1px solid var(--hair);
+  }
+  header h1{
+    margin:0;
+    font-size:17px;
+    font-weight:650;
+    letter-spacing:-.01em;
+  }
+  header p{
+    margin:4px 0 0;
+    font-size:12.5px;
+    color:var(--muted);
+    max-width:72ch;
+  }
+  .layout{
+    flex:1;
+    display:flex;
+    min-height:0;
+  }
+  .panel{
+    width:250px;
+    flex:0 0 250px;
+    padding:14px;
+    border-right:1px solid var(--hair);
+    background:var(--panel);
+    overflow-y:auto;
+  }
+  .stage{
+    flex:1;
+    min-width:0;
+    padding:14px;
+    display:flex;
+  }
+  canvas{
+    display:block;
+    width:100%;
+    height:100%;
+    background:#060B14;
+    border:1px solid var(--hair);
+    border-radius:10px;
+  }
+  .group{margin:0 0 18px}
+  .group h2{
+    margin:0 0 10px;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+  }
+  .row{margin:0 0 12px}
+  .row label{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:12.5px;
+    margin-bottom:5px;
+    color:var(--ink);
+  }
+  .row label output{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--accent);
+  }
+  input[type=range]{
+    width:100%;
+    accent-color:var(--accent);
+    margin:0;
+  }
+  .hint{
+    font-size:11px;
+    color:var(--muted);
+    margin:2px 0 0;
+  }
+  .buttons{display:flex;gap:8px;flex-wrap:wrap}
+  button{
+    appearance:none;
+    border:1px solid var(--hair);
+    background:#18243B;
+    color:var(--ink);
+    font:600 12.5px var(--sans);
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  button:hover{border-color:var(--accent)}
+  button.primary{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#04121F;
+  }
+  .stats{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .stats b{color:var(--ink);font-weight:600}
+  @media (max-width:760px){
+    .layout{flex-direction:column}
+    .panel{
+      width:auto;flex:none;
+      border-right:0;border-bottom:1px solid var(--hair);
+    }
+    .stage{min-height:60vh}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>River Merger Simulator</h1>
+  <p>Droplets start at the top and random-walk downward, leaving a trace. When a droplet
+     runs into an existing river it merges, and everything downstream of the junction
+     grows wider.</p>
+</header>
+
+<div class="layout">
+  <aside class="panel">
+    <div class="group">
+      <h2>Sources</h2>
+      <div class="row">
+        <label>Starting points <output id="outN">50</output></label>
+        <input type="range" id="ctlN" min="2" max="300" step="1" value="50">
+      </div>
+      <div class="row">
+        <label>Cell size <output id="outCell">3 px</output></label>
+        <input type="range" id="ctlCell" min="2" max="8" step="1" value="3">
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Direction weights</h2>
+      <div class="row">
+        <label>Down <output id="outDown">50%</output></label>
+        <input type="range" id="ctlDown" min="0" max="100" step="1" value="50">
+      </div>
+      <div class="row">
+        <label>Left <output id="outLeft">25%</output></label>
+        <input type="range" id="ctlLeft" min="0" max="100" step="1" value="25">
+      </div>
+      <div class="row">
+        <label>Right <output id="outRight">25%</output></label>
+        <input type="range" id="ctlRight" min="0" max="100" step="1" value="25">
+      </div>
+      <p class="hint">Weights are normalized, shown as effective probabilities. They apply live, mid-simulation.</p>
+    </div>
+
+    <div class="group">
+      <h2>Playback</h2>
+      <div class="row">
+        <label>Speed <output id="outSpeed">4×</output></label>
+        <input type="range" id="ctlSpeed" min="1" max="30" step="1" value="4">
+      </div>
+      <div class="buttons">
+        <button class="primary" id="btnRestart">Restart</button>
+        <button id="btnPause">Pause</button>
+        <button id="btnInstant">Finish now</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>State</h2>
+      <div class="stats" id="stats">—</div>
+    </div>
+  </aside>
+
+  <main class="stage">
+    <canvas id="cv"></canvas>
+  </main>
+</div>
+
+<script>
+"use strict";
+
+// ---------- DOM ----------
+const cv = document.getElementById("cv");
+const ctx = cv.getContext("2d");
+const $ = id => document.getElementById(id);
+const ctlN = $("ctlN"), ctlCell = $("ctlCell"),
+      ctlDown = $("ctlDown"), ctlLeft = $("ctlLeft"), ctlRight = $("ctlRight"),
+      ctlSpeed = $("ctlSpeed");
+const outN = $("outN"), outCell = $("outCell"),
+      outDown = $("outDown"), outLeft = $("outLeft"), outRight = $("outRight"),
+      outSpeed = $("outSpeed");
+const statsEl = $("stats");
+
+// ---------- Simulation state ----------
+let cols = 0, rows = 0, cell = 3;
+let gridRiver = null;   // riverId + 1 per centerline cell, 0 = empty
+let gridIndex = null;   // point index within that river's path
+let rivers = [];        // {pts:[{x,y}], w:[int], widthNow, active, mergedInto:{river,index}|null}
+let paused = false;
+let steps = 0, merges = 0;
+let dirty = true;
+
+function normProbs(){
+  let d = +ctlDown.value, l = +ctlLeft.value, r = +ctlRight.value;
+  let s = d + l + r;
+  if (s === 0) { d = 1; s = 1; }
+  return { down: d / s, left: l / s, right: r / s };
+}
+
+function reset(){
+  cell = +ctlCell.value;
+  const box = cv.parentElement.getBoundingClientRect();
+  const cssW = Math.max(200, box.width - 2);
+  const cssH = Math.max(200, box.height - 2);
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(cssW * dpr);
+  cv.height = Math.round(cssH * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  cv.style.width = cssW + "px";
+  cv.style.height = cssH + "px";
+
+  cols = Math.max(4, Math.floor(cssW / cell));
+  rows = Math.max(4, Math.floor(cssH / cell));
+  gridRiver = new Int32Array(cols * rows);
+  gridIndex = new Int32Array(cols * rows);
+
+  rivers = [];
+  steps = 0; merges = 0;
+  paused = false;
+  $("btnPause").textContent = "Pause";
+
+  // distinct random starting columns in the top row
+  const n = Math.min(+ctlN.value, cols);
+  const xs = [];
+  for (let x = 0; x < cols; x++) xs.push(x);
+  for (let i = xs.length - 1; i > 0; i--) {
+    const j = (Math.random() * (i + 1)) | 0;
+    [xs[i], xs[j]] = [xs[j], xs[i]];
+  }
+  for (let i = 0; i < n; i++) {
+    const x = xs[i];
+    const id = rivers.length;
+    rivers.push({ pts: [{x, y: 0}], w: [1], widthNow: 1, active: true, mergedInto: null });
+    gridRiver[x] = id + 1;   // row 0 offset is just x
+    gridIndex[x] = 0;
+  }
+  dirty = true;
+}
+
+// Widen everything downstream of (river, index), following merge chains.
+// Merge chains can be cyclic (A merges into B, B later hits A's old trace),
+// so visit each river at most once.
+function widenDownstream(river, index, amount){
+  const visited = new Set();
+  while (river && !visited.has(river)) {
+    visited.add(river);
+    for (let j = index; j < river.w.length; j++) river.w[j] += amount;
+    river.widthNow += amount;
+    if (river.mergedInto) {
+      index = river.mergedInto.index;
+      river = river.mergedInto.river;
+    } else {
+      river = null;
+    }
+  }
+}
+
+function stepWalker(id, probs){
+  const river = rivers[id];
+  const head = river.pts[river.pts.length - 1];
+  let nx = head.x, ny = head.y;
+
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const r = Math.random();
+    let tx = head.x, ty = head.y;
+    if (r < probs.down)                    ty = head.y + 1;
+    else if (r < probs.down + probs.left)  tx = head.x - 1;
+    else                                   tx = head.x + 1;
+
+    if (tx < 0 || tx >= cols) { tx = head.x; ty = head.y + 1; } // walls deflect down
+
+    // avoid re-entering our own trace (e.g. left then right)
+    if (ty < rows && gridRiver[ty * cols + tx] === id + 1) continue;
+
+    nx = tx; ny = ty;
+    break;
+  }
+  if (nx === head.x && ny === head.y) ny = head.y + 1; // all attempts hit own trace: force down
+
+  if (ny >= rows) {           // reached the bottom edge
+    river.active = false;
+    return;
+  }
+
+  const cellIdx = ny * cols + nx;
+  const occupant = gridRiver[cellIdx];
+
+  if (occupant !== 0 && occupant !== id + 1) {
+    // Merge into an existing river: this walker is done, everything
+    // downstream of the junction carries our flow from now on.
+    const target = rivers[occupant - 1];
+    const tIndex = gridIndex[cellIdx];
+    river.pts.push({x: nx, y: ny});      // connector segment for drawing only
+    river.w.push(river.widthNow);        // (the cell keeps its original owner)
+    river.active = false;
+    river.mergedInto = { river: target, index: tIndex };
+    widenDownstream(target, tIndex, river.widthNow);
+    merges++;
+    return;
+  }
+
+  river.pts.push({x: nx, y: ny});
+  river.w.push(river.widthNow);
+  gridRiver[cellIdx] = id + 1;
+  gridIndex[cellIdx] = river.pts.length - 1;
+}
+
+function stepAll(){
+  const probs = normProbs();
+  let any = false;
+  for (let id = 0; id < rivers.length; id++) {
+    if (!rivers[id].active) continue;
+    stepWalker(id, probs);
+    any = true;
+  }
+  if (any) { steps++; dirty = true; }
+  return any;
+}
+
+// ---------- Rendering ----------
+function colorFor(w){
+  const t = Math.min(1, (w - 1) / 12);
+  const r = Math.round( 70 + t * 60);
+  const g = Math.round(130 + t * 90);
+  const b = Math.round(210 + t * 45);
+  return `rgb(${r},${g},${b})`;
+}
+
+function draw(){
+  const dpr = window.devicePixelRatio || 1;
+  ctx.clearRect(0, 0, cv.width / dpr, cv.height / dpr);
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  const px = p => (p.x + 0.5) * cell;
+  const py = p => (p.y + 0.5) * cell;
+
+  for (const river of rivers) {
+    const {pts, w} = river;
+    if (pts.length < 2) {
+      ctx.fillStyle = colorFor(w[0]);
+      ctx.beginPath();
+      ctx.arc(px(pts[0]), py(pts[0]), Math.max(1, cell * 0.5), 0, 7);
+      ctx.fill();
+      continue;
+    }
+    // stroke runs of constant width in one path
+    let runStart = 0;
+    for (let j = 1; j <= pts.length; j++) {
+      if (j < pts.length && w[j] === w[runStart + 1]) continue;
+      const width = w[Math.min(runStart + 1, w.length - 1)];
+      ctx.strokeStyle = colorFor(width);
+      ctx.lineWidth = Math.max(1, width * cell * 0.55);
+      ctx.beginPath();
+      ctx.moveTo(px(pts[runStart]), py(pts[runStart]));
+      for (let k = runStart + 1; k < j; k++) ctx.lineTo(px(pts[k]), py(pts[k]));
+      ctx.stroke();
+      runStart = j - 1;
+    }
+    // active walker head
+    if (river.active) {
+      const h = pts[pts.length - 1];
+      ctx.fillStyle = "#CFEBFF";
+      ctx.beginPath();
+      ctx.arc(px(h), py(h), Math.max(1.4, cell * 0.7), 0, 7);
+      ctx.fill();
+    }
+  }
+}
+
+function updateStats(){
+  const active = rivers.reduce((a, r) => a + (r.active ? 1 : 0), 0);
+  const maxW = rivers.reduce((a, r) => Math.max(a, r.w[r.w.length - 1] || 1), 1);
+  statsEl.innerHTML =
+    `grid <b>${cols}×${rows}</b><br>` +
+    `active droplets <b>${active}</b><br>` +
+    `merges <b>${merges}</b><br>` +
+    `widest river <b>${maxW}px</b><br>` +
+    `steps <b>${steps}</b>` +
+    (active === 0 ? "<br><b>done</b>" : "");
+}
+
+// ---------- Loop & controls ----------
+function frame(){
+  if (!paused) {
+    const speed = +ctlSpeed.value;
+    for (let i = 0; i < speed; i++) if (!stepAll()) break;
+  }
+  if (dirty) { draw(); updateStats(); dirty = false; }
+  requestAnimationFrame(frame);
+}
+
+function refreshLabels(){
+  const p = normProbs();
+  outN.textContent = ctlN.value;
+  outCell.textContent = ctlCell.value + " px";
+  outDown.textContent = Math.round(p.down * 100) + "%";
+  outLeft.textContent = Math.round(p.left * 100) + "%";
+  outRight.textContent = Math.round(p.right * 100) + "%";
+  outSpeed.textContent = ctlSpeed.value + "×";
+}
+
+for (const c of [ctlDown, ctlLeft, ctlRight, ctlSpeed]) {
+  c.addEventListener("input", refreshLabels);
+}
+for (const c of [ctlN, ctlCell]) {
+  c.addEventListener("input", () => { refreshLabels(); reset(); });
+}
+$("btnRestart").addEventListener("click", reset);
+$("btnPause").addEventListener("click", e => {
+  paused = !paused;
+  e.target.textContent = paused ? "Resume" : "Pause";
+});
+$("btnInstant").addEventListener("click", () => {
+  let guard = rows * 60;               // safety cap against pathological configs
+  while (stepAll() && guard-- > 0) {}
+  dirty = true;
+});
+window.addEventListener("resize", () => {
+  clearTimeout(window.__rsz);
+  window.__rsz = setTimeout(reset, 200);
+});
+
+refreshLabels();
+reset();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
