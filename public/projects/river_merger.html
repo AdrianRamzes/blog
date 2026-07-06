@@ -263,11 +263,40 @@ function reset(){
   for (let i = 0; i < n; i++) {
     const x = xs[i];
     const id = rivers.length;
-    rivers.push({ pts: [{x, y: 0}], w: [1], widthNow: 1, active: true, mergedInto: null });
+    rivers.push({ id, pts: [{x, y: 0}], w: [1], widthNow: 1, active: true, mergedInto: null });
     gridRiver[x] = id + 1;   // row 0 offset is just x
     gridIndex[x] = 0;
   }
   dirty = true;
+}
+
+// Grid cells are claimed two ways: positive id+1 = a river's centerline,
+// negative -(id+1) = its footprint (the halo its rendered stroke covers).
+// Both count as "that river's water" for merging.
+
+// half-width of the rendered stroke, in whole cells
+function hwOf(w){ return Math.round(w * 0.3); }
+
+// Claim the footprint square around point `index` of `river`, so other
+// droplets merge when they touch any visible pixel of it — not just the
+// centerline. Never steals cells that already belong to someone.
+function claimFootprint(river, index){
+  const hw = hwOf(river.w[index]);
+  if (hw === 0) return;
+  const p = river.pts[index];
+  const mark = -(river.id + 1);
+  const r2 = (hw + 0.5) * (hw + 0.5);   // disc, to match the round stroke
+  const x0 = Math.max(0, p.x - hw), x1 = Math.min(cols - 1, p.x + hw);
+  const y0 = Math.max(0, p.y - hw), y1 = Math.min(rows - 1, p.y + hw);
+  for (let y = y0; y <= y1; y++) {
+    const dy = y - p.y;
+    for (let x = x0; x <= x1; x++) {
+      const dx = x - p.x;
+      if (dx * dx + dy * dy > r2) continue;
+      const i = y * cols + x;
+      if (gridRiver[i] === 0) { gridRiver[i] = mark; gridIndex[i] = index; }
+    }
+  }
 }
 
 // true if water entering `river` eventually flows through `self`
@@ -281,12 +310,17 @@ function feedsInto(river, self){
   return false;
 }
 
-// Widen everything downstream of (river, index), following merge chains.
+// Widen everything downstream of (river, index), following merge chains,
+// growing the claimed footprint along with the rendered width.
 function widenDownstream(river, index, amount){
   const visited = new Set();
   while (river && !visited.has(river)) {
     visited.add(river);
-    for (let j = index; j < river.w.length; j++) river.w[j] += amount;
+    for (let j = index; j < river.w.length; j++) {
+      const grew = hwOf(river.w[j] + amount) > hwOf(river.w[j]);
+      river.w[j] += amount;
+      if (grew) claimFootprint(river, j);
+    }
     river.widthNow += amount;
     if (river.mergedInto) {
       index = river.mergedInto.index;
@@ -311,17 +345,20 @@ function stepWalker(id, probs){
 
     if (tx < 0 || tx >= cols) { tx = head.x; ty = head.y + 1; } // walls deflect down
 
-    // avoid re-entering our own trace, or any trace that already drains
-    // into us — merging there would strand the flow in a loop
     if (ty < rows) {
       const occ = gridRiver[ty * cols + tx];
-      if (occ !== 0 && feedsInto(rivers[occ - 1], river)) continue;
+      // don't backtrack onto our own centerline (own footprint is fine)
+      if (occ === id + 1) continue;
+      // avoid water that already drains into us — merging there would
+      // strand the flow in a loop
+      if (occ !== 0 && Math.abs(occ) !== id + 1 &&
+          feedsInto(rivers[Math.abs(occ) - 1], river)) continue;
     }
 
     nx = tx; ny = ty;
     break;
   }
-  if (nx === head.x && ny === head.y) ny = head.y + 1; // all attempts hit own trace: force down
+  if (nx === head.x && ny === head.y) ny = head.y + 1; // all attempts blocked: force down
 
   if (ny >= rows) {           // reached the bottom edge
     river.active = false;
@@ -331,8 +368,8 @@ function stepWalker(id, probs){
   const cellIdx = ny * cols + nx;
   const occupant = gridRiver[cellIdx];
 
-  if (occupant !== 0 && occupant !== id + 1) {
-    const target = rivers[occupant - 1];
+  if (occupant !== 0 && Math.abs(occupant) !== id + 1) {
+    const target = rivers[Math.abs(occupant) - 1];
     if (feedsInto(target, river)) {
       // This trace already drains into us (forced-down fallback can land
       // here) — cross over it without merging, or the flow would loop.
@@ -340,8 +377,9 @@ function stepWalker(id, probs){
       river.w.push(river.widthNow);
       return;
     }
-    // Merge into an existing river: this walker is done, everything
-    // downstream of the junction carries our flow from now on.
+    // Touched another river's water (centerline or footprint): merge.
+    // This walker is done, everything downstream of the junction carries
+    // our flow from now on.
     const tIndex = gridIndex[cellIdx];
     river.pts.push({x: nx, y: ny});      // connector segment for drawing only
     river.w.push(river.widthNow);        // (the cell keeps its original owner)
@@ -356,6 +394,7 @@ function stepWalker(id, probs){
   river.w.push(river.widthNow);
   gridRiver[cellIdx] = id + 1;
   gridIndex[cellIdx] = river.pts.length - 1;
+  claimFootprint(river, river.pts.length - 1);
 }
 
 function stepAll(){
@@ -387,36 +426,50 @@ function draw(){
   const px = p => (p.x + 0.5) * cell;
   const py = p => (p.y + 0.5) * cell;
 
+  // Collect constant-width runs from every river, then paint thinnest
+  // first: wide water covers old thin traces it has since engulfed.
+  const runs = [];
   for (const river of rivers) {
     const {pts, w} = river;
     if (pts.length < 2) {
-      ctx.fillStyle = colorFor(w[0]);
-      ctx.beginPath();
-      ctx.arc(px(pts[0]), py(pts[0]), Math.max(1, cell * 0.5), 0, 7);
-      ctx.fill();
+      runs.push({river, start: 0, end: 0, width: w[0]});
       continue;
     }
-    // stroke runs of constant width in one path
     let runStart = 0;
     for (let j = 1; j <= pts.length; j++) {
       if (j < pts.length && w[j] === w[runStart + 1]) continue;
-      const width = w[Math.min(runStart + 1, w.length - 1)];
-      ctx.strokeStyle = colorFor(width);
-      ctx.lineWidth = Math.max(1, width * cell * 0.55);
-      ctx.beginPath();
-      ctx.moveTo(px(pts[runStart]), py(pts[runStart]));
-      for (let k = runStart + 1; k < j; k++) ctx.lineTo(px(pts[k]), py(pts[k]));
-      ctx.stroke();
+      runs.push({river, start: runStart, end: j - 1,
+                 width: w[Math.min(runStart + 1, w.length - 1)]});
       runStart = j - 1;
     }
-    // active walker head
-    if (river.active) {
-      const h = pts[pts.length - 1];
-      ctx.fillStyle = "#CFEBFF";
+  }
+  runs.sort((a, b) => a.width - b.width);
+
+  for (const run of runs) {
+    const pts = run.river.pts;
+    if (run.start === run.end) {
+      ctx.fillStyle = colorFor(run.width);
       ctx.beginPath();
-      ctx.arc(px(h), py(h), Math.max(1.4, cell * 0.7), 0, 7);
+      ctx.arc(px(pts[run.start]), py(pts[run.start]), Math.max(1, cell * 0.5), 0, 7);
       ctx.fill();
+      continue;
     }
+    ctx.strokeStyle = colorFor(run.width);
+    ctx.lineWidth = Math.max(1, run.width * cell * 0.55);
+    ctx.beginPath();
+    ctx.moveTo(px(pts[run.start]), py(pts[run.start]));
+    for (let k = run.start + 1; k <= run.end; k++) ctx.lineTo(px(pts[k]), py(pts[k]));
+    ctx.stroke();
+  }
+
+  // active walker heads on top
+  for (const river of rivers) {
+    if (!river.active) continue;
+    const h = river.pts[river.pts.length - 1];
+    ctx.fillStyle = "#CFEBFF";
+    ctx.beginPath();
+    ctx.arc(px(h), py(h), Math.max(1.4, cell * 0.7), 0, 7);
+    ctx.fill();
   }
 }
 
