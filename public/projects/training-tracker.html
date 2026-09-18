@@ -472,16 +472,16 @@
 
 <div class="tabs">
   <button class="tab" data-day="mon">
-    MON · PUSH
-    <span class="tab-count" id="count-mon">0/5</span>
+    MON · BENCH
+    <span class="tab-count" id="count-mon">0/7</span>
   </button>
   <button class="tab" data-day="wed">
-    WED · PULL
-    <span class="tab-count" id="count-wed">0/5</span>
+    WED · OPT
+    <span class="tab-count" id="count-wed">0/4</span>
   </button>
   <button class="tab" data-day="fri">
-    FRI · UPPER
-    <span class="tab-count" id="count-fri">0/6</span>
+    FRI · BENCH
+    <span class="tab-count" id="count-fri">0/7</span>
   </button>
 </div>
 
@@ -494,7 +494,7 @@
 </div>
 
 <div class="golden-rule">
-  <strong>RULES:</strong> 3-sec eccentric every rep · Top set = 1-2 reps in tank · +2.5 kg when all reps clean · Rest 2-3 min compounds, 60-90 sec accessories.
+  <strong>RULES:</strong> Goal: 100kg bench in 12 months · 3-sec eccentric every rep · Top set = 1-2 reps in tank · +2.5 kg on bench when all reps clean · Rest 2-3 min bench/compounds, 60-90 sec accessories · Session cap: 60-75 min.
 </div>
 
 <div class="reset-section">
@@ -518,37 +518,39 @@
 <script>
 const PROGRAM = {
   mon: {
-    label: "MONDAY · PUSH",
-    sub: "Chest / Shoulders / Triceps",
+    label: "MONDAY · HEAVY BENCH + ARMS + ABS",
+    sub: "Bench PR · Triceps · Shoulders · Biceps · Abs",
     exercises: [
-      { id: "bench",      name: "Bench Press",          note: "heavy, your strength",       sets: 4, reps: "5"  },
-      { id: "ohp",        name: "Overhead Press",       note: "strict, no leg drive",       sets: 3, reps: "6"  },
-      { id: "incdb",      name: "Incline DB Press",     note: "upper chest",                sets: 3, reps: "8"  },
-      { id: "dips",       name: "Dips / Close-grip",    note: "triceps + chest",            sets: 3, reps: "8"  },
-      { id: "facepull_m", name: "Face Pulls",           note: "posture insurance",          sets: 3, reps: "15" },
+      { id: "bench",       name: "Bench Press",         note: "PR driver — heavy",          sets: 5, reps: "3"  },
+      { id: "cgbp",        name: "Close-grip Bench",    note: "triceps + lockout",          sets: 3, reps: "6"  },
+      { id: "ohp_m",       name: "Overhead Press",      note: "shoulder mass",              sets: 3, reps: "6"  },
+      { id: "curl_m",      name: "Barbell Curl",        note: "strict, no swing",           sets: 3, reps: "10" },
+      { id: "rcurl",       name: "Reverse Curl",        note: "brachioradialis / forearm",  sets: 2, reps: "12" },
+      { id: "leg_raise_m", name: "Hanging Leg Raises",  note: "abs",                        sets: 3, reps: "12" },
+      { id: "plank",       name: "Plank",               note: "abs / core hold (sec)",      sets: 2, reps: "45s"},
     ]
   },
   wed: {
-    label: "WEDNESDAY · PULL",
-    sub: "Back / Posture / Abs",
+    label: "WEDNESDAY · PULL (optional)",
+    sub: "Skip guilt-free · flex day",
     exercises: [
-      { id: "dl",         name: "Deadlift",             note: "or RDL 3×6 if back tired",   sets: 3, reps: "5"  },
-      { id: "pullup",     name: "Pull-ups (weighted)",  note: "rest-pause OK",              sets: 4, reps: "5-8"},
-      { id: "row",        name: "Barbell Row",          note: "strict, chest up",           sets: 3, reps: "8"  },
-      { id: "facepull_w", name: "Face Pulls",           note: "again — posture matters",    sets: 3, reps: "15" },
-      { id: "leg_raise_w",name: "Hanging Leg Raises",   note: "abs",                        sets: 3, reps: "10" },
+      { id: "dl",          name: "Deadlift",            note: "or RDL 3×6 if back tired",   sets: 3, reps: "5"  },
+      { id: "row",         name: "Barbell Row",         note: "strict, chest up",           sets: 3, reps: "8"  },
+      { id: "curl_w",      name: "Barbell Curl",        note: "bonus arm volume",           sets: 3, reps: "12" },
+      { id: "leg_raise_w", name: "Hanging Leg Raises",  note: "abs",                        sets: 3, reps: "12" },
     ]
   },
   fri: {
-    label: "FRIDAY · UPPER BIAS + POSTERIOR",
-    sub: "Arms / Chest / Hamstrings / Calves",
+    label: "FRIDAY · VOLUME BENCH + ARMS + ABS",
+    sub: "Bench technique · Pull-ups · Arms · Abs",
     exercises: [
-      { id: "rdl",        name: "Romanian Deadlift",    note: "posture + hamstrings",       sets: 3, reps: "8"  },
-      { id: "wpu",        name: "Weighted Pull-ups",    note: "arms + back",                sets: 4, reps: "6"  },
-      { id: "incdb_f",    name: "Incline DB Press",     note: "upper chest",                sets: 4, reps: "8"  },
-      { id: "curl",       name: "Barbell Curl",         note: "strict, no swing",           sets: 3, reps: "10" },
-      { id: "calf",       name: "Standing Calf Raise",  note: "visible-in-shorts insurance",sets: 4, reps: "12" },
-      { id: "leg_raise_f",name: "Hanging Leg Raises",   note: "abs round 2",                sets: 3, reps: "12" },
+      { id: "bench_f",     name: "Bench Press (volume)",note: "~85% of Monday's weight",    sets: 4, reps: "6"  },
+      { id: "wpu",         name: "Weighted Pull-ups",   note: "back + arms + grip",         sets: 4, reps: "6"  },
+      { id: "incdb_f",     name: "Incline DB Press",    note: "upper chest",                sets: 3, reps: "8"  },
+      { id: "hcurl",       name: "Hammer Curl",         note: "brachialis / arm thickness", sets: 3, reps: "12" },
+      { id: "wrist",       name: "Wrist Curl superset", note: "wrist + reverse wrist curl", sets: 2, reps: "15" },
+      { id: "leg_raise_f", name: "Hanging Leg Raises",  note: "abs round 2",                sets: 3, reps: "12" },
+      { id: "calf",        name: "Standing Calf Raise", note: "visible-in-shorts insurance",sets: 3, reps: "15" },
     ]
   }
 };
@@ -580,16 +582,22 @@ function loadState() {
     if (!raw) return defaultState();
     const parsed = JSON.parse(raw);
     const fresh = defaultState();
+
+    // Add any missing days/exercises from the current PROGRAM.
+    // Set counts always follow the current PROGRAM spec — if an exercise's
+    // shape changed, stored data for it is dropped.
     Object.keys(PROGRAM).forEach(day => {
+      parsed.current = parsed.current || {};
+      parsed.lastWeek = parsed.lastWeek || {};
+      parsed.current[day] = parsed.current[day] || {};
+      parsed.lastWeek[day] = parsed.lastWeek[day] || {};
+
       PROGRAM[day].exercises.forEach(ex => {
-        if (!parsed.current?.[day]?.[ex.id]) {
-          parsed.current = parsed.current || {};
-          parsed.current[day] = parsed.current[day] || {};
+        const stored = parsed.current[day][ex.id];
+        if (!stored || !Array.isArray(stored.sets) || stored.sets.length !== ex.sets) {
           parsed.current[day][ex.id] = fresh.current[day][ex.id];
         }
-        if (!parsed.lastWeek?.[day]?.[ex.id]) {
-          parsed.lastWeek = parsed.lastWeek || {};
-          parsed.lastWeek[day] = parsed.lastWeek[day] || {};
+        if (!parsed.lastWeek[day][ex.id]) {
           parsed.lastWeek[day][ex.id] = fresh.lastWeek[day][ex.id];
         }
       });
