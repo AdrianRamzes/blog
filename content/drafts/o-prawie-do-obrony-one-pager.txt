@@ -1,0 +1,79 @@
+// ==== One-pager — propozycja (na bazie Iteracji 3 + "Zacznijmy od podstaw") ====
+// Konwencja: A = aksjomat (jak powinno być, przyjmowany bez dowodu)
+//            O = obserwacja (jak jest, sprawdzalna empirycznie)
+//            T = twierdzenie (wynika wyłącznie z podanych w nawiasie A i O)
+
+O PRAWIE DO OBRONY
+
+Nikt nie wie lepiej ode mnie, jak przeżyć moje życie.
+Dlatego nikt nie ma prawa mi go odebrać — ani zabronić mi go bronić.
+
+
+AKSJOMATY
+
+A1. Człowiek jest podmiotem: sam wybiera i sam ponosi skutki swoich wyborów (sprawczość).
+    Dotyczy to każdego człowieka w tym samym stopniu.
+A2. Nikt — ani człowiek, ani państwo, ani większość — nie ma prawa ograniczać przemocą
+    sprawczości kogoś, kto nikogo nie skrzywdził. Także wtedy, gdy miałoby to przynieść
+    korzyść innym. Niewinnego nie wolno poświęcić dla statystyki.
+A3. Kto pierwszy narusza A2, traci jego ochronę — w zakresie i na czas niezbędny
+    do przerwania naruszenia. Ani trochę dłużej.
+A4. Prawo nie może wymagać rzeczy niemożliwych.
+
+
+OBSERWACJE
+
+O1. Życie jest warunkiem każdego wyboru. Śmierć odbiera sprawczość całkowicie i nieodwracalnie.
+O2. Istnieją ludzie, którzy zaatakują innych. Nie da się ich wskazać zawczasu.
+O3. To napastnik wybiera czas, miejsce, ofiarę i skalę ataku. Ofiara nie zna jego zamiarów.
+O4. Atak trwa sekundy, pomoc przychodzi po minutach. W chwili zamachu ofiara jest sama.
+O5. Ludzie różnią się siłą, wiekiem i zdrowiem. Napastnik wybiera ofiarę słabszą od siebie.
+O6. Narzędzie niweluje różnicę siły. Spośród dostępnych narzędzi dziś tylko broń palna pozwala
+    słabszemu zatrzymać silniejszego, uzbrojonego lub kilku napastników — i to z dystansu.
+O7. Zakaz wiąże tylko tego, kto go przestrzega. Kto jest gotów złamać zakaz zabijania,
+    nie cofnie się przed zakazem posiadania.
+O8. Zdolność do wyrządzenia krzywdy ma każdy (pięść, nóż, samochód). Krzywdę wyrządza czyn,
+    nie posiadanie.
+
+
+TWIERDZENIA
+
+T1. [A2, O1]      Zamach na życie lub zdrowie to najcięższe możliwe naruszenie sprawczości.
+T2. [A3, A4, O3]  Ofiara ma prawo przerwać zamach skutecznie, czyli środkiem zdolnym zatrzymać
+                  najgroźniejszego napastnika — bo nie wie, z którym ma do czynienia.
+                  Prawo to kończy się wraz z ustaniem zamachu. Obrona, nie zemsta.
+T3. [T2, O4]      Państwo nie może odebrać prawa do obrony w zamian za ochronę,
+                  której w chwili ataku nie jest w stanie zapewnić.
+T4. [T2, O5, O6]  Bez skutecznych narzędzi prawo do obrony mają tylko silni.
+                  Zakaz nie znosi przemocy — przyznaje przewagę silniejszemu.
+T5. [A2, O2, O8]  Zakaz posiadania ogranicza ludzi, którzy nikogo nie skrzywdzili,
+                  traktując każdego jak przyszłego napastnika. Narusza A2 bez podstawy w A3.
+T6. [O7, T5]      Zakaz rozbraja przede wszystkim potencjalne ofiary. Nawet gdyby ograniczył
+                  broń u przestępców, nie usprawiedliwia go to — patrz A2.
+
+
+GRANICE (z tych samych aksjomatów)
+
+G1. [A2, O8]  Regulować wolno czyn, nie zdolność: lekkomyślne narażanie innych
+              czy niedbałe przechowywanie to naruszenia A2 — i to one podlegają karze.
+G2. [A3]      Prawo traci ten, kto już użył przemocy wobec niewinnego.
+G3. [A1]      Prawo przysługuje temu, kto jest zdolny do odpowiedzialnego wyboru:
+              nie dzieciom, nie osobom z orzeczoną indywidualnie niepoczytalnością.
+G4. [A2]      Niedopuszczalne są środki, których nie da się skierować wyłącznie przeciw
+              napastnikowi (broń masowego rażenia). Ich użycie z natury krzywdzi niewinnych.
+G5. [O2, O3, A4]  Państwo może sprawdzać kryteria obiektywne (wiek, niekaralność za przemoc,
+              podstawowe umiejętności). Nie może decydować uznaniowo ani żądać dowodu
+              przyszłego zagrożenia — tego nie da się wykazać.
+
+
+WNIOSEK
+
+Każdy dorosły, poczytalny i niekarany za przemoc człowiek ma prawo posiadać i nosić
+skuteczne narzędzie obrony. Dziś jest nim broń palna.
+
+Kto temu przeczy, musi powiedzieć na głos, który aksjomat odrzuca:
+ - że inni ludzie są podmiotami, tak jak on (A1),
+ - że niewinnego nie wolno poświęcić dla korzyści innych (A2),
+ - że napastnik traci ochronę, kiedy atakuje (A3),
+ - albo że prawo nie może wymagać niemożliwego (A4).
+Albo wskazać narzędzie skuteczniejsze niż broń palna (O6). Wtedy wniosek dotyczy tego narzędzia.
