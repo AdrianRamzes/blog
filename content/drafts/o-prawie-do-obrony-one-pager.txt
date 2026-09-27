@@ -1,4 +1,4 @@
-// ==== One-pager — Iteracja 3 ====
+// ==== One-pager — Iteracja 4 ====
 // A = aksjomat, O = obserwacja, T = twierdzenie, G = granica
 
 O PRAWIE DO OBRONY
@@ -6,7 +6,7 @@ O PRAWIE DO OBRONY
 
 AKSJOMATY
 
-A1. Każdy człowiek sam decyduje o swoim życiu.
+A1. Życie należy do tego, kto je przeżywa.
 A2. Prawo nie może wymagać rzeczy niemożliwych.
 A3. Kto atakuje, traci ochronę — dopóki atakuje.
 A4. Niewinnego nie wolno poświęcić dla dobra innych.
@@ -38,7 +38,7 @@ T7. [O8]          Zakaz rozbraja tylko ofiary.
 
 GRANICE
 
-G1. [A1]      Prawo do narzędzia ma ten, kto potrafi decydować.
+G1. [A4, O9]  Prawo do narzędzia ma ten, kto odpowiada za swoje czyny.
 G2. [A4, O3]  Traci je ten, kto już skrzywdził — jego nie trzeba zgadywać.
 G3. [A3]      Obrona ma zatrzymać, nie zabić.
 G4. [A4]      Obrona nie może trafiać w niewinnych.
@@ -48,14 +48,13 @@ G6. [A1, A4]  Prawo to nie łaska urzędnika.
 
 WNIOSEK
 
-Kto potrafi decydować i nikogo nie skrzywdził,
+Kto odpowiada za swoje czyny i nikogo nie skrzywdził,
 ma prawo posiadać i nosić najskuteczniejsze narzędzie obrony.
 
-Dziś jest nim broń palna. Jutro może nim być coś innego.
-Nie chodzi o broń. Chodzi o skuteczność.
+Dziś jest nim broń palna.
 
 Kto temu przeczy, musi uznać, że:
-    ktoś inny decyduje o twoim życiu,
+    twoje życie należy do kogoś innego,
     prawo może żądać niemożliwego,
     napastnikowi należy się ochrona,
     albo niewinnego wolno poświęcić.
