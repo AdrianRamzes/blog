@@ -1,7 +1,63 @@
-// ==== One-pager — propozycja (na bazie Iteracji 3 + "Zacznijmy od podstaw") ====
-// Konwencja: A = aksjomat (jak powinno być, przyjmowany bez dowodu)
-//            O = obserwacja (jak jest, sprawdzalna empirycznie)
-//            T = twierdzenie (wynika wyłącznie z podanych w nawiasie A i O)
+// ==== One-pager — Iteracja 2 ====
+// A = aksjomat, O = obserwacja, T = twierdzenie, G = granica
+
+O PRAWIE DO OBRONY
+
+
+AKSJOMATY
+
+A1. Każdy człowiek sam decyduje o swoim życiu.
+A2. Prawo nie może wymagać rzeczy niemożliwych.
+A3. Kto atakuje, traci ochronę — dopóki atakuje.
+A4. Niewinnego nie wolno poświęcić dla dobra innych.
+
+
+OBSERWACJE
+
+O1. Martwy nie wybiera.
+O2. Nie wszyscy ludzie są dobrzy.
+O3. Złego nie da się rozpoznać zawczasu.
+O4. Napastnik wybiera czas, miejsce i ofiarę.
+O5. Ofiara nie zna jego zamiarów.
+O6. Atak trwa sekundy, pomoc — minuty.
+O7. Ludzie nie są równi siłą. Broń palna czyni ich równymi.
+O8. Przestępca nie przestrzega prawa.
+O9. Krzywdzi czyn, nie przedmiot.
+
+
+TWIERDZENIA
+
+T1. [A1, O1]      Kto zabija, odbiera wszystkie wybory naraz.
+T2. [A3, O4, O5]  Ofiara musi móc zatrzymać najgorszego — bo nie wie, kogo ma przed sobą.
+T3. [A2, O6]      Państwo, które nie zdąży obronić, nie może zakazać obrony.
+T4. [A2, O1]      Zakaz obrony nie powstrzyma ofiary. Ukarze ją za to, że przeżyła.
+T5. [T2, O7]      Bez broni prawo do obrony mają tylko silni.
+T6. [A4, O3, O9]  Zakaz posiadania karze niewinnych za cudze zbrodnie.
+T7. [O8]          Zakaz rozbraja tylko ofiary.
+
+
+GRANICE
+
+G1. [A1]      Prawo do broni ma ten, kto potrafi decydować.
+G2. [A4, O3]  Traci je ten, kto już skrzywdził — jego nie trzeba zgadywać.
+G3. [A4]      Dozwolona jest broń, która trafia tylko w napastnika.
+G4. [A2, O3]  Nikt nie musi dowodzić, że zostanie zaatakowany.
+G5. [A1, A4]  Prawo to nie łaska urzędnika.
+
+
+WNIOSEK
+
+Kto potrafi decydować i nikogo nie skrzywdził, ma prawo posiadać i nosić broń.
+
+Kto temu przeczy, musi uznać, że:
+    ktoś inny decyduje o twoim życiu,
+    prawo może żądać niemożliwego,
+    napastnikowi należy się ochrona,
+    albo niewinnego wolno poświęcić.
+
+
+
+// ==== One-pager — Iteracja 1 (rozpisana, z uzasadnieniami) ====
 
 O PRAWIE DO OBRONY
 
