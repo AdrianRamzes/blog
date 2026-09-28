@@ -1,4 +1,4 @@
-// ==== One-pager — Iteracja 5 ====
+// ==== One-pager — Iteracja 6 ====
 // A = aksjomat, O = obserwacja, T = twierdzenie, G = granica
 
 O PRAWIE DO OBRONY
@@ -15,8 +15,8 @@ A4. Niewinnego nie wolno poświęcić dla dobra innych.
 OBSERWACJE
 
 O1. Martwy nie wybiera.
-O2. Nie wszyscy ludzie są dobrzy.
-O3. Złego nie da się rozpoznać zawczasu.
+O2. Są ludzie, którzy zaatakują.
+O3. Napastnika nie da się rozpoznać przed atakiem.
 O4. Napastnik wybiera czas, miejsce i ofiarę.
 O5. Ofiara nie zna jego zamiarów.
 O6. Atak trwa sekundy, pomoc — minuty.
