@@ -1,4 +1,4 @@
-// ==== One-pager — Iteracja 9 ====
+// ==== One-pager — Iteracja 10 ====
 //
 // STRUKTURA
 // A  Aksjomat     Jedyne zdania „powinno”. Przyjęte bez dowodu. Minimalne, niezależne,
@@ -45,7 +45,7 @@ TWIERDZENIA
 
 T1. [A1, O1]                Kto zabija, odbiera wszystkie wybory naraz.
 T2. [A1, A4]                Ofiara ma prawo się bronić. Skutki ponosi napastnik.
-T3. [T1, T2, A2, O5]        Ofiara musi móc zatrzymać najgorszego — bo nie wie, kogo ma przed sobą.
+T3. [T1, T2, A2, O5]        Ofiara musi móc zatrzymać najgroźniejszego napastnika — bo nie wie, kogo ma przed sobą.
 T4. [T3, O4, O8]            Bez narzędzia prawo do obrony mają tylko silni.
 T5. [A3, T4, O6]            Państwo, które nie zdąży obronić, nie może zabrać środków obrony.
 T6. [A2, O7]                Zakaz obrony nie powstrzyma ofiary. Ukarze ją za to, że przeżyła.
