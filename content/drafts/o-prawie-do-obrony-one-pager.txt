@@ -1,4 +1,4 @@
-// ==== One-pager — Iteracja 4 ====
+// ==== One-pager — Iteracja 5 ====
 // A = aksjomat, O = obserwacja, T = twierdzenie, G = granica
 
 O PRAWIE DO OBRONY
@@ -8,7 +8,7 @@ AKSJOMATY
 
 A1. Życie należy do tego, kto je przeżywa.
 A2. Prawo nie może wymagać rzeczy niemożliwych.
-A3. Kto atakuje, traci ochronę — dopóki atakuje.
+A3. Napastnik nie ma ochrony, dopóki zagraża.
 A4. Niewinnego nie wolno poświęcić dla dobra innych.
 
 
