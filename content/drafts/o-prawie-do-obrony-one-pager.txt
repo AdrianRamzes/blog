@@ -1,7 +1,6 @@
-// ==== One-pager — Iteracja 11 ====
+// ==== One-pager — Iteracja 12 ====
 //
 // STRUKTURA
-// D  Definicja    Ustala znaczenie słowa. Nie twierdzi nic o świecie ani o powinności.
 // A  Aksjomat     Jedyne zdania „powinno”. Przyjęte bez dowodu. Tylko je wolno odrzucić bez sporu o fakty.
 // O  Obserwacja   Jedyne zdania „jest”. Bez ocen. Tu toczy się spór o fakty.
 // T  Twierdzenie  Wynika wyłącznie z tego, co w nawiasie. Nie wnosi nic nowego.
@@ -9,25 +8,21 @@
 // W  Wniosek      Zasada z T i G. Plus zastosowanie z jednej obserwacji zależnej od czasu.
 //
 // REGUŁY
-// 1. Każde D, A i O użyte co najmniej raz.
+// 1. Każde A i O użyte co najmniej raz.
 // 2. Każde T prowadzi do wniosku.
 // 3. Odwołania tylko wstecz.
-// 4. Żadnej oceny poza A.
-// 5. Każdy nawias da się obronić jednym zdaniem (komentarz: Iteracja 1).
+// 4. Żadnej oceny poza A. Żadnych definicji — słowa znaczą to, co znaczą.
+// 5. Zakazuje się czynów, nie przedmiotów.
+// 6. Każdy nawias da się obronić jednym zdaniem (komentarz: Iteracja 1).
 
 O PRAWIE DO OBRONY
-
-
-DEFINICJA
-
-D1. Konieczny jest najłagodniejszy środek, który wystarcza.
 
 
 AKSJOMATY
 
 A1. Życie należy do tego, kto je przeżywa.
 A2. Prawo nie może wymagać rzeczy niemożliwych.
-A3. Kto odbiera konieczny środek, odbiera prawo.
+A3. Kto odbiera jedyny środek, odbiera prawo.
 A4. Kto wybiera atak, wybiera też jego skutki.
 A5. Niewinnemu nie wolno odebrać bezpieczeństwa dla cudzego.
 
@@ -41,8 +36,8 @@ O4. Napastnik wybiera czas, miejsce i ofiarę.
 O5. Ofiara nie zna jego zamiarów.
 O6. Atak trwa sekundy, pomoc — minuty.
 O7. Ludzie nie są równi siłą. Tylko narzędzie niweluje tę przewagę.
-O8. Przedmiot nie działa sam.
-O9. Dziś nic łagodniejszego od broni palnej nie wystarcza.
+O8. Broń działa tylko z decyzji tego, kto ją trzyma.
+O9. Dziś wystarcza tylko broń palna.
 
 
 TWIERDZENIA
@@ -51,27 +46,28 @@ T1. [A1, O1]              Kto zabija, odbiera wszystkie wybory naraz.
 T2. [A1, A4]              Ofiara ma prawo się bronić. Skutki ponosi napastnik.
 T3. [T1, T2, A2, O2, O5]  Obrona musi wystarczyć na każdego, kto może zaatakować — bo ofiara nie wie, kogo spotka.
 T4. [T3, O4, O7]          Bez narzędzia prawo do obrony mają tylko silni.
-T5. [A3, D1, T4, O6]      Państwo, które nie zdąży obronić, nie może zabrać koniecznego środka obrony.
+T5. [A3, T4, O6]          Państwo, które nie zdąży obronić, nie może zabrać jedynego środka obrony.
 T6. [A4, O8]              Posiadanie nikomu niczego nie odbiera. Odbiera czyn.
 T7. [A5, T5, T6, O3]      Zakaz posiadania odbiera niewinnym obronę z powodu cudzych zbrodni.
 
 
 GRANICE
 
-G1. [A4, A5, O8]  Narzędzie może mieć tylko ten, kto odpowiada za swoje czyny.
-G2. [A4, O3]      Kto już skrzywdził, może je stracić — jego nie trzeba zgadywać.
-G3. [A3, A4, D1]  Obrona sięga tak daleko jak konieczność. Dalej jest atakiem.
+G1. [A4, A5, O8]  Broń może mieć tylko ten, kto odpowiada za swoje czyny.
+G2. [A4, O3]      Kto już skrzywdził, może ją stracić — jego nie trzeba zgadywać.
+G3. [A2, A4, O5]  Obrona trwa, dopóki trwa zagrożenie. Potem jest atakiem.
 G4. [A5]          Środek, który rani wszystkich wokół, nie jest obroną.
-G5. [A2, O3]      Nikt nie musi dowodzić, że zostanie zaatakowany.
+G5. [A5, O3]      Pułapka nie jest obroną — nie odróżnia napastnika od niewinnego.
+G6. [A2, O3]      Nikt nie musi dowodzić, że zostanie zaatakowany.
 
 
 WNIOSEK
 
 [T5, T6, T7, O4, G1, G2]
 Kto odpowiada za swoje czyny i nikogo nie skrzywdził,
-ma prawo posiadać i nosić konieczne narzędzie obrony.
+ma prawo posiadać i nosić narzędzie, bez którego obrona nie wystarczy.
 
-[D1, O9]
+[T5, O9]
 Dziś jest nim broń palna.
 
 
