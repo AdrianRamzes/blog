@@ -1,4 +1,4 @@
-// ==== One-pager — Iteracja 8 ====
+// ==== One-pager — Iteracja 9 ====
 //
 // STRUKTURA
 // A  Aksjomat     Jedyne zdania „powinno”. Przyjęte bez dowodu. Minimalne, niezależne,
@@ -7,7 +7,7 @@
 // T  Twierdzenie  Wynika wyłącznie z tego, co w nawiasie. Nie wnosi nic nowego.
 // G  Granica      Twierdzenie, które zawęża: kto, czym, kiedy nie. Odpowiada na reductio.
 // W  Wniosek      Jedna teza z T i G. Plus jedno zdanie zależne od czasu.
-//    Wyzwanie     Kontrapozycja: kto odrzuca wniosek, musi odrzucić aksjomat.
+//    Wyzwanie     Kontrapozycja: kto przyjmuje O i odrzuca wniosek, musi odrzucić aksjomat.
 //
 // REGUŁY
 // 1. Każde A i O użyte co najmniej raz.
@@ -22,8 +22,9 @@ AKSJOMATY
 
 A1. Życie należy do tego, kto je przeżywa.
 A2. Prawo nie może wymagać rzeczy niemożliwych.
-A3. Kto wybiera atak, wybiera też skutki obrony.
-A4. Niewinny nie płaci własnym bezpieczeństwem za cudze.
+A3. Kto odbiera konieczny środek, odbiera prawo.
+A4. Kto wybiera atak, wybiera też jego skutki.
+A5. Niewinnemu nie wolno odebrać bezpieczeństwa dla cudzego.
 
 
 OBSERWACJE
@@ -35,44 +36,46 @@ O4.  Napastnik wybiera czas, miejsce i ofiarę.
 O5.  Ofiara nie zna jego zamiarów.
 O6.  Atak trwa sekundy, pomoc — minuty.
 O7.  Kto walczy o życie, nie pyta o przepisy.
-O8.  Ludzie nie są równi siłą. Narzędzie czyni ich równymi.
+O8.  Ludzie nie są równi siłą. Narzędzie niweluje tę przewagę.
 O9.  Przestępca nie przestrzega prawa.
 O10. Przedmiot nie działa sam.
 
 
 TWIERDZENIA
 
-T1. [A1, O1]           Kto zabija, odbiera wszystkie wybory naraz.
-T2. [T1, A2, A3, O5]   Ofiara musi móc zatrzymać najgorszego — bo nie wie, kogo ma przed sobą.
-T3. [A1, O6]           Państwo, które nie zdąży obronić, nie może zakazać obrony.
-T4. [A2, O7]           Zakaz obrony nie powstrzyma ofiary. Ukarze ją za to, że przeżyła.
-T5. [T2, O8]           Bez narzędzia prawo do obrony mają tylko silni.
-T6. [A4, O2, O3, O10]  Zakaz posiadania karze niewinnych za cudze zbrodnie.
-T7. [O9]               Zakaz rozbraja tylko ofiary.
+T1. [A1, O1]                Kto zabija, odbiera wszystkie wybory naraz.
+T2. [A1, A4]                Ofiara ma prawo się bronić. Skutki ponosi napastnik.
+T3. [T1, T2, A2, O5]        Ofiara musi móc zatrzymać najgorszego — bo nie wie, kogo ma przed sobą.
+T4. [T3, O4, O8]            Bez narzędzia prawo do obrony mają tylko silni.
+T5. [A3, T4, O6]            Państwo, które nie zdąży obronić, nie może zabrać środków obrony.
+T6. [A2, O7]                Zakaz obrony nie powstrzyma ofiary. Ukarze ją za to, że przeżyła.
+T7. [A5, T4, O2, O3, O10]   Zakaz posiadania karze niewinnych za cudze zbrodnie.
+T8. [O9]                    Zakaz wiąże tylko posłusznych.
 
 
 GRANICE
 
 G1. [A4, O10]  Prawo do narzędzia ma ten, kto odpowiada za swoje czyny.
 G2. [A4, O3]   Traci je ten, kto już skrzywdził — jego nie trzeba zgadywać.
-G3. [A3]       Obrona ma zatrzymać, nie zabić. Gdy zagrożenie mija, staje się atakiem.
-G4. [A4]       Obrona nie może trafiać w niewinnych.
+G3. [A3, A4]   Obrona ma zatrzymać, nie zabić. Gdy zagrożenie mija, staje się atakiem.
+G4. [A5]       Obrona nie może trafiać w niewinnych.
 G5. [A2, O3]   Nikt nie musi dowodzić, że zostanie zaatakowany.
 
 
 WNIOSEK
 
-[T3, T5, T6, O4, G1, G2]
+[T4, T5, T7, O4, G1, G2]
 Kto odpowiada za swoje czyny i nikogo nie skrzywdził,
-ma prawo posiadać i nosić najskuteczniejsze narzędzie obrony.
+ma prawo posiadać i nosić narzędzie, którym słabszy zatrzyma silniejszego.
 
 Dziś jest nim broń palna.
 
-Kto temu przeczy, musi uznać, że:
+Kto nie przeczy faktom, a przeczy wnioskowi, musi uznać, że:
     twoje życie należy do kogoś innego,
     prawo może żądać niemożliwego,
+    prawo bez środków wciąż jest prawem,
     za skutki ataku odpowiada ofiara,
-    albo niewinny ma płacić własnym bezpieczeństwem za cudze.
+    albo niewinnemu wolno odebrać bezpieczeństwo dla cudzego.
 
 
 
