@@ -87,7 +87,7 @@ Jeśli wskaże aksjomat, przyzna, że:
 
 T1. Śmierć nie odbiera jednej decyzji, lecz wszystkie przyszłe (O1); skoro życie należy do tego, kto je przeżywa (A1), zabójstwo odbiera je w całości.
 T2. Skoro życie jest moje (A1), wolno mi go bronić; a skutki tej obrony obciążają tego, kto wybrał atak, nie mnie (A4).
-T3. Napastnicy istnieją (O2), ofiara nie wie, kto i z jakim zamiarem ją atakuje (O5), i nie można wymagać, by wiedziała (A2); obrona wystarczająca tylko na słabszych zawodzi dokładnie wtedy, gdy stawką jest wszystko (T1).
+T3. Napastnicy istnieją (O2), ofiara nie wie, kto i z jakim zamiarem ją atakuje (O5), i nie można wymagać, by wiedziała (A2); prawo do obrony (T2) z obroną wystarczającą tylko na słabszych zawodzi dokładnie wtedy, gdy stawką jest wszystko (T1).
 T4. Napastnik wybiera ofiarę słabszą od siebie (O4), a przewagę siły niweluje tylko narzędzie (O7); bez niego obrona, która ma wystarczyć (T3), wystarcza tylko silnym.
 T5. Pomoc nie zdąży (O6), a bez narzędzia słabszy nie obroni się sam (T4); kto zabiera narzędzie — także państwo — czyni prawo do obrony niewykonalnym, czyli je odbiera (A3).
 T6. Broń palna nie działa bez decyzji trzymającego (O8), więc samo posiadanie nikomu nic nie robi; krzywdę może wyrządzić dopiero decyzja o strzale.
