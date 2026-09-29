@@ -1,4 +1,4 @@
-// ==== One-pager — Iteracja 13 ====
+// ==== One-pager — Iteracja 14 ====
 //
 // STRUKTURA
 // A  Aksjomat     Jedyne zdania „powinno”. Przyjęte bez dowodu. Tylko je wolno odrzucić bez sporu o fakty.
@@ -37,7 +37,7 @@ O4. Napastnik wybiera czas, miejsce i ofiarę.
 O5. Ofiara nie zna jego zamiarów.
 O6. Atak trwa sekundy, pomoc — minuty.
 O7. Ludzie nie są równi siłą. Tylko narzędzie niweluje tę przewagę.
-O8. Broń palna działa tylko z decyzji tego, kto ją trzyma.
+O8. Broń palna sama nie strzela.
 O9. Dziś tylko broń palna pozwala słabszemu zatrzymać silniejszego.
 
 
@@ -90,9 +90,9 @@ T2. Skoro życie jest moje (A1), wolno mi go bronić; a skutki tej obrony obcią
 T3. Napastnicy istnieją (O2), ofiara nie wie, kto i z jakim zamiarem ją atakuje (O5), i nie można wymagać, by wiedziała (A2); prawo do obrony (T2) z obroną wystarczającą tylko na słabszych zawodzi dokładnie wtedy, gdy stawką jest wszystko (T1).
 T4. Napastnik wybiera ofiarę słabszą od siebie (O4), a przewagę siły niweluje tylko narzędzie (O7); bez niego obrona, która ma wystarczyć (T3), wystarcza tylko silnym.
 T5. Pomoc nie zdąży (O6), a bez narzędzia słabszy nie obroni się sam (T4); kto zabiera narzędzie — także państwo — czyni prawo do obrony niewykonalnym, czyli je odbiera (A3).
-T6. Broń palna nie działa bez decyzji trzymającego (O8), więc samo posiadanie nikomu nic nie robi; krzywdę może wyrządzić dopiero decyzja o strzale.
+T6. Broń palna sama nie strzela (O8), więc samo posiadanie nikomu nic nie robi; krzywdę wyrządza dopiero strzał — zamierzony albo niedbały, zawsze czyn trzymającego.
 T7. Zakaz nie trafia w napastnika, bo nie da się go rozpoznać (O3), więc trafia w niewinnych; karze ich za posiadanie, które nie jest czynem (T6), czyli za możliwość (A6), i odbierając narzędzie odbiera im obronę (T5) w imię cudzego bezpieczeństwa (A5).
-G1. Broń działa tylko z decyzji trzymającego (O8), a skutki czynu ponosi ten, kto go wybiera (A4); kto nie potrafi odpowiadać za swoje wybory, przerzuciłby ich koszt na niewinnych (A5).
+G1. Broń sama nie strzela (O8), więc każdy strzał — także przypadkowy — jest czynem trzymającego, a skutki czynu ponosi ten, kto go wybiera (A4); kto nie panuje nad narzędziem albo nad sobą, przerzuciłby koszt swoich czynów na niewinnych (A5).
 G2. Kto już skrzywdził, popełnił czyn, za który wolno karać (A6), i przestał być nierozpoznany (O3); utrata narzędzia jest karą za czyn, nie za możliwość.
 G3. W trakcie zagrożenia nie można żądać od ofiary precyzyjnego dawkowania siły, bo nie zna zamiarów napastnika (O5, A2); gdy zagrożenie mija, dalsza przemoc jest nowym wyborem obrońcy, więc to on wybiera atak (A4).
 G4. Środek, który z natury rani otoczenie, zapewnia bezpieczeństwo jednemu, odbierając je niewinnym wokół (A5); to nie obrona, lecz przerzucenie kosztu.
