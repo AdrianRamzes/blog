@@ -123,7 +123,7 @@ table.src td.num { white-space: nowrap; }
 <div class="wrap">
   <header style="display:grid;gap:6px">
     <h1>Symulacja napaści i obrony</h1>
-    <p>Każdy piksel to człowiek, który porusza się losowo. Źli są uśpieni, dopóki się nie aktywują. Aktywny napastnik atakuje każdego, na kogo wejdzie. Po pewnym czasie zostaje zatrzymany i znika. Wynik starcia zależy od tego, kto ma broń. Jeden krok to jeden dzień. Domyślne liczby pochodzą z polskich statystyk (źródła na dole strony), a szanse obrony to założenia.</p>
+    <p>Każdy piksel to człowiek, który porusza się losowo. Źli są uśpieni, dopóki się nie aktywują. Aktywny napastnik atakuje każdego, na kogo wejdzie. Po pewnym czasie zostaje zatrzymany i znika. Wynik starcia zależy od tego, kto ma broń. Jeden krok to jeden dzień. Ludzie rodzą się i umierają ze starości, więc skład społeczeństwa jest stały. Domyślne liczby pochodzą z polskich statystyk (źródła na dole strony), a szanse obrony to założenia.</p>
   </header>
 
   <div class="main">
@@ -194,7 +194,7 @@ table.src td.num { white-space: nowrap; }
           <input type="range" id="n" min="0" max="1000" step="1">
         </div>
       <div class="param">
-          <div class="plabel"><label for="p">Źli w populacji</label><button class="info" type="button" aria-label="Wyjaśnienie: Źli w populacji" aria-describedby="t-p">i</button><span class="tip" role="tooltip" id="t-p">Jaka część ludzi kiedykolwiek w życiu użyje przemocy. Reszta to dobrzy, którzy nie zrobią tego nigdy.<em>Przykład: 2,5% oznacza, że na 200 osób w pociągu 5 kiedyś kogoś zaatakuje.</em></span><span class="val" id="pV"></span></div>
+          <div class="plabel"><label for="p">Źli (kiedyś zaatakują)</label><button class="info" type="button" aria-label="Wyjaśnienie: Źli" aria-describedby="t-p">i</button><span class="tip" role="tooltip" id="t-p">Jaka część ludzi kiedykolwiek w życiu użyje przemocy. Każdy zły w końcu zaatakuje, dobry nigdy. W danej chwili uśpionych złych na planszy jest mniej, bo zły znika po ataku, a dobry żyje całe życie.<em>Przykład: 3,5% oznacza, że z 200 urodzonych dzieci 7 kiedyś kogoś zaatakuje.</em></span><span class="val" id="pV"></span></div>
           <input type="range" id="p" min="0" max="0.2" step="0.005">
         </div>
       <div class="param">
@@ -206,7 +206,7 @@ table.src td.num { white-space: nowrap; }
           <input type="range" id="b" min="0" max="1" step="0.005">
         </div>
 <div class="param">
-          <div class="plabel check"><input type="checkbox" id="renew" checked><label for="renew">Odnawiaj populację</label><button class="info" type="button" aria-label="Wyjaśnienie: Odnawiaj populację" aria-describedby="t-renew">i</button><span class="tip" role="tooltip" id="t-renew">Każdy, kto znika z planszy (zginął, został powstrzymany albo zatrzymany), jest zastępowany nową osobą w losowym miejscu. Nowa osoba jest dobra lub zła, z bronią lub bez, według tych samych ustawień co reszta. Liczebność zostaje więc mniej więcej stała. Zmiana działa od razu, bez zaczynania od nowa.<em>Przykład: przy 2,5% złych średnio co 40. nowa osoba to przyszły napastnik.</em></span></div>
+          <div class="plabel check"><input type="checkbox" id="renew" checked><label for="renew">Odnawiaj populację</label><button class="info" type="button" aria-label="Wyjaśnienie: Odnawiaj populację" aria-describedby="t-renew">i</button><span class="tip" role="tooltip" id="t-renew">Ludzie umierają też ze starości (średnio po 78 latach, GUS). Na miejsce każdego, kto zniknął (ofiara, zatrzymany, zmarły ze starości), rodzi się nowa osoba w losowym miejscu. Jest dobra lub zła, z bronią lub bez, według tych samych ustawień. Liczebność i skład społeczeństwa zostają stałe.<em>Przykład: przy 3,5% złych średnio co 29. nowo urodzony to przyszły napastnik.</em></span></div>
         </div>
       <p class="note">Zmiana liczby osób i trzech suwaków zaczyna symulację od nowa. Odnawianie można przełączać w trakcie.</p>
     </section>
@@ -214,8 +214,8 @@ table.src td.num { white-space: nowrap; }
     <section class="card" aria-label="Napastnicy">
       <h2>Napastnicy</h2>
       <div class="param">
-          <div class="plabel"><label for="act">Aktywacja złego</label><button class="info" type="button" aria-label="Wyjaśnienie: Aktywacja złego" aria-describedby="t-act">i</button><span class="tip" role="tooltip" id="t-act">Jak często uśpiony zły zaczyna atakować, liczone w dniach. Im większa liczba, tym rzadziej.<em>Przykład: raz na 20 000 dni (ok. 55 lat) znaczy, że przeciętny zły atakuje mniej więcej raz w dorosłym życiu.</em></span><span class="val" id="actV"></span></div>
-          <input type="range" id="act" min="1" max="5" step="0.01">
+          <div class="plabel"><label for="act">Zły atakuje średnio</label><button class="info" type="button" aria-label="Wyjaśnienie: Zły atakuje średnio" aria-describedby="t-act">i</button><span class="tip" role="tooltip" id="t-act">Ile czasu mija średnio, zanim uśpiony zły zaatakuje. Nie zmienia liczby napaści na rok, bo każdy zły atakuje i tak, tylko to, ilu uśpionych złych żyje jednocześnie. Zmiana zaczyna symulację od nowa.<em>Przykład: po 25 latach znaczy, że ktoś urodzony dziś zaatakuje średnio jako 25-latek.</em></span><span class="val" id="actV"></span></div>
+          <input type="range" id="act" min="1" max="4.6" step="0.01">
         </div>
       <div class="param">
           <div class="plabel"><label for="dur">Czas aktywności</label><button class="info" type="button" aria-label="Wyjaśnienie: Czas aktywności" aria-describedby="t-dur">i</button><span class="tip" role="tooltip" id="t-dur">Ile dni napastnik działa, zanim zostanie zatrzymany przez policję lub okoliczności. Codziennie robi jeden krok. Jeśli wejdzie na człowieka, to jest napaść.<em>Przykład: 2 dni to zwykle 1 lub 2 napaści, potem zatrzymanie.</em></span><span class="val" id="durV"></span></div>
@@ -251,7 +251,8 @@ table.src td.num { white-space: nowrap; }
           <tr><td>Dobrzy z bronią</td><td class="num">1,1%</td><td>411 769 osób z pozwoleniem na broń na koniec 2025 r. (dane KGP) na 37,3 mln. Nie każdy nosi broń na co dzień, więc to raczej górna granica.</td></tr>
           <tr><td>Źli z bronią</td><td class="num">3%</td><td>Około 600 przestępstw z użyciem broni palnej rocznie (603 w 2023 r.) na około 20 tys. napaści.</td></tr>
           <tr><td>Napaści rocznie</td><td class="num">ok. 20 tys.</td><td>Szacunek: uszczerbki na zdrowiu (ok. 10 tys.), bójki i pobicia (ok. 3,5 tys.), rozboje i zabójstwa. To przestępstwa stwierdzone. Tych niezgłoszonych jest więcej.</td></tr>
-          <tr><td>Źli w populacji, aktywacja, czas aktywności</td><td class="num">2,5% · 20 000 dni · 2 dni</td><td>Dobrane razem tak, żeby wyszło około 20 tys. napaści rocznie. Statystyki nie mówią, ilu ludzi kiedykolwiek użyje przemocy, więc 2,5% to założenie, nie pomiar.</td></tr>
+          <tr><td>Długość życia</td><td class="num">78 lat</td><td>Przeciętne trwanie życia w 2024 r. według GUS: 74,9 roku u mężczyzn, 82,3 u kobiet.</td></tr>
+          <tr><td>Źli · czas do ataku · czas aktywności</td><td class="num">3,5% · 25 lat · 2 dni</td><td>Każdego roku rodzi się ok. 1/78 społeczeństwa, z czego 3,5% to przyszli napastnicy. Każdy robi średnio 1,2 napaści (2 dni aktywności), więc wychodzi ok. 20 tys. napaści rocznie na 37,3 mln. Statystyki nie mówią, ilu ludzi kiedykolwiek użyje przemocy, więc 3,5% to wartość dobrana do liczby napaści, nie pomiar.</td></tr>
           <tr><td>Napastnik → ofiara: ginie</td><td class="num">1,5%</td><td>503 zabójstwa w 2024 r. (z usiłowaniami) na około 20 tys. napaści. Bez usiłowań wychodzi mniej.</td></tr>
           <tr><td>Napastnik z bronią → ofiara: ginie</td><td class="num">4%</td><td>Od kilkunastu do 39 zabójstw z bronią palną rocznie przy około 600 przestępstwach z jej użyciem.</td></tr>
           <tr><td>Szanse obrony i przypadki z uzbrojoną ofiarą</td><td class="num">założenia</td><td>Brak polskich danych o obronie z bronią. Te liczby ustaw według własnej oceny.</td></tr>
@@ -281,7 +282,7 @@ const VIEW = 420;
 function rnd() { let x = rng; x ^= x << 13; x ^= x >>> 17; x ^= x << 5; rng = x; return x >>> 0; }
 
 function freshStats() {
-  return { att: [0,0,0,0], kill: [0,0,0,0], stop: [0,0,0,0], expired: 0, activated: 0, killGood: 0, killBad: 0, born: 0 };
+  return { att: [0,0,0,0], kill: [0,0,0,0], stop: [0,0,0,0], expired: 0, activated: 0, killGood: 0, killBad: 0, born: 0, natural: 0 };
 }
 
 function init(c) {
@@ -292,7 +293,11 @@ function init(c) {
   W = Math.ceil(Math.sqrt(N / dens)); H = Math.ceil(N / dens / W); S = W * H;
   cells = null; timers = null;
   cells = new Uint8Array(S); timers = fast ? null : new Uint8Array(S);
-  const pg = (1 - c.p), tGoodArmed = pg * c.g, tBadArmed = pg + c.p * c.b;
+  // Start w stanie równowagi: zły żyje uśpiony średnio 1/act dni, dobry całe życie (life dni),
+  // więc uśpionych złych jest w danej chwili mniej niż p.
+  const X = 1 / Math.max(c.act, 1e-9), L = c.life;
+  const q0 = c.p * X / ((1 - c.p) * L + c.p * X);
+  const pg = (1 - q0), tGoodArmed = pg * c.g, tBadArmed = pg + q0 * c.b;
   nDormant = 0;
   for (let i = 0; i < N; i++) {
     const r = rnd() * INV;
@@ -403,6 +408,18 @@ function stepFast() {
 
 // Odnawianie: każdy, kto zniknął, zostaje zastąpiony nową osobą w losowym pustym miejscu.
 // Nowa osoba jest dobra/zła i z bronią/bez według tych samych ustawień p, g, b.
+// Naturalna wymiana pokoleń: dobrzy umierają ze starości średnio po life dniach.
+// Uśpieni źli z definicji zaatakują przed śmiercią, więc ich to nie dotyczy.
+function turnover() {
+  let k = poisson(Math.max(0, cfg.n - nDormant) / cfg.life);
+  while (k-- > 0) {
+    for (let tries = 0; tries < 200; tries++) {
+      const i = rnd() % S, t = cells[i] & 0x7F;
+      if (t === 1 || t === 2) { cells[i] = 0; deficit++; st.natural++; break; }
+    }
+  }
+}
+
 function spawn() {
   const pg = 1 - cfg.p, tGA = pg * cfg.g, tBA = pg + cfg.p * cfg.b, mark = fast ? 0 : par << 7;
   let k = deficit; deficit = 0;
@@ -429,13 +446,13 @@ function render() {
 
 function frame(n) {
   const t0 = performance.now();
-  for (let s = 0; s < n; s++) { collect = s === n - 1; if (collect) actives = []; fast ? stepFast() : stepFull(); if (cfg.renew) spawn(); }
+  for (let s = 0; s < n; s++) { collect = s === n - 1; if (collect) actives = []; fast ? stepFast() : stepFull(); if (cfg.renew) { turnover(); spawn(); } }
   if (n === 0 && fast) for (const a of A) actives.push(a.pos, a.type);
   const ms = (performance.now() - t0) / Math.max(n, 1);
   const img = render();
   const act = Int32Array.from(actives);
   const evs = Int32Array.from(events); events = [];
-  self.postMessage({ type: 'frame', img: img.buffer, VW, VH, W, H, tick, ms, st, fast, act: act.buffer, evs: evs.buffer }, [img.buffer, act.buffer, evs.buffer]);
+  self.postMessage({ type: 'frame', img: img.buffer, VW, VH, W, H, tick, ms, st, fast, dormant: nDormant, act: act.buffer, evs: evs.buffer }, [img.buffer, act.buffer, evs.buffer]);
 }
 
 self.onmessage = e => {
@@ -456,8 +473,9 @@ self.onmessage = e => {
 <script>
 (() => {
   const $ = id => document.getElementById(id);
-  const STORE = 'symulacja-napasci-v2';
+  const STORE = 'symulacja-napasci-v3';
   const SPEEDS = [1, 2, 5, 10, 30, 90, 365];
+  const LIFE_DAYS = 78 * 365; // średnia długość życia w Polsce, GUS 2024
   const CASES = [
     { a: 'napastnik', v: 'ofiara', tip: 'Nikt nie ma broni palnej.', ex: 'napad z pięściami albo nożem na przechodnia, który nic przy sobie nie ma.' },
     { a: 'napastnik', v: 'ofiara z bronią', tip: 'Broń palną ma tylko ofiara.', ex: 'ktoś z nożem atakuje osobę, która nosi pistolet.' },
@@ -466,7 +484,7 @@ self.onmessage = e => {
   ];
   // Domyślne wartości dla Polski (źródła w karcie na dole strony)
   const DEF = {
-    n: 100000, p: 0.025, g: 0.011, b: 0.03, actLog: Math.log10(20000), dur: 2, spdIdx: 0, renew: true,
+    n: 100000, p: 0.035, g: 0.011, b: 0.03, actLog: Math.log10(9125), dur: 2, spdIdx: 0, renew: true,
     cases: [[0.015, 0.05], [0.006, 0.50], [0.04, 0.02], [0.02, 0.35]]
   };
   const clone = o => JSON.parse(JSON.stringify(o));
@@ -526,7 +544,7 @@ self.onmessage = e => {
 
   function cfg() {
     return {
-      n: S.n, p: S.p, g: S.g, b: S.b, act: act(), dur: S.dur, renew: S.renew,
+      n: S.n, p: S.p, g: S.g, b: S.b, act: act(), dur: S.dur, renew: S.renew, life: LIFE_DAYS,
       kill: S.cases.map(c => c[0]), stop: S.cases.map(c => c[1])
     };
   }
@@ -566,7 +584,7 @@ self.onmessage = e => {
   function labels() {
     $('nV').textContent = fmtN(S.n);
     $('pV').textContent = pct(S.p); $('gV').textContent = pct(S.g); $('bV').textContent = pct(S.b);
-    $('actV').textContent = 'co ' + fmt(days()) + ' dni' + (days() >= 365 ? ' (' + yearsLabel(days() / 365) + ')' : '');
+    $('actV').textContent = days() >= 365 ? 'po ' + yearsLabel(days() / 365).replace(/ (rok|lata|lat)$/, m => m === ' rok' ? ' roku' : ' latach') : 'po ' + fmt(days()) + ' dniach';
     $('durV').textContent = S.dur + ' ' + plural(S.dur, 'dzień', 'dni', 'dni');
     const sp = SPEEDS[S.spdIdx]; $('spdV').textContent = sp === 365 ? '1 rok' : sp + ' ' + plural(sp, 'dzień', 'dni', 'dni');
   }
@@ -585,7 +603,7 @@ self.onmessage = e => {
     if (restart) el.addEventListener('change', reset);
   }
   bindRange('p', 'p', true); bindRange('g', 'g', true); bindRange('b', 'b', true);
-  bindRange('act', 'actLog', false); bindRange('dur', 'dur', false); bindRange('spd', 'spdIdx', false);
+  bindRange('act', 'actLog', true); bindRange('dur', 'dur', false); bindRange('spd', 'spdIdx', false);
   $('n').addEventListener('input', () => { S.n = posToN(+$('n').value); labels(); });
   $('n').addEventListener('change', () => { S.n = posToN(+$('n').value); labels(); save(); reset(); });
   $('renew').addEventListener('change', () => { S.renew = $('renew').checked; save(); worker.postMessage({ type: 'cfg', cfg: { renew: S.renew } }); });
@@ -689,7 +707,7 @@ self.onmessage = e => {
     $('sDead').textContent = fmt(dead); $('sStop').textContent = fmt(stopped);
     $('sAct').textContent = fmt(last.act.length / 2); $('sExp').textContent = fmt(st.expired);
     $('sPer').textContent = perY(dead); $('sAtt').textContent = perY(att);
-    $('sMeta').textContent = `Dzień ${fmt(m.tick)}${m.tick >= 365 ? ' (' + dec(years, 1) + ' roku)' : ''} · ${localMode ? 'liczone na stronie (bez osobnego wątku) · ' : ''}${m.fast ? 'tryb szybki: tłum stoi, ruszają się tylko napastnicy' : 'ruszają się wszyscy'} · ${m.ms ? dec(m.ms, m.ms < 10 ? 1 : 0) + ' ms na dzień' : ''} · żyje ${fmt(S.n - dead - stopped - st.expired + st.born)} · nowych ${fmt(st.born)} · ofiar wśród złych ${fmt(st.killBad)}`;
+    $('sMeta').textContent = `Dzień ${fmt(m.tick)}${m.tick >= 365 ? ' (' + dec(years, 1) + ' roku)' : ''} · ${localMode ? 'liczone na stronie (bez osobnego wątku) · ' : ''}${m.fast ? 'tryb szybki: tłum stoi, ruszają się tylko napastnicy' : 'ruszają się wszyscy'} · ${m.ms ? dec(m.ms, m.ms < 10 ? 1 : 0) + ' ms na dzień' : ''} · żyje ${fmt(S.n - dead - stopped - st.expired - st.natural + st.born)} · uśpionych złych teraz ${dec(m.dormant / S.n * 100, 2)}% · urodzonych ${fmt(st.born)} · ofiar wśród złych ${fmt(st.killBad)}`;
     CASES.forEach((c, k) => { $('ma' + k).textContent = fmt(st.att[k]); $('mk' + k).textContent = fmt(st.kill[k]); $('ms' + k).textContent = fmt(st.stop[k]); });
 
     if (m.tick > 0 && (!series.length || series[series.length - 1].t !== m.tick)) {
