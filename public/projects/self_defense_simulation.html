@@ -8,21 +8,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Jedna ciemna scena: plansza po lewej, sterowanie i liczniki po prawej, macierz starć i wykres pod spodem. */
+/* Liczby i wykresy na górze, parametry na dole, źródła na końcu. Jedna ciemna scena. */
 :root {
   --bg: #0d1015;
   --surface: #151a21;
   --ink: #e4e8ec;
   --muted: #8d97a2;
   --line: #262e38;
-  --good: #3d6690;
-  --good-armed: #7cc8ff;
-  --bad: #6e3b3b;
-  --bad-armed: #b8715f;
-  --active: #ff4636;
-  --active-armed: #ffad2e;
+  --accent: #7cc8ff;
   --dead: #ffffff;
   --stopped: #52e0b0;
+  --attack: #ff8a5c;
+  --active: #ff4636;
   --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   color-scheme: dark;
@@ -33,62 +30,61 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 .wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 18px; }
 h1 { font-size: 22px; font-weight: 600; margin: 0; text-wrap: balance; }
 h2 { font-size: 12.5px; font-weight: 600; margin: 0; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-p { margin: 0; max-width: 72ch; color: var(--muted); }
-.main { display: grid; grid-template-columns: minmax(280px, 680px) minmax(320px, 1fr); gap: 18px; align-items: start; }
+p { margin: 0; max-width: 76ch; color: var(--muted); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 12px; align-content: start; }
+.main { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; align-items: start; }
 @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 12px; }
-.stage { position: relative; width: 100%; aspect-ratio: 1; background: #000; border-radius: 6px; overflow: hidden; }
-.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-#base { image-rendering: pixelated; image-rendering: crisp-edges; }
-.busy { position: absolute; inset: 0; display: none; place-items: center; background: rgba(13,16,21,.75); font-size: 15px; }
-.busy.on { display: grid; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
-.mark { font-family: var(--font-mono); font-weight: 600; width: 11px; text-align: center; }
+
+.controlbar { display: grid; grid-template-columns: auto minmax(200px, 360px); gap: 18px; align-items: end; justify-content: space-between; }
+@media (max-width: 560px) { .controlbar { grid-template-columns: 1fr; } }
 .btns { display: flex; gap: 8px; }
 button { font: inherit; font-size: 14px; padding: 8px 16px; border-radius: 7px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
 button.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); font-weight: 600; min-width: 96px; }
-button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--good-armed); outline-offset: 2px; }
-.row { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; align-items: center; }
-label { font-size: 13.5px; }
-.val { font-family: var(--font-mono); font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; }
-input[type=range] { grid-column: 1 / -1; width: 100%; margin: 0 0 4px; accent-color: var(--ink); }
-select { font: inherit; font-size: 14px; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
-.hint { font-size: 12px; color: var(--muted); grid-column: 1 / -1; margin-top: -4px; }
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.stat { background: var(--bg); border-radius: 7px; padding: 8px 10px; display: grid; gap: 1px; }
-.stat b { font-family: var(--font-mono); font-size: 18px; font-weight: 500; font-variant-numeric: tabular-nums; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+@media (max-width: 1000px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 520px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+.stat { background: var(--bg); border-radius: 7px; padding: 9px 11px; display: grid; gap: 2px; align-content: start; }
+.stat b { font-family: var(--font-mono); font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 12px; color: var(--muted); }
+.stat .ref { color: var(--ink); opacity: .7; }
 .stat.dead b { color: var(--dead); }
 .stat.stop b { color: var(--stopped); }
+.stat.att b { color: var(--attack); }
 .stat.act b { color: var(--active); }
-.lower { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; align-items: start; }
-@media (max-width: 900px) { .lower { grid-template-columns: 1fr; } }
-.tablewrap { overflow-x: auto; }
+.note { font-size: 12.5px; }
+
+.chartbox { display: grid; gap: 6px; }
+.chartbox canvas { width: 100%; height: 190px; display: block; }
+.chartlegend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); }
+.chartlegend i { display: inline-block; width: 14px; height: 2px; vertical-align: middle; margin-right: 6px; }
+.chartlegend i.dash { background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 7px); }
+
+.tablewrap { overflow: visible; }
+@media (max-width: 620px) { .tablewrap { overflow-x: auto; } }
 table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
 th, td { padding: 7px 6px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 th:first-child, td:first-child { text-align: left; white-space: normal; }
 th { font-weight: 500; color: var(--muted); font-size: 12px; vertical-align: bottom; }
 td.num { font-family: var(--font-mono); font-size: 13px; }
 td input { width: 56px; font: inherit; font-family: var(--font-mono); font-size: 13px; padding: 4px 6px; border-radius: 5px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); text-align: right; }
-.who { display: inline-flex; gap: 4px; align-items: center; }
-#chart { width: 100%; height: 180px; display: block; }
-.chartlegend { display: flex; gap: 16px; font-size: 12.5px; color: var(--muted); }
-.chartlegend i { display: inline-block; width: 14px; height: 2px; vertical-align: middle; margin-right: 6px; }
-.note { font-size: 12.5px; }
 
-.section { font-size: 13px; margin-top: 6px; }
+.paramhead { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+.paramhead .note { margin-right: auto; }
+.section { font-size: 13px; }
 .params { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 18px; align-items: start; }
 @media (max-width: 1000px) { .params { grid-template-columns: 1fr 1fr; } .params > :last-child { grid-column: 1 / -1; } }
 @media (max-width: 620px) { .params { grid-template-columns: 1fr; } }
-.controlbar { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: end; }
-@media (max-width: 420px) { .controlbar { grid-template-columns: 1fr; } }
 .param { position: relative; display: grid; gap: 4px; }
-.param select { width: 100%; }
-.param input[type=range] { margin: 0; }
 .plabel { display: flex; align-items: center; gap: 6px; }
 .plabel .val { margin-left: auto; }
+.plabel.check { gap: 8px; }
+.plabel.check input { width: 16px; height: 16px; margin: 0; accent-color: var(--accent); }
+label { font-size: 13.5px; }
+.val { font-family: var(--font-mono); font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; }
+input[type=range] { width: 100%; margin: 0; accent-color: var(--ink); }
+
 .thl { position: relative; display: inline-flex; align-items: center; gap: 7px; }
 td .thl { align-items: flex-start; } td .thl .info { margin-top: 1px; }
 .info {
@@ -104,84 +100,74 @@ td .thl { align-items: flex-start; } td .thl .info { margin-top: 1px; }
   white-space: normal; text-transform: none; letter-spacing: 0; box-shadow: 0 10px 28px rgba(0,0,0,.45);
 }
 .tip em { display: block; color: var(--muted); font-style: normal; margin-top: 6px; }
-.tip.r, td .tip { left: auto; right: 0; width: 280px; }
-td .tip { left: 0; right: auto; }
+.tip.r { left: auto; right: 0; width: 280px; }
+td .tip { left: 0; right: auto; width: 280px; }
 .info:hover + .tip, .info:focus-visible + .tip, .info.open + .tip { display: block; }
-td.case { position: relative; }
-.tablewrap { overflow: visible; }
-@media (max-width: 620px) { .tablewrap { overflow-x: auto; } }
-.plabel.check { gap: 8px; }
-.plabel.check input { width: 16px; height: 16px; margin: 0; accent-color: var(--good-armed); }
-.paramhead { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
-.paramhead .note { margin-right: auto; }
+
 table.src td, table.src th { white-space: normal; text-align: left; vertical-align: top; }
 table.src td.num { white-space: nowrap; }
-.crop { margin: 0; max-width: none; font-size: 13px; color: var(--ink); background: var(--bg); border-left: 3px solid var(--active-armed); padding: 7px 10px; border-radius: 0 6px 6px 0; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header style="display:grid;gap:6px">
     <h1>Symulacja napaści i obrony</h1>
-    <p>Każdy piksel to człowiek, który porusza się losowo. Źli są uśpieni, dopóki się nie aktywują. Aktywny napastnik atakuje każdego, na kogo wejdzie. Po pewnym czasie zostaje zatrzymany i znika. Wynik starcia zależy od tego, kto ma broń. Jeden krok to jeden dzień. Ludzie rodzą się i umierają ze starości, więc skład społeczeństwa jest stały. Domyślne liczby pochodzą z polskich statystyk (źródła na dole strony), a szanse obrony to założenia.</p>
+    <p>Każdy dzień to seria losowań. Rodzą się ludzie, a część z nich to przyszli napastnicy. Aktywny napastnik codziennie atakuje losową osobę. Wynik starcia zależy od tego, kto ma broń. Ludzie umierają też ze starości, więc skład społeczeństwa jest stały. Domyślne liczby pochodzą z polskich statystyk (źródła na dole strony), a szanse obrony to założenia.</p>
   </header>
 
-  <div class="main">
-    <section class="card" aria-label="Plansza">
-      <div class="stage">
-        <canvas id="base"></canvas>
-        <canvas id="over"></canvas>
-        <div class="busy" id="busy">Tworzę populację…</div>
+  <section class="card" aria-label="Sterowanie i liczby">
+    <div class="controlbar">
+      <div class="btns">
+        <button class="primary" id="run" type="button">Start</button>
+        <button id="reset" type="button">Od nowa</button>
       </div>
-      <p class="crop" id="crop" hidden></p>
-      <div class="legend">
-        <span><i class="sw" style="background:var(--good)"></i>dobry</span>
-        <span><i class="sw" style="background:var(--good-armed)"></i>dobry z bronią</span>
-        <span><i class="sw" style="background:var(--bad)"></i>zły, uśpiony</span>
-        <span><i class="sw" style="background:var(--bad-armed)"></i>zły z bronią, uśpiony</span>
-        <span><i class="sw" style="background:var(--active)"></i>napastnik</span>
-        <span><i class="sw" style="background:var(--active-armed)"></i>napastnik z bronią</span>
-        <span><i class="sw" style="background:var(--dead)"></i>tu zginęła ofiara</span>
-        <span><i class="sw" style="background:var(--stopped)"></i>tu ofiara powstrzymała napastnika</span>
+      <div class="param">
+        <div class="plabel"><label for="spd">Tempo</label><button class="info" type="button" aria-label="Wyjaśnienie: Tempo" aria-describedby="t-spd">i</button><span class="tip" role="tooltip" id="t-spd">Ile dni symulacji mija na jedną klatkę obrazu. Nie zmienia wyników, tylko to, jak szybko je widzisz.<em>Przykład: przy „1 rok” każda klatka to cały rok, więc po kilku sekundach masz kilkaset lat.</em></span><span class="val" id="spdV"></span></div>
+        <input type="range" id="spd" min="0" max="5" step="1">
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat dead"><b id="sPer">–</b><span>zgonów rocznie na 100 tys. osób · <span class="ref">Polska 2024: 1,3</span></span></div>
+      <div class="stat att"><b id="sAtt">–</b><span>napaści rocznie na 100 tys. osób · <span class="ref">Polska: ok. 54</span></span></div>
+      <div class="stat stop"><b id="sStopY">–</b><span>powstrzymań przez ofiarę rocznie na 100 tys. osób</span></div>
+      <div class="stat dead"><b id="sDead">0</b><span>zginęło ofiar od początku</span></div>
+      <div class="stat stop"><b id="sStop">0</b><span>napastników powstrzymanych przez ofiarę</span></div>
+      <div class="stat act"><b id="sAct">0</b><span>aktywnych napastników teraz</span></div>
+    </div>
+    <p class="note" id="sMeta">Dzień 0</p>
+  </section>
+
+  <div class="main">
+    <section class="card" aria-label="Wykresy">
+      <div class="chartbox">
+        <h2>Zgony i powstrzymania rocznie, na 100 tys. osób</h2>
+        <canvas id="chart1"></canvas>
+        <div class="chartlegend">
+          <span><i style="background:var(--dead)"></i>zgony ofiar</span>
+          <span><i style="background:var(--stopped)"></i>powstrzymani przez ofiarę</span>
+          <span><i class="dash"></i>Polska: zabójstwa 2024 (z usiłowaniami)</span>
+        </div>
+      </div>
+      <div class="chartbox">
+        <h2>Napaści rocznie, na 100 tys. osób</h2>
+        <canvas id="chart2"></canvas>
+        <div class="chartlegend">
+          <span><i style="background:var(--attack)"></i>napaści</span>
+          <span><i class="dash"></i>Polska: szacunek ok. 20 tys. rocznie</span>
+        </div>
       </div>
     </section>
 
-    <section class="card" aria-label="Wyniki">
-      <div class="controlbar">
-        <div class="btns">
-          <button class="primary" id="run" type="button">Start</button>
-          <button id="reset" type="button">Od nowa</button>
-        </div>
-        <div class="param">
-          <div class="plabel"><label for="spd">Dni na klatkę</label><button class="info" type="button" aria-label="Wyjaśnienie: Dni na klatkę" aria-describedby="t-spd">i</button><span class="tip" role="tooltip" id="t-spd">Tempo odtwarzania: ile dni symulacji mija między dwiema klatkami obrazu. Nie zmienia wyników.<em>Przykład: przy 365 jedna klatka to cały rok.</em></span><span class="val" id="spdV"></span></div>
-          <input type="range" id="spd" min="0" max="6" step="1">
-        </div>
-      </div>
-
-      <div class="stats">
-        <div class="stat dead"><b id="sDead">0</b><span>zginęło ofiar</span></div>
-        <div class="stat stop"><b id="sStop">0</b><span>napastników powstrzymanych przez ofiarę</span></div>
-        <div class="stat act"><b id="sAct">0</b><span>aktywnych napastników teraz</span></div>
-        <div class="stat"><b id="sPer">–</b><span>zgonów rocznie na 100 tys. osób · Polska 2024: 1,3</span></div>
-        <div class="stat"><b id="sAtt">–</b><span>napaści rocznie na 100 tys. osób · Polska: ok. 50</span></div>
-        <div class="stat"><b id="sExp">0</b><span>napastników zatrzymanych po czasie</span></div>
-      </div>
-      <p class="note" id="sMeta">Krok 0</p>
-
-      <h2>W czasie</h2>
-      <canvas id="chart"></canvas>
-      <div class="chartlegend">
-        <span><i style="background:var(--dead)"></i>zgony ofiar</span>
-        <span><i style="background:var(--stopped)"></i>powstrzymani przez ofiarę</span>
-      </div>
-
-      <h2>Starcia: wyniki</h2>
+    <section class="card" aria-label="Wyniki starć">
+      <h2>Starcia od początku</h2>
       <div class="tablewrap">
         <table>
           <thead><tr><th>Napastnik → ofiara</th><th>Napaści</th><th>Zgony</th><th>Powstrz.</th></tr></thead>
           <tbody id="matrixOut"></tbody>
         </table>
       </div>
+      <p class="note">Kolumny „Zgony” i „Powstrz.” podzielone przez „Napaści” dają szanse z tabeli na dole. Im dłużej trwa symulacja, tym dokładniej.</p>
     </section>
   </div>
 
@@ -190,37 +176,37 @@ table.src td.num { white-space: nowrap; }
     <section class="card" aria-label="Populacja">
       <h2>Populacja</h2>
       <div class="param">
-          <div class="plabel"><label for="n">Liczba osób</label><button class="info" type="button" aria-label="Wyjaśnienie: Liczba osób" aria-describedby="t-n">i</button><span class="tip" role="tooltip" id="t-n">Ile osób żyje w symulowanym społeczeństwie. Od 2 mln tłum stoi w miejscu i ruszają się tylko napastnicy. Wynik jest statystycznie ten sam, a liczy się dużo szybciej.<em>Przykład: 37,3 mln to Polska (GUS, koniec 2025).</em></span><span class="val" id="nV"></span></div>
-          <input type="range" id="n" min="0" max="1000" step="1">
-        </div>
+        <div class="plabel"><label for="n">Liczba osób</label><button class="info" type="button" aria-label="Wyjaśnienie: Liczba osób" aria-describedby="t-n">i</button><span class="tip" role="tooltip" id="t-n">Ile osób żyje w symulowanym społeczeństwie. Im więcej, tym mniej przypadku w wynikach. Liczy się szybko nawet dla całej Polski.<em>Przykład: 37,3 mln to Polska (GUS, koniec 2025). Przy 100 tys. zgonów jest około jednego rocznie, więc wykres mocno skacze.</em></span><span class="val" id="nV"></span></div>
+        <input type="range" id="n" min="0" max="1000" step="1">
+      </div>
       <div class="param">
-          <div class="plabel"><label for="p">Źli (kiedyś zaatakują)</label><button class="info" type="button" aria-label="Wyjaśnienie: Źli" aria-describedby="t-p">i</button><span class="tip" role="tooltip" id="t-p">Jaka część ludzi kiedykolwiek w życiu użyje przemocy. Każdy zły w końcu zaatakuje, dobry nigdy. W danej chwili uśpionych złych na planszy jest mniej, bo zły znika po ataku, a dobry żyje całe życie.<em>Przykład: 3,5% oznacza, że z 200 urodzonych dzieci 7 kiedyś kogoś zaatakuje.</em></span><span class="val" id="pV"></span></div>
-          <input type="range" id="p" min="0" max="0.2" step="0.005">
-        </div>
+        <div class="plabel"><label for="p">Źli (kiedyś zaatakują)</label><button class="info" type="button" aria-label="Wyjaśnienie: Źli" aria-describedby="t-p">i</button><span class="tip" role="tooltip" id="t-p">Jaka część ludzi kiedykolwiek w życiu użyje przemocy. Każdy zły w końcu zaatakuje, dobry nigdy. Uśpionych złych jest w danej chwili mniej, bo zły znika po ataku, a dobry żyje całe życie.<em>Przykład: 3,5% oznacza, że z 200 urodzonych dzieci 7 kiedyś kogoś zaatakuje.</em></span><span class="val" id="pV"></span></div>
+        <input type="range" id="p" min="0" max="0.2" step="0.001">
+      </div>
       <div class="param">
-          <div class="plabel"><label for="g">Dobrzy z bronią</label><button class="info" type="button" aria-label="Wyjaśnienie: Dobrzy z bronią" aria-describedby="t-g">i</button><span class="tip" role="tooltip" id="t-g">Jaka część spokojnych ludzi ma przy sobie broń palną. To oś g z kwadratu rozwiązań.<em>Przykład: 1,1% to mniej więcej 1 na 90 osób. Tyle osób w Polsce ma pozwolenie na broń.</em></span><span class="val" id="gV"></span></div>
-          <input type="range" id="g" min="0" max="1" step="0.001">
-        </div>
+        <div class="plabel"><label for="g">Dobrzy z bronią</label><button class="info" type="button" aria-label="Wyjaśnienie: Dobrzy z bronią" aria-describedby="t-g">i</button><span class="tip" role="tooltip" id="t-g">Jaka część spokojnych ludzi ma przy sobie broń palną. To oś g z kwadratu rozwiązań.<em>Przykład: 1,1% to mniej więcej 1 na 90 osób. Tyle osób w Polsce ma pozwolenie na broń.</em></span><span class="val" id="gV"></span></div>
+        <input type="range" id="g" min="0" max="1" step="0.001">
+      </div>
       <div class="param">
-          <div class="plabel"><label for="b">Źli z bronią</label><button class="info" type="button" aria-label="Wyjaśnienie: Źli z bronią" aria-describedby="t-b">i</button><span class="tip" role="tooltip" id="t-b">Jaka część przyszłych napastników ma broń palną, legalną lub nie. To oś b z kwadratu rozwiązań.<em>Przykład: 3% oznacza, że 3 na 100 napastników mają broń palną, a reszta nóż, pięści lub nic.</em></span><span class="val" id="bV"></span></div>
-          <input type="range" id="b" min="0" max="1" step="0.005">
-        </div>
-<div class="param">
-          <div class="plabel check"><input type="checkbox" id="renew" checked><label for="renew">Odnawiaj populację</label><button class="info" type="button" aria-label="Wyjaśnienie: Odnawiaj populację" aria-describedby="t-renew">i</button><span class="tip" role="tooltip" id="t-renew">Ludzie umierają też ze starości (średnio po 78 latach, GUS). Na miejsce każdego, kto zniknął (ofiara, zatrzymany, zmarły ze starości), rodzi się nowa osoba w losowym miejscu. Jest dobra lub zła, z bronią lub bez, według tych samych ustawień. Liczebność i skład społeczeństwa zostają stałe.<em>Przykład: przy 3,5% złych średnio co 29. nowo urodzony to przyszły napastnik.</em></span></div>
-        </div>
-      <p class="note">Zmiana liczby osób i trzech suwaków zaczyna symulację od nowa. Odnawianie można przełączać w trakcie.</p>
+        <div class="plabel"><label for="b">Źli z bronią</label><button class="info" type="button" aria-label="Wyjaśnienie: Źli z bronią" aria-describedby="t-b">i</button><span class="tip" role="tooltip" id="t-b">Jaka część napastników ma broń palną, legalną lub nie. To oś b z kwadratu rozwiązań.<em>Przykład: 3% oznacza, że 3 na 100 napastników mają broń palną, a reszta nóż, pięści lub nic.</em></span><span class="val" id="bV"></span></div>
+        <input type="range" id="b" min="0" max="1" step="0.005">
+      </div>
+      <div class="param">
+        <div class="plabel check"><input type="checkbox" id="renew"><label for="renew">Odnawiaj populację</label><button class="info" type="button" aria-label="Wyjaśnienie: Odnawiaj populację" aria-describedby="t-renew">i</button><span class="tip" role="tooltip" id="t-renew">Ludzie umierają ze starości (średnio po 78 latach, GUS). Na miejsce każdego, kto zniknął (ofiara, zatrzymany, zmarły ze starości), rodzi się nowa osoba. Jest dobra lub zła, z bronią lub bez, według tych samych ustawień. Liczebność i skład zostają stałe. Wyłączone: nikt się nie rodzi ani nie umiera ze starości.<em>Przykład: przy 3,5% złych średnio co 29. nowo urodzony to przyszły napastnik.</em></span></div>
+      </div>
+      <p class="note">Zmiana tych ustawień (poza odnawianiem) zaczyna symulację od nowa.</p>
     </section>
 
     <section class="card" aria-label="Napastnicy">
       <h2>Napastnicy</h2>
       <div class="param">
-          <div class="plabel"><label for="act">Zły atakuje średnio</label><button class="info" type="button" aria-label="Wyjaśnienie: Zły atakuje średnio" aria-describedby="t-act">i</button><span class="tip" role="tooltip" id="t-act">Ile czasu mija średnio, zanim uśpiony zły zaatakuje. Nie zmienia liczby napaści na rok, bo każdy zły atakuje i tak, tylko to, ilu uśpionych złych żyje jednocześnie. Zmiana zaczyna symulację od nowa.<em>Przykład: po 25 latach znaczy, że ktoś urodzony dziś zaatakuje średnio jako 25-latek.</em></span><span class="val" id="actV"></span></div>
-          <input type="range" id="act" min="1" max="4.6" step="0.01">
-        </div>
+        <div class="plabel"><label for="act">Zły atakuje średnio</label><button class="info" type="button" aria-label="Wyjaśnienie: Zły atakuje średnio" aria-describedby="t-act">i</button><span class="tip" role="tooltip" id="t-act">Ile czasu mija średnio, zanim uśpiony zły zaatakuje. Nie zmienia liczby napaści na rok, bo każdy zły i tak w końcu atakuje. Zmienia tylko to, ilu uśpionych złych żyje jednocześnie. Zmiana zaczyna symulację od nowa.<em>Przykład: „po 25 latach” znaczy, że ktoś urodzony dziś zaatakuje średnio jako 25-latek.</em></span><span class="val" id="actV"></span></div>
+        <input type="range" id="act" min="2" max="4.6" step="0.01">
+      </div>
       <div class="param">
-          <div class="plabel"><label for="dur">Czas aktywności</label><button class="info" type="button" aria-label="Wyjaśnienie: Czas aktywności" aria-describedby="t-dur">i</button><span class="tip" role="tooltip" id="t-dur">Ile dni napastnik działa, zanim zostanie zatrzymany przez policję lub okoliczności. Codziennie robi jeden krok. Jeśli wejdzie na człowieka, to jest napaść.<em>Przykład: 2 dni to zwykle 1 lub 2 napaści, potem zatrzymanie.</em></span><span class="val" id="durV"></span></div>
-          <input type="range" id="dur" min="1" max="60" step="1">
-        </div>
+        <div class="plabel"><label for="m">Napaści na napastnika</label><button class="info" type="button" aria-label="Wyjaśnienie: Napaści na napastnika" aria-describedby="t-m">i</button><span class="tip" role="tooltip" id="t-m">Ile napaści średnio robi napastnik, zanim zatrzyma go policja, o ile wcześniej nie powstrzyma go ofiara. Robi jedną napaść dziennie. Po każdej policja zatrzymuje go z szansą 1 do tej liczby.<em>Przykład: 1,2 znaczy, że większość atakuje raz, a mniej więcej co szósty atakuje znowu.</em></span><span class="val" id="mV"></span></div>
+        <input type="range" id="m" min="1" max="10" step="0.1">
+      </div>
     </section>
 
     <section class="card" aria-label="Szanse w starciach">
@@ -231,13 +217,13 @@ table.src td.num { white-space: nowrap; }
             <tr>
               <th>Napastnik → ofiara</th>
               <th><span class="thl">Ofiara ginie<button class="info" type="button" aria-label="Wyjaśnienie: Ofiara ginie" aria-describedby="t-kill">i</button><span class="tip r" role="tooltip" id="t-kill">Szansa, że w jednej napaści tego rodzaju zginie ofiara.<em>Przykład: 4% przy uzbrojonym napastniku i bezbronnej ofierze oznacza, że 4 na 100 takich napaści kończą się śmiercią.</em></span></span></th>
-              <th><span class="thl">Ofiara powstrzymuje<button class="info" type="button" aria-label="Wyjaśnienie: Ofiara powstrzymuje" aria-describedby="t-stop">i</button><span class="tip r" role="tooltip" id="t-stop">Szansa, że ofiara zatrzyma napastnika: odstraszy, rozbroi lub zrani go tak, że przestaje atakować i znika z planszy.<em>Przykład: 50% przy uzbrojonej ofierze i napastniku bez broni oznacza, że co druga taka napaść kończy się zatrzymaniem napastnika.</em></span></span></th>
+              <th><span class="thl">Ofiara powstrzymuje<button class="info" type="button" aria-label="Wyjaśnienie: Ofiara powstrzymuje" aria-describedby="t-stop">i</button><span class="tip r" role="tooltip" id="t-stop">Szansa, że ofiara zatrzyma napastnika: odstraszy, rozbroi lub zrani go tak, że przestaje atakować i znika.<em>Przykład: 50% przy uzbrojonej ofierze i napastniku bez broni oznacza, że co druga taka napaść kończy się zatrzymaniem napastnika.</em></span></span></th>
             </tr>
           </thead>
           <tbody id="matrixIn"></tbody>
         </table>
       </div>
-      <p class="note">Gdy nie zajdzie żadne z dwóch, napastnik mija ofiarę i idzie dalej. Spotkania bez aktywnego napastnika (dobry z dobrym, uśpiony zły z kimkolwiek) kończą się niczym.</p>
+      <p class="note">Gdy nie zajdzie żadne z dwóch, napastnik ucieka i może atakować dalej, dopóki nie zatrzyma go policja.</p>
     </section>
   </div>
 
@@ -247,12 +233,12 @@ table.src td.num { white-space: nowrap; }
       <table class="src">
         <thead><tr><th>Parametr</th><th>Wartość</th><th>Skąd</th></tr></thead>
         <tbody>
-          <tr><td>Liczba osób</td><td class="num">100 tys.</td><td>Mniejsza skala, żeby było widać ruch i całą planszę. Wyniki na 100 tys. osób wychodzą takie same jak dla całej Polski (37,3 mln według GUS, koniec 2025 r.), które można ustawić suwakiem.</td></tr>
+          <tr><td>Liczba osób</td><td class="num">37,3 mln</td><td>Ludność Polski na koniec 2025 r. według GUS.</td></tr>
+          <tr><td>Długość życia</td><td class="num">78 lat</td><td>Przeciętne trwanie życia w 2024 r. według GUS: 74,9 roku u mężczyzn, 82,3 u kobiet.</td></tr>
           <tr><td>Dobrzy z bronią</td><td class="num">1,1%</td><td>411 769 osób z pozwoleniem na broń na koniec 2025 r. (dane KGP) na 37,3 mln. Nie każdy nosi broń na co dzień, więc to raczej górna granica.</td></tr>
           <tr><td>Źli z bronią</td><td class="num">3%</td><td>Około 600 przestępstw z użyciem broni palnej rocznie (603 w 2023 r.) na około 20 tys. napaści.</td></tr>
-          <tr><td>Napaści rocznie</td><td class="num">ok. 20 tys.</td><td>Szacunek: uszczerbki na zdrowiu (ok. 10 tys.), bójki i pobicia (ok. 3,5 tys.), rozboje i zabójstwa. To przestępstwa stwierdzone. Tych niezgłoszonych jest więcej.</td></tr>
-          <tr><td>Długość życia</td><td class="num">78 lat</td><td>Przeciętne trwanie życia w 2024 r. według GUS: 74,9 roku u mężczyzn, 82,3 u kobiet.</td></tr>
-          <tr><td>Źli · czas do ataku · czas aktywności</td><td class="num">3,5% · 25 lat · 2 dni</td><td>Każdego roku rodzi się ok. 1/78 społeczeństwa, z czego 3,5% to przyszli napastnicy. Każdy robi średnio 1,2 napaści (2 dni aktywności), więc wychodzi ok. 20 tys. napaści rocznie na 37,3 mln. Statystyki nie mówią, ilu ludzi kiedykolwiek użyje przemocy, więc 3,5% to wartość dobrana do liczby napaści, nie pomiar.</td></tr>
+          <tr><td>Napaści rocznie</td><td class="num">ok. 20 tys.</td><td>Szacunek: uszczerbki na zdrowiu (ok. 10 tys.), bójki i pobicia (ok. 3,5 tys.), rozboje i zabójstwa. To przestępstwa stwierdzone. Niezgłoszonych jest więcej.</td></tr>
+          <tr><td>Źli · czas do ataku · napaści na napastnika</td><td class="num">3,5% · 25 lat · 1,2</td><td>Co roku rodzi się ok. 1/78 społeczeństwa, z czego 3,5% to przyszli napastnicy. Każdy robi średnio 1,2 napaści, więc wychodzi ok. 20 tys. napaści rocznie na 37,3 mln. Statystyki nie mówią, ilu ludzi kiedykolwiek użyje przemocy, więc 3,5% to wartość dobrana do liczby napaści, a nie pomiar.</td></tr>
           <tr><td>Napastnik → ofiara: ginie</td><td class="num">1,5%</td><td>503 zabójstwa w 2024 r. (z usiłowaniami) na około 20 tys. napaści. Bez usiłowań wychodzi mniej.</td></tr>
           <tr><td>Napastnik z bronią → ofiara: ginie</td><td class="num">4%</td><td>Od kilkunastu do 39 zabójstw z bronią palną rocznie przy około 600 przestępstwach z jej użyciem.</td></tr>
           <tr><td>Szanse obrony i przypadki z uzbrojoną ofiarą</td><td class="num">założenia</td><td>Brak polskich danych o obronie z bronią. Te liczby ustaw według własnej oceny.</td></tr>
@@ -263,228 +249,102 @@ table.src td.num { white-space: nowrap; }
 </div>
 
 <script>
-function simEngine(self) {
-// ===== Silnik symulacji (Web Worker) =====
-// Plansza to zawinięta siatka (wyjście za krawędź wraca z drugiej strony).
-// Komórka (Uint8): bity 0-6 = typ, bit 7 = znacznik "już ruszył w tym kroku".
-// 0 pusto, 1 dobry, 2 dobry z bronią, 3 zły uśpiony, 4 zły uśpiony z bronią, 5 napastnik, 6 napastnik z bronią.
-// Napastnik atakuje osobę, na którą wejdzie. Gdy starcie nic nie da, mija ją (zamiana miejsc).
-// Tryb pełny: rusza się każdy. Tryb szybki (duże populacje): tłum stoi, ruszają się tylko napastnicy.
-// Statystycznie to samo, bo tłum i tak jest losowo wymieszany.
-let W = 0, H = 0, S = 0, cells = null, timers = null, par = 0, tick = 0, rng = 0x2545F491;
-let cfg = null, st = null, events = [], actives = [], collect = false, fast = false, nDormant = 0, deficit = 0;
-let A = null; // tryb szybki: lista napastników {pos, type, timer}
-let VW = 0, VH = 0, colX = null, rowY = null, pal = new Uint32Array(8);
-const INV = 2.3283064365386963e-10;
-const FAST_FROM = 2000000;
-const VIEW = 420;
+// ===== Silnik: samo losowanie na licznikach, bez planszy =====
+// Stan to cztery liczniki (dobrzy / dobrzy z bronią / uśpieni źli / uśpieni źli z bronią)
+// i lista aktywnych napastników. Jeden krok = jeden dzień.
+function createEngine() {
+  const E = {};
+  let c, G, GA, B, BA, A, day, deficit, st, yr, years;
+  const rnd = Math.random;
 
-function rnd() { let x = rng; x ^= x << 13; x ^= x >>> 17; x ^= x << 5; rng = x; return x >>> 0; }
-
-function freshStats() {
-  return { att: [0,0,0,0], kill: [0,0,0,0], stop: [0,0,0,0], expired: 0, activated: 0, killGood: 0, killBad: 0, born: 0, natural: 0 };
-}
-
-function init(c) {
-  cfg = c; st = freshStats(); tick = 0; par = 0; events = []; actives = []; A = []; deficit = 0;
-  rng = (Math.random() * 4294967295) >>> 0 || 1;
-  const N = c.n, dens = 0.6;
-  fast = N >= FAST_FROM;
-  W = Math.ceil(Math.sqrt(N / dens)); H = Math.ceil(N / dens / W); S = W * H;
-  cells = null; timers = null;
-  cells = new Uint8Array(S); timers = fast ? null : new Uint8Array(S);
-  // Start w stanie równowagi: zły żyje uśpiony średnio 1/act dni, dobry całe życie (life dni),
-  // więc uśpionych złych jest w danej chwili mniej niż p.
-  const X = 1 / Math.max(c.act, 1e-9), L = c.life;
-  const q0 = c.p * X / ((1 - c.p) * L + c.p * X);
-  const pg = (1 - q0), tGoodArmed = pg * c.g, tBadArmed = pg + q0 * c.b;
-  nDormant = 0;
-  for (let i = 0; i < N; i++) {
-    const r = rnd() * INV;
-    if (r < pg) cells[i] = r < tGoodArmed ? 2 : 1;
-    else { cells[i] = r < tBadArmed ? 4 : 3; nDormant++; }
+  function poisson(l) {
+    if (l <= 0) return 0;
+    if (l > 30) { const u = 1 - rnd(), v = rnd(); return Math.max(0, Math.round(l + Math.sqrt(l) * Math.sqrt(-2 * Math.log(u)) * Math.cos(6.283185307 * v))); }
+    let k = 0, p = 1; const L = Math.exp(-l);
+    do { k++; p *= rnd(); } while (p > L);
+    return k - 1;
   }
-  for (let i = S - 1; i > 0; i--) {
-    const j = rnd() % (i + 1); const t = cells[i]; cells[i] = cells[j]; cells[j] = t;
-  }
-  // Widok: okno VIEW × VIEW miejsc z lewego górnego rogu, 1 piksel = 1 osoba.
-  // Gdy plansza jest większa, widać tylko wycinek; reszta liczy się w tle.
-  VW = Math.min(W, VIEW); VH = Math.min(H, VIEW);
-  colX = new Uint32Array(VW); rowY = new Uint32Array(VH);
-  for (let x = 0; x < VW; x++) colX[x] = x;
-  for (let y = 0; y < VH; y++) rowY[y] = y * W;
-}
 
-function ev(i, kind) { if (events.length < 9000) events.push(i % W, (i / W) | 0, kind); }
+  E.init = cfg => {
+    c = Object.assign({}, cfg);
+    // Start w stanie równowagi: zły żyje uśpiony średnio X dni, dobry całe życie (L dni).
+    const X = 1 / c.act, L = c.life;
+    const q0 = c.p * X / ((1 - c.p) * L + c.p * X);
+    const bad = Math.round(c.n * q0), good = c.n - bad;
+    BA = Math.round(bad * c.b); B = bad - BA;
+    GA = Math.round(good * c.g); G = good - GA;
+    A = []; day = 0; deficit = 0; years = [];
+    st = { att: [0,0,0,0], kill: [0,0,0,0], stop: [0,0,0,0], arrested: 0, activated: 0, killGood: 0, killBad: 0, born: 0, natural: 0 };
+    yr = { d: 0, s: 0, a: 0 };
+  };
+  E.set = cfg => Object.assign(c, cfg);
 
-// Zwraca 1 gdy ofiara ginie, 2 gdy ofiara powstrzymuje napastnika, 0 gdy nic.
-function attack(ai, at, vi, vt) {
-  const k = (at === 6 ? 2 : 0) + ((vt === 2 || vt === 4) ? 1 : 0);
-  st.att[k]++;
-  const r = rnd() * INV;
-  if (r < cfg.kill[k]) {
-    cells[vi] = 0; st.kill[k]++;
-    if (vt <= 2) st.killGood++; else { st.killBad++; nDormant--; }
-    deficit++; ev(vi, 0); return 1;
-  }
-  if (r < cfg.kill[k] + cfg.stop[k]) { cells[ai] = 0; st.stop[k]++; deficit++; ev(ai, 1); return 2; }
-  return 0;
-}
-
-function stepFull() {
-  par ^= 1; tick++;
-  const pb = par << 7, T = cfg.dur, w = W, sz = S, cl = cells, tm = timers, col = collect;
-  const thrAct = Math.min(4294967295, cfg.act * 4294967296);
-  const off = new Int32Array([1, -1, w, -w]);
-  const fwd = (tick & 1) === 1, di = fwd ? 1 : -1;
-  let i = fwd ? 0 : sz - 1, r = rng;
-  for (let n = 0; n < sz; n++, i += di) {
-    const c = cl[i];
-    if (c !== 0 && (c & 0x80) !== pb) body: {
-      let t = c & 0x7F;
-      if (t >= 5) {
-        if (--tm[i] === 0) { cl[i] = 0; st.expired++; deficit++; break body; }
-      } else if (t >= 3) {
-        r ^= r << 13; r ^= r >>> 17; r ^= r << 5;
-        if ((r >>> 0) < thrAct) { t += 2; tm[i] = T; st.activated++; nDormant--; }
+  function step() {
+    day++;
+    // 1. Uśpieni źli stają się napastnikami
+    let k = Math.min(B, poisson(B * c.act)); B -= k; for (let i = 0; i < k; i++) A.push(false);
+    k = Math.min(BA, poisson(BA * c.act)); BA -= k; for (let i = 0; i < k; i++) A.push(true);
+    st.activated += k;
+    // 2. Każdy aktywny napastnik atakuje dziś jedną losową osobę
+    const next = [];
+    for (const armed of A) {
+      const total = G + GA + B + BA;
+      if (total <= 0) { next.push(armed); continue; }
+      let r = rnd() * total, vic;
+      if ((r -= GA) < 0) vic = 'GA'; else if ((r -= G) < 0) vic = 'G'; else if ((r -= BA) < 0) vic = 'BA'; else vic = 'B';
+      const vArmed = vic === 'GA' || vic === 'BA';
+      const kk = (armed ? 2 : 0) + (vArmed ? 1 : 0);
+      st.att[kk]++; yr.a++;
+      const u = rnd();
+      if (u < c.kill[kk]) {
+        if (vic === 'GA') GA--; else if (vic === 'G') G--; else if (vic === 'BA') BA--; else B--;
+        st.kill[kk]++; yr.d++; deficit++;
+        if (vic === 'G' || vic === 'GA') st.killGood++; else st.killBad++;
+      } else if (u < c.kill[kk] + c.stop[kk]) {
+        st.stop[kk]++; yr.s++; deficit++;
+        continue; // napastnik powstrzymany, znika
       }
-      r ^= r << 13; r ^= r >>> 17; r ^= r << 5;
-      let j = i + off[(r >>> 7) & 3];
-      if (j >= sz) j -= sz; else if (j < 0) j += sz;
-      const cj = cl[j];
-      if (cj === 0) {
-        cl[j] = t | pb; cl[i] = 0;
-        if (t >= 5) { tm[j] = tm[i]; if (col) actives.push(j, t); }
-        break body;
+      // 3. Po napaści policja zatrzymuje go z szansą 1/m
+      if (rnd() < 1 / c.m) { st.arrested++; deficit++; continue; }
+      next.push(armed);
+    }
+    A = next;
+    // 4. Wymiana pokoleń: dobrzy umierają ze starości, na miejsce każdego, kto zniknął, rodzi się nowy
+    if (c.renew) {
+      let d = Math.min(G + GA, poisson((G + GA) / c.life));
+      for (let i = 0; i < d; i++) { if (rnd() * (G + GA) < GA) GA--; else G--; }
+      st.natural += d; deficit += d;
+      for (let i = 0; i < deficit; i++) {
+        if (rnd() < c.p) { if (rnd() < c.b) BA++; else B++; }
+        else { if (rnd() < c.g) GA++; else G++; }
       }
-      cl[i] = t | pb;
-      if (t < 5) break body;
-      const tj = cj & 0x7F;
-      if (tj >= 5) { if (col) actives.push(i, t); break body; }
-      rng = r; const res = attack(i, t, j, tj); r = rng;
-      if (res === 0) { cl[i] = tj | pb; cl[j] = t | pb; tm[j] = tm[i]; if (col) actives.push(j, t); }
-      else if (res === 1 && col) actives.push(i, t);
+      st.born += deficit; deficit = 0;
     }
+    if (day % 365 === 0) { years.push(yr); yr = { d: 0, s: 0, a: 0 }; }
   }
-  rng = r;
-}
 
-function poisson(l) {
-  if (l <= 0) return 0;
-  if (l > 30) { const u = 1 - rnd() * INV, v = rnd() * INV; return Math.max(0, Math.round(l + Math.sqrt(l) * Math.sqrt(-2 * Math.log(u)) * Math.cos(6.283185307 * v))); }
-  let k = 0, p = 1; const L = Math.exp(-l);
-  do { k++; p *= rnd() * INV; } while (p > L);
-  return k - 1;
-}
-
-function stepFast() {
-  tick++;
-  const w = W, sz = S, cl = cells;
-  // Aktywacje: tyle, ile wypadłoby z losowania dla każdego uśpionego złego.
-  let k = poisson(nDormant * cfg.act);
-  while (k-- > 0 && nDormant > 0) {
-    for (let tries = 0; tries < 5000; tries++) {
-      const i = rnd() % sz, t = cl[i];
-      if (t === 3 || t === 4) { cl[i] = t + 2; A.push({ pos: i, type: t + 2, timer: cfg.dur }); st.activated++; nDormant--; break; }
-    }
-  }
-  const off = [1, -1, w, -w], next = [];
-  for (const a of A) {
-    if (cl[a.pos] !== a.type) continue; // usunięty
-    if (--a.timer < 0) { cl[a.pos] = 0; st.expired++; deficit++; continue; }
-    let j = a.pos + off[rnd() & 3];
-    if (j >= sz) j -= sz; else if (j < 0) j += sz;
-    const tj = cl[j];
-    if (tj === 0) { cl[j] = a.type; cl[a.pos] = 0; a.pos = j; next.push(a); continue; }
-    if (tj >= 5) { next.push(a); continue; }
-    const res = attack(a.pos, a.type, j, tj);
-    if (res === 2) continue;
-    if (res === 0) { cl[a.pos] = tj; cl[j] = a.type; a.pos = j; }
-    next.push(a);
-  }
-  A = next;
-  if (collect) for (const a of A) actives.push(a.pos, a.type);
-}
-
-// Odnawianie: każdy, kto zniknął, zostaje zastąpiony nową osobą w losowym pustym miejscu.
-// Nowa osoba jest dobra/zła i z bronią/bez według tych samych ustawień p, g, b.
-// Naturalna wymiana pokoleń: dobrzy umierają ze starości średnio po life dniach.
-// Uśpieni źli z definicji zaatakują przed śmiercią, więc ich to nie dotyczy.
-function turnover() {
-  let k = poisson(Math.max(0, cfg.n - nDormant) / cfg.life);
-  while (k-- > 0) {
-    for (let tries = 0; tries < 200; tries++) {
-      const i = rnd() % S, t = cells[i] & 0x7F;
-      if (t === 1 || t === 2) { cells[i] = 0; deficit++; st.natural++; break; }
-    }
-  }
-}
-
-function spawn() {
-  const pg = 1 - cfg.p, tGA = pg * cfg.g, tBA = pg + cfg.p * cfg.b, mark = fast ? 0 : par << 7;
-  let k = deficit; deficit = 0;
-  while (k-- > 0) {
-    for (let tries = 0; tries < 200; tries++) {
-      const i = rnd() % S;
-      if (cells[i] !== 0) continue;
-      const r = rnd() * INV; let t;
-      if (r < pg) t = r < tGA ? 2 : 1; else { t = r < tBA ? 4 : 3; nDormant++; }
-      cells[i] = t | mark; st.born++; break;
-    }
-  }
-}
-
-function render() {
-  const img = new Uint32Array(VW * VH);
-  let k = 0;
-  for (let y = 0; y < VH; y++) {
-    const ry = rowY[y];
-    for (let x = 0; x < VW; x++) img[k++] = pal[cells[ry + colX[x]] & 0x7F];
-  }
-  return img;
-}
-
-function frame(n) {
-  const t0 = performance.now();
-  for (let s = 0; s < n; s++) { collect = s === n - 1; if (collect) actives = []; fast ? stepFast() : stepFull(); if (cfg.renew) { turnover(); spawn(); } }
-  if (n === 0 && fast) for (const a of A) actives.push(a.pos, a.type);
-  const ms = (performance.now() - t0) / Math.max(n, 1);
-  const img = render();
-  const act = Int32Array.from(actives);
-  const evs = Int32Array.from(events); events = [];
-  self.postMessage({ type: 'frame', img: img.buffer, VW, VH, W, H, tick, ms, st, fast, dormant: nDormant, act: act.buffer, evs: evs.buffer }, [img.buffer, act.buffer, evs.buffer]);
-}
-
-self.onmessage = e => {
-  const m = e.data;
-  if (m.type === 'init') {
-    pal = new Uint32Array(m.pal);
-    try { init(m.cfg); } catch (err) { self.postMessage({ type: 'error', msg: 'Za mało pamięci w przeglądarce na tę populację. Wybierz mniejszą.' }); return; }
-    frame(0);
-  } else if (m.type === 'cfg') {
-    cfg = Object.assign(cfg || {}, m.cfg);
-  } else if (m.type === 'step') {
-    if (cells) frame(m.n);
-  }
-};
+  E.run = n => { for (let i = 0; i < n; i++) step(); };
+  E.state = () => ({ day, st, years, active: A.length, dormant: B + BA, alive: G + GA + B + BA + A.length });
+  return E;
 }
 </script>
 
 <script>
 (() => {
   const $ = id => document.getElementById(id);
-  const STORE = 'symulacja-napasci-v3';
-  const SPEEDS = [1, 2, 5, 10, 30, 90, 365];
+  const STORE = 'symulacja-napasci-v4';
+  const SPEEDS = [1, 7, 30, 90, 365, 3650];
+  const SPEED_LABELS = ['1 dzień', '1 tydzień', '1 miesiąc', '3 miesiące', '1 rok', '10 lat'];
   const LIFE_DAYS = 78 * 365; // średnia długość życia w Polsce, GUS 2024
+  const REF_DEATHS = 503 / 37.3e6 * 1e5, REF_ATT = 20000 / 37.3e6 * 1e5;
   const CASES = [
     { a: 'napastnik', v: 'ofiara', tip: 'Nikt nie ma broni palnej.', ex: 'napad z pięściami albo nożem na przechodnia, który nic przy sobie nie ma.' },
     { a: 'napastnik', v: 'ofiara z bronią', tip: 'Broń palną ma tylko ofiara.', ex: 'ktoś z nożem atakuje osobę, która nosi pistolet.' },
     { a: 'napastnik z bronią', v: 'ofiara', tip: 'Broń palną ma tylko napastnik.', ex: 'napad z pistoletem na bezbronnego przechodnia.' },
     { a: 'napastnik z bronią', v: 'ofiara z bronią', tip: 'Broń palną mają oboje.', ex: 'napad z pistoletem na osobę, która też ma pistolet.' }
   ];
-  // Domyślne wartości dla Polski (źródła w karcie na dole strony)
   const DEF = {
-    n: 100000, p: 0.035, g: 0.011, b: 0.03, actLog: Math.log10(9125), dur: 2, spdIdx: 0, renew: true,
+    n: 37300000, p: 0.035, g: 0.011, b: 0.03, actLog: Math.log10(9125), m: 1.2, spdIdx: 4, renew: true,
     cases: [[0.015, 0.05], [0.006, 0.50], [0.04, 0.02], [0.02, 0.35]]
   };
   const clone = o => JSON.parse(JSON.stringify(o));
@@ -494,231 +354,158 @@ self.onmessage = e => {
     if (saved && typeof saved === 'object') for (const k in DEF) if (k in saved && typeof saved[k] === typeof DEF[k]) S[k] = saved[k];
     if (!Array.isArray(S.cases) || S.cases.length !== 4) S.cases = clone(DEF.cases);
   } catch (e) {}
-  function save() { try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {} }
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {} };
 
-  let running = false, last = null, frameNo = 0, marks = [], series = [], pending = false;
-
-  const cs = getComputedStyle(document.documentElement);
-  const tok = n => cs.getPropertyValue(n).trim();
-  const abgr = h => { h = h.replace('#', ''); const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16); return ((255 << 24) | (b << 16) | (g << 8) | r) >>> 0; };
-  const pal = new Uint32Array([abgr('#000000'), abgr(tok('--good')), abgr(tok('--good-armed')), abgr(tok('--bad')), abgr(tok('--bad-armed')), abgr(tok('--active')), abgr(tok('--active-armed')), abgr('#000000')]);
-  const COL = { active: tok('--active'), activeArmed: tok('--active-armed'), dead: tok('--dead'), stopped: tok('--stopped'), muted: tok('--muted'), line: tok('--line') };
-
-  // Engine runs in a Web Worker. Some mobile browsers block workers created this way,
-  // so if the worker fails or stays silent, the same engine runs on the page instead.
-  let worker = null, localMode = false, watchdog = 0;
-  function startLocal() {
-    if (localMode) return;
-    localMode = true;
-    try { if (worker && worker.terminate) worker.terminate(); } catch (e) {}
-    const eng = { postMessage: m => setTimeout(() => onMsg({ data: m }), 0) };
-    simEngine(eng);
-    worker = { postMessage: m => setTimeout(() => { try { eng.onmessage({ data: m }); } catch (err) { showError(err); } }, 0) };
-  }
-  try {
-    const url = URL.createObjectURL(new Blob(['(' + simEngine.toString() + ')(self);'], { type: 'text/javascript' }));
-    worker = new Worker(url);
-    worker.onmessage = e => onMsg(e);
-    worker.onerror = () => { startLocal(); reset(); };
-  } catch (e) { startLocal(); }
-  function showError(err) {
-    $('busy').textContent = 'Coś poszło nie tak: ' + (err && err.message ? err.message : err) + '. Spróbuj mniejszej populacji albo odśwież stronę.';
-    $('busy').classList.add('on'); running = false; $('run').textContent = 'Start'; pending = false;
-  }
-  window.addEventListener('error', e => showError(e.error || e.message));
+  const cs = getComputedStyle(document.documentElement), tok = n => cs.getPropertyValue(n).trim();
+  const COL = { dead: tok('--dead'), stopped: tok('--stopped'), attack: tok('--attack'), muted: tok('--muted'), line: tok('--line') };
 
   const fmt = v => v.toLocaleString('pl-PL');
   const dec = (v, d) => v.toLocaleString('pl-PL', { minimumFractionDigits: d, maximumFractionDigits: d });
   const pct = v => v === 0 ? '0%' : v < 0.1 ? dec(v * 100, 1) + '%' : Math.round(v * 100) + '%';
-  const act = () => 1 / Math.pow(10, S.actLog);
-  const days = () => Math.round(Math.pow(10, S.actLog));
   const plural = (n, one, few, many) => n === 1 ? one : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? few : many;
   const fmtN = n => n >= 1e6 ? dec(n / 1e6, n >= 1e7 ? 1 : 2).replace(/,?0+$/, '') + ' mln' : fmt(Math.round(n / 1e3)) + ' tys.';
-  const fmtSpan = d => d < 365 ? fmt(d) + ' ' + plural(d, 'dzień', 'dni', 'dni') : 'ok. ' + yearsLabel(d / 365);
-  const yearsLabel = y => { const r = Math.round(y); return r + ' ' + (r === 1 ? 'rok' : plural(r, 'rok', 'lata', 'lat')); };
-
-  // Population slider: logarithmic, 10 tys. – 40 mln
+  const act = () => 1 / Math.pow(10, S.actLog);
+  const days = () => Math.round(Math.pow(10, S.actLog));
   const LMIN = 4, LSPAN = Math.log10(4000);
   const posToN = p => { const x = Math.pow(10, LMIN + LSPAN * p / 1000); const m = Math.pow(10, Math.floor(Math.log10(x)) - 2); return Math.round(x / m) * m; };
   const nToPos = n => Math.round((Math.log10(n) - LMIN) / LSPAN * 1000);
 
-  function cfg() {
-    return {
-      n: S.n, p: S.p, g: S.g, b: S.b, act: act(), dur: S.dur, renew: S.renew, life: LIFE_DAYS,
-      kill: S.cases.map(c => c[0]), stop: S.cases.map(c => c[1])
+  const engine = createEngine();
+  const cfg = () => ({ n: S.n, p: S.p, g: S.g, b: S.b, act: act(), m: S.m, renew: S.renew, life: LIFE_DAYS, kill: S.cases.map(c => c[0]), stop: S.cases.map(c => c[1]) });
+  let running = false;
+
+  // Tables
+  $('matrixIn').innerHTML = CASES.map((c, k) => `
+    <tr>
+      <td class="case"><span class="thl"><button class="info" type="button" aria-label="Wyjaśnienie: ${c.a} → ${c.v}" aria-describedby="t-c${k}">i</button><span class="tip" role="tooltip" id="t-c${k}">${c.tip}<em>Przykład: ${c.ex}</em></span><span>${c.a} → ${c.v}</span></span></td>
+      <td><input type="number" id="k${k}" min="0" max="100" step="0.1" aria-label="Szansa, że ofiara ginie: ${c.a} → ${c.v}"> %</td>
+      <td><input type="number" id="s${k}" min="0" max="100" step="0.1" aria-label="Szansa, że ofiara powstrzyma napastnika: ${c.a} → ${c.v}"> %</td>
+    </tr>`).join('');
+  $('matrixOut').innerHTML = CASES.map((c, k) => `<tr><td>${c.a} → ${c.v}</td><td class="num" id="ma${k}">0</td><td class="num" id="mk${k}">0</td><td class="num" id="ms${k}">0</td></tr>`).join('');
+  CASES.forEach((c, k) => {
+    const upd = () => {
+      let kv = Math.max(0, Math.min(100, +$('k' + k).value || 0)), sv = Math.max(0, Math.min(100, +$('s' + k).value || 0));
+      if (kv + sv > 100) { sv = 100 - kv; $('s' + k).value = sv; }
+      S.cases[k] = [kv / 100, sv / 100]; save();
+      engine.set({ kill: S.cases.map(c => c[0]), stop: S.cases.map(c => c[1]) });
     };
-  }
-  const pushCases = () => worker.postMessage({ type: 'cfg', cfg: { kill: S.cases.map(c => c[0]), stop: S.cases.map(c => c[1]) } });
+    $('k' + k).addEventListener('change', upd); $('s' + k).addEventListener('change', upd);
+  });
 
-  function buildMatrix() {
-    $('matrixIn').innerHTML = CASES.map((c, k) => `
-      <tr>
-        <td class="case"><span class="thl"><button class="info" type="button" aria-label="Wyjaśnienie: ${c.a} → ${c.v}" aria-describedby="t-c${k}">i</button><span class="tip" role="tooltip" id="t-c${k}">${c.tip}<em>Przykład: ${c.ex}</em></span><span>${c.a} → ${c.v}</span></span></td>
-        <td><input type="number" id="k${k}" min="0" max="100" step="0.1" aria-label="Szansa, że ofiara ginie: ${c.a} → ${c.v}"> %</td>
-        <td><input type="number" id="s${k}" min="0" max="100" step="0.1" aria-label="Szansa, że ofiara powstrzyma napastnika: ${c.a} → ${c.v}"> %</td>
-      </tr>`).join('');
-    $('matrixOut').innerHTML = CASES.map((c, k) => `
-      <tr><td>${c.a} → ${c.v}</td><td class="num" id="ma${k}">0</td><td class="num" id="mk${k}">0</td><td class="num" id="ms${k}">0</td></tr>`).join('');
-    CASES.forEach((c, k) => {
-      const upd = () => {
-        let kv = Math.max(0, Math.min(100, +$('k' + k).value || 0)), sv = Math.max(0, Math.min(100, +$('s' + k).value || 0));
-        if (kv + sv > 100) { sv = 100 - kv; $('s' + k).value = sv; }
-        S.cases[k] = [kv / 100, sv / 100]; save(); pushCases();
-      };
-      $('k' + k).addEventListener('change', upd); $('s' + k).addEventListener('change', upd);
-    });
-  }
-
-  // Info tooltips
+  // Tooltips
   document.addEventListener('click', e => {
     const btn = e.target.closest('.info');
     document.querySelectorAll('.info.open').forEach(b => { if (b !== btn) b.classList.remove('open'); });
     if (btn) btn.classList.toggle('open');
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.querySelectorAll('.info.open').forEach(b => b.classList.remove('open'));
-    if (e.key === 'Escape' && document.activeElement.classList.contains('info')) document.activeElement.blur();
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.info.open').forEach(b => b.classList.remove('open'));
+    if (document.activeElement.classList.contains('info')) document.activeElement.blur();
   });
 
   // Controls
   function labels() {
     $('nV').textContent = fmtN(S.n);
     $('pV').textContent = pct(S.p); $('gV').textContent = pct(S.g); $('bV').textContent = pct(S.b);
-    $('actV').textContent = days() >= 365 ? 'po ' + yearsLabel(days() / 365).replace(/ (rok|lata|lat)$/, m => m === ' rok' ? ' roku' : ' latach') : 'po ' + fmt(days()) + ' dniach';
-    $('durV').textContent = S.dur + ' ' + plural(S.dur, 'dzień', 'dni', 'dni');
-    const sp = SPEEDS[S.spdIdx]; $('spdV').textContent = sp === 365 ? '1 rok' : sp + ' ' + plural(sp, 'dzień', 'dni', 'dni');
+    const d = days(), y = Math.round(d / 365);
+    $('actV').textContent = d >= 365 ? 'po ' + y + ' ' + (y === 1 ? 'roku' : 'latach') : 'po ' + fmt(d) + ' dniach';
+    $('mV').textContent = dec(S.m, 1);
+    $('spdV').textContent = SPEED_LABELS[S.spdIdx] + ' na klatkę';
   }
   function syncInputs() {
     $('n').value = nToPos(S.n); $('p').value = S.p; $('g').value = S.g; $('b').value = S.b;
-    $('act').value = S.actLog; $('dur').value = S.dur; $('spd').value = S.spdIdx; $('renew').checked = S.renew;
+    $('act').value = S.actLog; $('m').value = S.m; $('spd').value = S.spdIdx; $('renew').checked = S.renew;
     S.cases.forEach((c, k) => { $('k' + k).value = +(c[0] * 100).toFixed(1); $('s' + k).value = +(c[1] * 100).toFixed(1); });
     labels();
   }
-  function bindRange(id, key, restart) {
-    const el = $(id);
-    el.addEventListener('input', () => {
-      S[key] = +el.value; labels(); save();
-      if (!restart) worker.postMessage({ type: 'cfg', cfg: { act: act(), dur: S.dur } });
-    });
-    if (restart) el.addEventListener('change', reset);
-  }
-  bindRange('p', 'p', true); bindRange('g', 'g', true); bindRange('b', 'b', true);
-  bindRange('act', 'actLog', true); bindRange('dur', 'dur', false); bindRange('spd', 'spdIdx', false);
+  const restartOnChange = (id, key) => {
+    $(id).addEventListener('input', () => { S[key] = +$(id).value; labels(); save(); });
+    $(id).addEventListener('change', reset);
+  };
+  restartOnChange('p', 'p'); restartOnChange('g', 'g'); restartOnChange('b', 'b'); restartOnChange('act', 'actLog');
   $('n').addEventListener('input', () => { S.n = posToN(+$('n').value); labels(); });
   $('n').addEventListener('change', () => { S.n = posToN(+$('n').value); labels(); save(); reset(); });
-  $('renew').addEventListener('change', () => { S.renew = $('renew').checked; save(); worker.postMessage({ type: 'cfg', cfg: { renew: S.renew } }); });
+  $('m').addEventListener('input', () => { S.m = +$('m').value; labels(); save(); engine.set({ m: S.m }); });
+  $('spd').addEventListener('input', () => { S.spdIdx = +$('spd').value; labels(); save(); });
+  $('renew').addEventListener('change', () => { S.renew = $('renew').checked; save(); engine.set({ renew: S.renew }); });
   $('defaults').addEventListener('click', () => { S = clone(DEF); save(); syncInputs(); reset(); });
-
-  function reset() {
-    marks = []; series = []; frameNo = 0; last = null; pending = true;
-    $('busy').textContent = S.n >= 10000000 ? 'Tworzę populację… (kilka sekund)' : 'Tworzę populację…';
-    $('busy').classList.add('on');
-    worker.postMessage({ type: 'init', cfg: cfg(), pal: pal.buffer.slice(0) });
-    clearTimeout(watchdog);
-    if (!localMode) watchdog = setTimeout(() => { if (pending) { startLocal(); reset(); } }, S.n >= 10000000 ? 30000 : 5000);
-  }
   $('reset').addEventListener('click', reset);
   $('run').addEventListener('click', () => {
     running = !running; $('run').textContent = running ? 'Pauza' : 'Start';
-    if (running && !pending) requestStep();
+    if (running) requestAnimationFrame(tick);
   });
-  function requestStep() { pending = true; worker.postMessage({ type: 'step', n: SPEEDS[S.spdIdx] }); }
 
-  // Canvases
-  const base = $('base'), bctx = base.getContext('2d');
-  const over = $('over'), octx = over.getContext('2d');
-  function sizeOver() {
-    const r = over.getBoundingClientRect(), d = window.devicePixelRatio || 1;
-    over.width = Math.round(r.width * d); over.height = Math.round(r.height * d);
-  }
-  new ResizeObserver(() => { sizeOver(); drawOver(); drawChart(); }).observe(over);
+  function reset() { engine.init(cfg()); render(); }
 
-  function drawOver() {
-    octx.clearRect(0, 0, over.width, over.height);
-    if (!last) return;
-    const d = window.devicePixelRatio || 1, sx = over.width / last.VW, sy = over.height / last.VH;
-    const px = Math.max(sx, 2.5 * d);
-    // Places where someone died or an attacker was stopped: coloured pixels that fade out
-    const life = 60;
-    for (const m of marks) {
-      const age = frameNo - m.f; if (age > life || m.x >= last.VW || m.y >= last.VH) continue;
-      octx.globalAlpha = 1 - age / life;
-      octx.fillStyle = m.k === 0 ? COL.dead : COL.stopped;
-      octx.fillRect((m.x + .5) * sx - px / 2, (m.y + .5) * sy - px / 2, px, px);
-    }
-    octx.globalAlpha = 1;
-    const a = last.act;
-    for (let i = 0; i < a.length; i += 2) {
-      const idx = a[i], x = idx % last.W, y = (idx / last.W) | 0;
-      if (x >= last.VW || y >= last.VH) continue;
-      octx.fillStyle = a[i + 1] === 6 ? COL.activeArmed : COL.active;
-      octx.fillRect((x + .5) * sx - px / 2, (y + .5) * sy - px / 2, px, px);
-    }
+  function tick() {
+    if (!running) return;
+    // Spread a long step over a time budget so the page stays responsive
+    let todo = SPEEDS[S.spdIdx]; const t0 = performance.now();
+    while (todo > 0 && performance.now() - t0 < 40) { const k = Math.min(todo, 30); engine.run(k); todo -= k; }
+    render();
+    requestAnimationFrame(tick);
   }
 
-  const chart = $('chart'), cctx = chart.getContext('2d');
-  const tLabel = t => t >= 730 ? 'rok ' + dec(t / 365, t >= 3650 ? 0 : 1) : 'dzień ' + fmt(t);
-  function drawChart() {
-    const d = window.devicePixelRatio || 1, r = chart.getBoundingClientRect();
-    chart.width = Math.round(r.width * d); chart.height = Math.round(r.height * d);
-    const w = chart.width, h = chart.height, pad = 8 * d, left = 44 * d, bottom = 18 * d;
-    cctx.clearRect(0, 0, w, h);
-    cctx.font = `${11 * d}px "IBM Plex Mono", monospace`; cctx.fillStyle = COL.muted;
-    const max = Math.max(1, ...series.map(s => Math.max(s.d, s.s)));
-    const lastTick = series.length ? series[series.length - 1].t : 1;
-    cctx.strokeStyle = COL.line; cctx.lineWidth = 1;
-    for (let i = 0; i <= 2; i++) {
-      const y = pad + (h - pad - bottom) * (1 - i / 2);
-      cctx.beginPath(); cctx.moveTo(left, y); cctx.lineTo(w - pad, y); cctx.stroke();
-      cctx.textAlign = 'right'; cctx.fillText(fmt(Math.round(max * i / 2)), left - 6 * d, y + 4 * d);
+  // Charts: one point per finished year, per 100k people
+  function drawChart(canvas, lines, ref, emptyText) {
+    const d = window.devicePixelRatio || 1, r = canvas.getBoundingClientRect();
+    canvas.width = Math.round(r.width * d); canvas.height = Math.round(r.height * d);
+    const ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height;
+    const pad = 10 * d, left = 40 * d, bottom = 20 * d;
+    ctx.clearRect(0, 0, w, h);
+    ctx.font = `${11 * d}px "IBM Plex Mono", monospace`; ctx.fillStyle = COL.muted;
+    const n = lines[0].values.length;
+    if (n < 1) { ctx.textAlign = 'center'; ctx.fillText(emptyText, w / 2, h / 2); return; }
+    let max = ref * 1.25;
+    for (const l of lines) for (const v of l.values) if (v > max) max = v;
+    max = niceMax(max);
+    const X = i => left + (w - pad - left) * (n === 1 ? 0.5 : i / (n - 1));
+    const Y = v => pad + (h - pad - bottom) * (1 - v / max);
+    ctx.strokeStyle = COL.line; ctx.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+      const v = max * i / 4, y = Y(v);
+      ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(w - pad, y); ctx.stroke();
+      ctx.textAlign = 'right'; ctx.fillText(v.toLocaleString('pl-PL', { maximumFractionDigits: 2 }), left - 6 * d, y + 4 * d);
     }
-    cctx.textAlign = 'left'; cctx.fillText('dzień 0', left, h - 3 * d);
-    cctx.textAlign = 'right'; cctx.fillText(tLabel(lastTick), w - pad, h - 3 * d);
-    const X = t => left + (w - pad - left) * (t / Math.max(lastTick, 1)), Y = v => pad + (h - pad - bottom) * (1 - v / max);
-    [['d', COL.dead], ['s', COL.stopped]].forEach(([k, c]) => {
-      if (series.length < 2) return;
-      cctx.strokeStyle = c; cctx.lineWidth = 2 * d; cctx.beginPath();
-      series.forEach((p, i) => i ? cctx.lineTo(X(p.t), Y(p[k])) : cctx.moveTo(X(p.t), Y(p[k])));
-      cctx.stroke();
-    });
+    ctx.textAlign = 'left'; ctx.fillText('rok 1', left, h - 4 * d);
+    ctx.textAlign = 'right'; ctx.fillText('rok ' + fmt(n), w - pad, h - 4 * d);
+    // reference
+    ctx.setLineDash([4 * d, 3 * d]); ctx.strokeStyle = COL.muted; ctx.lineWidth = 1.2 * d;
+    ctx.beginPath(); ctx.moveTo(left, Y(ref)); ctx.lineTo(w - pad, Y(ref)); ctx.stroke(); ctx.setLineDash([]);
+    for (const l of lines) {
+      ctx.strokeStyle = l.color; ctx.lineWidth = 1.8 * d; ctx.beginPath();
+      const step = Math.max(1, Math.floor(n / (w / d)));
+      for (let i = 0; i < n; i += step) { const x = X(i), y = Y(l.values[i]); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.stroke();
+      if (n === 1) { ctx.fillStyle = l.color; ctx.beginPath(); ctx.arc(X(0), Y(l.values[0]), 3 * d, 0, 7); ctx.fill(); }
+    }
   }
+  const niceMax = v => { const e = Math.pow(10, Math.floor(Math.log10(v))); const f = v / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * e; };
 
-  function onMsg(e) {
-    const m = e.data;
-    clearTimeout(watchdog);
-    if (m.type === 'error') { $('busy').textContent = m.msg; running = false; $('run').textContent = 'Start'; pending = false; return; }
-    pending = false; frameNo++;
-    $('busy').classList.remove('on');
-    if (base.width !== m.VW || base.height !== m.VH) { base.width = m.VW; base.height = m.VH; }
-    bctx.putImageData(new ImageData(new Uint8ClampedArray(m.img), m.VW, m.VH), 0, 0);
-    last = { W: m.W, H: m.H, VW: m.VW, VH: m.VH, act: new Int32Array(m.act) };
-    const frac = (m.VW * m.VH) / (m.W * m.H);
-    if (frac < 0.999) {
-      const seen = Math.round(S.n * frac);
-      $('crop').textContent = `Widzisz wycinek: ${frac < 0.01 ? dec(frac * 100, 2) : dec(frac * 100, 1)}% społeczeństwa (ok. ${fmtN(seen)} z ${fmtN(S.n)} osób, 1 piksel = 1 osoba). Reszta symulacji liczy się w tle. Liczby obok dotyczą całości.`;
-      $('crop').hidden = false;
-    } else $('crop').hidden = true;
-    const ev = new Int32Array(m.evs);
-    for (let i = 0; i < ev.length; i += 3) marks.push({ x: ev[i], y: ev[i + 1], k: ev[i + 2], f: frameNo });
-    if (marks.length > 6000 || frameNo % 30 === 0) marks = marks.filter(x => frameNo - x.f <= 60);
-
-    const st = m.st, dead = st.killGood + st.killBad, stopped = st.stop.reduce((a, b) => a + b, 0), att = st.att.reduce((a, b) => a + b, 0);
-    const years = m.tick / 365, perY = v => m.tick >= 30 ? dec(v / years / S.n * 100000, 1) : '–';
-    $('sDead').textContent = fmt(dead); $('sStop').textContent = fmt(stopped);
-    $('sAct').textContent = fmt(last.act.length / 2); $('sExp').textContent = fmt(st.expired);
-    $('sPer').textContent = perY(dead); $('sAtt').textContent = perY(att);
-    $('sMeta').textContent = `Dzień ${fmt(m.tick)}${m.tick >= 365 ? ' (' + dec(years, 1) + ' roku)' : ''} · ${localMode ? 'liczone na stronie (bez osobnego wątku) · ' : ''}${m.fast ? 'tryb szybki: tłum stoi, ruszają się tylko napastnicy' : 'ruszają się wszyscy'} · ${m.ms ? dec(m.ms, m.ms < 10 ? 1 : 0) + ' ms na dzień' : ''} · żyje ${fmt(S.n - dead - stopped - st.expired - st.natural + st.born)} · uśpionych złych teraz ${dec(m.dormant / S.n * 100, 2)}% · urodzonych ${fmt(st.born)} · ofiar wśród złych ${fmt(st.killBad)}`;
+  let lastYears = -1;
+  function render() {
+    const s = engine.state(), st = s.st, per = 100000 / S.n;
+    const dead = st.killGood + st.killBad, stopped = st.stop.reduce((a, b) => a + b, 0);
+    const yrs = s.day / 365;
+    $('sDead').textContent = fmt(dead); $('sStop').textContent = fmt(stopped); $('sAct').textContent = fmt(s.active);
+    // Rates: average over the last up to 10 full years (or so far, if less than a year)
+    const recent = s.years.slice(-10);
+    const rate = key => recent.length ? recent.reduce((a, y) => a + y[key], 0) / recent.length * per : null;
+    const show = v => v === null ? '–' : dec(v, v < 10 ? 2 : 1);
+    $('sPer').textContent = show(rate('d')); $('sAtt').textContent = show(rate('a')); $('sStopY').textContent = show(rate('s'));
+    $('sMeta').textContent = `Dzień ${fmt(s.day)}${s.day >= 365 ? ' (' + dec(yrs, 1) + ' roku)' : ''} · liczby roczne to średnia z ostatnich ${Math.max(1, recent.length)} ${plural(Math.max(1, recent.length), 'roku', 'lat', 'lat')} · żyje ${fmt(s.alive)} · uśpionych złych teraz ${dec(s.dormant / S.n * 100, 2)}% · urodzonych ${fmt(st.born)} · zmarłych ze starości ${fmt(st.natural)} · zatrzymanych przez policję ${fmt(st.arrested)} · ofiar wśród złych ${fmt(st.killBad)}`;
     CASES.forEach((c, k) => { $('ma' + k).textContent = fmt(st.att[k]); $('mk' + k).textContent = fmt(st.kill[k]); $('ms' + k).textContent = fmt(st.stop[k]); });
-
-    if (m.tick > 0 && (!series.length || series[series.length - 1].t !== m.tick)) {
-      series.push({ t: m.tick, d: dead, s: stopped });
-      if (series.length > 800) series = series.filter((_, i) => i % 2 === 0 || i === series.length - 1);
+    if (s.years.length !== lastYears || s.years.length === 0) {
+      lastYears = s.years.length;
+      const empty = 'Wykres pojawi się po pierwszym pełnym roku';
+      drawChart($('chart1'), [{ values: s.years.map(y => y.d * per), color: COL.dead }, { values: s.years.map(y => y.s * per), color: COL.stopped }], REF_DEATHS, empty);
+      drawChart($('chart2'), [{ values: s.years.map(y => y.a * per), color: COL.attack }], REF_ATT, empty);
     }
-    drawOver(); drawChart();
-    if (running) requestAnimationFrame(requestStep);
   }
+  new ResizeObserver(() => { lastYears = -1; render(); }).observe($('chart1'));
 
-  buildMatrix(); syncInputs(); sizeOver(); reset();
+  syncInputs(); reset();
 })();
 </script>
 </body>
